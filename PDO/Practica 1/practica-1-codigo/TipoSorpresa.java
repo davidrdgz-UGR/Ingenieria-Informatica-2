@@ -1,6 +1,6 @@
-package civitas;
+// package civitas;
 
-enum TipoSorpresa {
+public enum TipoSorpresa {
     IRCARCEL,
     IRCASILLA,
     PAGARCOBRAR,

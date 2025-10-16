@@ -1,6 +1,6 @@
-package civitas;
+// package civitas;
 
-enum TipoCasilla {
+public enum TipoCasilla {
     CALLE,
     SORPRESA,
     JUEZ,
