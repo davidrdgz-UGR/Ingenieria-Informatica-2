@@ -98,7 +98,7 @@ class TestP1 {
         Tablero.añadeJuez(); 
 
         
-        int idxInvalido = 999;
+        int idxInvalido = 100;
         System.out.println("getCasilla(" + idxInvalido + ") = " + Tablero.getCasilla(idxInvalido));
 
         
