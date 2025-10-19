@@ -4,7 +4,6 @@ import java.util.Random;
 
 
 @SuppressWarnings("all")
-
 class Dado{
     
     private Random random;
@@ -18,6 +17,8 @@ class Dado{
 
     /* ---------------------- Constructor ---------------------- */
     Dado (){
+
+        random = new Random();
         ultimoResultado = 0;
         this.debug = false;
     }

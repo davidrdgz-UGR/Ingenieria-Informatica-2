@@ -4,7 +4,7 @@ import java.util.Collections;
 
 
 @SuppressWarnings("all")
-class mazoSorpresa{
+class MazoSorpresa{
 
     private ArrayList<Sorpresa> sorpresas;         
     private boolean barajada;                      
@@ -17,7 +17,7 @@ class mazoSorpresa{
 
 
     /* ---------------------- Constructor ---------------------- */ 
-    mazoSorpresa(boolean debug) {
+    MazoSorpresa(boolean debug) {
         
         this.debug = debug;
         
@@ -28,7 +28,7 @@ class mazoSorpresa{
         }
     }
 
-    mazoSorpresa() {
+    MazoSorpresa() {
         this(false);
 
         init();

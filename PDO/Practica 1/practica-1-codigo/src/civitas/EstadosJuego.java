@@ -1,4 +1,4 @@
-// package civitas;
+package civitas;
 
 
 enum EstadosJuego {
