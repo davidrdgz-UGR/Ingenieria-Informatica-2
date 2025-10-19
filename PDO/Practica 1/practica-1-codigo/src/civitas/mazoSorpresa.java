@@ -78,7 +78,7 @@ class MazoSorpresa{
     }
 
 
-    /* Sin revisar */
+    
     void inhabilitarCartaEspecial(Sorpresa sorpresa) {
         boolean estabaEnMazo = sorpresas.remove(sorpresa);
         if (estabaEnMazo) {

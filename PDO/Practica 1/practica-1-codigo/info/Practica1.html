@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Practica1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pr%C3%A1ctica-1-pdo--2%C2%BA-ingenier%C3%ADa-inform%C3%A1tica-david-rodriguez-aparicio">Práctica 1 PDO | 2º Ingeniería Informática David Rodriguez Aparicio</h1>
+<p>En este documento vamos a explicar los distintos archivos añadidos en la práctica.</p>
+<p>Con este documento el profesor puede revisar todo el código creado, además estará en pdf,html y png en la carpeta info.</p>
+<p>Aunque el zip contará con todos los archivos de código para revisar de forma más precisa.</p>
+<h2 id="casillajava">Casilla.java</h2>
+<p>Este archivo es temporal, simplemente es la clase Casilla momentanea para que funcione lo creado hasta ahora.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Casilla</span> </span>{
+    
+    <span class="hljs-keyword">private</span> String nombre;
+
+
+    <span class="hljs-comment">/* Constructor */</span>
+    Casilla(String nombre) {
+        <span class="hljs-keyword">this</span>.nombre = nombre;
+    }
+
+    
+
+
+    <span class="hljs-comment">/* GETTERS / SETTERS */</span>
+    <span class="hljs-function">String <span class="hljs-title">getNombre</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> nombre;
+    }
+
+}
+
+
+</div></code></pre>
+<h2 id="dadojava">Dado.java</h2>
+<p>En esta clase se define el dado, una clase singletone con las propias funciones del dado como tirar, comprobar la carcel o activar el modo debugger entre otras.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.Random;
+
+
+<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"all"</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Dado</span></span>{
+    
+    <span class="hljs-keyword">private</span> Random random;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> ultimoResultado;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> debug;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Dado instance = <span class="hljs-keyword">new</span> Dado(); <span class="hljs-comment">/* Declara Su propia instancia (Singletone) */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> salidaCarcel = <span class="hljs-number">5</span>;
+
+
+
+    <span class="hljs-comment">/* ---------------------- Constructor ---------------------- */</span>
+    Dado (){
+
+        random = <span class="hljs-keyword">new</span> Random();
+        ultimoResultado = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">this</span>.debug = <span class="hljs-keyword">false</span>;
+    }
+
+
+
+    <span class="hljs-comment">/*  ---------------------- Métodos ---------------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">tirar</span><span class="hljs-params">()</span></span>{
+        
+        <span class="hljs-keyword">this</span>.ultimoResultado = ( debug ) ? <span class="hljs-number">1</span> : random.nextInt(<span class="hljs-number">6</span>) + <span class="hljs-number">1</span>;
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ultimoResultado;
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">salgoDeLaCarcel</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">int</span> resultado = tirar();
+
+        <span class="hljs-keyword">return</span> ( resultado == salidaCarcel );
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">quienEmpieza</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-keyword">return</span> random.nextInt(n); <span class="hljs-comment">/* Se usa n ya que si hay 5 jugadores ( 5-1 = 4), va del 0-4.99999 */</span>
+    }
+
+    
+    
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">setDebug</span><span class="hljs-params">(<span class="hljs-keyword">boolean</span> d)</span> </span>{
+        debug = d; <span class="hljs-comment">/* d será true/false */</span>
+
+        String mensaje;
+
+        mensaje = (debug) ? <span class="hljs-string">"Modo debug del Dado activado."</span> : <span class="hljs-string">"Modo debug del Dado desactivado."</span> ; 
+
+        Diario.getInstance().ocurreEvento(mensaje);
+    }
+
+    <span class="hljs-comment">/* ------------------------ Getters ------------------------ */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">static</span> Dado <span class="hljs-title">getInstance</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> instance;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getUltimoResultado</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.ultimoResultado;
+    }
+}
+
+</div></code></pre>
+<h2 id="mazosorpresajava">mazoSorpresa.java</h2>
+<p>En este vemos la clase MazoSorpresa, que contiene las distintas cartas que pueden tocar en la casilla de Sorpresa.</p>
+<p>Tiene algunas comprobaciones, un doble constructor y para hacer reset de las cartas.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.Collections;
+
+
+<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"all"</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MazoSorpresa</span></span>{
+
+    <span class="hljs-keyword">private</span> ArrayList&lt;Sorpresa&gt; sorpresas;         
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> barajada;                      
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> usadas;                            
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> debug;                         
+    <span class="hljs-keyword">private</span> ArrayList&lt;Sorpresa&gt; cartasEspeciales;  
+    <span class="hljs-keyword">private</span> Sorpresa ultimaSorpresa;               
+    
+
+
+
+    <span class="hljs-comment">/* ---------------------- Constructor ---------------------- */</span> 
+    MazoSorpresa(<span class="hljs-keyword">boolean</span> debug) {
+        
+        <span class="hljs-keyword">this</span>.debug = debug;
+        
+        init();
+        
+        <span class="hljs-keyword">if</span> (debug) {
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Modo DEBUG de Mazo Sopresa."</span>);
+        }
+    }
+
+    MazoSorpresa() {
+        <span class="hljs-keyword">this</span>(<span class="hljs-keyword">false</span>);
+
+        init();
+    }
+
+    <span class="hljs-comment">/*  ---------------------- Métodos ---------------------- */</span>
+
+    <span class="hljs-comment">/* Digamos que es el constructor pero llamado desde un método privado */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span> </span>{
+        sorpresas = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        cartasEspeciales = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        barajada = <span class="hljs-keyword">false</span>;
+        usadas = <span class="hljs-number">0</span>;
+        ultimaSorpresa = <span class="hljs-keyword">null</span>;
+    }
+
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">alMazo</span><span class="hljs-params">(Sorpresa s)</span> </span>{
+        <span class="hljs-keyword">if</span> (!barajada) {
+            sorpresas.add(s);
+        }
+    }
+
+    
+    <span class="hljs-function">Sorpresa <span class="hljs-title">siguiente</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (sorpresas.isEmpty()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+
+        <span class="hljs-comment">// Comprobación para hacer reset</span>
+        <span class="hljs-keyword">if</span> (!barajada || usadas == sorpresas.size()) {
+            
+            <span class="hljs-keyword">if</span> (!debug) {
+                Collections.shuffle(sorpresas);
+            }
+
+            usadas = <span class="hljs-number">0</span>;
+            barajada = <span class="hljs-keyword">true</span>;
+        }
+
+        usadas++;
+
+        Sorpresa s = sorpresas.remove(<span class="hljs-number">0</span>); 
+        sorpresas.add(s);                 
+        ultimaSorpresa = s;
+        <span class="hljs-keyword">return</span> s;
+    }
+
+
+    
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">inhabilitarCartaEspecial</span><span class="hljs-params">(Sorpresa sorpresa)</span> </span>{
+        <span class="hljs-keyword">boolean</span> estabaEnMazo = sorpresas.remove(sorpresa);
+        <span class="hljs-keyword">if</span> (estabaEnMazo) {
+            cartasEspeciales.add(sorpresa);
+            Diario.getInstance().ocurreEvento(
+                <span class="hljs-string">"Carta especial inhabilitada: movida de mazo a cartasEspeciales."</span>
+            );
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">habilitarCartaEspecial</span><span class="hljs-params">(Sorpresa sorpresa)</span> </span>{
+        <span class="hljs-keyword">boolean</span> estabaEspecial = cartasEspeciales.remove(sorpresa);
+        <span class="hljs-keyword">if</span> (estabaEspecial) {
+            sorpresas.add(sorpresa);
+            Diario.getInstance().ocurreEvento(
+                <span class="hljs-string">"Carta especial habilitada: movida de cartasEspeciales al mazo."</span>
+            );
+        }
+    }
+
+    <span class="hljs-function">Sorpresa <span class="hljs-title">getUltimaSorpresa</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> ultimaSorpresa;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getUsadas</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> usadas;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">isBarajada</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> barajada;
+    }
+
+    <span class="hljs-keyword">int</span> tamañoMazo() {
+        <span class="hljs-keyword">return</span> sorpresas.size();
+    }
+
+}
+
+</div></code></pre>
+<h2 id="sorpresajava">Sorpresa.java</h2>
+<p>Tambien es una clase temporal.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">package</span> civitas;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sorpresa</span></span>{
+    
+}
+</div></code></pre>
+<h3 id="tablerojava">Tablero.java</h3>
+<p>Incluye todas las funciones de un tablero, avance de casillas, carcel, juez, carcel, etc.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"all"</span>)
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Tablero</span></span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> numCasillaCarcel;
+    <span class="hljs-keyword">private</span> ArrayList&lt;Casilla&gt; casillas; 
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> porSalida;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> tieneJuez;
+     
+    <span class="hljs-comment">/* ---------------------- Constructor ---------------------- */</span>
+    Tablero (<span class="hljs-keyword">int</span> numCasillaCarcel ){
+        
+        <span class="hljs-keyword">this</span>.numCasillaCarcel = ( numCasillaCarcel &gt;= <span class="hljs-number">1</span> ) ? numCasillaCarcel : <span class="hljs-number">1</span> ;
+        <span class="hljs-keyword">this</span>.casillas = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+        <span class="hljs-keyword">this</span>.casillas.add(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Salida"</span>));
+        <span class="hljs-keyword">this</span>.porSalida = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">this</span>.tieneJuez = <span class="hljs-keyword">false</span>;
+
+    }
+
+    <span class="hljs-comment">/*  ---------------------- Métodos ---------------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> Boolean <span class="hljs-title">tableroCorrecto</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> ( (casillas.size() &gt; numCasillaCarcel) &amp;&amp; tieneJuez ) ; 
+    }
+
+    <span class="hljs-function">Boolean <span class="hljs-title">tableroCorrecto</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numCasilla)</span></span>{
+        <span class="hljs-keyword">return</span> tableroCorrecto() &amp;&amp; numCasilla &gt;= <span class="hljs-number">0</span> &amp;&amp; numCasilla &lt; casillas.size();
+    }
+
+    <span class="hljs-keyword">void</span> añadeCasilla (Casilla casilla){
+        
+        <span class="hljs-keyword">if</span>( casillas.size() == <span class="hljs-keyword">this</span>.numCasillaCarcel ){
+            casillas.add( <span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Cárcel"</span>) );
+        }
+
+        casillas.add( casilla );
+        
+        <span class="hljs-keyword">if</span> (casillas.size() == numCasillaCarcel) {
+            casillas.add(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Cárcel"</span>)); 
+        }
+
+    }
+
+    <span class="hljs-keyword">void</span> añadeJuez() {
+        
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.tieneJuez) {
+            casillas.add(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Juez"</span>));
+            <span class="hljs-keyword">this</span>.tieneJuez = <span class="hljs-keyword">true</span>;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">nuevaPosicion</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, <span class="hljs-keyword">int</span> tirada)</span></span>{
+        
+        <span class="hljs-keyword">if</span>( !<span class="hljs-keyword">this</span>.tableroCorrecto() ){
+            <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;
+        }<span class="hljs-keyword">else</span>{
+            
+            <span class="hljs-keyword">int</span> tamaño = casillas.size();
+            <span class="hljs-keyword">int</span> suma = actual + tirada;
+            <span class="hljs-keyword">int</span> nuevaPosicion = suma % tamaño;
+
+            <span class="hljs-keyword">if</span>(suma != nuevaPosicion){
+                <span class="hljs-keyword">this</span>.porSalida++;
+            }
+            <span class="hljs-keyword">return</span> nuevaPosicion;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">calcularTirada</span><span class="hljs-params">( <span class="hljs-keyword">int</span> origen, <span class="hljs-keyword">int</span> destino)</span></span>{
+        <span class="hljs-keyword">int</span> numeroDado;
+
+        <span class="hljs-keyword">if</span>(destino &lt; origen ){
+            numeroDado = <span class="hljs-keyword">this</span>.casillas.size() - origen + destino;
+        }<span class="hljs-keyword">else</span>{
+            numeroDado = destino - origen;
+        }
+
+        <span class="hljs-keyword">return</span> numeroDado;
+    }
+
+    <span class="hljs-comment">/* ------------------------ Getters ------------------------ */</span>
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getCarcel</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.numCasillaCarcel;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getPorSalida</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">if</span>( <span class="hljs-keyword">this</span>.porSalida &gt; <span class="hljs-number">0</span>){
+            <span class="hljs-keyword">this</span>.porSalida--;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.porSalida+<span class="hljs-number">1</span>;
+        }<span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.porSalida;
+        }
+    }
+
+    <span class="hljs-function">Casilla <span class="hljs-title">getCasilla</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numCasilla)</span></span>{
+        <span class="hljs-keyword">return</span> ( tableroCorrecto(numCasilla) ) ?  casillas.get(numCasilla) : <span class="hljs-keyword">null</span>; 
+    }
+}
+
+
+</div></code></pre>
+<h2 id="testp1java">TestP1.java</h2>
+<p>En este archivo se encuentran todas las pruebas sobre las distintas clases y métodos creados anteriormente.</p>
+<p>Se usan algunas técnicas como cadenas de formato y argumentos en cadenas de texto, uso de arrays con sus correspondientes foreach, y el uso de las clases y sus métodos.</p>
+<p>Recalcar que en las clases también se han hecho uso de operadores ternarios, ya que me parecen más cómodos y queda el código más limpio.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">import</span> java.util.Arrays;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestP1</span> </span>{
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+        System.out.println(<span class="hljs-string">"===== TEST P1 Civitas ====="</span>);
+
+        <span class="hljs-comment">// ------------------------------------------------------------</span>
+        <span class="hljs-comment">// 1) quienEmpieza() 100 veces con 4 jugadores y conteo</span>
+        
+        System.out.println(<span class="hljs-string">"\n[1] Probando quienEmpieza() 100 veces con 4 jugadores"</span>);
+        Dado dado = Dado.getInstance();
+        <span class="hljs-keyword">int</span> jugadores = <span class="hljs-number">4</span>;
+        <span class="hljs-keyword">int</span>[] frecuencias = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[jugadores];
+
+        Arrays.fill(frecuencias, <span class="hljs-number">0</span>);
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; i++) {
+            <span class="hljs-keyword">int</span> idx = dado.quienEmpieza(jugadores);
+            frecuencias[idx]++;
+        }
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; jugadores; i++) {
+            System.out.printf(<span class="hljs-string">"Jugador %d elegido %d veces\n"</span>, i, frecuencias[i]);
+        }
+
+        <span class="hljs-comment">// ------------------------------------------------------------</span>
+        <span class="hljs-comment">// 2) Modo debug on/off y tiradas</span>
+
+        System.out.println(<span class="hljs-string">"\n[2] Probando modo debug ON/OFF y tiradas"</span>);
+        dado.setDebug(<span class="hljs-keyword">true</span>);
+        System.out.println(<span class="hljs-string">"Tiradas en DEBUG (debe salir siempre 1):"</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+            System.out.println(<span class="hljs-string">"tirar() = "</span> + dado.tirar());
+        }
+
+        dado.setDebug(<span class="hljs-keyword">false</span>);
+        System.out.println(<span class="hljs-string">"Tiradas en NORMAL (aleatorio):"</span>);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++) {
+            System.out.println(<span class="hljs-string">"tirar() = "</span> + dado.tirar());
+        }
+
+        <span class="hljs-comment">// ------------------------------------------------------------</span>
+        <span class="hljs-comment">// 3) getUltimoResultado() y salgoDeLaCarcel()</span>
+        
+        System.out.println(<span class="hljs-string">"\n[3] Probando getUltimoResultado() y salgoDeLaCarcel()"</span>);
+        <span class="hljs-keyword">int</span> ultimo = dado.getUltimoResultado();
+        System.out.println(<span class="hljs-string">"Último resultado guardado en el dado = "</span> + ultimo);
+        <span class="hljs-keyword">boolean</span> sale = dado.salgoDeLaCarcel();
+        System.out.println(<span class="hljs-string">"¿Salgo de la cárcel? "</span> + (sale ? <span class="hljs-string">"Sí"</span> : <span class="hljs-string">"No"</span>));
+
+        <span class="hljs-comment">// ------------------------------------------------------------</span>
+        <span class="hljs-comment">// 4) Mostrar valores de los enumerados</span>
+        
+        System.out.println(<span class="hljs-string">"\n[4] Mostrando valores de TipoCasilla y TipoSorpresa"</span>);
+        System.out.println(<span class="hljs-string">"TipoCasilla: "</span> + Arrays.toString(TipoCasilla.values()));
+        System.out.println(<span class="hljs-string">"TipoSorpresa: "</span> + Arrays.toString(TipoSorpresa.values()));
+
+        <span class="hljs-comment">// ------------------------------------------------------------</span>
+        <span class="hljs-comment">// 5) MazoSorpresas: añadir 2 sorpresas, siguiente, inhabilitar/habilitar</span>
+
+        System.out.println(<span class="hljs-string">"\n[5] Probando MazoSorpresa"</span>);
+        MazoSorpresa mazo = <span class="hljs-keyword">new</span> MazoSorpresa(<span class="hljs-keyword">false</span>); <span class="hljs-comment">// normal</span>
+        Sorpresa s1 = <span class="hljs-keyword">new</span> Sorpresa();
+        Sorpresa s2 = <span class="hljs-keyword">new</span> Sorpresa();
+        mazo.alMazo(s1);
+        mazo.alMazo(s2);
+
+        Sorpresa activa = mazo.siguiente();
+        System.out.println(<span class="hljs-string">"Siguiente sorpresa obtenida (no nula): "</span> + (activa != <span class="hljs-keyword">null</span>));
+
+        <span class="hljs-comment">// Inhabilitar la segunda carta añadida</span>
+        mazo.inhabilitarCartaEspecial(s2);
+        <span class="hljs-comment">// Habilitar de nuevo la segunda carta</span>
+        mazo.habilitarCartaEspecial(s2);
+
+        <span class="hljs-comment">// ------------------------------------------------------------</span>
+        <span class="hljs-comment">// 6) Diario: probar sus métodos (leer eventos pendientes)</span>
+        System.out.println(<span class="hljs-string">"\n[6] Probando Diario (eventos pendientes)"</span>);
+        Diario diario = Diario.getInstance();
+        <span class="hljs-comment">// Forzamos algunos eventos</span>
+        diario.ocurreEvento(<span class="hljs-string">"Evento de prueba A"</span>);
+        diario.ocurreEvento(<span class="hljs-string">"Evento de prueba B"</span>);
+        <span class="hljs-keyword">while</span> (diario.eventosPendientes()) {
+            System.out.println(<span class="hljs-string">"Diario -&gt; "</span> + diario.leerEvento());
+        }
+
+        <span class="hljs-comment">// ------------------------------------------------------------</span>
+        <span class="hljs-comment">// 7) Tablero: casillas, errores controlados, tiradas y nuevaPosicion()</span>
+        System.out.println(<span class="hljs-string">"\n[7] Probando Tablero"</span>);
+        Tablero Tablero = <span class="hljs-keyword">new</span> Tablero(<span class="hljs-number">5</span>);
+        Tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Calle 1"</span>));
+        Tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Calle 2"</span>));
+        Tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Impuesto"</span>));
+        Tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"Sorpresa"</span>));
+        Tablero.añadeJuez(); 
+
+        
+        <span class="hljs-keyword">int</span> idxInvalido = <span class="hljs-number">999</span>;
+        System.out.println(<span class="hljs-string">"getCasilla("</span> + idxInvalido + <span class="hljs-string">") = "</span> + Tablero.getCasilla(idxInvalido));
+
+        
+        <span class="hljs-keyword">int</span> posicionActual = <span class="hljs-number">3</span>;
+        <span class="hljs-keyword">int</span> tirada = <span class="hljs-number">20</span>;
+        <span class="hljs-keyword">int</span> destino = Tablero.nuevaPosicion(posicionActual, tirada);
+        <span class="hljs-keyword">int</span> vecesSalida = Tablero.getPorSalida(); 
+        System.out.printf(<span class="hljs-string">"Desde %d con tirada %d -&gt; destino %d (pasos por salida reportados: %d)\n"</span>,
+                posicionActual, tirada, destino, vecesSalida);
+
+        
+        <span class="hljs-keyword">int</span>[] tiradas = {<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">6</span>, <span class="hljs-number">0</span>};
+        <span class="hljs-keyword">int</span> pos = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> t : tiradas) {
+            <span class="hljs-keyword">int</span> dest = Tablero.nuevaPosicion(pos, t);
+            <span class="hljs-keyword">int</span> ps = Tablero.getPorSalida();
+            System.out.printf(<span class="hljs-string">"Pos %d + %d -&gt; %d | porSalida=%d\n"</span>, pos, t, dest, ps);
+            pos = dest;
+        }
+
+        System.out.println(<span class="hljs-string">"\n===== FIN TEST P1 ====="</span>);
+    }
+}
+
+
+</div></code></pre>
+
+</body>
+</html>
