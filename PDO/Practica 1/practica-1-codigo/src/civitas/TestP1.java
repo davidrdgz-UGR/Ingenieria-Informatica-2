@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 class TestP1 {
 
-    public static void main(String[] args) {
+    public static void main() {
         System.out.println("===== TEST P1 Civitas =====");
 
         // ------------------------------------------------------------
@@ -15,6 +15,7 @@ class TestP1 {
         Dado dado = Dado.getInstance();
         int jugadores = 4;
         int[] frecuencias = new int[jugadores];
+
         Arrays.fill(frecuencias, 0);
 
         for (int i = 0; i < 100; i++) {
@@ -36,7 +37,7 @@ class TestP1 {
         }
 
         dado.setDebug(false);
-        System.out.println("Tiradas en NORMAL (1.6 aleatorio):");
+        System.out.println("Tiradas en NORMAL (aleatorio):");
         for (int i = 0; i < 3; i++) {
             System.out.println("tirar() = " + dado.tirar());
         }
@@ -109,7 +110,7 @@ class TestP1 {
                 posicionActual, tirada, destino, vecesSalida);
 
         
-        int[] tiradas = {1, 2, 6, 12};
+        int[] tiradas = {1, 3, 6, 0};
         int pos = 0;
         for (int t : tiradas) {
             int dest = Tablero.nuevaPosicion(pos, t);
