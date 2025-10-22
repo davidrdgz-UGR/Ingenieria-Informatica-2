@@ -1,0 +1,4 @@
+plot "tiempos_suma.dat" with linespoints title "Suma"
+f(x) = a*x + b
+fit f(x) "tiempos_suma.dat" via a,b
+plot "tiempos_suma.dat" with linespoints, f(x) title "Ajuste"
