@@ -3,7 +3,7 @@
 #include <cstdlib>
 using namespace std;
 
-void burbujaOptimizadoDavid(int *array, int longitud){
+void burbujaOptimizado(int *array, int longitud){
     
     int aux;
     bool ordenado = false;
@@ -35,7 +35,7 @@ void burbujaOptimizadoDavid(int *array, int longitud){
         
     }
 
- /*    for( int n=0; n<longitud;n++ ){
+  /*   for( int n=0; n<longitud;n++ ){
         
         cout << array[n] << " ";
 
@@ -48,14 +48,33 @@ int main(int argc,char* argv[]) {
 
     int longitud = ( argc < 2 ) ? 5 : atoi(argv[1]);
     int arrayOrdenar[longitud]; 
+    int opcion = ( argc < 3 || atoi(argv[2])<1 || atoi(argv[2])>3) ? 1 : atoi(argv[2]);
 
-    for (int i = 0; i < longitud; ++i) {
-        arrayOrdenar[i] = rand() % 1000;
+    switch (opcion){
+        case 1:
+            
+            for (int i = 0; i < longitud; ++i) {
+                arrayOrdenar[i] = rand() % 1000;
+            }
+            break;
+        case 2:
+            
+            for (int i = 0; i < longitud; ++i) {
+                arrayOrdenar[i] = i+1;
+            }
+            break;
+
+        case 3:
+            for (int i = 0; i < longitud; ++i) {
+                arrayOrdenar[i] = longitud-i;
+            }
+            break;
+
     }
 
     
     clock_t start = clock();
-    burbujaOptimizadoDavid(arrayOrdenar,longitud);
+    burbujaOptimizado(arrayOrdenar,longitud);
     clock_t end = clock();
 
     double tiempo = (end - start) / (double)CLOCKS_PER_SEC;
