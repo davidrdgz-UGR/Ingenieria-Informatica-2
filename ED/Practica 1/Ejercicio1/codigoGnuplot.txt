@@ -1,0 +1,12 @@
+set title "Busqueda secuencial (peor caso)"
+
+set xlabel "n"
+set ylabel "tiempo (s)"
+
+plot "tiempos_busqueda.dat" with linespoints title "empirico"
+
+f(x) = a*x + b
+
+fit f(x) "tiempos_busqueda.dat" via a,b
+
+replot f(x) title sprintf("ajuste: %.3gx + %.3g", a, b)
