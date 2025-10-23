@@ -1,0 +1,12 @@
+set title "Ordenacion Iterativa"
+
+set xlabel "Longitud"
+set ylabel "tiempo (s)"
+
+plot "tiemposOrdenacion.dat" with linespoints title "empirico"
+
+f(x) = a*x + b
+
+fit f(x) "tiemposOrdenacion.dat" via a,b
+
+replot f(x) title sprintf("ajuste: %.3gx + %.3g", a, b)

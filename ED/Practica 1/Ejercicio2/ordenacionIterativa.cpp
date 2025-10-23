@@ -3,37 +3,68 @@
 #include <cstdlib>
 using namespace std;
 
-void burbujaOptimizadoDavid(int *arrayOrdenar, int longitud){
-
-    int cambios = 0;
+void burbujaOptimizadoDavid(int *array, int longitud){
+    
     int aux;
+    bool ordenado = false;
+    int interacciones;
+    
+    while(!ordenado){
+    
+        interacciones = 0;
 
-    for( int n=0; n<longitud-1;n++ ){
+        for( int n=0; n<longitud-1;n++ ){
         
-        if(arrayOrdenar[n]>arrayOrdenar[n+1]){
-            aux = arrayOrdenar[n+1];
-            arrayOrdenar[n+1] = arrayOrdenar[n];
-             arrayOrdenar[n] = aux;
             
+            
+            if(array[n]>array[n+1]){
+                aux = array[n+1];
+                array[n+1] = array[n];
+                array[n] = aux;
+                
+                if(array[n+1] != 0 ){
+                    interacciones++;
+                }
+                
+            }
 
+            // cout << "Interaccion "<< n << endl;
         }
 
+        if(interacciones == 0 ) ordenado = true;
+        
     }
 
+ /*    for( int n=0; n<longitud;n++ ){
+        
+        cout << array[n] << " ";
 
+    }
+    cout << endl << endl; */
 }
 
 
-int main(int argc, char *argv[]) {
+int main(int argc,char* argv[]) {
 
-    int longitud = 5;
-    int arrayOrdenar[longitud] = {5,4,3,2,1}; 
+    int longitud = ( argc < 2 ) ? 5 : atoi(argv[1]);
+    int arrayOrdenar[longitud]; 
 
-    burbujaOptimizadoDavid(arrayOrdenar,longitud);
-
-    for( int n=0; n<longitud;n++ ){
-        
-        cout << arrayOrdenar[n] << " ";
-
+    for (int i = 0; i < longitud; ++i) {
+        arrayOrdenar[i] = rand() % 1000;
     }
+
+    
+    clock_t start = clock();
+    burbujaOptimizadoDavid(arrayOrdenar,longitud);
+    clock_t end = clock();
+
+    double tiempo = (end - start) / (double)CLOCKS_PER_SEC;
+    
+    cout << longitud << "\t" << tiempo << endl;
+
+
+
+
+
+    
 }
