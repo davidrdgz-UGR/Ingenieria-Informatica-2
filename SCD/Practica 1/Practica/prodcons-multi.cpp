@@ -11,16 +11,25 @@ using namespace scd ;
 //**********************************************************************
 // Variables globales
 
-const unsigned 
-   num_items = 60 ,   // número de items
-	tam_vec   = 10 ;   // tamaño del buffer
+constexpr unsigned num_items = 60 ;   // número de items
+constexpr unsigned tam_vec   = 10 ;   // tamaño del buffer
+
+constexpr unsigned np = 4 ;           // nº productores
+constexpr unsigned nc = 3 ;           // nº consumidores
+
+static_assert( (num_items % np) == 0, "num_items debe ser múltiplo de np");
+static_assert( (num_items % nc) == 0, "num_items debe ser multiplo de nc");
+
+constexpr unsigned p = num_items/np ; // items por productor
+constexpr unsigned c = num_items/nc ; // items por consumidor
+
+
 unsigned  
    cont_prod[num_items] = {0}, // contadores de verificación: para cada dato, número de veces que se ha producido.
    cont_cons[num_items] = {0}, // contadores de verificación: para cada dato, número de veces que se ha consumido.
-   siguiente_dato       = 0 ;  // siguiente dato a producir en 'producir_dato' (solo se usa ahí)
    
-   unsigned vectorItems[tam_vec] ;
-   unsigned primera_libre = 0 ;
+   vectorItems[tam_vec],
+   primera_libre = 0 ;
    
 
    Semaphore libres(tam_vec) ;
@@ -31,15 +40,14 @@ unsigned
 // funciones comunes a las dos soluciones (fifo y lifo)
 //----------------------------------------------------------------------
 
-unsigned producir_dato()
+unsigned producir_dato( unsigned valor )
 {
    this_thread::sleep_for( chrono::milliseconds( aleatorio<20,100>() ));
-   const unsigned dato_producido = siguiente_dato ;
-   siguiente_dato++ ;
-   cont_prod[dato_producido] ++ ;
-   cout << "producido: " << dato_producido << endl << flush ;
-   return dato_producido ;
+   cont_prod[valor] ++ ;
+   cout << "producido: " << valor << endl << flush ;
+   return valor ;
 }
+
 //----------------------------------------------------------------------
 
 void consumir_dato( unsigned dato )
@@ -75,62 +83,82 @@ void test_contadores()
 
 //----------------------------------------------------------------------
 
-void  funcion_hebra_productora(  )
+void funcion_hebra_productora( unsigned id_prod )
 {
-   for( unsigned i = 0 ; i < num_items ; i++ )
+   for( unsigned k = 0 ; k < p ; k++ )
    {
-      int dato = producir_dato() ;
-      sem_wait( libres );    // esperar hueco
-      sem_wait( sem_mutex );     // entrar en SC
+      const unsigned valor = id_prod * p + k ;
+      const unsigned dato  = producir_dato( valor ) ;
+
+      sem_wait( libres );
+      sem_wait( sem_mutex );
 
       vectorItems[primera_libre] = dato ;
       primera_libre++ ;
 
-      cout << "Productor: inserta " << dato
+      cout << "Productor " << id_prod << ": inserta " << dato
            << "   (ocupadas=" << primera_libre << ")" << endl ;
 
-      sem_signal( sem_mutex );   // salir de SC
-      sem_signal( ocupadas );// anunciar dato disponible
+      sem_signal( sem_mutex );
+      sem_signal( ocupadas );
+   }
+}
 
+
+//----------------------------------------------------------------------
+
+void funcion_hebra_consumidora( unsigned id_cons )
+{
+   for( unsigned j = 0 ; j < c ; j++ )
+   {
+      unsigned dato ;
+
+      sem_wait( ocupadas );
+      sem_wait( sem_mutex );
+
+      primera_libre-- ;
+      dato = vectorItems[primera_libre] ;
+
+      cout << "                Consumidor " << id_cons << ": extrae " << dato
+           << "   (ocupadas=" << primera_libre << ")" << endl ;
+
+      sem_signal( sem_mutex );
+      sem_signal( libres );
+
+      consumir_dato( dato ) ;
    }
 }
 
 //----------------------------------------------------------------------
 
-void funcion_hebra_consumidora(  )
-{
-   for( unsigned i = 0 ; i < num_items ; i++ )
-   {
-      int dato ;
-      sem_wait( ocupadas );  // esperar dato disponible
-      sem_wait( sem_mutex );     // entrar en SC
-         
-      primera_libre-- ;
-      dato = vectorItems[primera_libre] ;
-         
-      cout << "                Consumidor: extrae " << dato
-           << "   (ocupadas=" << primera_libre << ")" << endl ;
-         
-      sem_signal( sem_mutex );   // salir de SC
-      sem_signal( libres );  // liberar hueco
+void  funcion_hebra_productora( unsigned id_prod );
+void  funcion_hebra_consumidora( unsigned id_cons );
 
-      consumir_dato( dato ) ;
-    }
-}
-//----------------------------------------------------------------------
 
 int main()
 {
    cout << "-----------------------------------------------------------------" << endl
-        << "Problema de los productores-consumidores (solución LIFO o FIFO ?)." << endl
-        << "------------------------------------------------------------------" << endl
-        << flush ;
+     << "Productor-Consumidor MULTI (LIFO), np=" << np << ", nc=" << nc
+     << ", num_items=" << num_items << ", tam_vec=" << tam_vec << endl
+     << "------------------------------------------------------------------" << endl
+     << flush ;
 
-   thread hebra_productora ( funcion_hebra_productora ),
-          hebra_consumidora( funcion_hebra_consumidora );
 
-   hebra_productora.join() ;
-   hebra_consumidora.join() ;
+   thread productores[np] ;
+   thread consumidores[nc] ;
+
+   for( unsigned i = 0 ; i < np ; i++ )
+      productores[i] = thread( funcion_hebra_productora, i );
+
+   for( unsigned j = 0 ; j < nc ; j++ )
+      consumidores[j] = thread( funcion_hebra_consumidora, j );
+
+   for( unsigned i = 0 ; i < np ; i++ )
+      productores[i].join() ;
+
+   for( unsigned j = 0 ; j < nc ; j++ )
+   consumidores[j].join() ;
+
 
    test_contadores();
 }
