@@ -13,6 +13,11 @@ using namespace scd ;
 
 const int num_fumadores = 3 ;
 
+Semaphore mostr_vacio(1);                         
+Semaphore ingr_disp[num_fumadores] = {              
+   Semaphore(0), Semaphore(0), Semaphore(0)
+};
+
 //-------------------------------------------------------------------------
 // Función que simula la acción de producir un ingrediente, como un retardo
 // aleatorio de la hebra (devuelve número de ingrediente producido)
@@ -39,9 +44,15 @@ int producir_ingrediente()
 //----------------------------------------------------------------------
 // función que ejecuta la hebra del estanquero
 
-void funcion_hebra_estanquero(  )
+void funcion_hebra_estanquero( )
 {
-
+   while ( true )
+   {
+      const int i = producir_ingrediente();     
+      sem_wait( mostr_vacio );            
+      cout << "Estanquero : puesto ingrediente " << i << endl;  
+      sem_signal( ingr_disp[i] );         
+   }
 }
 
 //-------------------------------------------------------------------------
@@ -73,6 +84,10 @@ void  funcion_hebra_fumador( int num_fumador )
 {
    while( true )
    {
+      sem_wait( ingr_disp[num_fumador] );              
+      cout << "Fumador " << num_fumador << " : retira su ingrediente" << endl;  
+      sem_signal( mostr_vacio );                       
+      fumar( num_fumador );                                  
 
    }
 }
@@ -81,6 +96,20 @@ void  funcion_hebra_fumador( int num_fumador )
 
 int main()
 {
-   // declarar hebras y ponerlas en marcha
-   // ......
+   cout << "---------------------------------------------\n"
+        << "Problema de los fumadores (SCD, semáforos)\n"
+        << "---------------------------------------------\n" << flush;
+
+   thread estanquero( funcion_hebra_estanquero );
+   thread fumadores[num_fumadores];
+
+   for (int i = 0; i < num_fumadores; i++)
+      fumadores[i] = thread( funcion_hebra_fumador, i );
+
+   estanquero.join();
+   for (int i = 0; i < num_fumadores; i++)
+      fumadores[i].join();
+
+   return 0;
 }
+
