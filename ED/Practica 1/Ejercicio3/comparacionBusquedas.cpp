@@ -63,11 +63,13 @@ int main(int argc,char* argv[]) {
    
     /* Elegir elemento a buscar */
     srand(time(nullptr)); 
-    int posicion = rand() % longitud - 1;
+    int posicion = rand() % (longitud - 1);
     int elementoBuscar = arrayBuscar[posicion];
 
     // cout << endl << "Elemento a buscar: " << elementoBuscar <<endl;
-    cout << endl << longitud;
+    cout << longitud;
+    
+    
     
     /* Doble Proceso de Busqueda y sus tiempos */
     clock_t start = clock();
@@ -84,6 +86,4 @@ int main(int argc,char* argv[]) {
 
     cout <<" "<< tiempo << endl ;
 
-
-    cout << endl; 
 }

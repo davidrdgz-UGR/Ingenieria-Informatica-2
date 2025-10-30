@@ -3,7 +3,7 @@ CXXFLAGS = -Wall -O2
 
 all: comparacionBusquedas.exe
 
-busqueda_secuencial: comparacionBusquedas.cpp
+comparacionBusquedas.exe: comparacionBusquedas.cpp
 	$(CXX) $(CXXFLAGS) $< -o $@
 
 clean:
