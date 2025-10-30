@@ -1,0 +1,10 @@
+set datafile separator " "
+set title "Comparacion de tiempos de busqueda"
+set xlabel "Tamaño del Array"
+set ylabel "Tiempo (segundos)"
+set grid
+
+set key left top
+
+plot "tiemposBusqueda.dat" using 1:2 with lines title "Busqueda Secuencial", \
+     "tiemposBusqueda.dat" using 1:3 with lines title "Busqueda Binaria"

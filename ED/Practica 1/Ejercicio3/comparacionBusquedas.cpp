@@ -23,7 +23,7 @@ int BusquedaBinaria(int *array, int longitud, int valorBuscado){
     int fin = longitud-1;
    
 
-    /* SOLO SIRVE PARA ARRAYS ORDENADOS */
+    /* SOLO SIRVE PARA ARRAYS ORDENADOS. */
     
     while(inicio <= fin) {
         
@@ -63,7 +63,7 @@ int main(int argc,char* argv[]) {
    
     /* Elegir elemento a buscar */
     srand(time(nullptr)); 
-    int posicion = rand() % (longitud - 1);
+    int posicion = rand() % longitud;
     int elementoBuscar = arrayBuscar[posicion];
 
     // cout << endl << "Elemento a buscar: " << elementoBuscar <<endl;
