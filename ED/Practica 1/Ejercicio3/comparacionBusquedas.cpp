@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <chrono>
 using namespace std;
 
 int busquedaSecuencial (int *array, int longitud, int valorBuscado){
@@ -80,10 +81,17 @@ int main(int argc,char* argv[]) {
     cout <<" "<< tiempo;
 
     start = clock();
+    // auto start2 = std::chrono::high_resolution_clock::now();
+
     BusquedaBinaria(arrayBuscar,longitud,elementoBuscar);
+    
     end = clock();
+    // auto end2 = std::chrono::high_resolution_clock::now();
+
+    // std::chrono::duration<double> duration = end2 - start2;
     tiempo = (end - start) / (double)CLOCKS_PER_SEC;
 
     cout <<" "<< tiempo << endl ;
+    // cout <<" "<< duration.count() << endl ;
 
 }
