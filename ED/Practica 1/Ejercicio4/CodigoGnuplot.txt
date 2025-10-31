@@ -1,0 +1,7 @@
+set title "Multiplicación de Matrices - Tiempo vs Dimensión"
+set xlabel "Dimensión de la matriz"
+set ylabel "Tiempo (segundos)"
+set grid
+set key top left
+
+plot "multiplicacionMatrices.dat" using 1:2 with linespoints lt rgb "blue" lw 2 pt 7 title "Tiempo"
