@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pr%C3%A1ctica-1-ed--2%C2%BA-ingenier%C3%ADa-inform%C3%A1tica-david-rodriguez-aparicio">Práctica 1 ED | 2º Ingeniería Informática David Rodriguez Aparicio</h1>
+<p>En este documento encontraremos los distintos códigos de los ejercicios, algunas explicaciones sobre estos y algunos archivos extras como imagenes sobre estos.</p>
+<p>Los códigos están hechos a mano, con alguna ayuda o corrección mediante IA, pero con comprensión completa sobre ellos, al fin y al cabo son algoritmos simples que suelen tener una solución fija ( no suele cambiar el funcionamiento entre las distintas soluciones posibles ).</p>
+<p>Veremos distintos códigos principalmente en C++, bash para alguna ejecucion y creacion de archivos de datos, Makefile para la compilación de los ejercicios y los códigos usados para sacar las respectivas imágenes mediante Gnuplot.</p>
+<p>No hay uso excesivo de comentarios, al ser códigos no tan extensos se pueden entender bien lo que hace cada uno, y los que hay son partes de código de comprobación y pruebas.</p>
+<h2 id="ejercicio-1">EJERCICIO 1</h2>
+<p>Este código es una busqueda simple dato a dato del array, no tiene mucho misterio.</p>
+<p>También tenemos el código bash, que no pondremos el resto, ya que son casi idénticos, al igual que el Makefile, y la gráfica.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span> </span>{
+
+    
+
+    <span class="hljs-keyword">int</span> longitud = ( argc &lt; <span class="hljs-number">2</span> ) ? <span class="hljs-number">5</span> : atoi(argv[<span class="hljs-number">1</span>]) ;
+    
+    srand(time(<span class="hljs-literal">nullptr</span>)); 
+    <span class="hljs-keyword">int</span>* arrayBuscar = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[longitud];
+
+ <span class="hljs-comment">/*    for (int n = 0; n &lt; longitud; n++){
+        cout &lt;&lt; arrayBuscar[n] &lt;&lt; endl;
+    } */</span>
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; longitud; ++i) {
+        arrayBuscar[i] = rand() % <span class="hljs-number">10000</span>;
+    }
+
+    <span class="hljs-keyword">int</span> numBuscar = <span class="hljs-number">10000</span>;
+    
+ <span class="hljs-comment">/*    for (int n = 0; n &lt; longitud; n++){
+        cout &lt;&lt; arrayBuscar[n] &lt;&lt; endl;
+    } */</span>
+
+    <span class="hljs-comment">// Temporizador</span>
+
+    <span class="hljs-keyword">clock_t</span> start = clock();
+    
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; longitud; ++i) {
+        
+        <span class="hljs-keyword">if</span> (arrayBuscar[i] == numBuscar) {
+            <span class="hljs-keyword">return</span> i;
+        }
+    }
+
+    <span class="hljs-keyword">clock_t</span> <span class="hljs-built_in">end</span> = clock();
+
+    <span class="hljs-keyword">double</span> tiempo = (<span class="hljs-built_in">end</span> - start) / (<span class="hljs-keyword">double</span>)CLOCKS_PER_SEC;
+
+    <span class="hljs-comment">// cout &lt;&lt; endl &lt;&lt; "Tiempo empleado: "&lt;&lt; tiempo &lt;&lt; endl ;</span>
+    
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; longitud &lt;&lt;<span class="hljs-string">" "</span>&lt;&lt; tiempo &lt;&lt; <span class="hljs-built_in">endl</span> ;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#!/bin/bash
+</span>
+<span class="hljs-built_in">set</span> -e
+<span class="hljs-built_in">echo</span> -n &gt; tiempos_busqueda.dat
+
+<span class="hljs-keyword">for</span> n <span class="hljs-keyword">in</span> $(seq 10000 10000 5000000); <span class="hljs-keyword">do</span>
+  ./busquedaSecuencial <span class="hljs-string">"<span class="hljs-variable">$n</span>"</span> &gt;&gt; tiempos_busqueda.dat
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"Listo -&gt; tiempos_busqueda.dat"</span>
+
+</div></code></pre>
+<pre class="hljs"><code><div>
+CXX = g++
+CXXFLAGS = -Wall -O2
+
+<span class="hljs-section">all: busquedaSecuencial</span>
+
+<span class="hljs-section">busqueda_secuencial: busquedaSecuencial.cpp</span>
+	<span class="hljs-variable">$(CXX)</span> <span class="hljs-variable">$(CXXFLAGS)</span> <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span>
+
+<span class="hljs-section">clean:</span>
+	rm -f busquedaSecuencial.exe tiempos_busqueda.dat
+
+</div></code></pre>
+<p><img src="./Ejercicio1/imagenGnuplot.png" alt="imagenEj1"></p>
+<h2 id="ejercicio-2">EJERCICIO 2</h2>
+<p>En este ejercicio usamos el algoritmo de busqueda Burbuja Optimizado (que va comparando las posiciones adyacentes del array) , y probamos las distintas formas mediante un switch en el código.</p>
+<p>Al ejercicio se le pasan 2 datos, el primero la longitud del array, y el segundo la forma de actuar, tienen valores por defecto para evitar algunos errores, aunque no está exento de ellos, se han pensado en algunos errores básicos pero no en todas las posibilidades.</p>
+<p>Tenemos varias imagenes de las distintas gráficas.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">burbujaOptimizado</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *<span class="hljs-built_in">array</span>, <span class="hljs-keyword">int</span> longitud)</span></span>{
+    
+    <span class="hljs-keyword">int</span> aux;
+    <span class="hljs-keyword">bool</span> ordenado = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">int</span> interacciones;
+    
+    <span class="hljs-keyword">while</span>(!ordenado){
+    
+        interacciones = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> n=<span class="hljs-number">0</span>; n&lt;longitud<span class="hljs-number">-1</span>;n++ ){
+        
+            
+            
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[n]&gt;<span class="hljs-built_in">array</span>[n+<span class="hljs-number">1</span>]){
+                aux = <span class="hljs-built_in">array</span>[n+<span class="hljs-number">1</span>];
+                <span class="hljs-built_in">array</span>[n+<span class="hljs-number">1</span>] = <span class="hljs-built_in">array</span>[n];
+                <span class="hljs-built_in">array</span>[n] = aux;
+                
+                <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[n+<span class="hljs-number">1</span>] != <span class="hljs-number">0</span> ){
+                    interacciones++;
+                }
+                
+            }
+
+            <span class="hljs-comment">// cout &lt;&lt; "Interaccion "&lt;&lt; n &lt;&lt; endl;</span>
+        }
+
+        <span class="hljs-keyword">if</span>(interacciones == <span class="hljs-number">0</span> ) ordenado = <span class="hljs-literal">true</span>;
+        
+    }
+
+  <span class="hljs-comment">/*   for( int n=0; n&lt;longitud;n++ ){
+        
+        cout &lt;&lt; array[n] &lt;&lt; " ";
+
+    }
+    cout &lt;&lt; endl &lt;&lt; endl; */</span>
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span>* argv[])</span> </span>{
+
+    <span class="hljs-keyword">int</span> longitud = ( argc &lt; <span class="hljs-number">2</span> ) ? <span class="hljs-number">5</span> : atoi(argv[<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">int</span> arrayOrdenar[longitud]; 
+    <span class="hljs-keyword">int</span> opcion = ( argc &lt; <span class="hljs-number">3</span> || atoi(argv[<span class="hljs-number">2</span>])&lt;<span class="hljs-number">1</span> || atoi(argv[<span class="hljs-number">2</span>])&gt;<span class="hljs-number">3</span>) ? <span class="hljs-number">1</span> : atoi(argv[<span class="hljs-number">2</span>]);
+
+    <span class="hljs-keyword">switch</span> (opcion){
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+            
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; longitud; ++i) {
+                arrayOrdenar[i] = rand() % <span class="hljs-number">1000</span>;
+            }
+            <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+            
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; longitud; ++i) {
+                arrayOrdenar[i] = i+<span class="hljs-number">1</span>;
+            }
+            <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; longitud; ++i) {
+                arrayOrdenar[i] = longitud-i;
+            }
+            <span class="hljs-keyword">break</span>;
+
+    }
+
+    
+    <span class="hljs-keyword">clock_t</span> start = clock();
+    burbujaOptimizado(arrayOrdenar,longitud);
+    <span class="hljs-keyword">clock_t</span> <span class="hljs-built_in">end</span> = clock();
+
+    <span class="hljs-keyword">double</span> tiempo = (<span class="hljs-built_in">end</span> - start) / (<span class="hljs-keyword">double</span>)CLOCKS_PER_SEC;
+    
+    <span class="hljs-built_in">cout</span> &lt;&lt; longitud &lt;&lt; <span class="hljs-string">"\t"</span> &lt;&lt; tiempo &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+    
+}
+
+</div></code></pre>
+<p><img src="./Ejercicio2/imagenGnuplot1.png" alt="imagen1Ej2">
+<img src="./Ejercicio2/imagenGnuplot2.png" alt="imagen2Ej2">
+<img src="./Ejercicio2/imagenGnuplot3.png" alt="imagen3Ej2"></p>
+<p><img src="./Ejercicio2/EjemploEjecucion.png" alt="imagen4Ej2"></p>
+<h2 id="ejercicio-3">EJERCICIO 3</h2>
+<p>En este ejercicio hacemos una prueba y comparamos la busqueda secuencial y la binaria (tiene que estar ordenado el array).</p>
+<p>Esta segunda se basa en ir partiendo a la mitad el array y viendo en cual de las particiones puede estar, se toman ambos tiempos y se muestran en la gráfica.</p>
+<p>Hay algunas pruebas con otras librerias como ya te comenté. La mayoría de codigos están probados tanto en Linux-Ubuntu24 como en Windows10-11.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">busquedaSecuencial</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> *<span class="hljs-built_in">array</span>, <span class="hljs-keyword">int</span> longitud, <span class="hljs-keyword">int</span> valorBuscado)</span></span>{
+    
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; longitud; i++) {
+       
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[i] == valorBuscado){
+            
+            <span class="hljs-comment">// cout &lt;&lt; "Elemento Encontrado :" &lt;&lt; valorBuscado &lt;&lt; "(pos " &lt;&lt; i &lt;&lt; ")"&lt;&lt;endl;</span>
+            <span class="hljs-keyword">return</span> i;
+        } 
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">BusquedaBinaria</span><span class="hljs-params">(<span class="hljs-keyword">int</span> *<span class="hljs-built_in">array</span>, <span class="hljs-keyword">int</span> longitud, <span class="hljs-keyword">int</span> valorBuscado)</span></span>{
+    <span class="hljs-keyword">int</span> inicio = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> fin = longitud<span class="hljs-number">-1</span>;
+   
+
+    <span class="hljs-comment">/* SOLO SIRVE PARA ARRAYS ORDENADOS. */</span>
+    
+    <span class="hljs-keyword">while</span>(inicio &lt;= fin) {
+        
+        <span class="hljs-keyword">int</span> medio = (inicio + fin) / <span class="hljs-number">2</span>;
+        
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[medio] == valorBuscado){
+            
+            <span class="hljs-comment">// cout &lt;&lt; "Elemento Encontrado :" &lt;&lt; valorBuscado &lt;&lt; "(pos " &lt;&lt; medio &lt;&lt; ")"&lt;&lt;endl;</span>
+            <span class="hljs-keyword">return</span> medio;
+
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[medio] &lt; valorBuscado){
+
+            inicio = medio + <span class="hljs-number">1</span>;
+
+        }<span class="hljs-keyword">else</span>{
+            fin = medio - <span class="hljs-number">1</span>;
+        }
+    }
+
+    
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>; <span class="hljs-comment">// No encontrado</span>
+}
+
+
+<span class="hljs-comment">/* Se le va a pasar la longitud del array */</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span>* argv[])</span> </span>{
+
+    <span class="hljs-keyword">int</span> longitud = ( argc &lt; <span class="hljs-number">2</span> ) ? <span class="hljs-number">5</span> : atoi(argv[<span class="hljs-number">1</span>]);
+    <span class="hljs-keyword">int</span> arrayBuscar[longitud];
+    
+     
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; longitud; ++i) {
+        arrayBuscar[i] = i;
+    }
+   
+    <span class="hljs-comment">/* Elegir elemento a buscar */</span>
+    srand(time(<span class="hljs-literal">nullptr</span>)); 
+    <span class="hljs-keyword">int</span> posicion = rand() % longitud;
+    <span class="hljs-keyword">int</span> elementoBuscar = arrayBuscar[posicion];
+
+    <span class="hljs-comment">// cout &lt;&lt; endl &lt;&lt; "Elemento a buscar: " &lt;&lt; elementoBuscar &lt;&lt;endl;</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; longitud;
+    
+    
+    
+    <span class="hljs-comment">/* Doble Proceso de Busqueda y sus tiempos */</span>
+    <span class="hljs-keyword">clock_t</span> start = clock();
+    busquedaSecuencial(arrayBuscar,longitud,elementoBuscar);
+    <span class="hljs-keyword">clock_t</span> <span class="hljs-built_in">end</span> = clock();
+    <span class="hljs-keyword">double</span> tiempo = (<span class="hljs-built_in">end</span> - start) / (<span class="hljs-keyword">double</span>)CLOCKS_PER_SEC;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">" "</span>&lt;&lt; tiempo;
+
+    start = clock();
+    <span class="hljs-comment">// auto start2 = std::chrono::high_resolution_clock::now();</span>
+
+    BusquedaBinaria(arrayBuscar,longitud,elementoBuscar);
+    
+    <span class="hljs-built_in">end</span> = clock();
+    <span class="hljs-comment">// auto end2 = std::chrono::high_resolution_clock::now();</span>
+
+    <span class="hljs-comment">// std::chrono::duration&lt;double&gt; duration = end2 - start2;</span>
+    tiempo = (<span class="hljs-built_in">end</span> - start) / (<span class="hljs-keyword">double</span>)CLOCKS_PER_SEC;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">" "</span>&lt;&lt; tiempo &lt;&lt; <span class="hljs-built_in">endl</span> ;
+    <span class="hljs-comment">// cout &lt;&lt;" "&lt;&lt; duration.count() &lt;&lt; endl ;</span>
+
+}
+
+</div></code></pre>
+<p><img src="./Ejercicio3/capturaGnuplot.png" alt="imagenEj3"></p>
+<h2 id="ejercicio-4">EJERCICIO 4</h2>
+<p>En este ejercicio hemos hecho una multiplicacion de matrices estrictamente cuadradas, podría haber hecho la lógica para hacer multiplicaciones de cualquier matriz, pero todavia no manejo tan bien las matrices y los punteros en c++, en otros lenguajes he hecho algún ejercicio similar.</p>
+<p>Es un algoritmo típico para esta operacion basandonos en la definición base del cálculo de estas, hay otras soluciones pero esta es la más sencilla de pasar a código, vamos recorriendo las filas y columnas y añadimos otro bucle que va recorriendo las columnas de la segunda matriz para ir calculando cada posicion de la nueva, como nos enseñan por primera vez</p>
+<p>El crecimiento del tiempo de la gráfica es cúbico tal que el orden de complejidad es: O(N^3).</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span>
+<span class="hljs-comment">// #include &lt;chrono&gt;</span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span>** <span class="hljs-title">generarMatriz</span><span class="hljs-params">(<span class="hljs-keyword">int</span> dimensiones)</span></span>{
+
+    <span class="hljs-keyword">int</span>** matriz = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>*[dimensiones];
+
+    <span class="hljs-comment">// cout &lt;&lt; endl;</span>
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> filas=<span class="hljs-number">0</span>; filas&lt;dimensiones; filas++){
+
+        matriz[filas] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[dimensiones];
+
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> col=<span class="hljs-number">0</span>; col&lt;dimensiones; col++){
+            
+            matriz[filas][col] = rand() % <span class="hljs-number">10</span>;
+            
+            <span class="hljs-comment">// cout &lt;&lt; matriz[filas][col] &lt;&lt; " ";</span>
+        }
+        <span class="hljs-comment">// cout &lt;&lt; endl;</span>
+        
+    }
+    
+    <span class="hljs-comment">// cout &lt;&lt; "Matriz creada" &lt;&lt; endl;</span>
+    <span class="hljs-keyword">return</span> matriz;
+}
+
+
+<span class="hljs-comment">/* Se podría hacer el proceso para crear matrices válidas, pero vamos a hacerlo para matrices Cuadradas (que las dimensiones resultantes son las mismas) */</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">multiplicarMatricesCuadradas</span><span class="hljs-params">(<span class="hljs-keyword">int</span>** matriz1,<span class="hljs-keyword">int</span>** matriz2,<span class="hljs-keyword">int</span> dimensiones)</span></span>{
+
+
+    <span class="hljs-keyword">int</span>** nuevaMatriz = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>*[dimensiones];
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; dimensiones; i++) {
+        nuevaMatriz[i] = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[dimensiones];
+    }
+
+    
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; dimensiones; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; dimensiones; j++) {
+            <span class="hljs-keyword">int</span> suma = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; dimensiones; k++) {
+                suma += matriz1[i][k] * matriz2[k][j];
+            }
+            nuevaMatriz[i][j] = suma;
+        }
+    }
+
+    <span class="hljs-comment">/* Visualizar Nueva Matriz - Comentar Despues -&gt; Comprobacion de Multiplicacion Hecha, Correcta */</span>
+<span class="hljs-comment">/*     cout &lt;&lt; endl;
+    for (int filas=0; filas&lt;dimensiones; filas++){
+        for(int col=0; col&lt;dimensiones; col++){
+            
+            cout &lt;&lt; nuevaMatriz[filas][col] &lt;&lt; " ";
+        }
+        cout &lt;&lt; endl;
+        
+    }  */</span>
+
+    <span class="hljs-comment">// return nuevaMatriz;</span>
+}
+
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc,<span class="hljs-keyword">char</span>* argv[])</span> </span>{
+
+    <span class="hljs-keyword">int</span> dimensionMat = ( argc &lt; <span class="hljs-number">2</span> ) ? <span class="hljs-number">3</span> : atoi(argv[<span class="hljs-number">1</span>]);
+
+    srand(time(<span class="hljs-literal">nullptr</span>)); 
+
+    <span class="hljs-keyword">int</span>** matriz1 = generarMatriz(dimensionMat);
+    <span class="hljs-keyword">int</span>** matriz2 = generarMatriz(dimensionMat);
+    
+    
+
+    <span class="hljs-keyword">clock_t</span> start = clock();
+    multiplicarMatricesCuadradas(matriz1, matriz2, dimensionMat);
+    <span class="hljs-keyword">clock_t</span> <span class="hljs-built_in">end</span> = clock();
+
+    <span class="hljs-keyword">double</span> tiempo = (<span class="hljs-built_in">end</span> - start) / (<span class="hljs-keyword">double</span>)CLOCKS_PER_SEC;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; dimensionMat;
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">" "</span>&lt;&lt; tiempo &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+}
+
+</div></code></pre>
+<p><img src="./Ejercicio4/capturaGnuplot.png" alt="imagenEj4"></p>
+
+</body>
+</html>

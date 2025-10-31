@@ -326,6 +326,11 @@ int main(int argc,char* argv[]) {
 
 ## EJERCICIO 4
 
+En este ejercicio hemos hecho una multiplicacion de matrices estrictamente cuadradas, podría haber hecho la lógica para hacer multiplicaciones de cualquier matriz, pero todavia no manejo tan bien las matrices y los punteros en c++, en otros lenguajes he hecho algún ejercicio similar.
+
+Es un algoritmo típico para esta operacion basandonos en la definición base del cálculo de estas, hay otras soluciones pero esta es la más sencilla de pasar a código, vamos recorriendo las filas y columnas y añadimos otro bucle que va recorriendo las columnas de la segunda matriz para ir calculando cada posicion de la nueva, como nos enseñan por primera vez
+
+El crecimiento del tiempo de la gráfica es cúbico tal que el orden de complejidad es: O(N^3).
 
 ```c++
 
