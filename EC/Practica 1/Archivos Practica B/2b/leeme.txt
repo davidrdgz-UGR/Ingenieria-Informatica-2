@@ -1,0 +1,24 @@
+ejemplo en que gcc aparentemente no respeta el preservar registros salva
+invocante: https://godbolt.org/z/sMrW3TMWx
+
+int suma1(int *lista, int longlista)
+{
+	int total = 0;
+	for (int i = 0; i < longlista; ++i)
+		total += lista[i];
+	return total;
+}
+
+int dividir1(int *lista, int longlista)
+{
+	return suma1(lista, longlista) / longlista;
+}
+
+dividir1(int*, int):
+        call    suma1(int*, int)
+        cltd
+        idivl   %esi
+        ret
+
+solución: el estándar dice que se deben preservar sólo si se conoce que son
+modificados por la función llamada.
