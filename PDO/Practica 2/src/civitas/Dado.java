@@ -1,22 +1,23 @@
 package civitas;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.Random;
 
 
 @SuppressWarnings("all")
 class Dado{
     
-    private Random random;
     private int ultimoResultado;
     private boolean debug;
-
-    private static Dado instance = new Dado(); /* Declara Su propia instancia (Singletone) */
     private static final int salidaCarcel = 5;
+
+    private Random random;
+    private static Dado instance = new Dado(); /* Declara Su propia instancia (Singletone) */
+    
 
 
 
     /* ---------------------- Constructor ---------------------- */
-    Dado (){
+    private Dado (){
 
         random = new Random();
         ultimoResultado = 0;
@@ -47,7 +48,7 @@ class Dado{
 
     
     
-    void setDebug(boolean d) {
+    public void setDebug(boolean d) {
         debug = d; /* d será true/false */
 
         String mensaje;
@@ -59,7 +60,7 @@ class Dado{
 
     /* ------------------------ Getters ------------------------ */
 
-    static Dado getInstance() {
+    public static Dado getInstance() {
         return instance;
     }
 

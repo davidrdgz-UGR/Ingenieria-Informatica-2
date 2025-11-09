@@ -6,12 +6,17 @@ import java.util.Collections;
 @SuppressWarnings("all")
 class MazoSorpresa{
 
-    private ArrayList<Sorpresa> sorpresas;         
+    
     private boolean barajada;                      
     private int usadas;                            
     private boolean debug;                         
+    
+    private Sorpresa ultimaSorpresa;   
+
+    private ArrayList<Sorpresa> sorpresas;         
     private ArrayList<Sorpresa> cartasEspeciales;  
-    private Sorpresa ultimaSorpresa;               
+    
+                
     
 
 
@@ -29,8 +34,7 @@ class MazoSorpresa{
     }
 
     MazoSorpresa() {
-        this(false);
-
+        this(false); /* DUDA -> porque solo se le da false. ?¿?¿?¿?¿ */
         init();
     }
 
@@ -46,9 +50,9 @@ class MazoSorpresa{
     }
 
 
-    void alMazo(Sorpresa s) {
+    void alMazo(Sorpresa sorpresa) {
         if (!barajada) {
-            sorpresas.add(s);
+            sorpresas.add(sorpresa);
         }
     }
 
@@ -99,20 +103,24 @@ class MazoSorpresa{
         }
     }
 
-    Sorpresa getUltimaSorpresa() {
-        return ultimaSorpresa;
-    }
-
-    int getUsadas() {
-        return usadas;
-    }
-
+    /* No salen en el diagrama UML / Puede que para TestP1 */
     boolean isBarajada() {
         return barajada;
     }
 
     int tamañoMazo() {
         return sorpresas.size();
+    }
+
+
+    /* ----------------- GETTERS / SETTERS ----------------- */
+
+    int getUsadas() {
+        return usadas;
+    }
+
+    Sorpresa getUltimaSorpresa() {
+        return ultimaSorpresa;
     }
 
 }

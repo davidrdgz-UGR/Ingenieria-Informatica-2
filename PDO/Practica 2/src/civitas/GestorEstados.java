@@ -1,3 +1,5 @@
+/* AÑADIDO EN P2 */
+
 package civitas;
 
 class GestorEstados {
