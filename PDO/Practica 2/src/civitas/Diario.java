@@ -8,17 +8,19 @@ public class Diario {
   static final private Diario instance = new Diario();
   
   private ArrayList<String> eventos;
+
   
-  static public Diario getInstance() {
-    return instance;
-  }
-  
+  /* --------------- CONSTRUCTOR - SINGLETON --------------- */
   private Diario () {
     eventos = new ArrayList<>();
   }
+
+
+
+  /* --------------- METODOS --------------- */
   
-  void ocurreEvento (String e) {
-    eventos.add (e);
+  void ocurreEvento (String evento) {
+    eventos.add (evento);
   }
   
   public boolean eventosPendientes () {
@@ -32,4 +34,12 @@ public class Diario {
     }
     return salida;
   }
+
+
+  /* --------------- GETTERS / SETTERS --------------- */
+
+  static public Diario getInstance() {
+    return instance;
+  }
+
 }

@@ -5,12 +5,13 @@ import java.util.ArrayList;
 class Tablero{
 
     private int numCasillaCarcel;
-    private ArrayList<Casilla> casillas; 
     private int porSalida;
     private boolean tieneJuez;
      
+    private ArrayList<Casilla> casillas; 
+
     /* ---------------------- Constructor ---------------------- */
-    Tablero (int numCasillaCarcel ){
+    public Tablero (int numCasillaCarcel ){
         
         this.numCasillaCarcel = ( numCasillaCarcel >= 1 ) ? numCasillaCarcel : 1 ;
         this.casillas = new ArrayList<>();
@@ -23,7 +24,7 @@ class Tablero{
     /*  ---------------------- Métodos ---------------------- */
 
     private Boolean tableroCorrecto(){
-        return ( (casillas.size() > numCasillaCarcel) && tieneJuez ) ; 
+        return ( (casillas.size() > numCasillaCarcel) && tieneJuez ) ;  /* DUDA - Esta Doble ?¿?¿? */
     }
 
     Boolean tableroCorrecto(int numCasilla){
@@ -81,7 +82,7 @@ class Tablero{
         return numeroDado;
     }
 
-    /* ------------------------ Getters ------------------------ */
+    /* ------------------------ SETTERS / Getters ------------------------ */
     int getCarcel(){
         return this.numCasillaCarcel;
     }
@@ -98,4 +99,10 @@ class Tablero{
     Casilla getCasilla(int numCasilla){
         return ( tableroCorrecto(numCasilla) ) ?  casillas.get(numCasilla) : null; 
     }
+
+    /* Tambien se puede usar como retorno List<Casilla> */
+    public Casilla[] getCasillas(){
+
+    }
+
 }
