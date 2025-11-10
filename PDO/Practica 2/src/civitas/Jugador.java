@@ -3,6 +3,7 @@ package civitas;
 import java.util.ArrayList;
 
 @SuppressWarnings("all")
+
 public class Jugador{
 
     protected static final int CasasMax = 4;
