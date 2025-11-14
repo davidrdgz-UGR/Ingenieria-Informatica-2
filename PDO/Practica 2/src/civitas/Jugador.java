@@ -25,7 +25,7 @@ public class Jugador{
     
 
     private ArrayList<TituloPropiedad> propiedades;
-    private Sorpresa salvoconducto;
+    private Sorpresa salvoconducto; /* Tipo = SalirCarcel */
 
 
     /* ---------------- CONSTRUCTORES ---------------- */

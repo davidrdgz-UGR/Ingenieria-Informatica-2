@@ -5,7 +5,7 @@ class Sorpresa{
     private String texto;
     private int valor;
     
-    
+    TipoSorpresa tipo;
     MazoSorpresa mazo;
     Tablero tablero;
 
