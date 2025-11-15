@@ -39,6 +39,51 @@ public class Casilla {
     
 
 
+
+
+
+
+    /* ----------------- METODOS ----------------- */
+
+    private void informe(int iActual, Jugador[] Jugadores){
+
+    }
+
+
+    private void init(){
+
+    }
+
+    public jugadorCorrecto(int iActual,  Jugador[] Jugadores){
+
+    }
+
+    
+    void recibeJugador(int iActual, Jugador[] Jugadores){
+
+    }
+
+    private recibeJugador_calle(int iActual, Jugador[] Jugadores){
+        
+    }
+
+    private recibeJugador_impuesto(int iActual, Jugador[] Jugadores){
+        
+    }
+
+    private recibeJugador_juez(int iActual, Jugador[] Jugadores){
+        
+    }
+
+    private recibeJugador_sorpresa(int iActual, Jugador[] Jugadores){
+        
+    }
+
+    public String toString(){
+
+    }
+
+    
     /* ----------------- GETTERS / SETTERS ----------------- */
 
     public String getNombre() {
@@ -48,48 +93,5 @@ public class Casilla {
     TituloPropiedad getTituloPropiedad(){
 
     }
-
-
-
-    /* ----------------- METODOS ----------------- */
-
-    private void informe(int iActual, /* ¿Jugadores? */){
-
-    }
-
-
-    private void init(){
-
-    }
-
-    public jugadorCorrecto(int iActual, /*  ?¿ Jugadores */){
-
-    }
-
-    
-    void recibeJugador(int iActual,/*  ?¿ Jugadores */){
-
-    }
-
-    private recibeJugador_calle(int iActual,/*  ?¿ Jugadores */){
-        
-    }
-
-    private recibeJugador_impuesto(int iActual,/*  ?¿ Jugadores */){
-        
-    }
-
-    private recibeJugador_juez(int iActual,/*  ?¿ Jugadores */){
-        
-    }
-
-    private recibeJugador_sorpresa(int iActual,/*  ?¿ Jugadores */){
-        
-    }
-
-    public String toString(){
-
-    }
-
 
 }

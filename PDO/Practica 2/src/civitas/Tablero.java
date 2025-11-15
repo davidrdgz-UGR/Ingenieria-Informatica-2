@@ -1,3 +1,5 @@
+/* HECHO POR DEFECTO ?¿ */
+
 package civitas;
 import java.util.ArrayList;
 
@@ -102,7 +104,7 @@ class Tablero{
 
     /* Tambien se puede usar como retorno List<Casilla> */
     public Casilla[] getCasillas(){
-
+        
     }
 
 }
