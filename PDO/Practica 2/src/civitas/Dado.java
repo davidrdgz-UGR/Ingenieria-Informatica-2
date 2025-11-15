@@ -64,6 +64,10 @@ class Dado{
         return instance;
     }
 
+    public int getNumSalirCarcel(){
+        return salidaCarcel;
+    }
+
     int getUltimoResultado() {
         return this.ultimoResultado;
     }

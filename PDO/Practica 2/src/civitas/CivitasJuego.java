@@ -1,5 +1,7 @@
 package civitas;
 
+import java.util.ArrayList;
+
 public class CivitasJuego {
     
     private int indiceJugadorActual;
@@ -8,15 +10,31 @@ public class CivitasJuego {
     private EstadosJuego estado;
     private GestorEstados gestorEstados;
     private Tablero tablero;
-    /* Operaciones Juego ?¿?¿?¿ */
-    /* Dado ?¿?¿?¿?¿ */
+    OperacionesJuego tipoOperacion;
+    private static final Dado dado = Dado.getInstance();
     private MazoSorpresa mazo;
 
 
     /* ---------------- CONSTRUCTOR ---------------- */
 
-    public CivitasJuego(/*  String[ 1 - 4 ] nombres  ?¿?¿?¿ */){
-        
+    CivitasJuego(ArrayList<String> nombres) {
+
+        this.jugadores = new Jugador[nombres.size()];
+
+        for (int i = 0; i < nombres.size(); i++) {
+            this.jugadores[i] = new Jugador(nombres.get(i));
+        }
+
+        this.gestorEstados = new GestorEstados();
+        this.estado = gestorEstados.estadoInicial();
+
+        this.indiceJugadorActual = dado.quienEmpieza(this.jugadores.length);
+
+        this.mazo = new MazoSorpresa();
+
+        this.inicializarTablero(this.tablero); /* Ahora mismo tablero es null */
+
+        this.inicializarMazoSorpresa(this.mazo);
     }
     
     
@@ -24,7 +42,7 @@ public class CivitasJuego {
     
     
     /* ---------------- METODOS ---------------- */
-
+    /* SIGUIENTE PRACTICA */
     private void avanzaJugador(){
 
     }
@@ -33,6 +51,7 @@ public class CivitasJuego {
 
     }
 
+    /* SIGUIENTE PRACTICA */
     public boolean comprar(){
 
     }
@@ -81,6 +100,7 @@ public class CivitasJuego {
 
     }
 
+    /* SIGUIENTE PRACTICA */
     public OperacionesJuego siguientePaso(){
 
     }
