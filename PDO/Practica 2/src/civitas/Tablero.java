@@ -15,7 +15,7 @@ class Tablero{
     /* ---------------------- Constructor ---------------------- */
     public Tablero (int numCasillaCarcel ){
         
-        this.numCasillaCarcel = ( numCasillaCarcel >= 1 ) ? numCasillaCarcel : 1 ;
+        this.numCasillaCarcel = ( numCasillaCarcel >= 1 ) ? numCasillaCarcel : 5 ;
         this.casillas = new ArrayList<>();
         this.casillas.add(new Casilla("Salida"));
         this.porSalida = 0;

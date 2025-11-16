@@ -54,9 +54,10 @@ public class Jugador implements Comparable<Jugador>{
     /* ---------------- METODOS ---------------- */
     
     /* Siguiente Práctica */
-    /* boolean cancelarHipoteca(int ip) {
+    boolean cancelarHipoteca(int ip) {
 
-    } */
+        return  true;
+    }
 
     int cantidadCasasHoteles() {
 
@@ -69,7 +70,7 @@ public class Jugador implements Comparable<Jugador>{
         return total;
     }
 
-    
+    @Override
     public int compareTo(Jugador otro) {
         return Float.compare(this.saldo, otro.saldo);
     }
@@ -80,14 +81,16 @@ public class Jugador implements Comparable<Jugador>{
     } */
 
     /* Próxima Práctica */
-    /* boolean construirCasa(int ip) {
+    boolean construirCasa(int ip) {
 
-    } */
+        return true;
+    }
 
     /* Próxima Práctica */
-    /* boolean construirHotel(int ip) {
+    boolean construirHotel(int ip) {
 
-    } */
+        return true;
+    }
 
     protected boolean debeSerEncarcelado() {
         if ( !this.encarcelado) {
@@ -119,9 +122,10 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     /* Próxima Práctica */
-    /* boolean hipotecar(int ip) {
+    boolean hipotecar(int ip) {
 
-    } */
+        return true;
+    }
 
     boolean modificarSaldo(float cantidad) {
         this.saldo = this.saldo + cantidad;
