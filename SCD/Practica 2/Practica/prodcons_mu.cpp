@@ -26,26 +26,43 @@ using namespace std ;
 using namespace scd ;
 
 constexpr int
-   num_items  = 40 ;     // número de items a producir/consumir
+   num_items  = 40 ,     // número total de items a producir/consumir
+   num_prod   = 4 ,      // número de hebras productoras
+   num_cons   = 4 ;      // número de hebras consumidoras
 
-mutex mtx ;                 // mutex de escritura en pantalla
+static_assert( num_items % num_prod == 0, "num_items debe ser múltiplo de num_prod" );
+static_assert( num_items % num_cons == 0, "num_items debe ser múltiplo de num_cons" );
+
+constexpr int 
+   items_por_prod = num_items / num_prod , 
+   items_por_cons = num_items / num_cons ;
+
+mutex
+   mtx ;                 // mutex de escritura en pantalla
+
 unsigned
    cont_prod[num_items], // contadores de verificación: producidos
-   cont_cons[num_items]; // contadores de verificación: consumidos
+   cont_cons[num_items], // contadores de verificación: consumidos
+   producidos[num_prod]; // Nº de items producidos por cada productor
 
 //**********************************************************************
 // funciones comunes a las dos soluciones (fifo y lifo)
 //----------------------------------------------------------------------
 
-int producir_dato()
+int producir_dato( int i_prod )
 {
-   static int contador = 0 ;
    this_thread::sleep_for( chrono::milliseconds( aleatorio<20,100>() ));
+
+   const int valor = i_prod * items_por_prod + producidos[i_prod] ;
+   producidos[i_prod]++ ;
+
    mtx.lock();
-   cout << "producido: " << contador << endl << flush ;
+   cout << "productor " << i_prod
+        << " produce: " << valor << endl << flush ;
    mtx.unlock();
-   cont_prod[contador] ++ ;
-   return contador++ ;
+
+   cont_prod[valor] ++ ;
+   return valor ;
 }
 //----------------------------------------------------------------------
 
@@ -172,21 +189,25 @@ void ProdCons1SC::escribir( int valor )
 // *****************************************************************************
 // funciones de hebras
 
-void funcion_hebra_productora( ProdCons1SC * monitor )
+void funcion_hebra_productora( ProdCons1SC * monitor, int i_prod )
 {
-   for( unsigned i = 0 ; i < num_items ; i++ )
+   for( int k = 0 ; k < items_por_prod ; k++ )
    {
-      int valor = producir_dato() ;
+      int valor = producir_dato( i_prod );
       monitor->escribir( valor );
    }
 }
 // -----------------------------------------------------------------------------
 
-void funcion_hebra_consumidora( ProdCons1SC * monitor )
+void funcion_hebra_consumidora( ProdCons1SC * monitor, int i_cons )
 {
-   for( unsigned i = 0 ; i < num_items ; i++ )
+   for( int k = 0 ; k < items_por_cons ; k++ )
    {
       int valor = monitor->leer();
+      mtx.lock();
+      cout << "                consumidor " << i_cons
+           << " consume: " << valor << endl ;
+      mtx.unlock();
       consumir_dato( valor ) ;
    }
 }
@@ -201,12 +222,26 @@ int main()
 
    ProdCons1SC monitor ;
 
-   thread hebra_productora ( funcion_hebra_productora, &monitor ),
-          hebra_consumidora( funcion_hebra_consumidora, &monitor );
+   ini_contadores();
 
-   hebra_productora.join() ;
-   hebra_consumidora.join() ;
+   thread productores[num_prod];
+   thread consumidores[num_cons];
 
-   // comprobar que cada item se ha producido y consumido exactamente una vez
-   test_contadores() ;
+   // lanzar productores
+   for( int i = 0 ; i < num_prod ; i++ )
+      productores[i] = thread( funcion_hebra_productora, &monitor, i );
+
+   // lanzar consumidores
+   for( int i = 0 ; i < num_cons ; i++ )
+      consumidores[i] = thread( funcion_hebra_consumidora, &monitor, i );
+
+   // esperar a que terminen todos
+   for( int i = 0 ; i < num_prod ; i++ )
+      productores[i].join();
+
+   for( int i = 0 ; i < num_cons ; i++ )
+      consumidores[i].join();
+
+   test_contadores();
+
 }
