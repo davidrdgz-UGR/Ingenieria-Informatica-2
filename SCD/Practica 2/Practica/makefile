@@ -28,6 +28,9 @@ x7: prodcons2_su_exe
 x8: fumadores_su_exe
 	./$<
 
+x9: lectoresEscritores_su_exe
+	./$<
+
 
 monitor_em_exe: monitor_em.cpp scd.h
 	$(compilador) $(opcionesc) -o $@ $<
@@ -56,6 +59,8 @@ prodcons_mu_exe: prodcons_mu.cpp scd.h
 fumadores_su_exe: fumadores_su.cpp scd.cpp scd.h
 	$(compilador) $(opcionesc) -o $@ $< scd.cpp
 
+lectoresEscritores_su_exe: lectoresEscritores_su.cpp scd.cpp scd.h
+	$(compilador) $(opcionesc) -o $@ $< scd.cpp
 
 clean:
 	rm -f *_exe
