@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="practica-2-scd--david-rodr%C3%ADguez-aparicio">Practica 2 SCD | David Rodríguez Aparicio</h1>
+<p>En la documentación de esta práctica veremos una serie de ejercicios.</p>
+<p>Veremos sus respectivos códigos y alguna foto de su ejecución.</p>
+<p>En esta práctica hemos cambiado los semáforos por monitores, una abrstracción de más alto nivel, que cuenta con algunas ventajas sobre estos, como exclusion mutua automática y variables de condición, y las hebras interactuan mediante estos semáforos.</p>
+<h2 id="apartado-1--productores-y-consumidores-m%C3%BAltiples">Apartado 1 | Productores y Consumidores Múltiples</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Sistemas concurrentes y Distribuidos.</span>
+<span class="hljs-comment">// Seminario 2. Introducción a los monitores en C++11.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// archivo: prodcons_1.cpp</span>
+<span class="hljs-comment">// Ejemplo de un monitor en C++11 con semántica SC, para el problema</span>
+<span class="hljs-comment">// del productor/consumidor, con un único productor y un único consumidor.</span>
+<span class="hljs-comment">// Opcion LIFO (stack)</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Historial:</span>
+<span class="hljs-comment">// Creado en Julio de 2017</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iomanip&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cassert&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;condition_variable&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;random&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"scd.h"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span> ;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> scd ;
+
+<span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span>
+   num_items  = <span class="hljs-number">40</span> ,     <span class="hljs-comment">// número total de items a producir/consumir</span>
+   num_prod   = <span class="hljs-number">4</span> ,      <span class="hljs-comment">// número de hebras productoras</span>
+   num_cons   = <span class="hljs-number">4</span> ;      <span class="hljs-comment">// número de hebras consumidoras</span>
+
+<span class="hljs-keyword">static_assert</span>( num_items % num_prod == <span class="hljs-number">0</span>, <span class="hljs-string">"num_items debe ser múltiplo de num_prod"</span> );
+<span class="hljs-keyword">static_assert</span>( num_items % num_cons == <span class="hljs-number">0</span>, <span class="hljs-string">"num_items debe ser múltiplo de num_cons"</span> );
+
+<span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> 
+   items_por_prod = num_items / num_prod , 
+   items_por_cons = num_items / num_cons ;
+
+mutex
+   mtx ;                 <span class="hljs-comment">// mutex de escritura en pantalla</span>
+
+<span class="hljs-keyword">unsigned</span>
+   cont_prod[num_items], <span class="hljs-comment">// contadores de verificación: producidos</span>
+   cont_cons[num_items], <span class="hljs-comment">// contadores de verificación: consumidos</span>
+   producidos[num_prod]; <span class="hljs-comment">// Nº de items producidos por cada productor</span>
+
+<span class="hljs-comment">//**********************************************************************</span>
+<span class="hljs-comment">// funciones comunes a las dos soluciones (fifo y lifo)</span>
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">producir_dato</span><span class="hljs-params">( <span class="hljs-keyword">int</span> i_prod )</span>
+</span>{
+   this_thread::sleep_for( chrono::milliseconds( aleatorio&lt;<span class="hljs-number">20</span>,<span class="hljs-number">100</span>&gt;() ));
+
+   <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> valor = i_prod * items_por_prod + producidos[i_prod] ;
+   producidos[i_prod]++ ;
+
+   mtx.lock();
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"productor "</span> &lt;&lt; i_prod
+        &lt;&lt; <span class="hljs-string">" produce: "</span> &lt;&lt; valor &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">flush</span> ;
+   mtx.unlock();
+
+   cont_prod[valor] ++ ;
+   <span class="hljs-keyword">return</span> valor ;
+}
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">consumir_dato</span><span class="hljs-params">( <span class="hljs-keyword">unsigned</span> dato )</span>
+</span>{
+   <span class="hljs-keyword">if</span> ( num_items &lt;= dato )
+   {
+      <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">" dato === "</span> &lt;&lt; dato &lt;&lt; <span class="hljs-string">", num_items == "</span> &lt;&lt; num_items &lt;&lt; <span class="hljs-built_in">endl</span> ;
+      assert( dato &lt; num_items );
+   }
+   cont_cons[dato] ++ ;
+   this_thread::sleep_for( chrono::milliseconds( aleatorio&lt;<span class="hljs-number">20</span>,<span class="hljs-number">100</span>&gt;() ));
+   mtx.lock();
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"                  consumido: "</span> &lt;&lt; dato &lt;&lt; <span class="hljs-built_in">endl</span> ;
+   mtx.unlock();
+}
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ini_contadores</span><span class="hljs-params">()</span>
+</span>{
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">unsigned</span> i = <span class="hljs-number">0</span> ; i &lt; num_items ; i++ )
+   {  cont_prod[i] = <span class="hljs-number">0</span> ;
+      cont_cons[i] = <span class="hljs-number">0</span> ;
+   }
+}
+
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test_contadores</span><span class="hljs-params">()</span>
+</span>{
+   <span class="hljs-keyword">bool</span> ok = <span class="hljs-literal">true</span> ;
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"comprobando contadores ...."</span> &lt;&lt; <span class="hljs-built_in">flush</span> ;
+
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">unsigned</span> i = <span class="hljs-number">0</span> ; i &lt; num_items ; i++ )
+   {
+      <span class="hljs-keyword">if</span> ( cont_prod[i] != <span class="hljs-number">1</span> )
+      {
+         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"error: valor "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" producido "</span> &lt;&lt; cont_prod[i] &lt;&lt; <span class="hljs-string">" veces."</span> &lt;&lt; <span class="hljs-built_in">endl</span> ;
+         ok = <span class="hljs-literal">false</span> ;
+      }
+      <span class="hljs-keyword">if</span> ( cont_cons[i] != <span class="hljs-number">1</span> )
+      {
+         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"error: valor "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" consumido "</span> &lt;&lt; cont_cons[i] &lt;&lt; <span class="hljs-string">" veces"</span> &lt;&lt; <span class="hljs-built_in">endl</span> ;
+         ok = <span class="hljs-literal">false</span> ;
+      }
+   }
+   <span class="hljs-keyword">if</span> (ok)
+      <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">flush</span> &lt;&lt; <span class="hljs-string">"solución (aparentemente) correcta."</span> &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">flush</span> ;
+}
+
+<span class="hljs-comment">// *****************************************************************************</span>
+<span class="hljs-comment">// clase para monitor buffer, version LIFO, semántica SC, un prod. y un cons.</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProdCons1SC</span>
+{</span>
+ <span class="hljs-keyword">private</span>:
+ <span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>           <span class="hljs-comment">// constantes:</span>
+   num_celdas_total = <span class="hljs-number">10</span>;   <span class="hljs-comment">//  núm. de entradas del buffer</span>
+ <span class="hljs-keyword">int</span>                        <span class="hljs-comment">// variables permanentes</span>
+   <span class="hljs-built_in">buffer</span>[num_celdas_total],<span class="hljs-comment">//  buffer de tamaño fijo, con los datos</span>
+   primera_libre ;          <span class="hljs-comment">//  indice de celda de la próxima inserción</span>
+ mutex
+   cerrojo_monitor ;        <span class="hljs-comment">// cerrojo del monitor</span>
+ condition_variable         <span class="hljs-comment">// colas condicion:</span>
+   ocupadas,                <span class="hljs-comment">//  cola donde espera el consumidor (n&gt;0)</span>
+   libres ;                 <span class="hljs-comment">//  cola donde espera el productor  (n&lt;num_celdas_total)</span>
+
+ <span class="hljs-keyword">public</span>:                    <span class="hljs-comment">// constructor y métodos públicos</span>
+   ProdCons1SC(  ) ;           <span class="hljs-comment">// constructor</span>
+   <span class="hljs-function"><span class="hljs-keyword">int</span>  <span class="hljs-title">leer</span><span class="hljs-params">()</span></span>;                <span class="hljs-comment">// extraer un valor (sentencia L) (consumidor)</span>
+   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">escribir</span><span class="hljs-params">( <span class="hljs-keyword">int</span> valor )</span></span>; <span class="hljs-comment">// insertar un valor (sentencia E) (productor)</span>
+} ;
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+ProdCons1SC::ProdCons1SC(  )
+{
+   primera_libre = <span class="hljs-number">0</span> ;
+}
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">// función llamada por el consumidor para extraer un dato</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">ProdCons1SC::leer</span><span class="hljs-params">(  )</span>
+</span>{
+   <span class="hljs-comment">// ganar la exclusión mutua del monitor con una guarda</span>
+   <span class="hljs-function">unique_lock&lt;mutex&gt; <span class="hljs-title">guarda</span><span class="hljs-params">( cerrojo_monitor )</span></span>;
+
+   <span class="hljs-comment">// esperar bloqueado hasta que 0 &lt; num_celdas_ocupadas</span>
+   <span class="hljs-keyword">if</span> ( primera_libre == <span class="hljs-number">0</span> )
+      ocupadas.wait( guarda );
+
+   <span class="hljs-comment">// hacer la operación de lectura, actualizando estado del monitor</span>
+   assert( <span class="hljs-number">0</span> &lt; primera_libre  );
+   primera_libre-- ;
+   <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> valor = <span class="hljs-built_in">buffer</span>[primera_libre] ;
+
+
+   <span class="hljs-comment">// señalar al productor que hay un hueco libre, por si está esperando</span>
+   libres.notify_one();
+
+   <span class="hljs-comment">// devolver valor</span>
+   <span class="hljs-keyword">return</span> valor ;
+}
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ProdCons1SC::escribir</span><span class="hljs-params">( <span class="hljs-keyword">int</span> valor )</span>
+</span>{
+   <span class="hljs-comment">// ganar la exclusión mutua del monitor con una guarda</span>
+   <span class="hljs-function">unique_lock&lt;mutex&gt; <span class="hljs-title">guarda</span><span class="hljs-params">( cerrojo_monitor )</span></span>;
+
+   <span class="hljs-comment">// esperar bloqueado hasta que num_celdas_ocupadas &lt; num_celdas_total</span>
+   <span class="hljs-keyword">if</span> ( primera_libre == num_celdas_total )
+      libres.wait( guarda );
+
+   <span class="hljs-comment">//cout &lt;&lt; "escribir: ocup == " &lt;&lt; num_celdas_ocupadas &lt;&lt; ", total == " &lt;&lt; num_celdas_total &lt;&lt; endl ;</span>
+   assert( primera_libre &lt; num_celdas_total );
+
+   <span class="hljs-comment">// hacer la operación de inserción, actualizando estado del monitor</span>
+   <span class="hljs-built_in">buffer</span>[primera_libre] = valor ;
+   primera_libre++ ;
+
+   <span class="hljs-comment">// señalar al consumidor que ya hay una celda ocupada (por si esta esperando)</span>
+   ocupadas.notify_one();
+}
+<span class="hljs-comment">// *****************************************************************************</span>
+<span class="hljs-comment">// funciones de hebras</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_hebra_productora</span><span class="hljs-params">( ProdCons1SC * monitor, <span class="hljs-keyword">int</span> i_prod )</span>
+</span>{
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span> ; k &lt; items_por_prod ; k++ )
+   {
+      <span class="hljs-keyword">int</span> valor = producir_dato( i_prod );
+      monitor-&gt;escribir( valor );
+   }
+}
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_hebra_consumidora</span><span class="hljs-params">( ProdCons1SC * monitor, <span class="hljs-keyword">int</span> i_cons )</span>
+</span>{
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span> ; k &lt; items_por_cons ; k++ )
+   {
+      <span class="hljs-keyword">int</span> valor = monitor-&gt;leer();
+      mtx.lock();
+      <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"                consumidor "</span> &lt;&lt; i_cons
+           &lt;&lt; <span class="hljs-string">" consume: "</span> &lt;&lt; valor &lt;&lt; <span class="hljs-built_in">endl</span> ;
+      mtx.unlock();
+      consumir_dato( valor ) ;
+   }
+}
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"-------------------------------------------------------------------------------"</span> &lt;&lt; <span class="hljs-built_in">endl</span>
+        &lt;&lt; <span class="hljs-string">"Problema de los productores-consumidores (1 prod/cons, Monitor SC, buffer FIFO). "</span> &lt;&lt; <span class="hljs-built_in">endl</span>
+        &lt;&lt; <span class="hljs-string">"-------------------------------------------------------------------------------"</span> &lt;&lt; <span class="hljs-built_in">endl</span>
+        &lt;&lt; <span class="hljs-built_in">flush</span> ;
+
+   ProdCons1SC monitor ;
+
+   ini_contadores();
+
+   thread productores[num_prod];
+   thread consumidores[num_cons];
+
+   <span class="hljs-comment">// lanzar productores</span>
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span> ; i &lt; num_prod ; i++ )
+      productores[i] = thread( funcion_hebra_productora, &amp;monitor, i );
+
+   <span class="hljs-comment">// lanzar consumidores</span>
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span> ; i &lt; num_cons ; i++ )
+      consumidores[i] = thread( funcion_hebra_consumidora, &amp;monitor, i );
+
+   <span class="hljs-comment">// esperar a que terminen todos</span>
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span> ; i &lt; num_prod ; i++ )
+      productores[i].join();
+
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span> ; i &lt; num_cons ; i++ )
+      consumidores[i].join();
+
+   test_contadores();
+
+}
+
+
+
+</div></code></pre>
+<h3 id="ejemplo-de-ejecuci%C3%B3n">Ejemplo de Ejecución</h3>
+<p><img src="./capturas/im1.png" alt="im1"></p>
+<h2 id="apartado-2--fumadores">Apartado 2 | Fumadores</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cassert&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;random&gt; // dispositivos, generadores y distribuciones aleatorias</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt; // duraciones (duration), unidades de tiempo</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"scd.h"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span> ;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> scd ;
+
+<span class="hljs-comment">// número de fumadores</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> num_fumadores = <span class="hljs-number">3</span> ;
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Estanco</span> :</span> <span class="hljs-keyword">public</span> HoareMonitor{
+
+   <span class="hljs-keyword">private</span>:
+      <span class="hljs-keyword">int</span>     mostrador;                        
+      CondVar mostrador_vacio;                  
+      CondVar ingr_disp[num_fumadores];         
+
+   <span class="hljs-keyword">public</span>:
+      Estanco();                                
+      <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ponerIngrediente</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;             
+      <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">esperarRecogidaIngrediente</span><span class="hljs-params">()</span></span>;        
+      <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">obtenerIngrediente</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>;  
+};
+   
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Estanco::ponerIngrediente</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>{
+   <span class="hljs-keyword">while</span> (mostrador != <span class="hljs-number">-1</span>)
+      mostrador_vacio.wait();
+
+   mostrador = i;
+
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Estanquero : pone ingrediente "</span> &lt;&lt; i &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+   ingr_disp[i].signal();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Estanco::esperarRecogidaIngrediente</span><span class="hljs-params">()</span></span>{
+   <span class="hljs-keyword">while</span> (mostrador != <span class="hljs-number">-1</span>)
+      mostrador_vacio.wait();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Estanco::obtenerIngrediente</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span></span>{
+   <span class="hljs-keyword">while</span> (mostrador != i)
+      ingr_disp[i].wait();
+
+   assert(mostrador == i);
+
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Fumador "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" : retira su ingrediente"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+   mostrador = <span class="hljs-number">-1</span>;
+
+   mostrador_vacio.signal();
+}
+
+Estanco::Estanco(){
+   mostrador = <span class="hljs-number">-1</span>;                           
+   mostrador_vacio = newCondVar();
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num_fumadores; i++)
+       ingr_disp[i] = newCondVar();
+}
+
+<span class="hljs-comment">//-------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Función que simula la acción de producir un ingrediente, como un retardo</span>
+<span class="hljs-comment">// aleatorio de la hebra (devuelve número de ingrediente producido)</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">producir_ingrediente</span><span class="hljs-params">()</span>
+</span>{
+   <span class="hljs-comment">// calcular milisegundos aleatorios de duración de la acción de fumar)</span>
+   <span class="hljs-function">chrono::milliseconds <span class="hljs-title">duracion_produ</span><span class="hljs-params">( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() )</span></span>;
+
+   <span class="hljs-comment">// informa de que comienza a producir</span>
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Estanquero : empieza a producir ingrediente ("</span> &lt;&lt; duracion_produ.count() &lt;&lt; <span class="hljs-string">" milisegundos)"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+   <span class="hljs-comment">// espera bloqueada un tiempo igual a ''duracion_produ' milisegundos</span>
+   this_thread::sleep_for( duracion_produ );
+
+   <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> num_ingrediente = aleatorio&lt;<span class="hljs-number">0</span>,num_fumadores<span class="hljs-number">-1</span>&gt;() ;
+
+   <span class="hljs-comment">// informa de que ha terminado de producir</span>
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Estanquero : termina de producir ingrediente "</span> &lt;&lt; num_ingrediente &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+   <span class="hljs-keyword">return</span> num_ingrediente ;
+}
+
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+<span class="hljs-comment">// función que ejecuta la hebra del estanquero</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_hebra_estanquero</span><span class="hljs-params">( MRef&lt;Estanco&gt; monitor )</span>
+</span>{
+   <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> )
+   {
+      <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> i = producir_ingrediente();
+      monitor-&gt;ponerIngrediente( i );
+      monitor-&gt;esperarRecogidaIngrediente();
+   }
+}
+
+<span class="hljs-comment">//-------------------------------------------------------------------------</span>
+<span class="hljs-comment">// Función que simula la acción de fumar, como un retardo aleatoria de la hebra</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fumar</span><span class="hljs-params">( <span class="hljs-keyword">int</span> num_fumador )</span>
+</span>{
+
+   <span class="hljs-comment">// calcular milisegundos aleatorios de duración de la acción de fumar)</span>
+   <span class="hljs-function">chrono::milliseconds <span class="hljs-title">duracion_fumar</span><span class="hljs-params">( aleatorio&lt;<span class="hljs-number">20</span>,<span class="hljs-number">200</span>&gt;() )</span></span>;
+
+   <span class="hljs-comment">// informa de que comienza a fumar</span>
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Fumador "</span> &lt;&lt; num_fumador &lt;&lt; <span class="hljs-string">"  :"</span>
+          &lt;&lt; <span class="hljs-string">" empieza a fumar ("</span> &lt;&lt; duracion_fumar.count() &lt;&lt; <span class="hljs-string">" milisegundos)"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+   <span class="hljs-comment">// espera bloqueada un tiempo igual a ''duracion_fumar' milisegundos</span>
+   this_thread::sleep_for( duracion_fumar );
+
+   <span class="hljs-comment">// informa de que ha terminado de fumar</span>
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Fumador "</span> &lt;&lt; num_fumador &lt;&lt; <span class="hljs-string">"  : termina de fumar, comienza espera de ingrediente."</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+}
+
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+<span class="hljs-comment">// función que ejecuta la hebra del fumador</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_hebra_fumador</span><span class="hljs-params">( MRef&lt;Estanco&gt; monitor, <span class="hljs-keyword">int</span> num_fumador )</span>
+</span>{
+   <span class="hljs-keyword">while</span>( <span class="hljs-literal">true</span> )
+   {
+      monitor-&gt;obtenerIngrediente( num_fumador );
+      fumar( num_fumador );
+   }
+}
+
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"---------------------------------------------\n"</span>
+        &lt;&lt; <span class="hljs-string">"Problema de los fumadores (SCD, monitor SU)\n"</span>
+        &lt;&lt; <span class="hljs-string">"---------------------------------------------\n"</span> &lt;&lt; <span class="hljs-built_in">flush</span>;
+
+   MRef&lt;Estanco&gt; estanco = Create&lt;Estanco&gt;();
+
+   <span class="hljs-function">thread <span class="hljs-title">hebra_estanquero</span><span class="hljs-params">( funcion_hebra_estanquero, estanco )</span></span>;
+   thread hebra_fumadores[num_fumadores];
+
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num_fumadores; i++)
+      hebra_fumadores[i] = thread( funcion_hebra_fumador, estanco, i );
+
+   hebra_estanquero.join();
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num_fumadores; i++)
+      hebra_fumadores[i].join();
+
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+
+
+</div></code></pre>
+<h3 id="ejemplo-de-ejecuci%C3%B3n">Ejemplo de Ejecución</h3>
+<p><img src="./capturas/im2.png" alt="im2"></p>
+<h2 id="apartado-3--escritores-y-lectores">Apartado 3 | Escritores y Lectores</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cassert&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;random&gt; // dispositivos, generadores y distribuciones aleatorias</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt; // duraciones (duration), unidades de tiempo</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"scd.h"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span> ;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> scd ;
+
+<span class="hljs-comment">// número de hebras lectoras y escritoras</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> num_lectores   = <span class="hljs-number">5</span> ;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> num_escritores = <span class="hljs-number">3</span> ;
+
+
+<span class="hljs-comment">/* Funcion para generar tiempo aleatorio */</span>
+<span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span>, <span class="hljs-keyword">int</span> <span class="hljs-built_in">max</span>&gt; <span class="hljs-keyword">int</span> <span class="hljs-title">aleatorio_tiempo</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function"><span class="hljs-keyword">static</span> default_random_engine <span class="hljs-title">gen</span><span class="hljs-params">( (random_device())() )</span></span>;
+    <span class="hljs-function"><span class="hljs-keyword">static</span> uniform_int_distribution&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">dist</span><span class="hljs-params">(<span class="hljs-built_in">min</span>, <span class="hljs-built_in">max</span>)</span></span>;
+    <span class="hljs-keyword">return</span> dist(gen);
+}
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Lec_Esc</span> :</span> <span class="hljs-keyword">public</span> HoareMonitor{
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">int</span>     n_lec;        <span class="hljs-comment">// número de lectores leyendo</span>
+    <span class="hljs-keyword">bool</span>    escrib;       <span class="hljs-comment">// true si hay un escritor escribiendo</span>
+    CondVar lectura;      <span class="hljs-comment">// cola de lectores</span>
+    CondVar escritura;    <span class="hljs-comment">// cola de escritores</span>
+
+<span class="hljs-keyword">public</span>:
+    Lec_Esc();            <span class="hljs-comment">// constructor</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ini_lectura</span><span class="hljs-params">()</span></span>;   <span class="hljs-comment">// inicio de sección de lectura</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fin_lectura</span><span class="hljs-params">()</span></span>;   <span class="hljs-comment">// fin de sección de lectura</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ini_escritura</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// inicio de sección de escritura</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">fin_escritura</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// fin de sección de escritura</span>
+};
+
+Lec_Esc::Lec_Esc()
+{
+    n_lec  = <span class="hljs-number">0</span>;
+    escrib = <span class="hljs-literal">false</span>;
+    lectura   = newCondVar();
+    escritura = newCondVar();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Lec_Esc::ini_lectura</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-comment">// si hay un escritor escribiendo, esperar</span>
+    <span class="hljs-keyword">if</span> (escrib)
+        lectura.wait();
+
+    <span class="hljs-comment">// aumentar número de lectores</span>
+    n_lec++;
+
+    <span class="hljs-comment">// permitir que más lectores entren en cadena</span>
+    lectura.signal();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Lec_Esc::fin_lectura</span><span class="hljs-params">()</span>
+</span>{
+    n_lec--;
+
+    <span class="hljs-comment">// si ya no quedan lectores, un escritor puede entrar</span>
+    <span class="hljs-keyword">if</span> (n_lec == <span class="hljs-number">0</span>)
+        escritura.signal();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Lec_Esc::ini_escritura</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-comment">// si hay lectores leyendo o un escritor escribiendo, esperar</span>
+    <span class="hljs-keyword">if</span> (n_lec &gt; <span class="hljs-number">0</span> || escrib)
+        escritura.wait();
+
+    escrib = <span class="hljs-literal">true</span>;  <span class="hljs-comment">// un escritor entra</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Lec_Esc::fin_escritura</span><span class="hljs-params">()</span>
+</span>{
+    escrib = <span class="hljs-literal">false</span>;
+
+    <span class="hljs-comment">// si hay lectores esperando, dales prioridad</span>
+    <span class="hljs-keyword">if</span> (!lectura.empty())
+        lectura.signal();
+    <span class="hljs-keyword">else</span>
+        escritura.signal();
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">leer</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span>
+</span>{
+    <span class="hljs-function">chrono::milliseconds <span class="hljs-title">dur</span><span class="hljs-params">( aleatorio_tiempo&lt;<span class="hljs-number">20</span>,<span class="hljs-number">100</span>&gt;() )</span></span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Lector "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" lee ("</span> &lt;&lt; dur.count() &lt;&lt; <span class="hljs-string">" ms)"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    this_thread::sleep_for(dur);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">escribir</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span>
+</span>{
+    <span class="hljs-function">chrono::milliseconds <span class="hljs-title">dur</span><span class="hljs-params">( aleatorio_tiempo&lt;<span class="hljs-number">20</span>,<span class="hljs-number">100</span>&gt;() )</span></span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Escritor "</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">" escribe ("</span> &lt;&lt; dur.count() &lt;&lt; <span class="hljs-string">" ms)"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    this_thread::sleep_for(dur);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_hebra_lectora</span><span class="hljs-params">(MRef&lt;Lec_Esc&gt; monitor, <span class="hljs-keyword">int</span> i)</span>
+</span>{
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)
+    {
+        monitor-&gt;ini_lectura();
+        leer(i);
+        monitor-&gt;fin_lectura();
+
+        <span class="hljs-comment">// pequeño descanso aleatorio fuera del monitor</span>
+        this_thread::sleep_for( chrono::milliseconds( aleatorio_tiempo&lt;<span class="hljs-number">20</span>,<span class="hljs-number">100</span>&gt;() ) );
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_hebra_escritora</span><span class="hljs-params">(MRef&lt;Lec_Esc&gt; monitor, <span class="hljs-keyword">int</span> i)</span>
+</span>{
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)
+    {
+        monitor-&gt;ini_escritura();
+        escribir(i);
+        monitor-&gt;fin_escritura();
+
+        this_thread::sleep_for( chrono::milliseconds( aleatorio_tiempo&lt;<span class="hljs-number">20</span>,<span class="hljs-number">100</span>&gt;() ) );
+    }
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"---------------------------------------------\n"</span>
+         &lt;&lt; <span class="hljs-string">"Problema de Lectores-Escritores (Monitor SU)\n"</span>
+         &lt;&lt; <span class="hljs-string">"---------------------------------------------\n"</span> &lt;&lt; <span class="hljs-built_in">flush</span>;
+
+    MRef&lt;Lec_Esc&gt; monitor = Create&lt;Lec_Esc&gt;();
+
+    thread lectores[num_lectores];
+    thread escritores[num_escritores];
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;num_lectores; i++)
+        lectores[i] = thread(funcion_hebra_lectora, monitor, i);
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;num_escritores; i++)
+        escritores[i] = thread(funcion_hebra_escritora, monitor, i);
+
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;num_lectores; i++)
+        lectores[i].join();
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;num_escritores; i++)
+        escritores[i].join();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+
+</div></code></pre>
+<h3 id="ejemplo-de-ejecuci%C3%B3n">Ejemplo de Ejecución</h3>
+<p><img src="./capturas/im3.png" alt="im3"></p>
+
+</body>
+</html>
