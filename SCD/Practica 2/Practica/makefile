@@ -1,5 +1,5 @@
 .SUFFIXES:
-.PHONY: x1, x2, x3, x4, x5, x6, x7, clean
+.PHONY: x1, x2, x3, x4, x5, x6, x7, x8, clean
 
 compilador := g++
 opcionesc := -std=c++11 -pthread -Wfatal-errors
@@ -25,6 +25,9 @@ x6: prodcons2_sc_exe
 x7: prodcons2_su_exe
 	./$<
 
+x8: fumadores_su_exe
+	./$<
+
 
 monitor_em_exe: monitor_em.cpp scd.h
 	$(compilador) $(opcionesc) -o $@ $<
@@ -47,9 +50,11 @@ prodcons2_sc_exe: prodcons2_sc.cpp scd.h
 prodcons2_su_exe: prodcons2_su.cpp scd.cpp scd.h
 	$(compilador) $(opcionesc) -o $@ $< scd.cpp
 
-# --- NUEVA REGLA PARA TU ARCHIVO ---
 prodcons_mu_exe: prodcons_mu.cpp scd.h
 	$(compilador) $(opcionesc) -o $@ $<
+
+fumadores_su_exe: fumadores_su.cpp scd.cpp scd.h
+	$(compilador) $(opcionesc) -o $@ $< scd.cpp
 
 
 clean:
