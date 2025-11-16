@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pr%C3%A1ctica-2-pdo--david-rodr%C3%ADguez-aparicio">Práctica 2 PDO | David Rodríguez Aparicio</h1>
+<p>En esta segunda práctica de PDO vamos a seguir desarrollando el juego Civitas, basado en el monopoly que todos conocemos.</p>
+<p>Iremos comentando e incluyendo el código de las distintas clases que hemos creado en esta práctica.</p>
+<p>Además de ello, aunque en esta documentación no lo encontremos se ha completado el diagrama UML, creando todas las clases, métodos y relaciones que aparecian en este.</p>
+<p>En esta práctica no se ha llegado a programar un test de estas clases, pero para los siguientes avances haremos un testeo completo y en condiciones de todo.</p>
+<p>Los códigos no tienen muchos comentarios, ya que la programación orientada a objetos de este tipo de programas suele ser muy clara y no requiere de ellos generalmente, aunque comentaremos las cosas más importante antes de mostrar estos códigos.</p>
+<p>Si el profesor lo necesita, el progreso de la práctica está recopilado en mi GitHub, puede pedirlo si es necesario.</p>
+<h2 id="titulopropiedad">TituloPropiedad</h2>
+<p>Tiene un único constructor, el cuál es llamado cuando es necesario en la creación del tablero.</p>
+<p>Maneja algunas de las funcionalidades de las Casillas que son propiedads ( casas,hoteles,ventas,etc. ).</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TituloPropiedad</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> alquilerBase;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> factorInteresesHipoteca = (<span class="hljs-keyword">float</span>) <span class="hljs-number">1.1</span>; <span class="hljs-comment">/*  ?¿¿?¿?¿ */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> factorRevalorizacion;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> hipotecaBase;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> hipotecado;
+    <span class="hljs-keyword">private</span> String nombre;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> numCasas;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> numHoteles;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> precioCompra;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> precioEdificar;
+    
+    <span class="hljs-keyword">private</span> Jugador propietario;
+
+  
+    <span class="hljs-comment">/* ---------------- CONSTRUCTOR ---------------- */</span>
+    
+    TituloPropiedad(String nombre, <span class="hljs-keyword">float</span> baseAlquiler, <span class="hljs-keyword">float</span> factorRevalorizacion,<span class="hljs-keyword">float</span> baseHipoteca, <span class="hljs-keyword">float</span> precioCompra, <span class="hljs-keyword">float</span> precioEdificar) {
+        <span class="hljs-keyword">this</span>.nombre=nombre;
+        <span class="hljs-keyword">this</span>.alquilerBase = baseAlquiler;
+        <span class="hljs-keyword">this</span>.factorRevalorizacion = factorRevalorizacion;
+        <span class="hljs-keyword">this</span>.hipotecaBase = baseHipoteca;
+        <span class="hljs-keyword">this</span>.precioCompra = precioCompra;
+        <span class="hljs-keyword">this</span>.precioEdificar = precioEdificar;
+
+        <span class="hljs-keyword">this</span>.propietario = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">this</span>.numCasas = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">this</span>.numHoteles = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">this</span>.hipotecado = <span class="hljs-keyword">false</span>;
+
+    }
+
+    
+    
+    <span class="hljs-comment">/* ---------------- METODOS ---------------- */</span>
+
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">actualizaPropietarioPorConversion</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        <span class="hljs-keyword">this</span>.propietario = jugador;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">cancelarHipoteca</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.hipotecado &amp;&amp; esEsteElPropietario(jugador) ){
+            
+            <span class="hljs-keyword">this</span>.hipotecado = <span class="hljs-keyword">false</span>;
+            jugador.paga( getImporteCancelarHipoteca() );
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }<span class="hljs-keyword">else</span>{
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cantidadCasasHoteles</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.numCasas + <span class="hljs-keyword">this</span>.numHoteles;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">comprar</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        
+        <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">this</span>.tienePropietario() &amp;&amp; jugador.getSaldo() &gt;= <span class="hljs-keyword">this</span>.precioEdificar){
+            jugador.paga(<span class="hljs-keyword">this</span>.precioCompra);
+            <span class="hljs-keyword">this</span>.propietario = jugador;
+            
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">construirCasa</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        
+        <span class="hljs-keyword">boolean</span> puedeConstruir = <span class="hljs-keyword">false</span>;
+
+        <span class="hljs-keyword">if</span>(esEsteElPropietario(jugador) &amp;&amp; jugador.getSaldo() &gt;= <span class="hljs-keyword">this</span>.precioEdificar ){
+            jugador.paga(<span class="hljs-keyword">this</span>.precioEdificar);
+            <span class="hljs-keyword">this</span>.numCasas++;
+            
+            puedeConstruir=<span class="hljs-keyword">true</span>;
+            
+            <span class="hljs-keyword">return</span> puedeConstruir;
+        }
+        <span class="hljs-keyword">return</span> puedeConstruir;
+        
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">construirHotel</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        
+        <span class="hljs-keyword">boolean</span> puedeConstruir = <span class="hljs-keyword">false</span>;
+
+        <span class="hljs-keyword">if</span>(esEsteElPropietario(jugador) &amp;&amp; jugador.getSaldo() &gt;= <span class="hljs-keyword">this</span>.precioEdificar){
+            jugador.paga(<span class="hljs-keyword">this</span>.precioEdificar);
+            <span class="hljs-keyword">this</span>.numHoteles++;
+            
+            puedeConstruir=<span class="hljs-keyword">true</span>;
+            
+            <span class="hljs-keyword">return</span> puedeConstruir;
+        }
+        <span class="hljs-keyword">return</span> puedeConstruir;
+        
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">derruirCasas</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, Jugador jugador)</span> </span>{
+
+        <span class="hljs-keyword">if</span> (esEsteElPropietario(jugador) &amp;&amp; <span class="hljs-keyword">this</span>.numCasas &gt;= n) {
+            <span class="hljs-keyword">this</span>.numCasas = <span class="hljs-keyword">this</span>.numCasas - n;
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">esEsteElPropietario</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.propietario == jugador ) ? <span class="hljs-keyword">true</span> : <span class="hljs-keyword">false</span>;   
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hipotecar</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        
+        <span class="hljs-keyword">if</span>( !<span class="hljs-keyword">this</span>.hipotecado &amp;&amp; esEsteElPropietario(jugador) ){
+            
+            <span class="hljs-keyword">this</span>.hipotecado = <span class="hljs-keyword">true</span>;
+            jugador.recibe(<span class="hljs-keyword">this</span>.hipotecaBase);
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }<span class="hljs-keyword">else</span>{
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">propietarioEncarcelado</span><span class="hljs-params">()</span> </span>{
+        
+        <span class="hljs-keyword">return</span> ( <span class="hljs-keyword">this</span>.propietario != <span class="hljs-keyword">null</span> || <span class="hljs-keyword">this</span>.propietario.encarcelado ) ? <span class="hljs-keyword">true</span> : <span class="hljs-keyword">false</span>;
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">tienePropietario</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.propietario != <span class="hljs-keyword">null</span> ) ? <span class="hljs-keyword">true</span> : <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+        String representacion;
+        
+        representacion =
+                <span class="hljs-string">"Titulo Propiedad:\n"</span> +
+                <span class="hljs-string">"\t- Nombre = "</span> + nombre + <span class="hljs-string">"\n"</span> +
+                <span class="hljs-string">"\t- Alquiler base = "</span> + alquilerBase + <span class="hljs-string">"\n"</span> +
+                <span class="hljs-string">"\t- Factor de revalorización = "</span> + factorRevalorizacion + <span class="hljs-string">"\n"</span> +
+                <span class="hljs-string">"\t- Hipoteca base = "</span> + hipotecaBase + <span class="hljs-string">"\n"</span> +
+                <span class="hljs-string">"\t- Precio de compra = "</span> + precioCompra + <span class="hljs-string">"\n"</span> +
+                <span class="hljs-string">"\t- Precio de edificar = "</span> + precioEdificar + <span class="hljs-string">"\n"</span> +
+                <span class="hljs-string">"\t- Número de casas = "</span> + numCasas + <span class="hljs-string">"\n"</span> +
+                <span class="hljs-string">"\t- Número de hoteles = "</span> + numHoteles + <span class="hljs-string">"\n"</span>;
+
+        <span class="hljs-keyword">if</span> (propietario == <span class="hljs-keyword">null</span>)
+            representacion += <span class="hljs-string">"\t- Propietario = sin propietario\n"</span>;
+        <span class="hljs-keyword">else</span>
+            representacion += <span class="hljs-string">"\t- Propietario = "</span> + propietario.getNombre();
+
+        <span class="hljs-keyword">return</span> representacion;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tramitarAlquiler</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        
+        <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">this</span>.hipotecado &amp;&amp; !esEsteElPropietario(jugador)){
+            jugador.pagaAlquiler(<span class="hljs-keyword">this</span>.alquilerBase);
+            <span class="hljs-keyword">this</span>.propietario.recibe(<span class="hljs-keyword">this</span>.alquilerBase);
+        }
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">vender</span><span class="hljs-params">(Jugador jugador)</span> </span>{
+        
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.tienePropietario()){
+            <span class="hljs-keyword">float</span> devolver = <span class="hljs-keyword">this</span>.precioCompra + ( (<span class="hljs-keyword">this</span>.numCasas * factorRevalorizacion * precioEdificar) + (<span class="hljs-keyword">this</span>.numHoteles * factorRevalorizacion * precioEdificar) );
+
+            <span class="hljs-keyword">this</span>.numCasas = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">this</span>.numHoteles = <span class="hljs-number">0</span>;
+
+            jugador.recibe(devolver);
+            <span class="hljs-keyword">this</span>.propietario = <span class="hljs-keyword">null</span>;
+            
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-comment">/* ---------------- SETTERS / GETTERS ---------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">getHipotecado</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.hipotecado;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">getImporteCancelarHipoteca</span><span class="hljs-params">()</span> </span>{
+        
+        <span class="hljs-keyword">float</span> total = <span class="hljs-keyword">this</span>.hipotecaBase * ( <span class="hljs-number">1f</span> + ( <span class="hljs-keyword">this</span>.numCasas * <span class="hljs-number">0.5f</span> ) + ( <span class="hljs-keyword">this</span>.numHoteles * <span class="hljs-number">2.5f</span> ) ) ;
+        <span class="hljs-keyword">return</span>  total * factorInteresesHipoteca;
+        
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getImporteHipoteca</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.hipotecaBase;
+    }
+
+    <span class="hljs-function">String <span class="hljs-title">getNombre</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.nombre;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getNumCasas</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.numCasas;  
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getNumHoteles</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span>  <span class="hljs-keyword">this</span>.numHoteles;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getPrecioAlquiler</span><span class="hljs-params">()</span> </span>{
+        
+        <span class="hljs-keyword">if</span>( <span class="hljs-keyword">this</span>.hipotecado || <span class="hljs-keyword">this</span>.propietarioEncarcelado() ){
+            <span class="hljs-keyword">return</span> (<span class="hljs-keyword">float</span>) <span class="hljs-number">0</span>;
+        }<span class="hljs-keyword">else</span>{
+            
+            <span class="hljs-keyword">float</span> precioReal = <span class="hljs-keyword">this</span>.alquilerBase * ( <span class="hljs-number">1f</span> + ( <span class="hljs-keyword">this</span>.numCasas * <span class="hljs-number">0.5f</span> ) + ( <span class="hljs-keyword">this</span>.numHoteles * <span class="hljs-number">2.5f</span> ) );
+            
+            <span class="hljs-keyword">return</span> precioReal;
+        }
+        
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">getPrecioCompra</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.precioCompra;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">getPrecioEdificar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.precioEdificar;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getPrecioVenta</span><span class="hljs-params">()</span> </span>{
+    
+        <span class="hljs-keyword">float</span> total = <span class="hljs-keyword">this</span>.precioCompra + <span class="hljs-keyword">this</span>.cantidadCasasHoteles() * precioEdificar;
+        
+        <span class="hljs-keyword">return</span> total;
+    }
+
+    <span class="hljs-function">Jugador <span class="hljs-title">getPropietario</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.propietario;
+    }
+}
+
+
+
+</div></code></pre>
+<h2 id="sorpresa">Sorpresa</h2>
+<p>Tiene varios constructores, que se usan dependiendo de donde se llama y de lo que se necesite al momento de usarlo.</p>
+<p>Funciona mediante un método (aplicarJugador) con un switch que decide el método a usar en cada caso, también incluye métodos para verificar si el jugador es correcto, salir del mazo y si una carta sorpresa ha sido usada.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sorpresa</span></span>{
+    <span class="hljs-keyword">private</span> String texto;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> valor;
+    
+    TipoSorpresa tipo;
+    MazoSorpresa mazo;
+    Tablero tablero;
+
+
+    <span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+    Sorpresa(TipoSorpresa tipo, Tablero tablero) {
+        <span class="hljs-keyword">this</span>.init();
+        <span class="hljs-keyword">this</span>.tipo = tipo;
+        <span class="hljs-keyword">this</span>.tablero = tablero;
+
+        <span class="hljs-keyword">this</span>.texto = <span class="hljs-string">""</span>;
+        <span class="hljs-keyword">this</span>.valor = -<span class="hljs-number">1</span>;  
+        <span class="hljs-keyword">this</span>.mazo = <span class="hljs-keyword">null</span>;
+    }
+
+    Sorpresa(TipoSorpresa tipo, Tablero tablero, <span class="hljs-keyword">int</span> valor, String texto) {
+        <span class="hljs-keyword">this</span>.init();
+        <span class="hljs-keyword">this</span>.tipo = tipo;
+        <span class="hljs-keyword">this</span>.tablero = tablero;
+        <span class="hljs-keyword">this</span>.valor = valor;
+        <span class="hljs-keyword">this</span>.texto = texto;
+
+        <span class="hljs-keyword">this</span>.mazo = <span class="hljs-keyword">null</span>;
+    }
+
+    Sorpresa(TipoSorpresa tipo, <span class="hljs-keyword">int</span> valor, String texto) {
+        <span class="hljs-keyword">this</span>.init();
+        <span class="hljs-keyword">this</span>.tipo = tipo;
+        <span class="hljs-keyword">this</span>.valor = valor;
+        <span class="hljs-keyword">this</span>.texto = texto;
+
+        <span class="hljs-keyword">this</span>.tablero = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">this</span>.mazo = <span class="hljs-keyword">null</span>;
+    }
+
+    Sorpresa(TipoSorpresa tipo, MazoSorpresa mazo) {
+        <span class="hljs-keyword">this</span>.init();
+        <span class="hljs-keyword">this</span>.tipo = tipo;
+        <span class="hljs-keyword">this</span>.mazo = mazo;
+
+        <span class="hljs-keyword">this</span>.texto = <span class="hljs-string">""</span>;
+        <span class="hljs-keyword">this</span>.valor = -<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">this</span>.tablero = <span class="hljs-keyword">null</span>;
+    }
+
+
+
+    <span class="hljs-comment">/* ----------------- METODOS ----------------- */</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">aplicarJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+
+        <span class="hljs-comment">/* Hay 6 valores posibles, Casilla | Carcel | PagarCobrar | PorCasaHotel | PorJugador | Salir Carcel */</span>
+        <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">this</span>.tipo) { 
+            <span class="hljs-keyword">case</span> IRCARCEL -&gt; <span class="hljs-keyword">this</span>.aplicarJugador_irCarcel(actual, Jugadores);
+            <span class="hljs-keyword">case</span> IRCASILLA -&gt; <span class="hljs-keyword">this</span>.aplicarJugador_irCasilla(actual, Jugadores);
+            <span class="hljs-keyword">case</span> PAGARCOBRAR -&gt; <span class="hljs-keyword">this</span>.aplicarJugador_pagarCobrar(actual, Jugadores);
+            <span class="hljs-keyword">case</span> PORCASAHOTEL -&gt; <span class="hljs-keyword">this</span>.aplicarJugador_porCasaHotel(actual, Jugadores);
+            <span class="hljs-keyword">case</span> PORJUGADOR -&gt; <span class="hljs-keyword">this</span>.aplicarJugador_porJugador(actual, Jugadores);
+            <span class="hljs-keyword">case</span> SALIRCARCEL -&gt; <span class="hljs-keyword">this</span>.aplicarJugador_salirCarcel(actual, Jugadores);
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarJugador_irCasilla</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span>(jugadorCorrecto(actual, Jugadores)){
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado irCasilla en: "</span> + Jugadores[actual].getNombre() );
+            
+
+            <span class="hljs-keyword">int</span> casillaActual = Jugadores[actual].getNumCasillaActual();
+
+            <span class="hljs-keyword">int</span> tirada = tablero.calcularTirada(casillaActual, <span class="hljs-keyword">this</span>.valor); <span class="hljs-comment">/* Falta añadir el numero del dado. ?¿ */</span>
+
+            <span class="hljs-keyword">int</span> nuevaPosicion = tablero.nuevaPosicion(casillaActual, tirada);
+
+            Jugadores[actual].moverACasilla(nuevaPosicion);
+
+            tablero.getCasilla(nuevaPosicion).recibeJugador(actual, Jugadores);   
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarJugador_irCarcel</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span>(jugadorCorrecto(actual, Jugadores)){
+            Jugadores[actual].encarcelar( tablero.getCarcel() );<span class="hljs-comment">/*   Casilla de la carcel  */</span>
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha encarcelado al jugador: "</span> + Jugadores[actual].getNombre() );
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarJugador_pagarCobrar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span>(jugadorCorrecto(actual, Jugadores)){
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado pagarCobrar en: "</span> + Jugadores[actual].getNombre() );
+            Jugadores[actual].modificarSaldo(<span class="hljs-keyword">this</span>.valor);
+
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarJugador_porCasaHotel</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(actual, Jugadores)) {
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado porCasaHotel en: "</span> + Jugadores[actual].getNombre() );
+
+            <span class="hljs-keyword">int</span> numCasasHoteles = Jugadores[actual].cantidadCasasHoteles();
+
+            <span class="hljs-keyword">int</span> cantidad = valor * numCasasHoteles;
+
+            Jugadores[actual].modificarSaldo(cantidad);
+    }
+}
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarJugador_porJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(actual, Jugadores)) {
+
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado porJugador en: "</span> + Jugadores[actual].getNombre() );
+
+
+            <span class="hljs-keyword">int</span> numJugadores = Jugadores.length;
+
+            Sorpresa paga = <span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.PAGARCOBRAR, -valor, <span class="hljs-string">"Paga al jugador "</span> + Jugadores[actual].getNombre());
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; numJugadores; i++) {
+                <span class="hljs-keyword">if</span> ( i != actual ) {
+                    paga.aplicarJugador(i, Jugadores);
+                }
+            }
+
+            Sorpresa cobra = <span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.PAGARCOBRAR,valor * (numJugadores - <span class="hljs-number">1</span>),<span class="hljs-string">"Cobra del resto de Jugadores"</span>);
+
+            cobra.aplicarJugador(actual, Jugadores);
+        }
+    }
+
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarJugador_salirCarcel</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(actual, Jugadores)) {
+
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado salirCarcel en: "</span> + Jugadores[actual].getNombre() );
+
+
+            <span class="hljs-keyword">boolean</span> alguienTieneSalvoconducto = <span class="hljs-keyword">false</span>;
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; Jugadores.length &amp;&amp; !alguienTieneSalvoconducto; i++) {
+                <span class="hljs-keyword">if</span> (Jugadores[i].tieneSalvoconducto()) {
+                    alguienTieneSalvoconducto = <span class="hljs-keyword">true</span>;
+                }
+            }
+
+            <span class="hljs-keyword">if</span> (!alguienTieneSalvoconducto) {
+                Jugadores[actual].obtenerSalvoconducto(<span class="hljs-keyword">this</span>);
+                salirDelMazo();
+            }
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">informe</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        Diario.getInstance().ocurreEvento( <span class="hljs-string">"Se le está aplicando una sorpresa a: "</span> + Jugadores[actual] );
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">jugadorCorrecto</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">return</span> (actual &gt;= <span class="hljs-number">0</span> &amp;&amp; actual &lt; Jugadores.length);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">salirDelMazo</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">if</span> (tipo == TipoSorpresa.SALIRCARCEL &amp;&amp; mazo != <span class="hljs-keyword">null</span>) {
+            mazo.inhabilitarCartaEspecial(<span class="hljs-keyword">this</span>);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.texto;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">usada</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">if</span> (tipo == TipoSorpresa.SALIRCARCEL &amp;&amp; mazo != <span class="hljs-keyword">null</span>) {
+                mazo.habilitarCartaEspecial(<span class="hljs-keyword">this</span>);
+        }
+    }
+    
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">this</span>.valor = -<span class="hljs-number">1</span>;
+    }
+
+
+
+}
+
+</div></code></pre>
+<h2 id="casilla">Casilla</h2>
+<p>Sus distintos constructores se usan en base a que tipo de casilla sea al crear el tablero (ya sea Juez,Impuesto,Propiedad,etc.).</p>
+<p>Tiene los métodos a usar cuando un jugador caiga en esta casilla.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Casilla</span> </span>{
+    
+        
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> carcel;                     <span class="hljs-comment">/* DUDA: se podría poner como tipo casilla ??  */</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> importe;
+    <span class="hljs-keyword">private</span> String nombre;
+    
+    TipoCasilla tipo;
+    TituloPropiedad tituloPropiedad;    <span class="hljs-comment">/*  tituloPropiedad tipo="CALLE"  ?¿?¿? */</span>
+    Sorpresa sorpresa;                  <span class="hljs-comment">/* tipo = "SORPRESA" */</span>
+    MazoSorpresa mazo;                  <span class="hljs-comment">/* tipo = "SORPRESA" */</span>
+    
+
+
+    <span class="hljs-comment">/* ----------------- Constructores ----------------- */</span>
+
+    <span class="hljs-comment">/* REVISAR CONSTRUCTORES */</span>
+    
+    Casilla(String nombre) {
+        <span class="hljs-keyword">this</span>.init();
+        <span class="hljs-keyword">this</span>.nombre = nombre;
+
+    }
+
+    Casilla(TituloPropiedad titulo){
+        <span class="hljs-keyword">this</span>.init();
+        
+        <span class="hljs-keyword">this</span>.tituloPropiedad = titulo;
+        <span class="hljs-keyword">this</span>.nombre = titulo.getNombre();
+        <span class="hljs-keyword">this</span>.tipo = TipoCasilla.CALLE;
+        
+    }
+
+    Casilla(<span class="hljs-keyword">float</span> cantidad,String nombre){
+        <span class="hljs-keyword">this</span>.init();
+        
+        <span class="hljs-keyword">this</span>.importe = cantidad;
+        <span class="hljs-keyword">this</span>.nombre = nombre;
+        <span class="hljs-keyword">this</span>.tipo = TipoCasilla.IMPUESTO;
+        
+    }
+
+    Casilla(<span class="hljs-keyword">int</span> numCasillaCarcel, String nombre){
+        <span class="hljs-keyword">this</span>.init();
+        
+        <span class="hljs-keyword">this</span>.carcel = numCasillaCarcel;
+        <span class="hljs-keyword">this</span>.nombre = nombre;
+        <span class="hljs-keyword">this</span>.tipo = TipoCasilla.JUEZ;
+        
+    }
+
+    Casilla(MazoSorpresa mazo, String nombre){
+        <span class="hljs-keyword">this</span>.init();
+        
+        <span class="hljs-keyword">this</span>.mazo = mazo;
+        <span class="hljs-keyword">this</span>.nombre = nombre;
+        <span class="hljs-keyword">this</span>.tipo = TipoCasilla.SORPRESA;
+        <span class="hljs-comment">// this.sorpresa = mazo.siguiente();</span>
+        
+        
+    }
+
+    
+
+
+
+
+
+
+    <span class="hljs-comment">/* ----------------- METODOS ----------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">informe</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + Jugadores[iActual].getNombre() + <span class="hljs-string">" ha caído en la casilla: "</span> + toString());
+    }
+
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">this</span>.nombre = <span class="hljs-string">""</span>;
+        <span class="hljs-keyword">this</span>.importe = <span class="hljs-number">0.0f</span>;
+        <span class="hljs-keyword">this</span>.carcel = -<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">this</span>.tipo = TipoCasilla.DESCANSO;
+        <span class="hljs-keyword">this</span>.tituloPropiedad = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">this</span>.sorpresa = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">this</span>.mazo = <span class="hljs-keyword">null</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">jugadorCorrecto</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual,  Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">return</span> iActual &gt;= <span class="hljs-number">0</span> &amp;&amp; iActual &lt; Jugadores.length;  <span class="hljs-comment">/* Ya existe una de estas en:  Sopresa | ?¿?¿ */</span>
+    }
+
+    <span class="hljs-comment">/* Siguiente Práctica */</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+
+        <span class="hljs-comment">/* Se debería poner en la siguiente práctica  */</span>
+        <span class="hljs-comment">/* switch (this.tipo) {
+
+            case CALLE -&gt; this.recibeJugador_calle(iActual, Jugadores);
+            case IMPUESTO -&gt; this.recibeJugador_impuesto(iActual, Jugadores);
+            case JUEZ -&gt; this.recibeJugador_juez(iActual, Jugadores);
+            case SORPRESA -&gt; this.recibeJugador_sorpresa(iActual, Jugadores);
+            case DESCANSO -&gt; {
+                if (jugadorCorrecto(iActual, Jugadores))
+                    informe(iActual, Jugadores);
+            }
+        } */</span>
+    }
+
+    <span class="hljs-comment">/* Siguiente Práctica */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador_calle</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-comment">/* if (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+            Diario.getInstance().ocurreEvento("El jugador " + Jugadores[iActual].getNombre() + " ha recibido: " + this.tituloPropiedad.getNombre()  );
+            tituloPropiedad.tramitarAlquiler(Jugadores[iActual]);
+        } */</span>
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador_impuesto</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + Jugadores[iActual].getNombre() + <span class="hljs-string">" ha caido en: "</span> + <span class="hljs-keyword">this</span>.nombre );
+
+            Jugadores[iActual].pagaImpuesto(importe);
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador_juez</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+            Jugadores[iActual].encarcelar(carcel);
+        }
+    }
+
+    <span class="hljs-comment">/* Siguiente Práctica */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador_sorpresa</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-comment">/* if (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+            sorpresa = mazo.siguiente();
+            sorpresa.aplicarJugador(iActual, Jugadores);
+        } */</span>
+    }
+    
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span></span>{
+        String info = <span class="hljs-string">"Casilla{"</span> +
+                        <span class="hljs-string">"nombre='"</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">'\''</span> +
+                        <span class="hljs-string">", tipo="</span> + <span class="hljs-keyword">this</span>.tipo;
+
+            <span class="hljs-keyword">switch</span> (<span class="hljs-keyword">this</span>.tipo) {
+                <span class="hljs-keyword">case</span> CALLE -&gt; info += <span class="hljs-string">", titulo="</span> + tituloPropiedad.getNombre();
+                <span class="hljs-keyword">case</span> IMPUESTO -&gt; info += <span class="hljs-string">", importe="</span> + <span class="hljs-keyword">this</span>.importe;
+                <span class="hljs-keyword">case</span> JUEZ -&gt; info += <span class="hljs-string">", carcel="</span> + <span class="hljs-keyword">this</span>.carcel;
+                <span class="hljs-keyword">case</span> SORPRESA -&gt; info += <span class="hljs-string">", mazoSorpresas"</span>;
+                <span class="hljs-keyword">case</span> DESCANSO -&gt; info += <span class="hljs-string">", casilla normal"</span>;
+            }
+
+            info += <span class="hljs-string">"}"</span>;
+            <span class="hljs-keyword">return</span> info;
+    }
+
+    
+    <span class="hljs-comment">/* ----------------- GETTERS / SETTERS ----------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">getNombre</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.nombre;
+    }
+
+    <span class="hljs-function">TituloPropiedad <span class="hljs-title">getTituloPropiedad</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tituloPropiedad;
+    }
+
+}
+
+
+</div></code></pre>
+<h2 id="jugador">Jugador</h2>
+<p>Tiene un constructor que se autoinicia solo con el nombre, y otro constructor de copia.</p>
+<p>Contiene todos los métodos relacionados con el jugador,dinero de este y la gestión de sus propiedades.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-meta">@SuppressWarnings</span>(<span class="hljs-string">"all"</span>)
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Jugador</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Comparable</span>&lt;<span class="hljs-title">Jugador</span>&gt;</span>{
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> CasasMax = <span class="hljs-number">4</span>;
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> CasasPorHotel = <span class="hljs-number">4</span>;
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> HotelesMax = <span class="hljs-number">4</span>;
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> PasoPorSalida = <span class="hljs-number">1000</span>;
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> PrecioLibertad = <span class="hljs-number">200</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> SaldoInicial = <span class="hljs-number">7500</span>;
+
+    <span class="hljs-keyword">protected</span> <span class="hljs-keyword">boolean</span> encarcelado;
+
+    <span class="hljs-keyword">private</span> String nombre;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> numCasillaActual;
+    
+
+    
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> puedeComprar;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> saldo;
+    
+    
+
+    <span class="hljs-keyword">private</span> ArrayList&lt;TituloPropiedad&gt; propiedades;
+    <span class="hljs-keyword">private</span> Sorpresa salvoconducto; <span class="hljs-comment">/* Tipo = SalirCarcel */</span>
+
+
+    <span class="hljs-comment">/* ---------------- CONSTRUCTORES ---------------- */</span>
+
+    Jugador(String nombre) {
+        <span class="hljs-keyword">this</span>.encarcelado = <span class="hljs-keyword">false</span>;
+        <span class="hljs-keyword">this</span>.nombre = nombre;
+        <span class="hljs-keyword">this</span>.numCasillaActual = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">this</span>.saldo = SaldoInicial;
+        <span class="hljs-keyword">this</span>.salvoconducto = <span class="hljs-keyword">null</span>;
+        <span class="hljs-keyword">this</span>.propiedades = <span class="hljs-keyword">null</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">Jugador</span><span class="hljs-params">(Jugador otro)</span> </span>{
+        <span class="hljs-keyword">this</span>.encarcelado = otro.encarcelado;
+        <span class="hljs-keyword">this</span>.nombre = otro.nombre;
+        <span class="hljs-keyword">this</span>.numCasillaActual = otro.numCasillaActual;
+        <span class="hljs-keyword">this</span>.saldo = otro.saldo;
+        <span class="hljs-keyword">this</span>.salvoconducto = otro.salvoconducto;
+        <span class="hljs-keyword">this</span>.propiedades = otro.propiedades;
+    }
+
+
+    <span class="hljs-comment">/* ---------------- METODOS ---------------- */</span>
+    
+    <span class="hljs-comment">/* Siguiente Práctica */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">cancelarHipoteca</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span> </span>{
+
+        <span class="hljs-keyword">return</span>  <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">cantidadCasasHoteles</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-keyword">int</span> total = <span class="hljs-number">0</span>;
+
+        <span class="hljs-keyword">for</span> (TituloPropiedad propiedad : propiedades) {
+            total += propiedad.getNumCasas() + propiedad.getNumHoteles();
+        }
+
+        <span class="hljs-keyword">return</span> total;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compareTo</span><span class="hljs-params">(Jugador otro)</span> </span>{
+        <span class="hljs-keyword">return</span> Float.compare(<span class="hljs-keyword">this</span>.saldo, otro.saldo);
+    }
+
+    <span class="hljs-comment">/* Próxima Práctica */</span>
+    <span class="hljs-comment">/* boolean comprar(TituloPropiedad titulo) {
+
+    } */</span>
+
+    <span class="hljs-comment">/* Próxima Práctica */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">construirCasa</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span> </span>{
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-comment">/* Próxima Práctica */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">construirHotel</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span> </span>{
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">debeSerEncarcelado</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> ( !<span class="hljs-keyword">this</span>.encarcelado) {
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">"ha caído en la carcel."</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( <span class="hljs-keyword">this</span>.salvoconducto == <span class="hljs-keyword">null</span> ){
+            perderSalvoconducto();
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">"se ha salvado de la carcel por salvaconducto."</span>);
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">enBancarrota</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.saldo &lt; <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">encarcelar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numCasillaCarcel)</span> </span>{
+        <span class="hljs-keyword">if</span>( <span class="hljs-keyword">this</span>.debeSerEncarcelado() ){
+            <span class="hljs-keyword">this</span>.moverACasilla(numCasillaCarcel);
+            <span class="hljs-keyword">this</span>.encarcelado = <span class="hljs-keyword">true</span>;
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">"ha sido encarcelado"</span>);
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.encarcelado;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">existeLaPropiedad</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span> </span>{
+        <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.propiedades.get(ip) != <span class="hljs-keyword">null</span>);
+    }
+
+    <span class="hljs-comment">/* Próxima Práctica */</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">hipotecar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span> </span>{
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">modificarSaldo</span><span class="hljs-params">(<span class="hljs-keyword">float</span> cantidad)</span> </span>{
+        <span class="hljs-keyword">this</span>.saldo = <span class="hljs-keyword">this</span>.saldo + cantidad;
+        Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se le han aplicado a "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">", "</span> + cantidad + <span class="hljs-string">" a su saldo."</span>);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">moverACasilla</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numCasilla)</span> </span>{
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.encarcelado){
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+
+        <span class="hljs-keyword">this</span>.numCasillaActual = numCasilla;
+        <span class="hljs-keyword">this</span>.puedeComprar = <span class="hljs-keyword">false</span>;
+        Diario.getInstance().ocurreEvento( <span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">" se mueve a la casilla "</span> + <span class="hljs-keyword">this</span>.numCasillaActual);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">obtenerSalvoconducto</span><span class="hljs-params">(Sorpresa sorpresa)</span> </span>{
+        <span class="hljs-keyword">if</span>(!<span class="hljs-keyword">this</span>.encarcelado){
+            <span class="hljs-keyword">this</span>.salvoconducto = sorpresa ; <span class="hljs-comment">/* Hacer referencia a una sorpresa tipo SalirCarcel */</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">paga</span><span class="hljs-params">(<span class="hljs-keyword">float</span> cantidad)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.modificarSaldo(-<span class="hljs-number">1</span> * cantidad);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">pagaAlquiler</span><span class="hljs-params">(<span class="hljs-keyword">float</span> cantidad)</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.encarcelado){
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        <span class="hljs-keyword">return</span> paga(cantidad);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">pagaImpuesto</span><span class="hljs-params">(<span class="hljs-keyword">float</span> cantidad)</span> </span>{
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.encarcelado){
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }<span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.paga(cantidad);
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">pasaPorSalida</span><span class="hljs-params">()</span> </span>{
+        modificarSaldo(PasoPorSalida);
+
+        Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">" ha pasado por la salida y recibe "</span> + PasoPorSalida );
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">perderSalvoconducto</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>.salvoconducto.usada();
+        <span class="hljs-keyword">this</span>.salvoconducto = <span class="hljs-keyword">null</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">puedeComprarCasilla</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">this</span>.puedeComprar = !<span class="hljs-keyword">this</span>.encarcelado;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.puedeComprar;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">puedeSalirCarcelPagando</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.saldo &gt;= PrecioLibertad;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">puedeEdificarCasa</span><span class="hljs-params">(TituloPropiedad propiedad)</span> </span>{
+        <span class="hljs-keyword">return</span> !(<span class="hljs-keyword">this</span>.encarcelado || !puedoGastar(propiedad.getPrecioEdificar()) || propiedad.getNumCasas() &gt;= CasasMax);
+        
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">puedeEdificarHotel</span><span class="hljs-params">(TituloPropiedad propiedad)</span> </span>{
+        <span class="hljs-keyword">return</span> !(<span class="hljs-keyword">this</span>.encarcelado || !puedoGastar(propiedad.getPrecioEdificar()) || propiedad.getNumCasas() &lt; CasasPorHotel || propiedad.getNumHoteles() &gt;= HotelesMax );
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">puedoGastar</span><span class="hljs-params">(<span class="hljs-keyword">float</span> precio)</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.encarcelado){
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.saldo &gt;= precio;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">recibe</span><span class="hljs-params">(<span class="hljs-keyword">float</span> cantidad)</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.encarcelado){
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+
+        <span class="hljs-keyword">return</span> modificarSaldo(cantidad);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">salirCarcelPagando</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.encarcelado) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        <span class="hljs-keyword">if</span> (!puedeSalirCarcelPagando()) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+
+        paga(PrecioLibertad);
+        <span class="hljs-keyword">this</span>.encarcelado = <span class="hljs-keyword">false</span>;
+
+        Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">" ha salido de la cárcel pagando "</span> + PrecioLibertad);
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">salirCarcelTirando</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.encarcelado) <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+
+        <span class="hljs-keyword">boolean</span> sale = Dado.getInstance().salgoDeLaCarcel();
+
+        <span class="hljs-keyword">if</span> (sale) {
+            <span class="hljs-keyword">this</span>.encarcelado = <span class="hljs-keyword">false</span>;
+
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.nombre + <span class="hljs-string">" ha salido de la cárcel tirando el dado y sacando un "</span> + Dado.getInstance().getNumSalirCarcel());
+        }
+
+        <span class="hljs-keyword">return</span> sale;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">tieneAlgoQueGestionar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> !propiedades.isEmpty();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">tieneSalvoconducto</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.salvoconducto != <span class="hljs-keyword">null</span>;
+    }
+
+    
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+
+        String estado = <span class="hljs-keyword">this</span>.encarcelado ? <span class="hljs-string">"ENCARCELADO"</span> : <span class="hljs-string">"LIBRE"</span>;
+
+        String texto = 
+            <span class="hljs-string">"Jugador: "</span> + <span class="hljs-keyword">this</span>.nombre +
+            <span class="hljs-string">"\n  Estado: "</span> + estado +
+            <span class="hljs-string">"\n  Casilla actual: "</span> + <span class="hljs-keyword">this</span>.numCasillaActual +
+            <span class="hljs-string">"\n  Saldo: "</span> + <span class="hljs-keyword">this</span>.saldo +
+            <span class="hljs-string">"\n  Puede comprar: "</span> + <span class="hljs-keyword">this</span>.puedeComprar +
+            <span class="hljs-string">"\n  Salvoconducto: "</span> + (<span class="hljs-keyword">this</span>.salvoconducto != <span class="hljs-keyword">null</span> ? <span class="hljs-string">"SI"</span> : <span class="hljs-string">"NO"</span>) +
+            <span class="hljs-string">"\n  Propiedades:"</span>;
+
+        <span class="hljs-keyword">for</span> (TituloPropiedad propiedad : propiedades) {
+            texto += <span class="hljs-string">"\n    - "</span> + propiedad.getNombre() +
+                    <span class="hljs-string">" (Casas: "</span> + propiedad.getNumCasas() +
+                    <span class="hljs-string">", Hoteles: "</span> + propiedad.getNumHoteles() + <span class="hljs-string">")"</span>;
+        }
+
+        <span class="hljs-keyword">return</span> texto;
+    }
+
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">vender</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span> </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.encarcelado){
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!existeLaPropiedad(ip)){
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }<span class="hljs-keyword">else</span>{
+            TituloPropiedad propiedad = propiedades.get(ip);
+
+            <span class="hljs-keyword">boolean</span> vendido = propiedad.vender(<span class="hljs-keyword">this</span>);
+
+            <span class="hljs-keyword">if</span> (vendido) {
+                propiedades.remove(ip);
+                Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + nombre + <span class="hljs-string">" ha vendido la propiedad "</span> + propiedad.getNombre());
+            }
+
+            <span class="hljs-keyword">return</span> vendido;
+        }
+    }
+
+
+    <span class="hljs-comment">/* ---------------- SETTERS / GETTERS ---------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCasasMax</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> CasasMax;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getCasasPorHotel</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> CasasPorHotel;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getHotelesMax</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> HotelesMax;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> String <span class="hljs-title">getNombre</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.nombre;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getNumCasillaActual</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.numCasillaActual;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getPrecioLibertad</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> PrecioLibertad;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getPremioPasoSalida</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> PasoPorSalida;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> ArrayList&lt;TituloPropiedad&gt; <span class="hljs-title">getPropiedades</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.propiedades;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">getPuedeComprar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.puedeComprar;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">float</span> <span class="hljs-title">getSaldo</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.saldo;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">isEncarcelado</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.encarcelado;
+    }
+
+}
+
+
+</div></code></pre>
+<h2 id="civitasjuego">CivitasJuego</h2>
+<p>Tiene un constructor que se inicia con la lista de nombres de jugadores.</p>
+<p>Contiene la base del juego, métodos sobre gestión de propiedades, que se ayuda de otras clases, avances de jugador, ranking, turnos, información y algunos de los más importantes, creacion de Tablero y creación de Mazo Sorpresa.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.Arrays;
+<span class="hljs-comment">// import java.util.Collections;</span>
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CivitasJuego</span> </span>{
+    
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> indiceJugadorActual;
+
+    <span class="hljs-keyword">private</span> Jugador jugadores[]; <span class="hljs-comment">/* Tiene que ser un array con todos los jugadores */</span>
+    <span class="hljs-keyword">private</span> EstadosJuego estado;
+    <span class="hljs-keyword">private</span> GestorEstados gestorEstados;
+    <span class="hljs-keyword">private</span> Tablero tablero;
+    OperacionesJuego tipoOperacion;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> Dado dado = Dado.getInstance();
+    <span class="hljs-keyword">private</span> MazoSorpresa mazo;
+
+
+    <span class="hljs-comment">/* ---------------- CONSTRUCTOR ---------------- */</span>
+
+    CivitasJuego(ArrayList&lt;String&gt; nombres) {
+
+        <span class="hljs-keyword">this</span>.jugadores = <span class="hljs-keyword">new</span> Jugador[nombres.size()];
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; nombres.size(); i++) {
+            <span class="hljs-keyword">this</span>.jugadores[i] = <span class="hljs-keyword">new</span> Jugador(nombres.get(i));
+        }
+
+        <span class="hljs-keyword">this</span>.gestorEstados = <span class="hljs-keyword">new</span> GestorEstados();
+        <span class="hljs-keyword">this</span>.estado = gestorEstados.estadoInicial();
+
+        <span class="hljs-keyword">this</span>.indiceJugadorActual = dado.quienEmpieza(<span class="hljs-keyword">this</span>.jugadores.length);
+
+        <span class="hljs-keyword">this</span>.mazo = <span class="hljs-keyword">new</span> MazoSorpresa();
+
+        <span class="hljs-keyword">this</span>.inicializarTablero(<span class="hljs-keyword">this</span>.mazo); <span class="hljs-comment">/* Ahora mismo tablero es null */</span>
+
+        <span class="hljs-keyword">this</span>.inicializarMazoSorpresa(<span class="hljs-keyword">this</span>.tablero);
+    }
+    
+    
+    
+    
+    
+    <span class="hljs-comment">/* ---------------- METODOS ---------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">actualizarInfo</span><span class="hljs-params">()</span> </span>{
+        Jugador jugadorActual = jugadores[indiceJugadorActual];
+
+        System.out.println(<span class="hljs-string">"=== INFORMACIÓN DEL JUGADOR ACTUAL ==="</span>);
+        System.out.println(jugadorActual.toString());
+
+        System.out.println(<span class="hljs-string">"\n=== CASILLA ACTUAL ==="</span>);
+        <span class="hljs-keyword">int</span> pos = jugadorActual.getNumCasillaActual();
+        System.out.println(tablero.getCasilla(pos).toString());
+
+        <span class="hljs-keyword">if</span> (jugadorActual.enBancarrota()) {
+            System.out.println(<span class="hljs-string">"\n*** EL JUGADOR HA CAÍDO EN BANCARROTA ***"</span>);
+            System.out.println(<span class="hljs-string">"=== RANKING FINAL ==="</span>);
+            System.out.println(ranking());   <span class="hljs-comment">// lo implementas más adelante</span>
+        }
+    }
+
+
+    <span class="hljs-comment">/* SIGUIENTE PRACTICA */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">avanzaJugador</span><span class="hljs-params">()</span></span>{
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hipotecar</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+        <span class="hljs-keyword">return</span> jugadorActual.hipotecar(ip);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">cancelarHipoteca</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+        <span class="hljs-keyword">return</span> jugadorActual.cancelarHipoteca(ip);
+    }
+
+    <span class="hljs-comment">/* SIGUIENTE PRACTICA */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">comprar</span><span class="hljs-params">()</span></span>{
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">comprarCasa</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+
+        <span class="hljs-keyword">return</span> jugadorActual.construirCasa(ip);
+    }   
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">comprarHotel</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+
+        <span class="hljs-keyword">return</span> jugadorActual.construirHotel(ip);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">contabilizarPasosPorSalida</span><span class="hljs-params">(Jugador jugadorActual)</span></span>{
+        <span class="hljs-keyword">while</span> (<span class="hljs-keyword">this</span>.tablero.getPorSalida() &gt; <span class="hljs-number">0</span>) {
+            jugadorActual.pasaPorSalida();
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">finalDelJuego</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">for</span> (Jugador jugador : <span class="hljs-keyword">this</span>.jugadores) {
+                <span class="hljs-keyword">if</span> (jugador.enBancarrota()) {
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+                }
+            }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">infoJugadorTexto</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual].toString();
+    }
+
+    <span class="hljs-comment">/* REVISAR + Ver Reglas */</span>
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">inicializarMazoSorpresa</span><span class="hljs-params">(Tablero tablero)</span> </span>{
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.mazo == <span class="hljs-keyword">null</span>) <span class="hljs-keyword">this</span>.mazo = <span class="hljs-keyword">new</span> MazoSorpresa();
+
+        <span class="hljs-keyword">this</span>.mazo.alMazo(<span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.IRCARCEL,tablero,tablero.getCarcel(),<span class="hljs-string">"Vas directo a la cárcel"</span>));
+        <span class="hljs-keyword">this</span>.mazo.alMazo(<span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.IRCASILLA,tablero,<span class="hljs-number">3</span>,<span class="hljs-string">"Te mueves a la casilla 3"</span>));
+
+        <span class="hljs-keyword">this</span>.mazo.alMazo(<span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.PAGARCOBRAR,-<span class="hljs-number">200</span>,<span class="hljs-string">"Pagas 200"</span>));
+        <span class="hljs-keyword">this</span>.mazo.alMazo(<span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.PAGARCOBRAR,<span class="hljs-number">200</span>,<span class="hljs-string">"Cobras 200"</span>));
+
+        <span class="hljs-keyword">this</span>.mazo.alMazo(<span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.PORCASAHOTEL,<span class="hljs-number">50</span>,<span class="hljs-string">"Cobras 50 por cada casa y hotel"</span>));
+        <span class="hljs-keyword">this</span>.mazo.alMazo(<span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.PORJUGADOR,<span class="hljs-number">100</span>,<span class="hljs-string">"Cada jugador te paga 100"</span>));
+
+        <span class="hljs-keyword">this</span>.mazo.alMazo(<span class="hljs-keyword">new</span> Sorpresa(TipoSorpresa.SALIRCARCEL,<span class="hljs-keyword">this</span>.mazo));
+    }  
+    
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">inicializarTablero</span><span class="hljs-params">(MazoSorpresa mazo)</span></span>{
+        <span class="hljs-keyword">int</span> numCasillaCarcel = <span class="hljs-number">5</span>;
+        <span class="hljs-keyword">this</span>.tablero = <span class="hljs-keyword">new</span> Tablero(numCasillaCarcel);
+
+
+        <span class="hljs-comment">/* TABLERO PROVISIONAL */</span>
+        
+        <span class="hljs-comment">/* 1 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"SALIDA"</span>));
+        <span class="hljs-comment">/* 2 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle1"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 3 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle2"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 4 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle3"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 5 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle4"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 6 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle5"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 7 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle6"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 8 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle7"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 9 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle8"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 10 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-number">15</span>,<span class="hljs-string">"JUEZ"</span>));
+        <span class="hljs-comment">/* 11 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle11"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 12 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle12"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 13 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle13"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 14 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle14"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 15 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-string">"CARCEL"</span>));
+        <span class="hljs-comment">/* 16 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> MazoSorpresa(),<span class="hljs-string">"SORPRESA"</span>));
+        <span class="hljs-comment">/* 17 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle17"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 18 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle18"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 19 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla(<span class="hljs-keyword">new</span> TituloPropiedad(<span class="hljs-string">"calle19"</span>,  <span class="hljs-number">10.00f</span>,  <span class="hljs-number">1.1f</span>, <span class="hljs-number">100.00f</span>,  <span class="hljs-number">500.00f</span>,  <span class="hljs-number">250.00f</span> )));
+        <span class="hljs-comment">/* 20 */</span>tablero.añadeCasilla(<span class="hljs-keyword">new</span> Casilla((<span class="hljs-keyword">float</span>) <span class="hljs-number">250.00</span>,<span class="hljs-string">"IMPUESTO"</span>));
+        
+
+    }         
+
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">pasarTurno</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">this</span>.indiceJugadorActual = (<span class="hljs-keyword">this</span>.indiceJugadorActual + <span class="hljs-number">1</span>) % jugadores.length;
+    }
+
+    <span class="hljs-keyword">private</span> Jugador[] ranking() {
+
+        Jugador[] copiaJugadores = jugadores.clone(); <span class="hljs-comment">/* Con .clone() se copia el array. */</span>
+
+        Arrays.sort(copiaJugadores); <span class="hljs-comment">/* Se supone que ordena por saldo gracias a compareTo, ya que sobreescribe un método existente. */</span>
+
+        <span class="hljs-keyword">return</span> copiaJugadores;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">salirCarcelPagando</span><span class="hljs-params">()</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+        <span class="hljs-keyword">return</span> jugadorActual.salirCarcelPagando();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">salirCarcelTirando</span><span class="hljs-params">()</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+        <span class="hljs-keyword">return</span> jugadorActual.salirCarcelTirando();
+    }
+
+    <span class="hljs-comment">/* SIGUIENTE PRACTICA */</span>
+    <span class="hljs-comment">/* public OperacionesJuego siguientePaso(){
+            
+    } */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">siguientePasoCompletado</span><span class="hljs-params">(OperacionesJuego operacion)</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+
+        <span class="hljs-keyword">this</span>.estado = gestorEstados.siguienteEstado(jugadorActual, <span class="hljs-keyword">this</span>.estado, operacion);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">vender</span><span class="hljs-params">(<span class="hljs-keyword">int</span> ip)</span></span>{
+        Jugador jugadorActual = <span class="hljs-keyword">this</span>.jugadores[indiceJugadorActual];
+        <span class="hljs-keyword">return</span> jugadorActual.vender(ip);
+    }
+
+
+
+
+    
+    <span class="hljs-comment">/* ---------------- SETTERS / GETTERS ---------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Casilla <span class="hljs-title">getCasillaActual</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tablero.getCasilla(<span class="hljs-keyword">this</span>.indiceJugadorActual);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> Jugador <span class="hljs-title">getJugadorActual</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.jugadores[<span class="hljs-keyword">this</span>.indiceJugadorActual];
+    }
+
+}
+
+
+</div></code></pre>
+
+</body>
+</html>

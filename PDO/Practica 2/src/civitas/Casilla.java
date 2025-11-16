@@ -90,7 +90,7 @@ public class Casilla {
         return iActual >= 0 && iActual < Jugadores.length;  /* Ya existe una de estas en:  Sopresa | ?¿?¿ */
     }
 
-    
+    /* Siguiente Práctica */
     void recibeJugador(int iActual, Jugador[] Jugadores){
 
         /* Se debería poner en la siguiente práctica  */
@@ -107,6 +107,7 @@ public class Casilla {
         } */
     }
 
+    /* Siguiente Práctica */
     private void recibeJugador_calle(int iActual, Jugador[] Jugadores){
         /* if (jugadorCorrecto(iActual, Jugadores)) {
             informe(iActual, Jugadores);
@@ -131,6 +132,7 @@ public class Casilla {
         }
     }
 
+    /* Siguiente Práctica */
     private void recibeJugador_sorpresa(int iActual, Jugador[] Jugadores){
         /* if (jugadorCorrecto(iActual, Jugadores)) {
             informe(iActual, Jugadores);
