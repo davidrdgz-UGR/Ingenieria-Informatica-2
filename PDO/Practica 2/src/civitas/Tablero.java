@@ -103,8 +103,8 @@ class Tablero{
     }
 
     /* Tambien se puede usar como retorno List<Casilla> */
-    public Casilla[] getCasillas(){
-        
+    public ArrayList<Casilla> getCasillas(){
+       return this.casillas; 
     }
 
 }
