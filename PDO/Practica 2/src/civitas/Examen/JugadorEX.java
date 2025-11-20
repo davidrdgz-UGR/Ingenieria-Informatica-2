@@ -1,12 +1,10 @@
-package civitas.temp;
+package civitas;
 
 import java.util.ArrayList;
 
-
-
 @SuppressWarnings("all")
 
-public class Jugador implements Comparable<Jugador>{
+public class JugadorEX implements Comparable<JugadorEX>{
 
     protected static final int CasasMax = 4;
     protected static final int CasasPorHotel = 4;
@@ -30,20 +28,24 @@ public class Jugador implements Comparable<Jugador>{
 
     private ArrayList<TituloPropiedad> propiedades;
     private Sorpresa salvoconducto; /* Tipo = SalirCarcel */
+    
+    private ArrayList<String> eventosJugador;
 
 
     /* ---------------- CONSTRUCTORES ---------------- */
 
-    Jugador(String nombre) {
+    JugadorEX(String nombre) {
         this.encarcelado = false;
         this.nombre = nombre;
         this.numCasillaActual = 0;
         this.saldo = SaldoInicial;
         this.salvoconducto = null;
         this.propiedades = null; /* No dejar un array como referencia a null, mejor inicializar array vacio */
+
+        this.eventosJugador = new ArrayList();
     }
 
-    protected Jugador(Jugador otro) {
+    protected JugadorEX(JugadorEX otro) {
         this.encarcelado = otro.encarcelado;
         this.nombre = otro.nombre;
         this.numCasillaActual = otro.numCasillaActual;
@@ -73,7 +75,7 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     @Override
-    public int compareTo(Jugador otro) {
+    public int compareTo(JugadorEX otro) {
         return Float.compare(this.saldo, otro.saldo);
     }
 
@@ -143,7 +145,10 @@ public class Jugador implements Comparable<Jugador>{
 
         this.numCasillaActual = numCasilla;
         this.puedeComprar = false;
-        Diario.getInstance().ocurreEvento( "El jugador " + this.nombre + " se mueve a la casilla " + this.numCasillaActual);
+        
+        this.registrarEvento( "El jugador " + this.nombre + " se mueve a la casilla " + this.numCasillaActual);
+
+        // Diario.getInstance().ocurreEvento( "El jugador " + this.nombre + " se mueve a la casilla " + this.numCasillaActual);
 
         return true;
     }
@@ -157,6 +162,7 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     boolean paga(float cantidad) {
+        this.registrarEvento("El jugador " + this.nombre + " ha pagado " + cantidad);
         return this.modificarSaldo(-1 * cantidad);
     }
 
@@ -218,6 +224,7 @@ public class Jugador implements Comparable<Jugador>{
             return false;
         }
 
+        this.registrarEvento("El Jugador "+ this.nombre +" ha recibido "+cantidad);
         return modificarSaldo(cantidad);
     }
 
@@ -299,6 +306,28 @@ public class Jugador implements Comparable<Jugador>{
         }
     }
 
+    void registrarEvento(String texto){
+        this.eventosJugador.add (texto);
+    }
+
+    String mostrarHistorial(){
+        String historial = "\n \n --------------- Historial de "+ this.nombre + "---------------  \n";
+
+        for (String string : this.eventosJugador) {
+            historial += string+"\n";
+        }
+
+        return historial;
+    }
+
+    String descripcionEstado(){
+        String estadoActualJugador="Estado actual del jugador: \n";
+        
+        estadoActualJugador += this.nombre + " | Saldo: " +this.saldo+" | CasillaActual: "+ this.numCasillaActual;
+
+        return estadoActualJugador;
+    }
+
 
     /* ---------------- SETTERS / GETTERS ---------------- */
 
@@ -347,3 +376,5 @@ public class Jugador implements Comparable<Jugador>{
     }
 
 }
+
+
