@@ -147,6 +147,29 @@ class AgendaEventos {
             return true;
         }
 
+        string buscarEventoPorNombre(string nombreEvento){
+
+            bool encontrado = false;
+            Evento objetoEncontrado;
+
+            for (int i = 0; i < this->num_eventos; i++){
+                if( nombreEvento == this->eventos[i].getNombre() ){
+                    objetoEncontrado = this->eventos[i];
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            if(!encontrado){
+                return "Evento no encontrado.";
+            }
+            
+            string texto = " \n Evento Encoontrado: \n\n " + objetoEncontrado.getNombre() + " | " + to_string( objetoEncontrado.getDia()) + " | " + to_string( objetoEncontrado.getHoraInicio()) + " - " + to_string( objetoEncontrado.getHoraFin());
+
+            return texto;
+
+        }
+
 
 
 

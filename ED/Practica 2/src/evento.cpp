@@ -38,6 +38,7 @@ class Evento{
         
         /* ------------------ METODOS ------------------ */
 
+        /* Se podría añadir como static y ser un método de clase ?¿ */
         bool eventoSolapado(Evento &otroEvento){
             /* No se si se tienen que cambiar los getters, en principio no, son publicos y los atributos privados. */
 
@@ -69,7 +70,7 @@ class Evento{
 
         }
 
-        string compararEventos(int cantidadEventos,Evento arrayEventos[]){
+        string static compararEventos(int cantidadEventos,Evento arrayEventos[]){
             for (int i = 0; i < cantidadEventos; i++){
                 for (int j = 0; j < cantidadEventos; j++){
 
@@ -88,6 +89,9 @@ class Evento{
 
         }
 
+        bool eventoExistente(){
+
+        }
 
         /* ------------------ SETTERS / GETTERS ------------------ */
 

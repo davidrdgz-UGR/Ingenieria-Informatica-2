@@ -25,8 +25,10 @@ class Evento {
 
         string mostrarInfo();
 
-        /* // Hemos cambiado este método a la agenda
-        string compaarEventos(Evento otroEvento); */
+        
+        string compaarEventos(Evento otroEvento); 
+
+        bool eventoExistente();
 
 
         /* ------------------ SETTERS / GETTERS ------------------ */
