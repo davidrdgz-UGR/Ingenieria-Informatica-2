@@ -164,9 +164,30 @@ class AgendaEventos {
                 return "Evento no encontrado.";
             }
             
-            string texto = " \n Evento Encoontrado: \n\n " + objetoEncontrado.getNombre() + " | " + to_string( objetoEncontrado.getDia()) + " | " + to_string( objetoEncontrado.getHoraInicio()) + " - " + to_string( objetoEncontrado.getHoraFin());
+            string texto = " \n Evento Encontrado: \n\n " + objetoEncontrado.getNombre() + " | " + to_string( objetoEncontrado.getDia()) + " | " + to_string( objetoEncontrado.getHoraInicio()) + " - " + to_string( objetoEncontrado.getHoraFin());
 
             return texto;
+
+        }
+
+        string buscarEventoPorDia(int diaBuscar){
+
+            int encontrados = 0;
+            string texto;
+
+            for (int i = 0; i < this->num_eventos; i++){
+                if( diaBuscar == this->eventos[i].getDia() ){
+                    encontrados++;
+                    texto += " \n Evento Encontrado: \n\n " + this->eventos[i].getNombre() + " | " + to_string( this->eventos[i].getDia()) + " | " + to_string( this->eventos[i].getHoraInicio()) + " - " + to_string( this->eventos[i].getHoraFin()) + " \n";
+                }
+            }
+
+            if(encontrados == 0){
+                return "Evento no encontrado.";
+            }else{
+
+                return texto;
+            }
 
         }
 
