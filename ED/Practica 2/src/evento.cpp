@@ -38,20 +38,23 @@ class Evento{
         
         /* ------------------ METODOS ------------------ */
 
-        string eventoSolapado(Evento &otroEvento){
+        bool eventoSolapado(Evento &otroEvento){
             /* No se si se tienen que cambiar los getters, en principio no, son publicos y los atributos privados. */
 
             if(this->dia == otroEvento.getDia() ){
 
                 if(this->hora_fin <= otroEvento.getHoraInicio() || otroEvento.getHoraFin() <= this->hora_inicio ){
                     
-                    return "CUIDADO: Hay Solapamiento de horario entre: "+ this->nombre + " y " + otroEvento.getNombre();
+                    return 1;
+                    // return "CUIDADO: Hay Solapamiento de horario entre: "+ this->nombre + " y " + otroEvento.getNombre();
                 }
 
-                return "Se solapan los días pero no hay problema.";
+                return 0;
+                // return "Se solapan los días pero no hay problema.";
             }
 
-            return "No se solapand"; /* Temporal, se cambia */
+            return 0;
+            // return "No se solapand"; /* Temporal, se cambia */
         }
 
         string mostrarInfo(){

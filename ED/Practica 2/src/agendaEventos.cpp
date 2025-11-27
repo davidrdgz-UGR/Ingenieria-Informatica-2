@@ -45,6 +45,49 @@ class AgendaEventos {
 
         /* CARGAR DESDE FICHERO */
         AgendaEventos(string nombre_fichero){
+
+            this->capacidad = 1;       /* Agregamos una capacidad inicial, pero en agregar evento se redimensiona solo. */
+            this->num_eventos = 0;
+            this->eventos = new Evento[this->capacidad];
+
+
+            /* Comprobacion de que el archivo existe/se encuentra */
+            
+            ifstream file(nombre_fichero);
+
+            if (!file) {
+                cout << "No existe el archivo ' " << nombre_fichero << " '" << endl;
+                return;
+            }
+
+
+            string linea;
+
+            stringstream campo(linea);
+
+            /* Va obteniendo cada línea de texto del fichero y crea un evento. */
+            while (getline(file, linea)){
+                string nombre;
+                string dia;
+                string hora_inicio;
+                string hora_fin;
+
+                getline(campo, nombre, ',');
+                getline(campo, dia, ',');
+                getline(campo, hora_inicio, ',');
+                getline(campo, hora_fin, ',');
+
+
+                int dia_final = stoi(dia);
+                double hora_inicio_final = stod(hora_inicio);
+                double hora_fin_final = stod(hora_fin);
+
+                Evento nuevoEvento(nombre, dia_final, hora_inicio_final, hora_fin_final);
+
+                this->agregarEvento(nuevoEvento);
+            }
+
+            file.close();
             
         }
 
@@ -58,7 +101,51 @@ class AgendaEventos {
         
         /* ------------------ METODOS ------------------ */
 
+        bool agregarEvento(Evento nuevoEvento){
+            
+            if (this->num_eventos == this->capacidad) {
+                this->redimensionar(this->capacidad + 1);
+            }
+            
 
+            for(int i=0; i<this->num_eventos ; i++){
+
+                if( this->eventos[i].eventoSolapado(nuevoEvento) ){
+                    return false;
+                }
+                
+            }
+
+            
+            this->eventos[this->num_eventos+1] = nuevoEvento;
+            this->num_eventos++;
+
+            return true;
+
+        }
+
+        bool eliminarEvento(string nombreEvento){
+
+            int indiceBorrar;
+
+            for(int i=0;i= this->num_eventos;i++){
+                if(nombreEvento == this->eventos[i].getNombre()){
+                    indiceBorrar = i;
+                    break;
+                }
+            }
+
+                if (indiceBorrar) {
+                    return false;
+                }
+
+            this->eventos[indiceBorrar] = this->eventos[this->num_eventos - 1];
+            this->num_eventos--;
+
+            // this->redimensionar(capacidad-1);
+            
+            return true;
+        }
 
 
 

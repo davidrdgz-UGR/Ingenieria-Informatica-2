@@ -30,7 +30,9 @@ class AgendaEventos {
         
         /* ------------------ METODOS ------------------ */
 
+        bool agregarEvento(Evento nuevoEvento);
 
+        bool eliminarEvento(string nombreEvento);
 
 
 

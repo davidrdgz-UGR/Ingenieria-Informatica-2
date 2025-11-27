@@ -21,7 +21,7 @@ class Evento {
 
         /* ------------------ METODOS ------------------ */
 
-        bool eventoSolapado();
+        bool eventoSolapado(Evento &otroEvento);
 
         string mostrarInfo();
 
