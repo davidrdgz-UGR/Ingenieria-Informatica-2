@@ -34,6 +34,18 @@ class AgendaEventos {
 
         bool eliminarEvento(string nombreEvento);
 
+        string buscarEventoPorNombre(string nombreEvento);
+
+        string buscarEventoPorDia(int diaBuscar);
+
+        string mostrarTodosLosEventos();
+
+        string detectarFranjasLibresPorDia(int diaBuscar);
+
+        string resumenSemanal();
+
+        
+
 
 
 
