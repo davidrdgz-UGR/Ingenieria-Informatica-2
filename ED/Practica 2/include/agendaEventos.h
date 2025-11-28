@@ -19,14 +19,10 @@ class AgendaEventos {
         
         /* ------------------ CONSTRUCTOR / DESTRUCTOR ------------------ */
 
-        AgendaEventos(int capacidad_inicial = 10);              /* INICIAL */
+        AgendaEventos(int capacidad_inicial = 3);              /* INICIAL */
         AgendaEventos(string nombre_fichero);      /* CARGAR DESDE FICHERO */
 
-
         ~AgendaEventos();
-
-
-        
         
         /* ------------------ METODOS ------------------ */
 
@@ -45,11 +41,8 @@ class AgendaEventos {
         string resumenSemanal();
 
         bool guardarArchivo();
-
         
-
-
-
+        bool eventoExistente(Evento nuevoEvento);
 
         /* ------------------ SETTERS / GETTERS ------------------ */
 
