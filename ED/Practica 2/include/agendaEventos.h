@@ -52,7 +52,13 @@ class AgendaEventos {
         /* ------------------ SETTERS / GETTERS ------------------ */
 
 
+        int getNumEventos();
 
+        int getCapacidad();
+
+        void setNumEventos(int numEventos);
+
+        void setCapacidad(int capacidad);
 
 
 

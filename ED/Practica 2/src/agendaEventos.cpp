@@ -1,4 +1,4 @@
-#include "Agenda.h"
+#include "agendaEventos.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
@@ -364,7 +364,21 @@ class AgendaEventos {
 
         /* ------------------ SETTERS / GETTERS ------------------ */
 
+        int getNumEventos(){
+            return this->num_eventos;
+        }
 
+        int getCapacidad(){
+            return this->capacidad;
+        }
+
+        void setNumEventos(int numEventos){
+            this->num_eventos = num_eventos;
+        }
+
+        void setCapacidad(int capacidad){
+            this->capacidad = capacidad;
+        }
 
 
 
