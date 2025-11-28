@@ -44,6 +44,8 @@ class AgendaEventos {
 
         string resumenSemanal();
 
+        bool guardarArchivo();
+
         
 
 

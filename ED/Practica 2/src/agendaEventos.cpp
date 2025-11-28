@@ -359,6 +359,29 @@ class AgendaEventos {
 
         }
 
+        bool guardarArchivo(){
+
+            ofstream file("../datos/agenda.txt");
+
+            if (!file) {
+                return false;  // no se pudo abrir
+            }
+
+            for (int i = 0; i < this->num_eventos; i++) {
+
+                file << this->eventos[i].getNombre() << ","
+                    << this->eventos[i].getDia() << ","
+                    << this->eventos[i].getHoraInicio() << ","
+                    << this->eventos[i].getHoraFin();
+
+                if (i < this->num_eventos - 1)
+                    file << "\n";
+            }
+
+            file.close();
+            return true;
+        }
+
 
 
 

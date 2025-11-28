@@ -5,6 +5,7 @@
 using namespace std;
 
 
+
 void mostrarMenu() {
     cout << "\n========= AGENDA DE EVENTOS =========\n";
     cout << "1. Mostrar todos los eventos\n";
@@ -14,6 +15,37 @@ void mostrarMenu() {
     cout << "5. Eliminar evento por nombre\n";
     cout << "6. Detectar franjas libres en un dia\n";
     cout << "7. Mostrar resumen semanal\n";
+    cout << "8. Guardar Agenda\n";
     cout << "0. Salir\n\n";
     cout << "Seleccione una opcion: ";
+}
+
+int main(){
+    
+    AgendaEventos agenda("../datos/agenda.txt");
+
+    int opcion;
+
+    while (opcion != 0){
+        mostrarMenu();
+
+        cin >> opcion;
+
+        switch (opcion){
+            case 1:{
+
+            }
+
+            case 2:{
+
+            }
+        
+        default:
+            cout << "\n Opción no válida. \n";
+            break;
+        }
+    }
+    
+
+
 }
