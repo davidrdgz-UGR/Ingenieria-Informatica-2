@@ -3,8 +3,30 @@
 #include <sstream>
 #include <iostream>
 #include <cassert>
+#include <cctype>
 using namespace std;
 
+
+/* FUNCIONES PARA ARREGLAR STRINGS PARA COMPROBACION -> (Buscar por nombre) */
+string trim(const string &s) {
+    int start = 0;
+    while (start < (int)s.size() && isspace((unsigned char)s[start]))
+        start++;
+
+    int end = (int)s.size() - 1;
+    while (end >= start && isspace((unsigned char)s[end]))
+        end--;
+
+    return s.substr(start, end - start + 1);
+}
+
+// Pasa a minusculas
+string aMinusculas(const string &s) {
+    string r = s;
+    for (size_t i = 0; i < r.size(); i++)
+        r[i] = (char)tolower((unsigned char)r[i]);
+    return r;
+}
 
 
 /* ------------------ METODOS PRIVADOS ------------------ */
@@ -145,8 +167,11 @@ string AgendaEventos::buscarEventoPorNombre(string nombreEvento){
     bool encontrado = false;
     Evento objetoEncontrado;
 
+    nombreEvento = aMinusculas(trim(nombreEvento));
+
     for (int i = 0; i < this->num_eventos; i++){
-        if( nombreEvento == this->eventos[i].getNombre() ){
+
+        if( nombreEvento == aMinusculas(trim(this->eventos[i].getNombre())) ){
             objetoEncontrado = this->eventos[i];
             encontrado = true;
             break;

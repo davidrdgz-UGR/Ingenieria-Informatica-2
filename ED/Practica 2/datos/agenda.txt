@@ -1,6 +1,6 @@
-Clase de Matemáticas,1,9,11
-Laboratorio de Física,1,11,13
-Tutoría con María,2,10,11
-Clase de Programación,3,9,11
-Reunión de grupo,3,11,12
-EventoEJ1,6,8.5,13
+Clase de Matematicas,1,9,11
+Laboratorio de Fisica,1,11,13
+Tutoria con Maria,2,10,11
+Clase de Programacion,3,9,11
+Reunion de grupo,3,11,12
+Evento1,7,10,12

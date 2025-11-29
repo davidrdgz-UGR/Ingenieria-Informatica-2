@@ -47,7 +47,8 @@ int main(){
                 
                 cout << "Introduce el nombre del evento a buscar: ";
 
-                getline(cin, nombre); 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+                getline(cin, nombre);
 
                 cout << agenda.buscarEventoPorNombre(nombre) << endl;
                 break;
@@ -100,7 +101,7 @@ int main(){
                 string nombre;
                 
                 cout << "Introduce el nombre del evento a eliminar: ";
-                getline(cin, nombre);
+                cin >> nombre;
 
                 if ( agenda.eliminarEvento(nombre) ) {
                     cout << "Evento eliminado correctamente.\n";
