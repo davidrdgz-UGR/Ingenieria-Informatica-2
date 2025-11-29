@@ -1,0 +1,64 @@
+\doxysection{agenda\+Eventos.\+h}
+\hypertarget{agenda_eventos_8h_source}{}\label{agenda_eventos_8h_source}\index{include/agendaEventos.h@{include/agendaEventos.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}Evento.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_agenda_eventos_aaab7563b91e3dbfcd3f3385101078205}{AgendaEventos}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_evento}{Evento}}\ *eventos;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ num\_eventos;}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ capacidad;\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ METODOS\ PRIVADOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ redimensionar(\textcolor{keywordtype}{int}\ nueva\_capacidad);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONSTRUCTOR\ /\ DESTRUCTOR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_eventos_aaab7563b91e3dbfcd3f3385101078205}{AgendaEventos}}(\textcolor{keywordtype}{int}\ capacidad\_inicial\ =\ 3);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_eventos_a9ed66a12a0d27ddee540c6a19b4d24c5}{AgendaEventos}}(\textcolor{keywordtype}{string}\ nombre\_fichero);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_eventos_a79978a11c99acb252fa7576e9ac3e1c5}{\string~AgendaEventos}}();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ METODOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_eventos_a0e2a3e466630e43a79eeb93720860325}{agregarEvento}}(\mbox{\hyperlink{class_evento}{Evento}}\ nuevoEvento);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_eventos_a7917648fad6db3e34b88ef23d77bd282}{eliminarEvento}}(\textcolor{keywordtype}{string}\ nombreEvento);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_eventos_a57b98cb9d067e997f5e149d13848d9b9}{buscarEventoPorNombre}}(\textcolor{keywordtype}{string}\ nombreEvento);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_eventos_abdacf0b1ee2277beb358f575589c7b80}{buscarEventoPorDia}}(\textcolor{keywordtype}{int}\ diaBuscar);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_eventos_ac41b56db15f310f36584f7ab50eb6d31}{mostrarTodosLosEventos}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_eventos_a4ad5007abbba76026745a0724c992edb}{detectarFranjasLibresPorDia}}(\textcolor{keywordtype}{int}\ diaBuscar);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_eventos_a9106c1b6d62b82b1b341ce43b5823d46}{resumenSemanal}}();}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_eventos_afee4efd74b6ae6f4cbdddcd087915a61}{guardarArchivo}}();}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_eventos_a1d5831f1a6e4dc99cc0fe8507b195957}{eventoExistente}}(\mbox{\hyperlink{class_evento}{Evento}}\ nuevoEvento);}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SETTERS\ /\ GETTERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_agenda_eventos_adefd4f1d6a9be38fb01cf6a330babcb4}{getNumEventos}}();}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_agenda_eventos_acc7c88d97eeed0bf086e8b60132fd3d0}{getCapacidad}}();}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_agenda_eventos_afbd9188274cf9ed566ef39c33c3a9766}{setNumEventos}}(\textcolor{keywordtype}{int}\ numEventos);}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_agenda_eventos_ac538a4b36e113a4a70b246aeb2a585b8}{setCapacidad}}(\textcolor{keywordtype}{int}\ capacidad);}
+\DoxyCodeLine{00203\ \};}
+
+\end{DoxyCode}

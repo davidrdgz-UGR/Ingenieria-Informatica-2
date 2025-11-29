@@ -1,0 +1,177 @@
+\doxysection{Evento Class Reference}
+\hypertarget{class_evento}{}\label{class_evento}\index{Evento@{Evento}}
+
+
+Tipo de dato que representa un evento.  
+
+
+
+
+{\ttfamily \#include $<$Evento.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_evento_aed0ce32ebf7600510f84b3f6f2d9a80a}{Evento}} (string nombre, int dia, double hora\+\_\+inicio, double hora\+\_\+fin)
+\begin{DoxyCompactList}\small\item\em Constructor parametrizado. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_evento_a1890f74c98a99ea0d9aecaa16ec0af86}{evento\+Solapado}} (\mbox{\hyperlink{class_evento}{Evento}} \&otro\+Evento)
+\begin{DoxyCompactList}\small\item\em Indica si dos eventos se solapan en el tiempo. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_evento_a7ee696e47e31cef068259c4578487d70}{mostrar\+Info}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve un string con la información del evento. \end{DoxyCompactList}\item 
+\Hypertarget{class_evento_ae5abcee540838c51e8a9f8733b00adcb}\label{class_evento_ae5abcee540838c51e8a9f8733b00adcb} 
+string {\bfseries get\+Nombre} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el nombre del evento. \end{DoxyCompactList}\item 
+\Hypertarget{class_evento_a9cfccdc311b14e7ec30d8ac05d9dfdc7}\label{class_evento_a9cfccdc311b14e7ec30d8ac05d9dfdc7} 
+int {\bfseries get\+Dia} ()
+\begin{DoxyCompactList}\small\item\em Obtiene el día de la semana (1-\/7). \end{DoxyCompactList}\item 
+\Hypertarget{class_evento_aecff3fcce77c2238023d081ca277b6e5}\label{class_evento_aecff3fcce77c2238023d081ca277b6e5} 
+double {\bfseries get\+Hora\+Inicio} ()
+\begin{DoxyCompactList}\small\item\em Obtiene la hora de inicio. \end{DoxyCompactList}\item 
+\Hypertarget{class_evento_a769edab8e29b7fc0e34d875f344788b3}\label{class_evento_a769edab8e29b7fc0e34d875f344788b3} 
+double {\bfseries get\+Hora\+Fin} ()
+\begin{DoxyCompactList}\small\item\em Obtiene la hora de finalización. \end{DoxyCompactList}\item 
+\Hypertarget{class_evento_a4d341045ed21f236419530fa663b8847}\label{class_evento_a4d341045ed21f236419530fa663b8847} 
+void {\bfseries set\+Nombre} (string nuevo\+Nombre)
+\begin{DoxyCompactList}\small\item\em Modifica el nombre del evento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_evento_a8b0cc6f3e008e2c170d596425dbb0116}{set\+Dia}} (int nuevo\+Dia)
+\begin{DoxyCompactList}\small\item\em Modifica el día del evento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_evento_acbf3ade07779dc3d413f922b37b8c249}{set\+Hora\+Inicio}} (double nueva\+Hora\+Inicio)
+\begin{DoxyCompactList}\small\item\em Modifica la hora de inicio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_evento_a5b50b9a640c6f24b9ea640c1412c4289}{set\+Hora\+Fin}} (double nueva\+Hora\+Fin)
+\begin{DoxyCompactList}\small\item\em Modifica la hora de finalización. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tipo de dato que representa un evento. 
+
+Un \doxylink{class_evento}{Evento} contiene\+:
+\begin{DoxyItemize}
+\item un nombre (string)
+\item un día de la semana (1-\/7)
+\item una hora de inicio en formato decimal (0.\+0 -\/ 24.\+0)
+\item una hora de fin en formato decimal (0.\+0 -\/ 24.\+0)
+\end{DoxyItemize}
+
+Invariante de representación\+:
+\begin{DoxyItemize}
+\item 1 \texorpdfstring{$<$}{<}= dia \texorpdfstring{$<$}{<}= 7
+\item 0.\+0 \texorpdfstring{$<$}{<}= hora\+\_\+inicio \texorpdfstring{$<$}{<} hora\+\_\+fin \texorpdfstring{$<$}{<}= 24.\+0
+\end{DoxyItemize}
+
+Función de abstracción\+: El objeto \doxylink{class_evento}{Evento} representa el intervalo de tiempo \mbox{[}hora\+\_\+inicio, hora\+\_\+fin\mbox{]} del día \textquotesingle{}dia\textquotesingle{}, dedicado a la actividad identificada por \textquotesingle{}nombre\textquotesingle{}. 
+
+\label{doc-constructors}
+\Hypertarget{class_evento_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_evento_a7aba3bd7a832c5365ea0ccb318511452}\index{Evento@{Evento}!Evento@{Evento}}
+\index{Evento@{Evento}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{Evento()}{Evento()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_evento_a7aba3bd7a832c5365ea0ccb318511452} 
+Evento\+::\+Evento (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+Crea un evento genérico en el día 1 entre 0.\+0 y 1.\+0. \Hypertarget{class_evento_aed0ce32ebf7600510f84b3f6f2d9a80a}\index{Evento@{Evento}!Evento@{Evento}}
+\index{Evento@{Evento}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{Evento()}{Evento()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_evento_aed0ce32ebf7600510f84b3f6f2d9a80a} 
+Evento\+::\+Evento (\begin{DoxyParamCaption}\item[{string}]{nombre}{, }\item[{int}]{dia}{, }\item[{double}]{hora\+\_\+inicio}{, }\item[{double}]{hora\+\_\+fin}{}\end{DoxyParamCaption})}
+
+
+
+Constructor parametrizado. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre} & Nombre del evento. \\
+\hline
+{\em dia} & Día de la semana (1-\/7). \\
+\hline
+{\em hora\+\_\+inicio} & Hora de inicio (0.\+0 -\/ 24.\+0). \\
+\hline
+{\em hora\+\_\+fin} & Hora de fin (0.\+0 -\/ 24.\+0, \texorpdfstring{$>$}{>} hora\+\_\+inicio).\\
+\hline
+\end{DoxyParams}
+Lanza una aserción si los valores no cumplen el invariante. 
+
+\label{doc-func-members}
+\Hypertarget{class_evento_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_evento_a1890f74c98a99ea0d9aecaa16ec0af86}\index{Evento@{Evento}!eventoSolapado@{eventoSolapado}}
+\index{eventoSolapado@{eventoSolapado}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{eventoSolapado()}{eventoSolapado()}}
+{\footnotesize\ttfamily \label{class_evento_a1890f74c98a99ea0d9aecaa16ec0af86} 
+bool Evento\+::evento\+Solapado (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_evento}{Evento}} \&}]{otro\+Evento}{}\end{DoxyParamCaption})}
+
+
+
+Indica si dos eventos se solapan en el tiempo. 
+
+Dos eventos se solapan únicamente si\+:
+\begin{DoxyItemize}
+\item ocurren el mismo día
+\item la franja horaria se superpone estrictamente
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em otro\+Evento} & \doxylink{class_evento}{Evento} con el que se compara. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si las franjas se solapan, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_evento_a7ee696e47e31cef068259c4578487d70}\index{Evento@{Evento}!mostrarInfo@{mostrarInfo}}
+\index{mostrarInfo@{mostrarInfo}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{mostrarInfo()}{mostrarInfo()}}
+{\footnotesize\ttfamily \label{class_evento_a7ee696e47e31cef068259c4578487d70} 
+string Evento\+::mostrar\+Info (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Devuelve un string con la información del evento. 
+
+Incluye nombre, día y horario.
+
+\begin{DoxyReturn}{Returns}
+Descripción textual del evento. 
+\end{DoxyReturn}
+\Hypertarget{class_evento_a8b0cc6f3e008e2c170d596425dbb0116}\index{Evento@{Evento}!setDia@{setDia}}
+\index{setDia@{setDia}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{setDia()}{setDia()}}
+{\footnotesize\ttfamily \label{class_evento_a8b0cc6f3e008e2c170d596425dbb0116} 
+void Evento\+::set\+Dia (\begin{DoxyParamCaption}\item[{int}]{nuevo\+Dia}{}\end{DoxyParamCaption})}
+
+
+
+Modifica el día del evento. 
+
+Debe cumplir 1 \texorpdfstring{$<$}{<}= nuevo\+Dia \texorpdfstring{$<$}{<}= 7. \Hypertarget{class_evento_a5b50b9a640c6f24b9ea640c1412c4289}\index{Evento@{Evento}!setHoraFin@{setHoraFin}}
+\index{setHoraFin@{setHoraFin}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{setHoraFin()}{setHoraFin()}}
+{\footnotesize\ttfamily \label{class_evento_a5b50b9a640c6f24b9ea640c1412c4289} 
+void Evento\+::set\+Hora\+Fin (\begin{DoxyParamCaption}\item[{double}]{nueva\+Hora\+Fin}{}\end{DoxyParamCaption})}
+
+
+
+Modifica la hora de finalización. 
+
+Debe cumplir hora\+\_\+inicio \texorpdfstring{$<$}{<} nueva\+Hora\+Fin \texorpdfstring{$<$}{<}= 24.\+0. \Hypertarget{class_evento_acbf3ade07779dc3d413f922b37b8c249}\index{Evento@{Evento}!setHoraInicio@{setHoraInicio}}
+\index{setHoraInicio@{setHoraInicio}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{setHoraInicio()}{setHoraInicio()}}
+{\footnotesize\ttfamily \label{class_evento_acbf3ade07779dc3d413f922b37b8c249} 
+void Evento\+::set\+Hora\+Inicio (\begin{DoxyParamCaption}\item[{double}]{nueva\+Hora\+Inicio}{}\end{DoxyParamCaption})}
+
+
+
+Modifica la hora de inicio. 
+
+Debe cumplir 0.\+0 \texorpdfstring{$<$}{<}= nueva\+Hora\+Inicio \texorpdfstring{$<$}{<} hora\+\_\+fin. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/Evento.\+h\end{DoxyCompactItemize}

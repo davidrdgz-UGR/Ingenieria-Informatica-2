@@ -141,6 +141,7 @@ int main(){
             }
 
             case 0:
+                agenda.~AgendaEventos();
                 cout << "\n Saliendo del programa. \n";
                 break;
         

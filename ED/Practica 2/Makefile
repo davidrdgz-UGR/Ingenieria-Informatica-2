@@ -1,7 +1,4 @@
-# ===============================
-#     Makefile Practica ED 2
-# ===============================
-
+# ===============================    Makefile Practica ED 2 ===============================
 CXX = g++
 CXXFLAGS = -std=c++11 -Iinclude -Wall -Wextra
 
@@ -32,5 +29,3 @@ $(BUILD)/agendaEventos.o: $(SRC)/agendaEventos.cpp include/agendaEventos.h inclu
 $(BUILD)/evento.o: $(SRC)/evento.cpp include/Evento.h
 	@if not exist $(BUILD) mkdir $(BUILD)
 	$(CXX) $(CXXFLAGS) -c $(SRC)/evento.cpp -o $(BUILD)/evento.o
-
-# --- limpiar archivo

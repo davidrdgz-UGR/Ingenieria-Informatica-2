@@ -1,0 +1,338 @@
+\doxysection{Agenda\+Eventos Class Reference}
+\hypertarget{class_agenda_eventos}{}\label{class_agenda_eventos}\index{AgendaEventos@{AgendaEventos}}
+
+
+TDA \doxylink{class_agenda_eventos}{Agenda\+Eventos}.  
+
+
+
+
+{\ttfamily \#include $<$agenda\+Eventos.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_agenda_eventos_aaab7563b91e3dbfcd3f3385101078205}{Agenda\+Eventos}} (int capacidad\+\_\+inicial=3)
+\begin{DoxyCompactList}\small\item\em Constructor con capacidad inicial. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_eventos_a9ed66a12a0d27ddee540c6a19b4d24c5}{Agenda\+Eventos}} (string nombre\+\_\+fichero)
+\begin{DoxyCompactList}\small\item\em Constructor que carga los eventos desde un fichero de texto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_eventos_a79978a11c99acb252fa7576e9ac3e1c5}{\texorpdfstring{$\sim$}{\string~}\+Agenda\+Eventos}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_eventos_a0e2a3e466630e43a79eeb93720860325}{agregar\+Evento}} (\mbox{\hyperlink{class_evento}{Evento}} nuevo\+Evento)
+\begin{DoxyCompactList}\small\item\em Añade un nuevo evento a la agenda. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_eventos_a7917648fad6db3e34b88ef23d77bd282}{eliminar\+Evento}} (string nombre\+Evento)
+\begin{DoxyCompactList}\small\item\em Elimina un evento por su nombre. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_agenda_eventos_a57b98cb9d067e997f5e149d13848d9b9}{buscar\+Evento\+Por\+Nombre}} (string nombre\+Evento)
+\begin{DoxyCompactList}\small\item\em Busca un evento por su nombre. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_agenda_eventos_abdacf0b1ee2277beb358f575589c7b80}{buscar\+Evento\+Por\+Dia}} (int dia\+Buscar)
+\begin{DoxyCompactList}\small\item\em Busca todos los eventos de un día concreto. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_agenda_eventos_ac41b56db15f310f36584f7ab50eb6d31}{mostrar\+Todos\+Los\+Eventos}} ()
+\begin{DoxyCompactList}\small\item\em Muestra todos los eventos ordenados por día y hora. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_agenda_eventos_a4ad5007abbba76026745a0724c992edb}{detectar\+Franjas\+Libres\+Por\+Dia}} (int dia\+Buscar)
+\begin{DoxyCompactList}\small\item\em Detecta las franjas horarias libres de un día. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_agenda_eventos_a9106c1b6d62b82b1b341ce43b5823d46}{resumen\+Semanal}} ()
+\begin{DoxyCompactList}\small\item\em Genera un resumen semanal de la agenda. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_eventos_afee4efd74b6ae6f4cbdddcd087915a61}{guardar\+Archivo}} ()
+\begin{DoxyCompactList}\small\item\em Guarda el contenido actual de la agenda en un fichero de texto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_eventos_a1d5831f1a6e4dc99cc0fe8507b195957}{evento\+Existente}} (\mbox{\hyperlink{class_evento}{Evento}} nuevo\+Evento)
+\begin{DoxyCompactList}\small\item\em Comprueba si existe ya un evento con el mismo nombre. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_agenda_eventos_adefd4f1d6a9be38fb01cf6a330babcb4}{get\+Num\+Eventos}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve el número de eventos almacenados. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_agenda_eventos_acc7c88d97eeed0bf086e8b60132fd3d0}{get\+Capacidad}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve la capacidad actual del array de eventos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_agenda_eventos_afbd9188274cf9ed566ef39c33c3a9766}{set\+Num\+Eventos}} (int num\+Eventos)
+\begin{DoxyCompactList}\small\item\em Establece manualmente el número de eventos. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_agenda_eventos_ac538a4b36e113a4a70b246aeb2a585b8}{set\+Capacidad}} (int capacidad)
+\begin{DoxyCompactList}\small\item\em Establece la capacidad de la agenda. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TDA \doxylink{class_agenda_eventos}{Agenda\+Eventos}. 
+
+La agenda gestiona un conjunto dinámico de eventos mediante un array dinámico redimensionable.
+
+Invariante de representación\+:
+\begin{DoxyItemize}
+\item 0 \texorpdfstring{$<$}{<}= num\+\_\+eventos \texorpdfstring{$<$}{<}= capacidad
+\item \textquotesingle{}eventos\textquotesingle{} apunta a un array válido de tamaño \textquotesingle{}capacidad\textquotesingle{}
+\item Las primeras \textquotesingle{}num\+\_\+eventos\textquotesingle{} posiciones contienen eventos válidos
+\end{DoxyItemize}
+
+Función de abstracción\+: La agenda representa el conjunto\+: \{ eventos\mbox{[}0\mbox{]}, ..., eventos\mbox{[}num\+\_\+eventos-\/1\mbox{]} \}. 
+
+\label{doc-constructors}
+\Hypertarget{class_agenda_eventos_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_agenda_eventos_aaab7563b91e3dbfcd3f3385101078205}\index{AgendaEventos@{AgendaEventos}!AgendaEventos@{AgendaEventos}}
+\index{AgendaEventos@{AgendaEventos}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{AgendaEventos()}{AgendaEventos()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_aaab7563b91e3dbfcd3f3385101078205} 
+Agenda\+Eventos\+::\+Agenda\+Eventos (\begin{DoxyParamCaption}\item[{int}]{capacidad\+\_\+inicial}{ = {\ttfamily 3}}\end{DoxyParamCaption})}
+
+
+
+Constructor con capacidad inicial. 
+
+Reserva memoria para un array de eventos con capacidad {\ttfamily capacidad\+\_\+inicial} y deja la agenda vacía.
+
+
+\begin{DoxyParams}{Parameters}
+{\em capacidad\+\_\+inicial} & Capacidad inicial del array (por defecto, 3). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_agenda_eventos_a9ed66a12a0d27ddee540c6a19b4d24c5}\index{AgendaEventos@{AgendaEventos}!AgendaEventos@{AgendaEventos}}
+\index{AgendaEventos@{AgendaEventos}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{AgendaEventos()}{AgendaEventos()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a9ed66a12a0d27ddee540c6a19b4d24c5} 
+Agenda\+Eventos\+::\+Agenda\+Eventos (\begin{DoxyParamCaption}\item[{string}]{nombre\+\_\+fichero}{}\end{DoxyParamCaption})}
+
+
+
+Constructor que carga los eventos desde un fichero de texto. 
+
+El fichero debe tener un evento por línea con el formato\+: nombre,dia,hora\+\_\+inicio,hora\+\_\+fin
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre\+\_\+fichero} & Ruta del fichero de entrada. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_agenda_eventos_a79978a11c99acb252fa7576e9ac3e1c5}\index{AgendaEventos@{AgendaEventos}!````~AgendaEventos@{\texorpdfstring{$\sim$}{\string~}AgendaEventos}}
+\index{````~AgendaEventos@{\texorpdfstring{$\sim$}{\string~}AgendaEventos}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AgendaEventos()}{\string~AgendaEventos()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a79978a11c99acb252fa7576e9ac3e1c5} 
+Agenda\+Eventos\+::\texorpdfstring{$\sim$}{\string~}\+Agenda\+Eventos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. 
+
+Libera la memoria dinámica asociada al array de eventos. 
+
+\label{doc-func-members}
+\Hypertarget{class_agenda_eventos_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_agenda_eventos_a0e2a3e466630e43a79eeb93720860325}\index{AgendaEventos@{AgendaEventos}!agregarEvento@{agregarEvento}}
+\index{agregarEvento@{agregarEvento}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{agregarEvento()}{agregarEvento()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a0e2a3e466630e43a79eeb93720860325} 
+bool Agenda\+Eventos\+::agregar\+Evento (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_evento}{Evento}}}]{nuevo\+Evento}{}\end{DoxyParamCaption})}
+
+
+
+Añade un nuevo evento a la agenda. 
+
+Antes de insertar comprueba que el evento no se solapa en el tiempo con ninguno de los ya existentes. Si el array está lleno, se redimensiona.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Evento} & \doxylink{class_evento}{Evento} que se desea añadir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se ha insertado correctamente, false si hay solapamiento. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_abdacf0b1ee2277beb358f575589c7b80}\index{AgendaEventos@{AgendaEventos}!buscarEventoPorDia@{buscarEventoPorDia}}
+\index{buscarEventoPorDia@{buscarEventoPorDia}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{buscarEventoPorDia()}{buscarEventoPorDia()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_abdacf0b1ee2277beb358f575589c7b80} 
+string Agenda\+Eventos\+::buscar\+Evento\+Por\+Dia (\begin{DoxyParamCaption}\item[{int}]{dia\+Buscar}{}\end{DoxyParamCaption})}
+
+
+
+Busca todos los eventos de un día concreto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dia\+Buscar} & Día de la semana (1-\/7). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cadena con la lista de eventos de ese día o "{}\+Evento no encontrado."{} si no hay ninguno. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_a57b98cb9d067e997f5e149d13848d9b9}\index{AgendaEventos@{AgendaEventos}!buscarEventoPorNombre@{buscarEventoPorNombre}}
+\index{buscarEventoPorNombre@{buscarEventoPorNombre}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{buscarEventoPorNombre()}{buscarEventoPorNombre()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a57b98cb9d067e997f5e149d13848d9b9} 
+string Agenda\+Eventos\+::buscar\+Evento\+Por\+Nombre (\begin{DoxyParamCaption}\item[{string}]{nombre\+Evento}{}\end{DoxyParamCaption})}
+
+
+
+Busca un evento por su nombre. 
+
+Recorre la agenda en busca de un evento cuyo nombre coincida exactamente con {\ttfamily nombre\+Evento}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Evento} & Nombre del evento a buscar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cadena con la información del evento encontrado o "{}\+Evento no encontrado."{} si no existe. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_a4ad5007abbba76026745a0724c992edb}\index{AgendaEventos@{AgendaEventos}!detectarFranjasLibresPorDia@{detectarFranjasLibresPorDia}}
+\index{detectarFranjasLibresPorDia@{detectarFranjasLibresPorDia}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{detectarFranjasLibresPorDia()}{detectarFranjasLibresPorDia()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a4ad5007abbba76026745a0724c992edb} 
+string Agenda\+Eventos\+::detectar\+Franjas\+Libres\+Por\+Dia (\begin{DoxyParamCaption}\item[{int}]{dia\+Buscar}{}\end{DoxyParamCaption})}
+
+
+
+Detecta las franjas horarias libres de un día. 
+
+Construye las franjas libres en \mbox{[}0.\+0, 24.\+0) teniendo en cuenta los eventos existentes del día {\ttfamily dia\+Buscar}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dia\+Buscar} & Día de la semana (1-\/7). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cadena con las franjas libres o un mensaje si no hay huecos. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_a7917648fad6db3e34b88ef23d77bd282}\index{AgendaEventos@{AgendaEventos}!eliminarEvento@{eliminarEvento}}
+\index{eliminarEvento@{eliminarEvento}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{eliminarEvento()}{eliminarEvento()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a7917648fad6db3e34b88ef23d77bd282} 
+bool Agenda\+Eventos\+::eliminar\+Evento (\begin{DoxyParamCaption}\item[{string}]{nombre\+Evento}{}\end{DoxyParamCaption})}
+
+
+
+Elimina un evento por su nombre. 
+
+Si encuentra un evento con el nombre {\ttfamily nombre\+Evento}, lo elimina sustituyéndolo por el último evento del array y decrementa {\ttfamily num\+\_\+eventos}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Evento} & Nombre del evento a eliminar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se elimina algún evento, false si no se encuentra. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_a1d5831f1a6e4dc99cc0fe8507b195957}\index{AgendaEventos@{AgendaEventos}!eventoExistente@{eventoExistente}}
+\index{eventoExistente@{eventoExistente}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{eventoExistente()}{eventoExistente()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a1d5831f1a6e4dc99cc0fe8507b195957} 
+bool Agenda\+Eventos\+::evento\+Existente (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_evento}{Evento}}}]{nuevo\+Evento}{}\end{DoxyParamCaption})}
+
+
+
+Comprueba si existe ya un evento con el mismo nombre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Evento} & \doxylink{class_evento}{Evento} que se desea comprobar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si hay un evento con el mismo nombre, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_acc7c88d97eeed0bf086e8b60132fd3d0}\index{AgendaEventos@{AgendaEventos}!getCapacidad@{getCapacidad}}
+\index{getCapacidad@{getCapacidad}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{getCapacidad()}{getCapacidad()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_acc7c88d97eeed0bf086e8b60132fd3d0} 
+int Agenda\+Eventos\+::get\+Capacidad (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Devuelve la capacidad actual del array de eventos. 
+
+\begin{DoxyReturn}{Returns}
+Capacidad del array dinámico. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_adefd4f1d6a9be38fb01cf6a330babcb4}\index{AgendaEventos@{AgendaEventos}!getNumEventos@{getNumEventos}}
+\index{getNumEventos@{getNumEventos}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{getNumEventos()}{getNumEventos()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_adefd4f1d6a9be38fb01cf6a330babcb4} 
+int Agenda\+Eventos\+::get\+Num\+Eventos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Devuelve el número de eventos almacenados. 
+
+\begin{DoxyReturn}{Returns}
+Número actual de eventos en la agenda. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_afee4efd74b6ae6f4cbdddcd087915a61}\index{AgendaEventos@{AgendaEventos}!guardarArchivo@{guardarArchivo}}
+\index{guardarArchivo@{guardarArchivo}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{guardarArchivo()}{guardarArchivo()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_afee4efd74b6ae6f4cbdddcd087915a61} 
+bool Agenda\+Eventos\+::guardar\+Archivo (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Guarda el contenido actual de la agenda en un fichero de texto. 
+
+El fichero generado tendrá el mismo formato que el usado en el constructor desde fichero\+: nombre,dia,hora\+\_\+inicio,hora\+\_\+fin
+
+\begin{DoxyReturn}{Returns}
+true si el fichero se guarda correctamente, false en caso de error. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_ac41b56db15f310f36584f7ab50eb6d31}\index{AgendaEventos@{AgendaEventos}!mostrarTodosLosEventos@{mostrarTodosLosEventos}}
+\index{mostrarTodosLosEventos@{mostrarTodosLosEventos}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{mostrarTodosLosEventos()}{mostrarTodosLosEventos()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_ac41b56db15f310f36584f7ab50eb6d31} 
+string Agenda\+Eventos\+::mostrar\+Todos\+Los\+Eventos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Muestra todos los eventos ordenados por día y hora. 
+
+Devuelve un string con todos los eventos ordenados primero por día de la semana y, en caso de empate, por hora de inicio.
+
+\begin{DoxyReturn}{Returns}
+Cadena con la lista de eventos ordenados o un mensaje indicando que no hay eventos. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_a9106c1b6d62b82b1b341ce43b5823d46}\index{AgendaEventos@{AgendaEventos}!resumenSemanal@{resumenSemanal}}
+\index{resumenSemanal@{resumenSemanal}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{resumenSemanal()}{resumenSemanal()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_a9106c1b6d62b82b1b341ce43b5823d46} 
+string Agenda\+Eventos\+::resumen\+Semanal (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Genera un resumen semanal de la agenda. 
+
+Para cada día de la semana indica el número de eventos y el total de horas ocupadas.
+
+\begin{DoxyReturn}{Returns}
+Cadena con el resumen semanal o un mensaje si no hay eventos. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_eventos_ac538a4b36e113a4a70b246aeb2a585b8}\index{AgendaEventos@{AgendaEventos}!setCapacidad@{setCapacidad}}
+\index{setCapacidad@{setCapacidad}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{setCapacidad()}{setCapacidad()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_ac538a4b36e113a4a70b246aeb2a585b8} 
+void Agenda\+Eventos\+::set\+Capacidad (\begin{DoxyParamCaption}\item[{int}]{capacidad}{}\end{DoxyParamCaption})}
+
+
+
+Establece la capacidad de la agenda. 
+
+No realiza redimensionamiento; solo modifica el valor del atributo.
+
+
+\begin{DoxyParams}{Parameters}
+{\em capacidad} & Nueva capacidad lógica de la agenda. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_agenda_eventos_afbd9188274cf9ed566ef39c33c3a9766}\index{AgendaEventos@{AgendaEventos}!setNumEventos@{setNumEventos}}
+\index{setNumEventos@{setNumEventos}!AgendaEventos@{AgendaEventos}}
+\doxysubsubsection{\texorpdfstring{setNumEventos()}{setNumEventos()}}
+{\footnotesize\ttfamily \label{class_agenda_eventos_afbd9188274cf9ed566ef39c33c3a9766} 
+void Agenda\+Eventos\+::set\+Num\+Eventos (\begin{DoxyParamCaption}\item[{int}]{num\+Eventos}{}\end{DoxyParamCaption})}
+
+
+
+Establece manualmente el número de eventos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Eventos} & Nuevo valor de {\ttfamily num\+\_\+eventos}. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/agenda\+Eventos.\+h\end{DoxyCompactItemize}
