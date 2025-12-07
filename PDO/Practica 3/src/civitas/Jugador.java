@@ -1,10 +1,7 @@
-package civitas.temp;
+package civitas;
 
 import java.util.ArrayList;
 
-
-
-@SuppressWarnings("all")
 
 public class Jugador implements Comparable<Jugador>{
 
@@ -330,7 +327,8 @@ public class Jugador implements Comparable<Jugador>{
         return PasoPorSalida;
     }
 
-    protected ArrayList<TituloPropiedad> getPropiedades() {
+    /* Era protected, pero no tiene sentido */
+    public ArrayList<TituloPropiedad> getPropiedades() {
         return this.propiedades;
     }
 

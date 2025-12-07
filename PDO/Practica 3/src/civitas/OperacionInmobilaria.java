@@ -22,10 +22,10 @@ public class OperacionInmobilaria {
     /* ----------------- GETTERS / SETTERS ----------------- */
 
     public GestionInmobilarias getGestion(){
-
+        return this.gestion;
     }
 
     public int getNumPropiedad(){
-        
+        return this.numPropiedad;
     }
 }

@@ -8,6 +8,7 @@ import civitas.Casilla;
 import civitas.Jugador;
 import civitas.TituloPropiedad;
 import civitas.Controlador;
+import civitas.GestionInmobilarias;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,34 +82,75 @@ public class VistaTextual {
 
     SalidasCarcel salirCarcel() {
         int opcion = menu ("Elige la forma para intentar salir de la carcel",
-          new ArrayList<> (Arrays.asList("Pagando","Tirando el dado")));
+          new ArrayList<> (Arrays.asList("Pagando","Tirando el dado")));          
         
-          return (SalidasCarcel.values()[opcion]);
+        return (SalidasCarcel.values()[opcion]);
     }
 
     Respuestas comprar() {
-
+        int opcion = menu ("Quieres comprar " + this.juegoModel.getCasillaActual().getNombre(),
+        new ArrayList<> (Arrays.asList("SI","NO")));
+      
+        return (Respuestas.values()[opcion]);
     }
 
     void gestionar () {
+        ArrayList<String> opcionesGestiones = new ArrayList<>(
+            Arrays.asList(
+                "VENDER",
+                "HIPOTECAR",
+                "CANCELAR_HIPOTECA",
+                "CONSTRUIR_CASA",
+                "CONSTRUIR_HOTEL",
+                "TERMINAR"
+            )
+        );
+
+        iGestion = menu("¿Qué gestión quiere realizar?", opcionesGestiones);
+
+        if (GestionesInmobiliarias.values()[iGestion] == GestionesInmobiliarias.TERMINAR) {
+            iPropiedad = -1;
+            return;
+        }
+
+        ArrayList<String> nombresPropiedades = new ArrayList<>();
+
+        for (TituloPropiedad propiedad : this.juegoModel.getJugadorActual().getPropiedades()) {
+            nombresPropiedades.add(propiedad.getNombre());
+        }
+
+        if (nombresPropiedades.isEmpty()) {
+            System.out.println("El jugador actual no tiene propiedades que gestionar.");
+            iPropiedad = -1;
+        } else {
+            iPropiedad = menu(
+                "¿Sobre qué propiedad quiere realizar la gestión?",
+                nombresPropiedades
+            );
+        }
 
     }
 
     void mostrarSiguienteOperacion(OperacionesJuego operacion) {
+        
+      /* Esta clase no tiene toString sobreescrito ------------ REVISAR ------------ */
+        System.out.println("Siguiente Operacion: " + operacion.toString());
 
     }
 
     void mostrarEventos() {
-
+      while (Diario.getInstance().eventosPendientes()) {
+          System.out.println("EVENTO: " + Diario.getInstance().leerEvento());
+      }
     }
 
 
     void actualizarVista(){
-
+      System.out.println (this.juegoModel.infoJugadorTexto() /* + "\n Casilla Actual: " + this.juegoModel.getJugadorActual().getNumCasillaActual() */ );
     } 
 
     public void setCivitasJuego(CivitasJuego civitas){ 
-        juegoModel=civitas;
+        this.juegoModel=civitas;
         this.actualizarVista();
     }
 
@@ -116,11 +158,11 @@ public class VistaTextual {
     /* ----------------- GETTERS / SETTERS ----------------- */
 
     public int getGestion(){
-
+      return this.iGestion;
     }
 
     public int getPropiedad(){
-
+      return this.iPropiedad;
     }
     
 }
