@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 // import java.util.Collections;
 
+
 public class CivitasJuego {
-    
-    private int indiceJugadorActual;
 
     private Jugador jugadores[]; /* Tiene que ser un array con todos los jugadores */
     private EstadosJuego estado;
@@ -21,7 +20,8 @@ public class CivitasJuego {
 
     /* ---------------- CONSTRUCTOR ---------------- */
 
-    CivitasJuego(ArrayList<String> nombres) {
+    /* Se supone que es DE PAQUETE pero se necesita public para usarlo en el main. */
+    public CivitasJuego(ArrayList<String> nombres) {
 
         this.jugadores = new Jugador[nombres.size()];
 
@@ -188,10 +188,11 @@ public class CivitasJuego {
         return jugadorActual.salirCarcelTirando();
     }
 
-    /* SIGUIENTE PRACTICA */
-    /* public OperacionesJuego siguientePaso(){
-            
-    } */
+    /* COMPLETAR MÉTODO */
+    public OperacionesJuego siguientePaso(){
+           
+        
+    }
 
     public void siguientePasoCompletado(OperacionesJuego operacion){
         Jugador jugadorActual = this.jugadores[indiceJugadorActual];

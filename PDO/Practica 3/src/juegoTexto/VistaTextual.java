@@ -1,14 +1,17 @@
 package juegoTexto;
 
+/* CLASES */
 import civitas.CivitasJuego;
 import civitas.Diario;
-import civitas.OperacionesJuego;
-import civitas.SalidasCarcel;
-import civitas.Casilla;
-import civitas.Jugador;
+// import civitas.Casilla;
+// import civitas.Jugador;
 import civitas.TituloPropiedad;
-import civitas.Controlador;
+
+/* ENUMS */
+import civitas.OperacionesJuego;
 import civitas.GestionInmobilarias;
+import civitas.SalidasCarcel;
+import civitas.Respuestas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +26,7 @@ public class VistaTextual {
 
     private static String separador = "=====================";
 
-    private Scanner in;
+    private final Scanner in;
 
     /* ---------------------- Constructor ---------------------- */ 
 
@@ -108,7 +111,7 @@ public class VistaTextual {
 
         iGestion = menu("¿Qué gestión quiere realizar?", opcionesGestiones);
 
-        if (GestionesInmobiliarias.values()[iGestion] == GestionesInmobiliarias.TERMINAR) {
+        if (GestionInmobilarias.values()[iGestion] == GestionInmobilarias.TERMINAR) {
             iPropiedad = -1;
             return;
         }

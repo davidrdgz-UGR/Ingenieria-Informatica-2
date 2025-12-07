@@ -209,7 +209,8 @@ public class TituloPropiedad {
         return this.hipotecaBase;
     }
 
-    String getNombre() {
+    /* Era de paquete pero no se puede accedeer desde VistaTextual.gestionar() */
+    public String getNombre() {
         return this.nombre;
     }
 

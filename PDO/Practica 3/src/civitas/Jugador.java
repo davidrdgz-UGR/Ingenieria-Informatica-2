@@ -79,6 +79,7 @@ public class Jugador implements Comparable<Jugador>{
 
     } */
 
+
     /* Próxima Práctica */
     boolean construirCasa(int ip) {
 

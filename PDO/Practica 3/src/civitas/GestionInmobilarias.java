@@ -1,6 +1,6 @@
 package civitas;
 
-enum GestionInmobilarias {
+public enum GestionInmobilarias {
     VENDER,
     HIPOTECAR,
     CANCELAR_HIPOTECA,

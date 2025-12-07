@@ -3,8 +3,8 @@ package civitas;
 import java.util.Random;
 
 
-@SuppressWarnings("all")
-class Dado{
+/* Se supone que es DE PAQUETE pero se necesita public para usarlo en el main. */
+public class Dado{
     
     private int ultimoResultado;
     private boolean debug;

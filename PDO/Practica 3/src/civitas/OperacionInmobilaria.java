@@ -8,7 +8,8 @@ public class OperacionInmobilaria {
 
     /* ---------------------- Constructor ---------------------- */ 
 
-    OperacionInmobilaria(GestionInmobilarias gestiones, int ipPropiedad){
+    /* Era de paquete / Necesita ser pública para usarse en Controlador */
+    public OperacionInmobilaria(GestionInmobilarias gestiones, int ipPropiedad){
 
     }
 

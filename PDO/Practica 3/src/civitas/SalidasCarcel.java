@@ -1,6 +1,6 @@
 package civitas;
 
-enum SalidasCarcel {
+public enum SalidasCarcel {
     PAGANDO,
     TIRANDO
 }
