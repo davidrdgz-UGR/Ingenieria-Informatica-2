@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="practica-3-scd--david-rodr%C3%ADguez-aparicio">Practica 3 SCD | David Rodríguez Aparicio</h1>
+<p>En esta práctica hemos usado MPI en Ubuntu.</p>
+<p>Veremos los distintos códigos y sus cambios acompañados de una explicación y una imagen de su ejecución</p>
+<h2 id="apartado-1--prueba-de-prodconscpp">Apartado 1 | Prueba de prodcons.cpp</h2>
+<p>En este apartado lo único que hemos hecho es probar el código y ya.</p>
+<p><img src="../capturas/cap1.png" alt="im1"></p>
+<h2 id="apartado-2--prodcons2-mucpp">Apartado 2 | prodcons2-mu.cpp</h2>
+<p>Aqui ya si hemos tocado código, hemos modificado el código para que se hayan múltiples productores y consumidores.</p>
+<p>Hemos añadido algunas variables necesarias, cambiado las funciones productora/consumidora y cada consumidor recibe un numero proporcional de items, añadiendole a las funciones además parametros.</p>
+<p>Y hemos adaptado el buffer para que acepte cualquier consumidor o productor con MPI_ANY_SOURCE y MPI_ANY_TAG</p>
+<p>A continuacion veremos la diferencia entre el original y el nuevo.</p>
+<p><img src="../capturas/cap2.png" alt="im2">
+<img src="../capturas/cap3.png" alt="im3"></p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Sistemas concurrentes y Distribuidos.</span>
+<span class="hljs-comment">// Práctica 3. Implementación de algoritmos distribuidos con MPI</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Archivo: prodcons2.cpp</span>
+<span class="hljs-comment">// Implementación del problema del productor-consumidor con</span>
+<span class="hljs-comment">// un proceso intermedio que gestiona un buffer finito y recibe peticiones</span>
+<span class="hljs-comment">// en orden arbitrario</span>
+<span class="hljs-comment">// (versión con un único productor y un único consumidor)</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Historial:</span>
+<span class="hljs-comment">// Actualizado a C++11 en Septiembre de 2017</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt; // this_thread::sleep_for</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;random&gt; // dispositivos, generadores y distribuciones aleatorias</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt; // duraciones (duration), unidades de tiempo</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;mpi.h&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>::this_thread ;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>::chrono ;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>
+   num_items  = <span class="hljs-number">20</span>,     <span class="hljs-comment">// nº total de ítems producidos/consumidos</span>
+   tam_vector = <span class="hljs-number">10</span>,     <span class="hljs-comment">// tamaño del buffer</span>
+
+   np         = <span class="hljs-number">4</span>,      <span class="hljs-comment">// nº de productores</span>
+   nc         = <span class="hljs-number">5</span>,      <span class="hljs-comment">// nº de consumidores</span>
+
+   id_buffer  = np,                 <span class="hljs-comment">// id del proceso buffer</span>
+   num_procesos_esperado = np+nc+<span class="hljs-number">1</span>, <span class="hljs-comment">// total de procesos</span>
+
+   etiq_prod  = <span class="hljs-number">0</span>,      <span class="hljs-comment">// etiqueta mensajes de productores</span>
+   etiq_cons  = <span class="hljs-number">1</span>;      <span class="hljs-comment">// etiqueta mensajes de consumidores</span>
+
+<span class="hljs-comment">//**********************************************************************</span>
+<span class="hljs-comment">// plantilla de función para generar un entero aleatorio uniformemente</span>
+<span class="hljs-comment">// distribuido entre dos valores enteros, ambos incluidos</span>
+<span class="hljs-comment">// (ambos tienen que ser dos constantes, conocidas en tiempo de compilación)</span>
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">template</span>&lt; <span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span>, <span class="hljs-keyword">int</span> <span class="hljs-built_in">max</span> &gt; <span class="hljs-keyword">int</span> <span class="hljs-title">aleatorio</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-function"><span class="hljs-keyword">static</span> default_random_engine <span class="hljs-title">generador</span><span class="hljs-params">( (random_device())() )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">static</span> uniform_int_distribution&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">distribucion_uniforme</span><span class="hljs-params">( <span class="hljs-built_in">min</span>, <span class="hljs-built_in">max</span> )</span> </span>;
+  <span class="hljs-keyword">return</span> distribucion_uniforme( generador );
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+<span class="hljs-comment">// ptoducir produce los numeros en secuencia (1,2,3,....)</span>
+<span class="hljs-comment">// y lleva espera aleatorio</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">producir</span><span class="hljs-params">( <span class="hljs-keyword">int</span> orden_prod )</span>
+</span>{
+   <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> contadores[np] = {<span class="hljs-number">0</span>};   <span class="hljs-comment">// un contador por productor</span>
+   <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> k = num_items / np;
+
+   sleep_for( milliseconds( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() ) );
+
+   <span class="hljs-keyword">int</span> valor = orden_prod * k + contadores[orden_prod];
+   contadores[orden_prod]++;
+
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Productor "</span> &lt;&lt; orden_prod
+        &lt;&lt; <span class="hljs-string">" ha producido valor "</span> &lt;&lt; valor &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">flush</span>;
+
+   <span class="hljs-keyword">return</span> valor;
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_productor</span><span class="hljs-params">( <span class="hljs-keyword">int</span> orden_prod )</span>
+</span>{
+   <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> num_items_prod = num_items / np;
+
+   <span class="hljs-keyword">for</span> ( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span> ; i &lt; num_items_prod ; i++ )
+   {
+      <span class="hljs-keyword">int</span> valor_prod = producir( orden_prod );
+      <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Productor "</span> &lt;&lt; orden_prod
+           &lt;&lt; <span class="hljs-string">" va a enviar valor "</span> &lt;&lt; valor_prod &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">flush</span>;
+
+      MPI_Ssend( &amp;valor_prod, <span class="hljs-number">1</span>, MPI_INT,
+                 id_buffer, etiq_prod, MPI_COMM_WORLD );
+   }
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">consumir</span><span class="hljs-params">(<span class="hljs-keyword">int</span> valor_cons)</span>
+</span>{
+   sleep_for(milliseconds( aleatorio&lt;<span class="hljs-number">110</span>,<span class="hljs-number">200</span>&gt;() ));
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Consumidor ha consumido valor "</span> &lt;&lt; valor_cons &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">flush</span>;
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_consumidor</span><span class="hljs-params">( <span class="hljs-keyword">int</span> orden_cons )</span>
+</span>{
+   <span class="hljs-keyword">int</span> peticion = <span class="hljs-number">1</span> ;
+   <span class="hljs-keyword">int</span> valor_rec ;
+   MPI_Status estado ;
+   <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> num_items_cons = num_items / nc;
+
+   <span class="hljs-keyword">for</span>( <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span> ; i &lt; num_items_cons ; i++ )
+   {
+      <span class="hljs-comment">// enviar petición al buffer</span>
+      MPI_Ssend( &amp;peticion, <span class="hljs-number">1</span>, MPI_INT,
+                 id_buffer, etiq_cons, MPI_COMM_WORLD );
+
+      <span class="hljs-comment">// recibir dato del buffer</span>
+      MPI_Recv( &amp;valor_rec, <span class="hljs-number">1</span>, MPI_INT,
+                id_buffer, etiq_cons, MPI_COMM_WORLD, &amp;estado );
+
+      <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Consumidor "</span> &lt;&lt; orden_cons
+           &lt;&lt; <span class="hljs-string">" ha recibido valor "</span> &lt;&lt; valor_rec &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-built_in">flush</span> ;
+
+      consumir( valor_rec );
+   }
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_buffer</span><span class="hljs-params">()</span>
+</span>{
+   <span class="hljs-keyword">int</span>  <span class="hljs-built_in">buffer</span>[tam_vector];      <span class="hljs-comment">// celdas del buffer</span>
+   <span class="hljs-keyword">int</span>  valor;
+   <span class="hljs-keyword">int</span>  primera_libre       = <span class="hljs-number">0</span>;
+   <span class="hljs-keyword">int</span>  primera_ocupada     = <span class="hljs-number">0</span>;
+   <span class="hljs-keyword">int</span>  num_celdas_ocupadas = <span class="hljs-number">0</span>;
+   MPI_Status estado;
+
+   <span class="hljs-comment">// en total llegarán num_items mensajes de productores</span>
+   <span class="hljs-comment">// y num_items mensajes de consumidores (peticiones)</span>
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num_items*<span class="hljs-number">2</span>; i++)
+   {
+      <span class="hljs-keyword">int</span> tag_aceptable;
+
+      <span class="hljs-comment">// determinar qué tipo de emisor es aceptable según estado del buffer</span>
+      <span class="hljs-keyword">if</span> ( num_celdas_ocupadas == <span class="hljs-number">0</span> )              <span class="hljs-comment">// buffer vacío</span>
+         tag_aceptable = etiq_prod;                <span class="hljs-comment">// sólo productores</span>
+      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( num_celdas_ocupadas == tam_vector) <span class="hljs-comment">// buffer lleno</span>
+         tag_aceptable = etiq_cons;                <span class="hljs-comment">// sólo consumidores</span>
+      <span class="hljs-keyword">else</span>
+         tag_aceptable = MPI_ANY_TAG;              <span class="hljs-comment">// cualquiera</span>
+
+      <span class="hljs-comment">// recibir mensaje de algún productor o consumidor</span>
+      MPI_Recv(&amp;valor, <span class="hljs-number">1</span>, MPI_INT,
+               MPI_ANY_SOURCE, tag_aceptable,
+               MPI_COMM_WORLD, &amp;estado);
+
+      <span class="hljs-keyword">switch</span> (estado.MPI_TAG)
+      {
+         <span class="hljs-comment">// mensaje de productor: insertar en buffer</span>
+         <span class="hljs-keyword">case</span> etiq_prod:
+            <span class="hljs-built_in">buffer</span>[primera_libre] = valor;
+            primera_libre = (primera_libre + <span class="hljs-number">1</span>) % tam_vector;
+            num_celdas_ocupadas++;
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Buffer ha recibido valor "</span> &lt;&lt; valor
+                 &lt;&lt; <span class="hljs-string">" de productor "</span> &lt;&lt; estado.MPI_SOURCE &lt;&lt; <span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">break</span>;
+
+         <span class="hljs-comment">// mensaje de consumidor: extraer de buffer y enviarle</span>
+         <span class="hljs-keyword">case</span> etiq_cons:
+            valor = <span class="hljs-built_in">buffer</span>[primera_ocupada];
+            primera_ocupada = (primera_ocupada + <span class="hljs-number">1</span>) % tam_vector;
+            num_celdas_ocupadas--;
+            <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Buffer va a enviar valor "</span> &lt;&lt; valor
+                 &lt;&lt; <span class="hljs-string">" a consumidor "</span> &lt;&lt; estado.MPI_SOURCE &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+            MPI_Ssend(&amp;valor, <span class="hljs-number">1</span>, MPI_INT,
+                      estado.MPI_SOURCE, etiq_cons, MPI_COMM_WORLD);
+            <span class="hljs-keyword">break</span>;
+      }
+   }
+}
+
+
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[] )</span>
+</span>{
+
+   <span class="hljs-keyword">int</span> id_propio, num_procesos_actual;
+
+   MPI_Init(&amp;argc, &amp;argv);
+   MPI_Comm_rank(MPI_COMM_WORLD, &amp;id_propio);
+   MPI_Comm_size(MPI_COMM_WORLD, &amp;num_procesos_actual);
+
+
+
+    <span class="hljs-keyword">if</span> (num_procesos_actual == num_procesos_esperado){
+      <span class="hljs-keyword">if</span> (id_propio &lt; np)                         <span class="hljs-comment">// productores</span>
+      {
+         <span class="hljs-keyword">int</span> orden_prod = id_propio;              <span class="hljs-comment">// 0..np-1</span>
+         funcion_productor(orden_prod);
+      }
+      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (id_propio == id_buffer)            <span class="hljs-comment">// buffer</span>
+      {
+         funcion_buffer();
+      }
+      <span class="hljs-keyword">else</span>                                        <span class="hljs-comment">// consumidores</span>
+      {
+         <span class="hljs-keyword">int</span> orden_cons = id_propio - (np + <span class="hljs-number">1</span>);   <span class="hljs-comment">// 0..nc-1</span>
+         funcion_consumidor(orden_cons);
+      }
+   }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (id_propio == <span class="hljs-number">0</span>){
+      <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"Número de procesos actual ("</span> &lt;&lt; num_procesos_actual
+           &lt;&lt; <span class="hljs-string">") distinto de "</span> &lt;&lt; num_procesos_esperado &lt;&lt; <span class="hljs-built_in">endl</span>;
+   }
+
+   MPI_Finalize();
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+
+</div></code></pre>
+<h2 id="apartado-3--filosofos">Apartado 3 | Filosofos</h2>
+<p>Aqui lo dividiremos en 3 partes</p>
+<h3 id="filosofos-interbcpp">Filosofos-Interb.cpp</h3>
+<p>En este apartado hemos ido completando el código original con operaciones con MPI, usando MPI_Ssend y MPI_Recv para aceptar las peticiones y esperar el Send.</p>
+<p>Como todos los filósofos piden primero el tenedor izquierdo y luego el derecho, el sistema puede quedarse bloqueado si todos los filósofos toman su tenedor izquierdo al mismo tiempo → esto provoca interbloqueo.</p>
+<p><img src="../capturas/cap4.png" alt="im5"></p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Sistemas concurrentes y Distribuidos.</span>
+<span class="hljs-comment">// Práctica 3. Implementación de algoritmos distribuidos con MPI</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Archivo: filosofos-plantilla.cpp</span>
+<span class="hljs-comment">// Implementación del problema de los filósofos (sin camarero).</span>
+<span class="hljs-comment">// Plantilla para completar.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Historial:</span>
+<span class="hljs-comment">// Actualizado a C++11 en Septiembre de 2017</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;mpi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt; // this_thread::sleep_for</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;random&gt; // dispositivos, generadores y distribuciones aleatorias</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt; // duraciones (duration), unidades de tiempo</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>::this_thread ;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>::chrono ;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>
+   num_filosofos = <span class="hljs-number">5</span> ,              <span class="hljs-comment">// número de filósofos </span>
+   num_filo_ten  = <span class="hljs-number">2</span>*num_filosofos, <span class="hljs-comment">// número de filósofos y tenedores </span>
+   num_procesos  = num_filo_ten ;   <span class="hljs-comment">// número de procesos total (por ahora solo hay filo y ten)</span>
+
+
+<span class="hljs-comment">//**********************************************************************</span>
+<span class="hljs-comment">// plantilla de función para generar un entero aleatorio uniformemente</span>
+<span class="hljs-comment">// distribuido entre dos valores enteros, ambos incluidos</span>
+<span class="hljs-comment">// (ambos tienen que ser dos constantes, conocidas en tiempo de compilación)</span>
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">template</span>&lt; <span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span>, <span class="hljs-keyword">int</span> <span class="hljs-built_in">max</span> &gt; <span class="hljs-keyword">int</span> <span class="hljs-title">aleatorio</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-function"><span class="hljs-keyword">static</span> default_random_engine <span class="hljs-title">generador</span><span class="hljs-params">( (random_device())() )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">static</span> uniform_int_distribution&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">distribucion_uniforme</span><span class="hljs-params">( <span class="hljs-built_in">min</span>, <span class="hljs-built_in">max</span> )</span> </span>;
+  <span class="hljs-keyword">return</span> distribucion_uniforme( generador );
+}
+
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_filosofos</span><span class="hljs-params">( <span class="hljs-keyword">int</span> id )</span>
+</span>{
+  <span class="hljs-keyword">int</span> id_ten_izq = (id+<span class="hljs-number">1</span>) % num_filo_ten, <span class="hljs-comment">//id. tenedor izq.</span>
+      id_ten_der = (id+num_filo_ten<span class="hljs-number">-1</span>) % num_filo_ten; <span class="hljs-comment">//id. tenedor der.</span>
+
+   
+   <span class="hljs-keyword">int</span> mensaje = <span class="hljs-number">0</span>; 
+
+  <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> )
+  {
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt; <span class="hljs-string">" solicita ten. izq."</span> &lt;&lt;id_ten_izq &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_izq, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" solicita ten. der."</span> &lt;&lt;id_ten_der &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_der, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" comienza a comer"</span> &lt;&lt;<span class="hljs-built_in">endl</span> ;
+    sleep_for( milliseconds( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() ) );
+
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" suelta ten. izq. "</span> &lt;&lt;id_ten_izq &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_izq, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span>&lt;&lt; <span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" suelta ten. der. "</span> &lt;&lt;id_ten_der &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_der, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Filosofo "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" comienza a pensar"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    sleep_for( milliseconds( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() ) );
+ }
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_tenedores</span><span class="hljs-params">( <span class="hljs-keyword">int</span> id )</span>
+</span>{
+  <span class="hljs-keyword">int</span> valor, id_filosofo ;  <span class="hljs-comment">// valor recibido, identificador del filósofo</span>
+  MPI_Status estado ;       <span class="hljs-comment">// metadatos de las dos recepciones</span>
+
+  <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> )
+  {
+     MPI_Recv(&amp;valor, <span class="hljs-number">1</span>, MPI_INT, MPI_ANY_SOURCE, <span class="hljs-number">0</span>, MPI_COMM_WORLD, &amp;estado);
+
+     id_filosofo = estado.MPI_SOURCE;
+     <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Ten. "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" ha sido cogido por filo. "</span> &lt;&lt;id_filosofo &lt;&lt;<span class="hljs-built_in">endl</span>;
+
+     MPI_Recv(&amp;valor, <span class="hljs-number">1</span>, MPI_INT, id_filosofo, <span class="hljs-number">0</span>, MPI_COMM_WORLD, &amp;estado);
+     <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Ten. "</span>&lt;&lt; id&lt;&lt; <span class="hljs-string">" ha sido liberado por filo. "</span> &lt;&lt;id_filosofo &lt;&lt;<span class="hljs-built_in">endl</span> ;
+  }
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv )</span>
+</span>{
+   <span class="hljs-keyword">int</span> id_propio, num_procesos_actual ;
+
+   MPI_Init( &amp;argc, &amp;argv );
+   MPI_Comm_rank( MPI_COMM_WORLD, &amp;id_propio );
+   MPI_Comm_size( MPI_COMM_WORLD, &amp;num_procesos_actual );
+
+
+   <span class="hljs-keyword">if</span> ( num_procesos == num_procesos_actual )
+   {
+      <span class="hljs-comment">// ejecutar la función correspondiente a 'id_propio'</span>
+      <span class="hljs-keyword">if</span> ( id_propio % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> )          <span class="hljs-comment">// si es par</span>
+         funcion_filosofos( id_propio ); <span class="hljs-comment">//   es un filósofo</span>
+      <span class="hljs-keyword">else</span>                               <span class="hljs-comment">// si es impar</span>
+         funcion_tenedores( id_propio ); <span class="hljs-comment">//   es un tenedor</span>
+   }
+   <span class="hljs-keyword">else</span>
+   {
+      <span class="hljs-keyword">if</span> ( id_propio == <span class="hljs-number">0</span> ) <span class="hljs-comment">// solo el primero escribe error, indep. del rol</span>
+      { <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"el número de procesos esperados es:    "</span> &lt;&lt; num_procesos &lt;&lt; <span class="hljs-built_in">endl</span>
+             &lt;&lt; <span class="hljs-string">"el número de procesos en ejecución es: "</span> &lt;&lt; num_procesos_actual &lt;&lt; <span class="hljs-built_in">endl</span>
+             &lt;&lt; <span class="hljs-string">"(programa abortado)"</span> &lt;&lt; <span class="hljs-built_in">endl</span> ;
+      }
+   }
+
+   MPI_Finalize( );
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+
+</div></code></pre>
+<h3 id="filosofoscpp">Filosofos.cpp</h3>
+<p>Aqui el único cambio realizado es en función_filosofos(), en el que el filosofo 0 invierte el orden de peticion entre derecha e izquierda, rompiendo así la espera circular.</p>
+<p><img src="../capturas/cap5.png" alt="im5"></p>
+<pre class="hljs"><code><div>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_filosofos</span><span class="hljs-params">( <span class="hljs-keyword">int</span> id )</span>
+</span>{
+  <span class="hljs-keyword">int</span> id_ten_izq = (id+<span class="hljs-number">1</span>)              % num_filo_ten, <span class="hljs-comment">//id. tenedor izq.</span>
+      id_ten_der = (id+num_filo_ten<span class="hljs-number">-1</span>) % num_filo_ten; <span class="hljs-comment">//id. tenedor der.</span>
+
+   
+   <span class="hljs-keyword">int</span> mensaje = <span class="hljs-number">0</span>; 
+
+  <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> )
+  {
+
+    <span class="hljs-keyword">if</span>(id == <span class="hljs-number">0</span>){
+      <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" solicita ten. der. "</span> &lt;&lt;id_ten_der &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_der, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+      <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt; <span class="hljs-string">" solicita ten. izq. "</span> &lt;&lt;id_ten_izq &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_izq, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+    }<span class="hljs-keyword">else</span>{
+      <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt; <span class="hljs-string">" solicita ten. izq. "</span> &lt;&lt;id_ten_izq &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_izq, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+      <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" solicita ten. der. "</span> &lt;&lt;id_ten_der &lt;&lt;<span class="hljs-built_in">endl</span>;
+      MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_der, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+    }
+
+    <span class="hljs-comment">// ----- comer -----</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" comienza a comer"</span> &lt;&lt;<span class="hljs-built_in">endl</span> ;
+    sleep_for( milliseconds( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() ) );
+
+    <span class="hljs-comment">// ----- soltar tenedores (mismo orden que antes) -----</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" suelta ten. izq. "</span> &lt;&lt;id_ten_izq &lt;&lt;<span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_izq, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span>&lt;&lt; <span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" suelta ten. der. "</span> &lt;&lt;id_ten_der &lt;&lt;<span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT, id_ten_der, <span class="hljs-number">0</span>, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Filosofo "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" comienza a pensar"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    sleep_for( milliseconds( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() ) );
+ }
+}
+
+
+</div></code></pre>
+<h3 id="filosofos-camcpp">Filosofos-cam.cpp</h3>
+<p>Añadimos el proceso del camarero en este código (id_camarero) y su respectiva funcion, y en cada filosofo se añaden dos envios con Ssend, antes de coger los tenedores y al dejarlos.</p>
+<p>Los 5 filosofos nunca estan sentados a la vez.</p>
+<p><img src="../capturas/cap6.png" alt="im6"></p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Sistemas concurrentes y Distribuidos.</span>
+<span class="hljs-comment">// Práctica 3. Implementación de algoritmos distribuidos con MPI</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Archivo: filosofos-plantilla.cpp</span>
+<span class="hljs-comment">// Implementación del problema de los filósofos (sin camarero).</span>
+<span class="hljs-comment">// Plantilla para completar.</span>
+<span class="hljs-comment">//</span>
+<span class="hljs-comment">// Historial:</span>
+<span class="hljs-comment">// Actualizado a C++11 en Septiembre de 2017</span>
+<span class="hljs-comment">// -----------------------------------------------------------------------------</span>
+
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;mpi.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt; // this_thread::sleep_for</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;random&gt; // dispositivos, generadores y distribuciones aleatorias</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;chrono&gt; // duraciones (duration), unidades de tiempo</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>::this_thread ;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>::chrono ;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span>
+   num_filosofos = <span class="hljs-number">5</span>,
+   num_filo_ten = <span class="hljs-number">2</span>*num_filosofos,  <span class="hljs-comment">// 10 (filósofos + tenedores)</span>
+   id_camarero = num_filo_ten,     <span class="hljs-comment">// 10</span>
+   num_procesos_esperado = num_filo_ten + <span class="hljs-number">1</span>, <span class="hljs-comment">// 11 procesos en total</span>
+
+   etiq_coger       = <span class="hljs-number">0</span>,
+   etiq_soltar      = <span class="hljs-number">1</span>,
+   etiq_sentarse    = <span class="hljs-number">2</span>,
+   etiq_levantarse  = <span class="hljs-number">3</span>;
+
+
+<span class="hljs-comment">//**********************************************************************</span>
+<span class="hljs-comment">// plantilla de función para generar un entero aleatorio uniformemente</span>
+<span class="hljs-comment">// distribuido entre dos valores enteros, ambos incluidos</span>
+<span class="hljs-comment">// (ambos tienen que ser dos constantes, conocidas en tiempo de compilación)</span>
+<span class="hljs-comment">//----------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">template</span>&lt; <span class="hljs-keyword">int</span> <span class="hljs-built_in">min</span>, <span class="hljs-keyword">int</span> <span class="hljs-built_in">max</span> &gt; <span class="hljs-keyword">int</span> <span class="hljs-title">aleatorio</span><span class="hljs-params">()</span>
+</span>{
+  <span class="hljs-function"><span class="hljs-keyword">static</span> default_random_engine <span class="hljs-title">generador</span><span class="hljs-params">( (random_device())() )</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">static</span> uniform_int_distribution&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">distribucion_uniforme</span><span class="hljs-params">( <span class="hljs-built_in">min</span>, <span class="hljs-built_in">max</span> )</span> </span>;
+  <span class="hljs-keyword">return</span> distribucion_uniforme( generador );
+}
+
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_filosofos</span><span class="hljs-params">( <span class="hljs-keyword">int</span> id )</span>
+</span>{
+  <span class="hljs-keyword">int</span> id_ten_izq = (id+<span class="hljs-number">1</span>) % num_filo_ten, <span class="hljs-comment">//id. tenedor izq.</span>
+      id_ten_der = (id+num_filo_ten<span class="hljs-number">-1</span>) % num_filo_ten; <span class="hljs-comment">//id. tenedor der.</span>
+
+   
+   <span class="hljs-keyword">int</span> mensaje = <span class="hljs-number">0</span>; 
+
+  <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> )
+  {
+     <span class="hljs-comment">// 1. SENTARSE</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Filósofo "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" pide SENTARSE"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT,
+              id_camarero, etiq_sentarse, MPI_COMM_WORLD);
+
+    <span class="hljs-comment">// 2. TENEDORES </span>
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt; <span class="hljs-string">" solicita ten. izq. "</span> &lt;&lt;id_ten_izq &lt;&lt;<span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT,
+              id_ten_izq, etiq_coger, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" solicita ten. der. "</span> &lt;&lt;id_ten_der &lt;&lt;<span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT,
+              id_ten_der, etiq_coger, MPI_COMM_WORLD);
+
+    <span class="hljs-comment">// 3. COMER</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" comienza a comer"</span> &lt;&lt;<span class="hljs-built_in">endl</span> ;
+    sleep_for( milliseconds( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() ) );
+
+    <span class="hljs-comment">// 4. SOLTAR TENEDORES</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" suelta ten. izq. "</span> &lt;&lt;id_ten_izq &lt;&lt;<span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT,
+              id_ten_izq, etiq_soltar, MPI_COMM_WORLD);
+
+    <span class="hljs-built_in">cout</span>&lt;&lt; <span class="hljs-string">"Filósofo "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" suelta ten. der. "</span> &lt;&lt;id_ten_der &lt;&lt;<span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT,
+              id_ten_der, etiq_soltar, MPI_COMM_WORLD);
+
+    <span class="hljs-comment">// 5. LEVANTARSE</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Filósofo "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" se LEVANTA"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    MPI_Ssend(&amp;mensaje, <span class="hljs-number">1</span>, MPI_INT,
+              id_camarero, etiq_levantarse, MPI_COMM_WORLD);
+
+    <span class="hljs-comment">// 6. PENSAR</span>
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Filosofo "</span> &lt;&lt; id &lt;&lt; <span class="hljs-string">" comienza a pensar"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+    sleep_for( milliseconds( aleatorio&lt;<span class="hljs-number">10</span>,<span class="hljs-number">100</span>&gt;() ) );
+ }
+}
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_tenedores</span><span class="hljs-params">( <span class="hljs-keyword">int</span> id )</span>
+</span>{
+  <span class="hljs-keyword">int</span> valor, id_filosofo ;  <span class="hljs-comment">// valor recibido, identificador del filósofo</span>
+  MPI_Status estado ;       <span class="hljs-comment">// metadatos de las dos recepciones</span>
+
+  <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> )
+  {
+     MPI_Recv(&amp;valor, <span class="hljs-number">1</span>, MPI_INT, MPI_ANY_SOURCE, etiq_coger, MPI_COMM_WORLD, &amp;estado);
+
+     id_filosofo = estado.MPI_SOURCE;
+     <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Ten. "</span> &lt;&lt;id &lt;&lt;<span class="hljs-string">" ha sido cogido por filo. "</span> &lt;&lt;id_filosofo &lt;&lt;<span class="hljs-built_in">endl</span>;
+
+     MPI_Recv(&amp;valor, <span class="hljs-number">1</span>, MPI_INT, id_filosofo, etiq_soltar, MPI_COMM_WORLD, &amp;estado);
+
+     <span class="hljs-built_in">cout</span> &lt;&lt;<span class="hljs-string">"Ten. "</span>&lt;&lt; id&lt;&lt; <span class="hljs-string">" ha sido liberado por filo. "</span> &lt;&lt;id_filosofo &lt;&lt;<span class="hljs-built_in">endl</span> ;
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">funcion_camarero</span><span class="hljs-params">()</span></span>{
+   <span class="hljs-keyword">int</span> sentados = <span class="hljs-number">0</span>;          <span class="hljs-comment">// número de filósofos sentados</span>
+   <span class="hljs-keyword">int</span> valor;
+   MPI_Status estado;
+
+   <span class="hljs-keyword">while</span> ( <span class="hljs-literal">true</span> ){
+      <span class="hljs-keyword">int</span> etiq_aceptable;
+
+      <span class="hljs-comment">// si ya hay 4 sentados, solo aceptamos LEVANTARSE</span>
+      <span class="hljs-keyword">if</span> ( sentados == <span class="hljs-number">4</span> )
+         etiq_aceptable = etiq_levantarse;
+      <span class="hljs-keyword">else</span>
+         etiq_aceptable = MPI_ANY_TAG; 
+
+      <span class="hljs-comment">// Peticion de filosofo</span>
+      MPI_Recv(&amp;valor, <span class="hljs-number">1</span>, MPI_INT,
+               MPI_ANY_SOURCE, etiq_aceptable,
+               MPI_COMM_WORLD, &amp;estado);
+
+      <span class="hljs-keyword">if</span> ( estado.MPI_TAG == etiq_sentarse ){
+         sentados++;
+         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Camarero: se sienta el filosofo "</span> &lt;&lt; estado.MPI_SOURCE &lt;&lt; <span class="hljs-string">". Sentados = "</span> &lt;&lt; sentados &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+      }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( estado.MPI_TAG == etiq_levantarse ){
+         sentados--;
+         <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Camarero: se levanta el filosofo "</span> &lt;&lt; estado.MPI_SOURCE &lt;&lt; <span class="hljs-string">". Sentados = "</span> &lt;&lt; sentados &lt;&lt; <span class="hljs-built_in">endl</span>;
+      }
+   }
+}
+
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">( <span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv )</span>
+</span>{
+   <span class="hljs-keyword">int</span> id_propio, num_procesos_actual ;
+
+   MPI_Init( &amp;argc, &amp;argv );
+   MPI_Comm_rank( MPI_COMM_WORLD, &amp;id_propio );
+   MPI_Comm_size( MPI_COMM_WORLD, &amp;num_procesos_actual );
+
+
+    <span class="hljs-keyword">if</span> ( num_procesos_esperado == num_procesos_actual ){
+      <span class="hljs-keyword">if</span> ( id_propio == id_camarero )
+          funcion_camarero();
+      <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( id_propio % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> )            <span class="hljs-comment">// par y &lt; num_filo_ten → filósofo</span>
+          funcion_filosofos( id_propio );
+      <span class="hljs-keyword">else</span>                                      <span class="hljs-comment">// impar → tenedor</span>
+          funcion_tenedores( id_propio );
+    }<span class="hljs-keyword">else</span>{
+      <span class="hljs-keyword">if</span> ( id_propio == <span class="hljs-number">0</span> )
+      {
+          <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"el número de procesos esperados es:    "</span> &lt;&lt; num_procesos_esperado &lt;&lt; <span class="hljs-built_in">endl</span>
+            &lt;&lt; <span class="hljs-string">"el número de procesos en ejecución es: "</span> &lt;&lt; num_procesos_actual &lt;&lt; <span class="hljs-built_in">endl</span> &lt;&lt; <span class="hljs-string">"(programa abortado)"</span> &lt;&lt; <span class="hljs-built_in">endl</span> ;
+      }
+    }
+
+
+   MPI_Finalize( );
+   <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">// ---------------------------------------------------------------------</span>
+
+
+</div></code></pre>
+
+</body>
+</html>
