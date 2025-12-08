@@ -75,9 +75,23 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     /* Próxima Práctica */
-    /* boolean comprar(TituloPropiedad titulo) {
+    boolean comprar(TituloPropiedad titulo) {
+        boolean propiedadComprada = false;
 
-    } */
+        if (this.puedeComprar && this.puedoGastar(titulo.getPrecioCompra())) {
+
+            propiedadComprada = titulo.comprar(this);   
+
+            if (propiedadComprada) {
+                this.propiedades.add(titulo);
+                Diario.getInstance().ocurreEvento(
+                    "El jugador " + nombre + " ha recibido: " + titulo.getNombre()
+                );
+            }
+            this.puedeComprar = false;
+        }
+        return propiedadComprada;
+    }
 
 
     /* Próxima Práctica */

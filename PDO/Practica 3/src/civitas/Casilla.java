@@ -110,8 +110,16 @@ public class Casilla {
     private void recibeJugador_calle(int iActual, Jugador[] Jugadores){
         if (jugadorCorrecto(iActual, Jugadores)) {
             informe(iActual, Jugadores);
-            Diario.getInstance().ocurreEvento("El jugador " + Jugadores[iActual].getNombre() + " ha recibido: " + this.tituloPropiedad.getNombre()  );
-            tituloPropiedad.tramitarAlquiler(Jugadores[iActual]);
+            
+            if (!tituloPropiedad.tienePropietario()) {
+                Jugadores[iActual].puedeComprarCasilla();
+                // Diario.getInstance().ocurreEvento("El jugador " + Jugadores[iActual].getNombre() + " ha recibido: " + this.tituloPropiedad.getNombre()  );
+
+
+            } else {
+                tituloPropiedad.tramitarAlquiler(Jugadores[iActual]);
+                
+            }
         }
     }
 

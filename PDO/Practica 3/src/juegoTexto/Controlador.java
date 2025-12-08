@@ -2,22 +2,11 @@ package juegoTexto;
 
 /* CLASES */
 import civitas.CivitasJuego;
-import civitas.Diario;
-// import civitas.Casilla;
-// import civitas.Jugador;
-import civitas.TituloPropiedad;
-
-/* ENUMS */
-import civitas.OperacionesJuego;
 import civitas.GestionInmobilarias;
 import civitas.OperacionInmobilaria;
-import civitas.SalidasCarcel;
+import civitas.OperacionesJuego;
 import civitas.Respuestas;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
-
+import civitas.SalidasCarcel;
 
 public class Controlador {
     private CivitasJuego juego;
@@ -59,8 +48,8 @@ public class Controlador {
                         if(Respuestas.SI == this.vista.comprar()){
                             this.juego.comprar();
 
-                            this.juego.siguientePasoCompletado(OperacionSiguiente);
                         }
+                        
                     }
 
                     case GESTIONAR -> {
@@ -94,7 +83,6 @@ public class Controlador {
                             }
                         }
 
-                        this.juego.siguientePasoCompletado(OperacionSiguiente);
                     }
 
                     case SALIR_CARCEL -> {
@@ -105,13 +93,13 @@ public class Controlador {
                             juego.salirCarcelTirando();
                         }
                         
-                        this.juego.siguientePasoCompletado(OperacionSiguiente);
                     }
 
                     default -> {
-                        
                     }
                 }
+
+                this.juego.siguientePasoCompletado(OperacionSiguiente);
             
                 // System.out.println("\n--- RANKING FINAL ---");
                 // System.out.println(juego.ranking());

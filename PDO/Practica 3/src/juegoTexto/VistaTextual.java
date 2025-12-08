@@ -3,16 +3,11 @@ package juegoTexto;
 /* CLASES */
 import civitas.CivitasJuego;
 import civitas.Diario;
-// import civitas.Casilla;
-// import civitas.Jugador;
-import civitas.TituloPropiedad;
-
-/* ENUMS */
-import civitas.OperacionesJuego;
 import civitas.GestionInmobilarias;
-import civitas.SalidasCarcel;
+import civitas.OperacionesJuego;
 import civitas.Respuestas;
-
+import civitas.SalidasCarcel;
+import civitas.TituloPropiedad;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;

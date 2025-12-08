@@ -104,7 +104,12 @@ public class CivitasJuego {
     /* SIGUIENTE PRACTICA */
     public boolean comprar(){
 
-        return true;
+        Jugador jugador = getJugadorActual();
+        Casilla casilla = this.tablero.getCasilla(jugador.getNumCasillaActual());
+        TituloPropiedad titulo = casilla.getTituloPropiedad();
+        return jugador.comprar(titulo);
+
+        
     }
 
     public boolean comprarCasa(int ip){
@@ -206,7 +211,7 @@ public class CivitasJuego {
     }
 
     public boolean salirCarcelTirando(){
-        Jugador jugadorActual = this.jugadores[indiceJugadorActual];
+        Jugador jugadorActual = this.getJugadorActual();
         return jugadorActual.salirCarcelTirando();
     }
 
@@ -216,12 +221,12 @@ public class CivitasJuego {
         OperacionesJuego operacion = gestorEstados.operacionesPermitidas(this.getJugadorActual(), this.estado);
 
         if (operacion == OperacionesJuego.PASAR_TURNO) {
-            pasarTurno();
+            this.pasarTurno();
 
-            estado = gestorEstados.siguienteEstado(this.getJugadorActual(), this.estado, operacion);
+            this.estado = gestorEstados.siguienteEstado(this.getJugadorActual(), this.estado, operacion);
 
         } else if (operacion == OperacionesJuego.AVANZAR) {
-            avanzaJugador();
+            this.avanzaJugador();
         }
 
         return operacion;

@@ -2,7 +2,6 @@ package juegoTexto;
 
 import civitas.CivitasJuego;
 import civitas.Dado;
-
 import java.util.ArrayList;
 
 

@@ -141,7 +141,7 @@ public class TituloPropiedad {
     }
 
     boolean tienePropietario() {
-        return (this.propietario != null ) ? true : false;
+        return propietario != null;
     }
 
     public String toString() {
@@ -168,7 +168,7 @@ public class TituloPropiedad {
 
     void tramitarAlquiler(Jugador jugador) {
         
-        if(!this.hipotecado && !esEsteElPropietario(jugador)){
+        if( this.tienePropietario() && !this.hipotecado && !esEsteElPropietario(jugador)){
             jugador.pagaAlquiler(this.alquilerBase);
             this.propietario.recibe(this.alquilerBase);
         }

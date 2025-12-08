@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pr%C3%A1ctica-3-pdo--david-rodr%C3%ADguez-aparicio">Práctica 3 PDO | David Rodríguez Aparicio</h1>
+<p>En esta tercera práctica hemos añadido algunas clases nuevas y hemos adaptado el modelo-vista-controlador, como son VitaTextual, Controlador, el main, OperacionInmobiliaria y algunos enums extras.</p>
+<p>En este caso he tenido varios problemas al ejecutar el código, los cuales son problemas de lógica, sobre todo al añadir las nuevas clases y las conexiones entre estas.</p>
+<p>Se han solucionado algunos de estos y se solucionaran todos para dejar la práctica correcta, por ahora la vista textual se muestra pero hay pasos que no los hace correctamente.</p>
+<p>En cuanto a la implementación de las nuevas clases, están todas completas, lo único que falta es terminar de arreglar la lógica de estos.</p>
+<h2 id="vistatextualjava">VistaTextual.java</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> juegoTexto;
+
+<span class="hljs-comment">/* CLASES */</span>
+<span class="hljs-keyword">import</span> civitas.CivitasJuego;
+<span class="hljs-keyword">import</span> civitas.Diario;
+<span class="hljs-keyword">import</span> civitas.GestionInmobilarias;
+<span class="hljs-keyword">import</span> civitas.OperacionesJuego;
+<span class="hljs-keyword">import</span> civitas.Respuestas;
+<span class="hljs-keyword">import</span> civitas.SalidasCarcel;
+<span class="hljs-keyword">import</span> civitas.TituloPropiedad;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+<span class="hljs-keyword">import</span> java.util.Arrays;
+<span class="hljs-keyword">import</span> java.util.Scanner;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">VistaTextual</span> </span>{
+
+    CivitasJuego juegoModel; 
+    <span class="hljs-keyword">int</span> iGestion=-<span class="hljs-number">1</span>;
+    <span class="hljs-keyword">int</span> iPropiedad=-<span class="hljs-number">1</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String separador = <span class="hljs-string">"====================="</span>;
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Scanner in;
+
+    <span class="hljs-comment">/* ---------------------- Constructor ---------------------- */</span> 
+
+    VistaTextual () {
+       in = <span class="hljs-keyword">new</span> Scanner (System.in);
+    }
+
+
+    <span class="hljs-comment">/*  ---------------------- Métodos ---------------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mostrarEstado</span><span class="hljs-params">(String estado)</span> </span>{
+        System.out.println (estado);
+    }
+                
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pausa</span><span class="hljs-params">()</span> </span>{
+        System.out.print (<span class="hljs-string">"Pulsa una tecla"</span>);
+        in.nextLine();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">leeEntero</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> max, String msg1, String msg2)</span> </span>{
+        Boolean ok;
+        String cadena;
+        <span class="hljs-keyword">int</span> numero = -<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">do</span> {
+          System.out.print (msg1);
+          cadena = in.nextLine();
+          <span class="hljs-keyword">try</span> {  
+            numero = Integer.parseInt(cadena);
+            ok = <span class="hljs-keyword">true</span>;
+          } <span class="hljs-keyword">catch</span> (NumberFormatException e) { <span class="hljs-comment">// No se ha introducido un entero</span>
+            System.out.println (msg2);
+            ok = <span class="hljs-keyword">false</span>;  
+          }
+          <span class="hljs-keyword">if</span> (ok &amp;&amp; (numero &lt; <span class="hljs-number">0</span> || numero &gt;= max)) {
+            System.out.println (msg2);
+            ok = <span class="hljs-keyword">false</span>;
+          }
+        } <span class="hljs-keyword">while</span> (!ok);
+
+        <span class="hljs-keyword">return</span> numero;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">menu</span> <span class="hljs-params">(String titulo, ArrayList&lt;String&gt; lista)</span> </span>{
+        String tab = <span class="hljs-string">"  "</span>;
+        <span class="hljs-keyword">int</span> opcion;
+        System.out.println (titulo);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; lista.size(); i++) {
+          System.out.println (tab+i+<span class="hljs-string">"-"</span>+lista.get(i));
+        }
+
+        opcion = leeEntero(lista.size(),
+                              <span class="hljs-string">"\n"</span>+tab+<span class="hljs-string">"Elige una opción: "</span>,
+                              tab+<span class="hljs-string">"Valor erróneo"</span>);
+        <span class="hljs-keyword">return</span> opcion;
+    }
+
+    <span class="hljs-function">SalidasCarcel <span class="hljs-title">salirCarcel</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">int</span> opcion = menu (<span class="hljs-string">"Elige la forma para intentar salir de la carcel"</span>,
+          <span class="hljs-keyword">new</span> ArrayList&lt;&gt; (Arrays.asList(<span class="hljs-string">"Pagando"</span>,<span class="hljs-string">"Tirando el dado"</span>)));          
+        
+        <span class="hljs-keyword">return</span> (SalidasCarcel.values()[opcion]);
+    }
+
+    <span class="hljs-function">Respuestas <span class="hljs-title">comprar</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">int</span> opcion = menu (<span class="hljs-string">"Quieres comprar "</span> + <span class="hljs-keyword">this</span>.juegoModel.getCasillaActual().getNombre(),
+        <span class="hljs-keyword">new</span> ArrayList&lt;&gt; (Arrays.asList(<span class="hljs-string">"SI"</span>,<span class="hljs-string">"NO"</span>)));
+      
+        <span class="hljs-keyword">return</span> (Respuestas.values()[opcion]);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">gestionar</span> <span class="hljs-params">()</span> </span>{
+        ArrayList&lt;String&gt; opcionesGestiones = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(
+            Arrays.asList(
+                <span class="hljs-string">"VENDER"</span>,
+                <span class="hljs-string">"HIPOTECAR"</span>,
+                <span class="hljs-string">"CANCELAR_HIPOTECA"</span>,
+                <span class="hljs-string">"CONSTRUIR_CASA"</span>,
+                <span class="hljs-string">"CONSTRUIR_HOTEL"</span>,
+                <span class="hljs-string">"TERMINAR"</span>
+            )
+        );
+
+        iGestion = menu(<span class="hljs-string">"¿Qué gestión quiere realizar?"</span>, opcionesGestiones);
+
+        <span class="hljs-keyword">if</span> (GestionInmobilarias.values()[iGestion] == GestionInmobilarias.TERMINAR) {
+            iPropiedad = -<span class="hljs-number">1</span>;
+            <span class="hljs-keyword">return</span>;
+        }
+
+        ArrayList&lt;String&gt; nombresPropiedades = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+
+        <span class="hljs-keyword">for</span> (TituloPropiedad propiedad : <span class="hljs-keyword">this</span>.juegoModel.getJugadorActual().getPropiedades()) {
+            nombresPropiedades.add(propiedad.getNombre());
+        }
+
+        <span class="hljs-keyword">if</span> (nombresPropiedades.isEmpty()) {
+            System.out.println(<span class="hljs-string">"El jugador actual no tiene propiedades que gestionar."</span>);
+            iPropiedad = -<span class="hljs-number">1</span>;
+        } <span class="hljs-keyword">else</span> {
+            iPropiedad = menu(
+                <span class="hljs-string">"¿Sobre qué propiedad quiere realizar la gestión?"</span>,
+                nombresPropiedades
+            );
+        }
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mostrarSiguienteOperacion</span><span class="hljs-params">(OperacionesJuego operacion)</span> </span>{
+        
+      <span class="hljs-comment">/* Esta clase no tiene toString sobreescrito ------------ REVISAR ------------ */</span>
+        System.out.println(<span class="hljs-string">"Siguiente Operacion: "</span> + operacion.toString());
+
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mostrarEventos</span><span class="hljs-params">()</span> </span>{
+      <span class="hljs-keyword">while</span> (Diario.getInstance().eventosPendientes()) {
+          System.out.println(<span class="hljs-string">"EVENTO: "</span> + Diario.getInstance().leerEvento());
+      }
+    }
+
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">actualizarVista</span><span class="hljs-params">()</span></span>{
+      System.out.println (<span class="hljs-keyword">this</span>.juegoModel.infoJugadorTexto());
+    } 
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setCivitasJuego</span><span class="hljs-params">(CivitasJuego civitas)</span></span>{ 
+        <span class="hljs-keyword">this</span>.juegoModel=civitas;
+        <span class="hljs-comment">// this.actualizarVista();</span>
+    }
+
+    
+    <span class="hljs-comment">/* ----------------- GETTERS / SETTERS ----------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getGestion</span><span class="hljs-params">()</span></span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.iGestion;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getPropiedad</span><span class="hljs-params">()</span></span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.iPropiedad;
+    }
+    
+}
+
+
+</div></code></pre>
+<h2 id="controladorjava">Controlador.java</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> juegoTexto;
+
+<span class="hljs-comment">/* CLASES */</span>
+<span class="hljs-keyword">import</span> civitas.CivitasJuego;
+<span class="hljs-keyword">import</span> civitas.GestionInmobilarias;
+<span class="hljs-keyword">import</span> civitas.OperacionInmobilaria;
+<span class="hljs-keyword">import</span> civitas.OperacionesJuego;
+<span class="hljs-keyword">import</span> civitas.Respuestas;
+<span class="hljs-keyword">import</span> civitas.SalidasCarcel;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Controlador</span> </span>{
+    <span class="hljs-keyword">private</span> CivitasJuego juego;
+    <span class="hljs-keyword">private</span> VistaTextual vista;
+
+
+    
+    <span class="hljs-comment">/* ---------------------- Constructor ---------------------- */</span> 
+
+    Controlador(CivitasJuego juego, VistaTextual vista){
+        <span class="hljs-keyword">this</span>.juego = juego;
+        <span class="hljs-keyword">this</span>.vista = vista;
+    }
+
+    
+    <span class="hljs-comment">/*  ---------------------- Métodos ---------------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">juega</span><span class="hljs-params">()</span></span>{
+
+        <span class="hljs-keyword">this</span>.vista.setCivitasJuego(<span class="hljs-keyword">this</span>.juego);
+
+        <span class="hljs-keyword">while</span>(!<span class="hljs-keyword">this</span>.juego.finalDelJuego()){
+            <span class="hljs-keyword">this</span>.vista.actualizarVista();
+
+            <span class="hljs-keyword">this</span>.vista.pausa();
+
+            OperacionesJuego OperacionSiguiente = <span class="hljs-keyword">this</span>.juego.siguientePaso();
+
+            <span class="hljs-keyword">this</span>.vista.mostrarSiguienteOperacion(OperacionSiguiente);
+
+            <span class="hljs-keyword">if</span> (OperacionSiguiente != OperacionesJuego.PASAR_TURNO) {
+                vista.mostrarEventos();
+            }
+
+            <span class="hljs-keyword">if</span>( !<span class="hljs-keyword">this</span>.juego.finalDelJuego() ){
+                
+                <span class="hljs-keyword">switch</span> (OperacionSiguiente) {
+                    <span class="hljs-keyword">case</span> COMPRAR -&gt; {
+                        <span class="hljs-keyword">if</span>(Respuestas.SI == <span class="hljs-keyword">this</span>.vista.comprar()){
+                            <span class="hljs-keyword">this</span>.juego.comprar();
+
+                        }
+                        
+                    }
+
+                    <span class="hljs-keyword">case</span> GESTIONAR -&gt; {
+                        <span class="hljs-keyword">this</span>.vista.gestionar();
+
+                        GestionInmobilarias gestion = GestionInmobilarias.values()[vista.getGestion()];
+                        <span class="hljs-keyword">int</span> ip = vista.getPropiedad();
+
+                        OperacionInmobilaria operacionInmobiliaria = <span class="hljs-keyword">new</span> OperacionInmobilaria(gestion,ip);
+
+                        <span class="hljs-keyword">switch</span> (gestion) {
+                            <span class="hljs-keyword">case</span> VENDER -&gt; {
+                                <span class="hljs-keyword">this</span>.juego.vender(operacionInmobiliaria.getNumPropiedad());
+                            }
+                            <span class="hljs-keyword">case</span> HIPOTECAR -&gt; {
+                                <span class="hljs-keyword">this</span>.juego.hipotecar(operacionInmobiliaria.getNumPropiedad());
+                            }
+                            <span class="hljs-keyword">case</span> CANCELAR_HIPOTECA -&gt; {
+                                <span class="hljs-keyword">this</span>.juego.cancelarHipoteca(operacionInmobiliaria.getNumPropiedad());
+                            }
+
+                            <span class="hljs-comment">/* Revisar estas 2 / Se deben usar desde juego y no desde el jugador !!!!!  */</span>
+                            <span class="hljs-keyword">case</span> CONSTRUIR_CASA -&gt; {
+                                <span class="hljs-keyword">this</span>.juego.comprarCasa(operacionInmobiliaria.getNumPropiedad());
+                            }
+                            <span class="hljs-keyword">case</span> CONSTRUIR_HOTEL -&gt; {
+                                <span class="hljs-keyword">this</span>.juego.comprarHotel(operacionInmobiliaria.getNumPropiedad());
+                            }
+                            <span class="hljs-keyword">case</span> TERMINAR -&gt; {
+
+                            }
+                        }
+
+                    }
+
+                    <span class="hljs-keyword">case</span> SALIR_CARCEL -&gt; {
+
+                        <span class="hljs-keyword">if</span> (vista.salirCarcel() == SalidasCarcel.PAGANDO) {
+                            juego.salirCarcelPagando();
+                        } <span class="hljs-keyword">else</span> {
+                            juego.salirCarcelTirando();
+                        }
+                        
+                    }
+
+                    <span class="hljs-keyword">default</span> -&gt; {
+                    }
+                }
+
+                <span class="hljs-keyword">this</span>.juego.siguientePasoCompletado(OperacionSiguiente);
+            
+                <span class="hljs-comment">// System.out.println("\n--- RANKING FINAL ---");</span>
+                <span class="hljs-comment">// System.out.println(juego.ranking());</span>
+
+            }
+        }
+
+    }
+
+}
+
+
+</div></code></pre>
+<h2 id="mainjava">Main.java</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> juegoTexto;
+
+<span class="hljs-keyword">import</span> civitas.CivitasJuego;
+<span class="hljs-keyword">import</span> civitas.Dado;
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span></span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+		
+		ArrayList&lt;String&gt; nombresPorDefecto = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();
+    	nombresPorDefecto.add(<span class="hljs-string">"David"</span>);
+    	nombresPorDefecto.add(<span class="hljs-string">"Jose"</span>);
+    	nombresPorDefecto.add(<span class="hljs-string">"Patri"</span>);
+	
+		Dado.getInstance().setDebug(<span class="hljs-keyword">true</span>);
+
+		CivitasJuego juego = <span class="hljs-keyword">new</span> CivitasJuego(nombresPorDefecto);
+
+		VistaTextual vista = <span class="hljs-keyword">new</span> VistaTextual();
+		Controlador controlador = <span class="hljs-keyword">new</span> Controlador(juego, vista);
+
+		controlador.juega();
+	}
+	
+
+}
+
+</div></code></pre>
+<p>Aqui vemos un ejemplo simple de ejecución</p>
+<p><img src="./capturas/image.png" alt="im1"></p>
+
+</body>
+</html>
