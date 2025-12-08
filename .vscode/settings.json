@@ -69,9 +69,9 @@
 
     // 📌 Aquí marcamos TODAS las prácticas con su propia carpeta src
     "java.project.sourcePaths": [
-        "Practica 1/src",
-        "Practica 2/src",
-        "Practica 3/src"
+        "PDO/Practica 1/src",
+        "PDO/Practica 2/src",
+        "PDO/Practica 3/src"
     ],
 
     // 🔄 Recomendada para que Java refresque la configuración sin romperse

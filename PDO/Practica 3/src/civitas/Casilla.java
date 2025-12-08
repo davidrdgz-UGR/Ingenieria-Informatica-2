@@ -94,26 +94,25 @@ public class Casilla {
     void recibeJugador(int iActual, Jugador[] Jugadores){
 
         /* Se debería poner en la siguiente práctica  */
-        /* switch (this.tipo) {
+        switch (this.tipo) {
 
             case CALLE -> this.recibeJugador_calle(iActual, Jugadores);
             case IMPUESTO -> this.recibeJugador_impuesto(iActual, Jugadores);
             case JUEZ -> this.recibeJugador_juez(iActual, Jugadores);
             case SORPRESA -> this.recibeJugador_sorpresa(iActual, Jugadores);
             case DESCANSO -> {
-                if (jugadorCorrecto(iActual, Jugadores))
-                    informe(iActual, Jugadores);
+                if (jugadorCorrecto(iActual, Jugadores)) informe(iActual, Jugadores);
             }
-        } */
+        }
     }
 
     /* Siguiente Práctica */
     private void recibeJugador_calle(int iActual, Jugador[] Jugadores){
-        /* if (jugadorCorrecto(iActual, Jugadores)) {
+        if (jugadorCorrecto(iActual, Jugadores)) {
             informe(iActual, Jugadores);
             Diario.getInstance().ocurreEvento("El jugador " + Jugadores[iActual].getNombre() + " ha recibido: " + this.tituloPropiedad.getNombre()  );
             tituloPropiedad.tramitarAlquiler(Jugadores[iActual]);
-        } */
+        }
     }
 
     private void recibeJugador_impuesto(int iActual, Jugador[] Jugadores){
@@ -134,11 +133,11 @@ public class Casilla {
 
     /* Siguiente Práctica */
     private void recibeJugador_sorpresa(int iActual, Jugador[] Jugadores){
-        /* if (jugadorCorrecto(iActual, Jugadores)) {
+        if (jugadorCorrecto(iActual, Jugadores)) {
             informe(iActual, Jugadores);
-            sorpresa = mazo.siguiente();
-            sorpresa.aplicarJugador(iActual, Jugadores);
-        } */
+            this.sorpresa = this.mazo.siguiente();
+            this.sorpresa.aplicarJugador(iActual, Jugadores);
+        }
     }
     
     @Override

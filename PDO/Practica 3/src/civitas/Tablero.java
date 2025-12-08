@@ -26,7 +26,7 @@ class Tablero{
     /*  ---------------------- Métodos ---------------------- */
 
     private Boolean tableroCorrecto(){
-        return ( (casillas.size() > numCasillaCarcel) && tieneJuez ) ;  /* DUDA - Esta Doble ?¿?¿? */
+        return ( (casillas.size() > numCasillaCarcel) && tieneJuez ) ; 
     }
 
     Boolean tableroCorrecto(int numCasilla){
@@ -50,7 +50,7 @@ class Tablero{
     void añadeJuez() {
         
         if (!this.tieneJuez) {
-            casillas.add(new Casilla("Juez"));
+            // casillas.add(new Casilla("Juez")); /* Lo añadimos manualmente en la propia creacion del tablero */
             this.tieneJuez = true;
         }
     }

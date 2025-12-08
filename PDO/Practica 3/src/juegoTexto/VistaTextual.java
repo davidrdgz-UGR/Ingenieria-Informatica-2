@@ -149,12 +149,12 @@ public class VistaTextual {
 
 
     void actualizarVista(){
-      System.out.println (this.juegoModel.infoJugadorTexto() /* + "\n Casilla Actual: " + this.juegoModel.getJugadorActual().getNumCasillaActual() */ );
+      System.out.println (this.juegoModel.infoJugadorTexto());
     } 
 
     public void setCivitasJuego(CivitasJuego civitas){ 
         this.juegoModel=civitas;
-        this.actualizarVista();
+        // this.actualizarVista();
     }
 
     

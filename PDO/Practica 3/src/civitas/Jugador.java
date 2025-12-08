@@ -37,7 +37,7 @@ public class Jugador implements Comparable<Jugador>{
         this.numCasillaActual = 0;
         this.saldo = SaldoInicial;
         this.salvoconducto = null;
-        this.propiedades = null; /* No dejar un array como referencia a null, mejor inicializar array vacio */
+        this.propiedades = new ArrayList<>(); /* No dejar un array como referencia a null, mejor inicializar array vacio */
     }
 
     protected Jugador(Jugador otro) {
@@ -46,7 +46,7 @@ public class Jugador implements Comparable<Jugador>{
         this.numCasillaActual = otro.numCasillaActual;
         this.saldo = otro.saldo;
         this.salvoconducto = otro.salvoconducto;
-        this.propiedades = otro.propiedades;    /* Aqui comparten la dirección, hay que copiar por valor y aqui se hace por referencia. */
+        this.propiedades = new ArrayList<>(otro.propiedades);
     }
 
 
