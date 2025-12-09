@@ -71,7 +71,8 @@
     "java.project.sourcePaths": [
         "PDO/Practica 1/src",
         "PDO/Practica 2/src",
-        "PDO/Practica 3/src"
+        "PDO/Practica 3/src",
+        "PDO/Practica 4/src"
     ],
 
     // 🔄 Recomendada para que Java refresque la configuración sin romperse
