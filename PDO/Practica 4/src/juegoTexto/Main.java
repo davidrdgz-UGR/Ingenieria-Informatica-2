@@ -16,9 +16,10 @@ public class Main{
 	
 		Dado.getInstance().setDebug(true);
 
+		
 		CivitasJuego juego = new CivitasJuego(nombresPorDefecto);
-
 		VistaTextual vista = new VistaTextual();
+
 		Controlador controlador = new Controlador(juego, vista);
 
 		controlador.juega();

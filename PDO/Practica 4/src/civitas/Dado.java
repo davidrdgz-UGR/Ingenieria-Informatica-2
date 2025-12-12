@@ -43,7 +43,11 @@ public class Dado{
     }
 
     int quienEmpieza(int n) {
-        return random.nextInt(n); /* Se usa n ya que si hay 5 jugadores ( 5-1 = 4), va del 0-4.99999 */
+        
+        int indiceRandom = random.nextInt(n);
+        // System.out.println("Empieza el jugador " + (indiceRandom + 1) );
+
+        return indiceRandom; /* Se usa n ya que si hay 5 jugadores ( 5-1 = 4), va del 0-4.99999 */
     }
 
     

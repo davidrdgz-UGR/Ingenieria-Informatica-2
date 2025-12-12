@@ -2,8 +2,6 @@ package civitas;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
-@SuppressWarnings("all")
 class MazoSorpresa{
 
     
@@ -34,8 +32,11 @@ class MazoSorpresa{
     }
 
     MazoSorpresa() {
-        this(false); /* DUDA -> porque solo se le da false. ?¿?¿?¿?¿ */
-        init();
+        this(false); 
+        // init();
+
+        // System.out.println("Mazo Inicializado");
+        
     }
 
     /*  ---------------------- Métodos ---------------------- */
@@ -47,6 +48,33 @@ class MazoSorpresa{
         barajada = false;
         usadas = 0;
         ultimaSorpresa = null;
+
+/*             System.out.println("MazoSorpresa creado: " + System.identityHashCode(this));
+            System.out.println("[DEBUG] MazoSorpresa inicializado correctamente");
+            System.out.println("  sorpresas: " + sorpresas.size());
+            System.out.println("  cartasEspeciales: " + cartasEspeciales.size());
+            System.out.println("  barajada: " + barajada);
+            System.out.println("  usadas: " + usadas);
+            System.out.println("  ultimaSorpresa: " + ultimaSorpresa); */
+    }
+
+    void revisarMazo(){
+            
+            System.out.println("MazoSorpresa creado: " + System.identityHashCode(this));
+            System.out.println("[DEBUG] MazoSorpresa inicializado correctamente");
+            System.out.println("  sorpresas: " + sorpresas.size());
+            System.out.println("  cartasEspeciales: " + cartasEspeciales.size());
+            System.out.println("  barajada: " + barajada);
+            System.out.println("  usadas: " + usadas);
+            System.out.println("  ultimaSorpresa: " + ultimaSorpresa);
+
+
+            System.out.println("\n " + this.sorpresas  );
+            for (int i=0; i < this.sorpresas.size(); i++) {
+                System.out.println("\n " + this.sorpresas.get(i) );
+            }
+            System.out.println("\n ");
+
     }
 
 
@@ -118,6 +146,8 @@ class MazoSorpresa{
     int getUsadas() {
         return usadas;
     }
+
+
 
     Sorpresa getUltimaSorpresa() {
         return ultimaSorpresa;

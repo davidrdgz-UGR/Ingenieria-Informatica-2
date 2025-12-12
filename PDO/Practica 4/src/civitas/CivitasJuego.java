@@ -3,6 +3,7 @@ package civitas;
 import java.util.ArrayList;
 import java.util.Arrays;
 // import java.util.Collections;
+import java.util.Random;
 
 
 public class CivitasJuego {
@@ -28,14 +29,18 @@ public class CivitasJuego {
         for (int i = 0; i < nombres.size(); i++) {
             this.jugadores[i] = new Jugador(nombres.get(i));
 
-            // System.out.println("\n Creado jugador: " + this.jugadores[i].getNombre() + "\n");
+            System.out.println("\n Creado jugador: " + this.jugadores[i].getNombre() + "\n");
+            // System.out.println(this.jugadores[i].toString());
+
         }
 
-        this.gestorEstados = new GestorEstados();
-        this.estado = gestorEstados.estadoInicial();
+        this.gestorEstados = new GestorEstados();   
+        this.estado = gestorEstados.estadoInicial();    /* Inicializa estado a "INICIO_TURNO" */
+            // System.out.println("\n" + this.estado  + "\n");
 
         this.indiceJugadorActual = dado.quienEmpieza(this.jugadores.length);
 
+        
         this.mazo = new MazoSorpresa();
 
         this.inicializarTablero(this.mazo); 
@@ -107,6 +112,9 @@ public class CivitasJuego {
         Jugador jugador = getJugadorActual();
         Casilla casilla = this.tablero.getCasilla(jugador.getNumCasillaActual());
         TituloPropiedad titulo = casilla.getTituloPropiedad();
+
+        System.out.println("Comprar - " + jugador.getNombre() + " - " + casilla.getNombre() + " - " + titulo.getNombre() );
+        
         return jugador.comprar(titulo);
 
         
@@ -146,18 +154,28 @@ public class CivitasJuego {
     /* REVISAR + Ver Reglas */
     private void inicializarMazoSorpresa(Tablero tablero) {
 
-        if (this.mazo == null) this.mazo = new MazoSorpresa();
+        /* En principio mazo no va a ser null, pero por si acaso */
+        // System.out.println( this.mazo );
+
+        if (this.mazo == null) {
+            System.out.println("Comprobacion");
+            this.mazo = new MazoSorpresa();
+        }
+
+        /* Esto se debe ajustar en otro sitio */
+        Random r = new Random();
+        int casillaAleatoria = r.nextInt(20);
+
 
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.IRCARCEL,tablero,tablero.getCarcel(),"Vas directo a la cárcel"));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA,tablero,3,"Te mueves a la casilla 3"));
-
+        this.mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA,tablero, casillaAleatoria ,"Te mueves a la casilla "+ casillaAleatoria));
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,-200,"Pagas 200"));
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,200,"Cobras 200"));
-
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,50,"Cobras 50 por cada casa y hotel"));
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.PORJUGADOR,100,"Cada jugador te paga 100"));
-
         this.mazo.alMazo(new Sorpresa(TipoSorpresa.SALIRCARCEL,this.mazo));
+
+        // this.mazo.revisarMazo();
     }  
     
     private void inicializarTablero(MazoSorpresa mazo){
@@ -167,7 +185,7 @@ public class CivitasJuego {
 
         /* TABLERO PROVISIONAL */
         
-        // /*  0 */tablero.añadeCasilla(new Casilla("SALIDA")); /* Ya se crea por defecto, no hace falta. */
+        /*  0 */tablero.añadeCasilla(new Casilla("SALIDA")); /* Ya se crea por defecto, no hace falta. */
         /*  1 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle1",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /*  2 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle2",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /*  3 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle3",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
@@ -182,7 +200,7 @@ public class CivitasJuego {
         /* 12 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle13",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /* 13 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle14",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /* 14 */tablero.añadeCasilla(new Casilla("CARCEL"));
-        /* 15 */tablero.añadeCasilla(new Casilla(new MazoSorpresa(),"SORPRESA"));
+        /* 15 */tablero.añadeCasilla(new Casilla( mazo /* this.mazo */ ,"SORPRESA"));
         /* 16 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle17",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /* 17 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle18",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /* 18 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle19",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
@@ -218,6 +236,9 @@ public class CivitasJuego {
     /* COMPLETAR MÉTODO  ?¿?¿?¿ */
     public OperacionesJuego siguientePaso(){
         
+        /* AQUI ESTA EL FALLO -> ESTADO ACTUAL */
+        System.out.println("\n Estado Actual: " + this.estado + " Jugador Actual: " + this.getJugadorActual().getNombre() + " - Casilla " + this.getJugadorActual().getNumCasillaActual() + " / " + this.tablero.getCasilla(this.getJugadorActual().getNumCasillaActual()).getNombre() +"\n" );
+
         OperacionesJuego operacion = gestorEstados.operacionesPermitidas(this.getJugadorActual(), this.estado);
 
         if (operacion == OperacionesJuego.PASAR_TURNO) {
@@ -234,9 +255,14 @@ public class CivitasJuego {
     }
 
     public void siguientePasoCompletado(OperacionesJuego operacion){
-        Jugador jugadorActual = this.jugadores[indiceJugadorActual];
+        System.out.println("\n Entramos a SiguientePasoCompletado, Operacion: " + operacion );
+
+        Jugador jugadorActual = this.jugadores[this.indiceJugadorActual];
+        // System.out.println("\n Jugador Actual: " + jugadorActual.getNombre());
 
         this.estado = gestorEstados.siguienteEstado(jugadorActual, this.estado, operacion);
+        System.out.println("\n Estado Actual: " + this.estado + "\n" );
+
     }
 
     public boolean vender(int ip){

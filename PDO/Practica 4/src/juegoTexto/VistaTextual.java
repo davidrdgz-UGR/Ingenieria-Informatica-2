@@ -86,6 +86,8 @@ public class VistaTextual {
     }
 
     Respuestas comprar() {
+        System.out.println("\n Propiedad Prueba " + this.juegoModel.getCasillaActual() + "\n");
+
         int opcion = menu ("Quieres comprar " + this.juegoModel.getCasillaActual().getNombre(),
         new ArrayList<> (Arrays.asList("SI","NO")));
       
@@ -132,7 +134,7 @@ public class VistaTextual {
     void mostrarSiguienteOperacion(OperacionesJuego operacion) {
         
       /* Esta clase no tiene toString sobreescrito ------------ REVISAR ------------ */
-        System.out.println("Siguiente Operacion: " + operacion.toString());
+        System.out.println("Siguiente Operacion: " + operacion + "\n");
 
     }
 
@@ -145,6 +147,7 @@ public class VistaTextual {
 
     void actualizarVista(){
       System.out.println (this.juegoModel.infoJugadorTexto());
+      // System.out.println( "\n Casilla Actual:"+ this.juegoModel.getCasillaActual().getNombre() +"\n");
     } 
 
     public void setCivitasJuego(CivitasJuego civitas){ 

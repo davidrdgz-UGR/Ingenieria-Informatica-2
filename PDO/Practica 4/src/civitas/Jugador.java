@@ -276,7 +276,7 @@ public class Jugador implements Comparable<Jugador>{
         String texto = 
             "Jugador: " + this.nombre +
             "\n  Estado: " + estado +
-            "\n  Casilla actual: " + this.numCasillaActual +
+            "\n  Casilla actual: " + this.numCasillaActual + 
             "\n  Saldo: " + this.saldo +
             "\n  Puede comprar: " + this.puedeComprar +
             "\n  Salvoconducto: " + (this.salvoconducto != null ? "SI" : "NO") +

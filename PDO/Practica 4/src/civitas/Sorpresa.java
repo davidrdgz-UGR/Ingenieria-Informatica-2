@@ -22,6 +22,7 @@ class Sorpresa{
         this.mazo = null;
     }
 
+    /* Para IRCASILLA */
     Sorpresa(TipoSorpresa tipo, Tablero tablero, int valor, String texto) {
         this.init();
         this.tipo = tipo;
@@ -48,6 +49,8 @@ class Sorpresa{
         this.mazo = mazo;
 
         this.texto = "";
+        if(tipo == TipoSorpresa.SALIRCARCEL ) this.texto = "Salvoconducto";
+
         this.valor = -1;
         this.tablero = null;
     }
@@ -187,6 +190,10 @@ class Sorpresa{
         if (tipo == TipoSorpresa.SALIRCARCEL && mazo != null) {
                 mazo.habilitarCartaEspecial(this);
         }
+    }
+
+    TipoSorpresa getTipoCasilla(){
+        return this.tipo;
     }
     
     private void init(){

@@ -29,21 +29,26 @@ public class Controlador {
         this.vista.setCivitasJuego(this.juego);
 
         while(!this.juego.finalDelJuego()){
+
             this.vista.actualizarVista();
 
             this.vista.pausa();
 
             OperacionesJuego OperacionSiguiente = this.juego.siguientePaso();
 
+            /* Es SOLO un texto de comprobacion */
             this.vista.mostrarSiguienteOperacion(OperacionSiguiente);
 
+            /* Texto del Diario.EventosPendientes() SI NO SE PASA DE TURNO */
             if (OperacionSiguiente != OperacionesJuego.PASAR_TURNO) {
                 vista.mostrarEventos();
             }
 
+
             if( !this.juego.finalDelJuego() ){
                 
                 switch (OperacionSiguiente) {
+                    
                     case COMPRAR -> {
                         if(Respuestas.SI == this.vista.comprar()){
                             this.juego.comprar();

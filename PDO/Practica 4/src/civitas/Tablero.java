@@ -17,7 +17,7 @@ class Tablero{
         
         this.numCasillaCarcel = ( numeroCasillaCarcel >= 1 ) ? numeroCasillaCarcel : 5 ;
         this.casillas = new ArrayList<>();
-        this.casillas.add(new Casilla("Salida"));
+        // this.casillas.add(new Casilla("Salida"));
         this.porSalida = 0;
         this.tieneJuez = false;
 
