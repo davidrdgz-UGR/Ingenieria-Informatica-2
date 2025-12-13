@@ -14,7 +14,7 @@ public class Main{
     	nombresPorDefecto.add("Jose");
     	nombresPorDefecto.add("Patri");
 	
-		Dado.getInstance().setDebug(true);
+		Dado.getInstance().setDebug(false);
 
 		
 		CivitasJuego juego = new CivitasJuego(nombresPorDefecto);

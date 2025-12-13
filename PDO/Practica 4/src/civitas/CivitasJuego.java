@@ -88,7 +88,10 @@ public class CivitasJuego {
         System.out.println("Comprobacion avanzaJugador: " + jugadorActual.getNombre() + " - " + posicionActual + " - " + posicionNueva + " - " + this.tablero.getCasilla(posicionNueva).getNombre());
         
         contabilizarPasosPorSalida(jugadorActual);
-        jugadorActual.moverACasilla(posicionNueva);
+        
+        // jugadorActual.moverACasilla(posicionNueva);
+        this.tablero.getCasilla(posicionNueva).recibeJugador(this.indiceJugadorActual,this.jugadores);
+
         this.tablero.getCasilla(posicionNueva).recibeJugador(this.indiceJugadorActual, this.jugadores);
         contabilizarPasosPorSalida(jugadorActual);
 
@@ -280,6 +283,10 @@ public class CivitasJuego {
 
     public Jugador getJugadorActual(){
         return this.jugadores[this.indiceJugadorActual];
+    }
+
+    public Tablero getTablero(){
+        return this.tablero;
     }
 
 }

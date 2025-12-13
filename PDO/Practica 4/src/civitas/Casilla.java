@@ -21,7 +21,7 @@ public class Casilla {
     Casilla(String nombre) {
         this.init();
         this.nombre = nombre;
-
+        
     }
 
     Casilla(TituloPropiedad titulo){
@@ -110,13 +110,17 @@ public class Casilla {
     private void recibeJugador_calle(int iActual, Jugador[] Jugadores){
         if (jugadorCorrecto(iActual, Jugadores)) {
             informe(iActual, Jugadores);
+
+            System.out.println("\n recibirjugador_calle - tiene propietario" + tituloPropiedad.tienePropietario());
             
-            if (!tituloPropiedad.tienePropietario()) {
+            if (!tituloPropiedad.tienePropietario() /* && this.tipo != TipoCasilla.CALLE */ ) {
                 Jugadores[iActual].puedeComprarCasilla();
                 // Diario.getInstance().ocurreEvento("El jugador " + Jugadores[iActual].getNombre() + " ha recibido: " + this.tituloPropiedad.getNombre()  );
 
 
             } else {
+                
+                System.out.println("\n Entada a recibir calle - tramitarAlquiler \n");
                 tituloPropiedad.tramitarAlquiler(Jugadores[iActual]);
                 
             }
@@ -177,4 +181,7 @@ public class Casilla {
         return this.tituloPropiedad;
     }
 
+    public TipoCasilla getTipoCasilla(){
+        return this.tipo;
+    }
 }

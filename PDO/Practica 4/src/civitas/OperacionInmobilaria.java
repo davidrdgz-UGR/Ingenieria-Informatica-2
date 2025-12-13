@@ -10,7 +10,7 @@ public class OperacionInmobilaria {
 
     /* Era de paquete / Necesita ser pública para usarse en Controlador */
     public OperacionInmobilaria(GestionInmobilarias gestiones, int ipPropiedad){
-
+        
     }
 
 

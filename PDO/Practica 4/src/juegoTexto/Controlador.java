@@ -51,7 +51,7 @@ public class Controlador {
                 switch (OperacionSiguiente) {
                     
                     case COMPRAR -> {
-                        if(Respuestas.SI == this.vista.comprar()){
+                        if( Respuestas.SI == this.vista.comprar() ){
                             this.juego.comprar();
                         }
                     }

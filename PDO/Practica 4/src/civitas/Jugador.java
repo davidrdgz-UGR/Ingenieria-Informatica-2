@@ -84,6 +84,8 @@ public class Jugador implements Comparable<Jugador>{
 
             if (propiedadComprada) {
                 this.propiedades.add(titulo);
+                titulo.actualizaPropietarioPorConversion(this);
+
                 Diario.getInstance().ocurreEvento(
                     "El jugador " + nombre + " ha recibido: " + titulo.getNombre()
                 );
@@ -201,7 +203,11 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     boolean puedeComprarCasilla() {
+        
         this.puedeComprar = !this.encarcelado;
+
+        
+
         return this.puedeComprar;
     }
 
@@ -286,7 +292,7 @@ public class Jugador implements Comparable<Jugador>{
         for (TituloPropiedad propiedad : propiedades) {
             texto += "\n    - " + propiedad.getNombre() +
                     " (Casas: " + propiedad.getNumCasas() +
-                    ", Hoteles: " + propiedad.getNumHoteles() + ")";
+                    ", Hoteles: " + propiedad.getNumHoteles() + ") - " + propiedad.getPropietario().getNombre();
         }
 
         return texto;

@@ -115,9 +115,6 @@ public class TituloPropiedad {
         return false;
     }
 
-    private boolean esEsteElPropietario(Jugador jugador) {
-        return (this.propietario == jugador ) ? true : false;   
-    }
 
     boolean hipotecar(Jugador jugador) {
         
@@ -136,8 +133,12 @@ public class TituloPropiedad {
 
     private boolean propietarioEncarcelado() {
         
-        return ( this.propietario != null || this.propietario.encarcelado ) ? true : false;
+        return this.propietario.encarcelado;
 
+    }
+
+    boolean esEsteElPropietario(Jugador jugador){
+        return this.propietario == jugador;
     }
 
     boolean tienePropietario() {
@@ -148,7 +149,7 @@ public class TituloPropiedad {
         String representacion;
         
         representacion =
-                "Titulo Propiedad:\n" +
+                " Titulo Propiedad: \n" +
                 "\t- Nombre = " + nombre + "\n" +
                 "\t- Alquiler base = " + alquilerBase + "\n" +
                 "\t- Factor de revalorización = " + factorRevalorizacion + "\n" +
@@ -167,10 +168,14 @@ public class TituloPropiedad {
     }
 
     void tramitarAlquiler(Jugador jugador) {
-        
+        System.out.println("Entra a Tramitar Alquiler - Propietario: " + this.tienePropietario() + " - " + esEsteElPropietario(jugador) + " - " + this.getPropietario() );
+
         if( this.tienePropietario() && !this.hipotecado && !esEsteElPropietario(jugador)){
-            jugador.pagaAlquiler(this.alquilerBase);
-            this.propietario.recibe(this.alquilerBase);
+            
+            System.out.println("Precio Alquiler: " + this.getPrecioAlquiler() + " - Base: " + this.alquilerBase);
+
+            jugador.pagaAlquiler(this.getPrecioAlquiler() );
+            this.propietario.recibe(this.getPrecioAlquiler());
         }
 
     }
