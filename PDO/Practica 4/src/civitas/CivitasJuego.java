@@ -196,15 +196,15 @@ public class CivitasJuego {
         /*  7 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle7",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /*  8 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle8",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /*  9 */tablero.añadeCasilla(new Casilla(14,"JUEZ"));
-        /* 10 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle11",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 11 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle12",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 12 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle13",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 13 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle14",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 10 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle10",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 11 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle11",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 12 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle12",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 13 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle13",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /* 14 */tablero.añadeCasilla(new Casilla("CARCEL"));
         /* 15 */tablero.añadeCasilla(new Casilla( mazo /* this.mazo */ ,"SORPRESA"));
-        /* 16 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle17",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 17 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle18",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 18 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle19",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 16 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle16",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 17 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle17",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 18 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle18",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /* 19 */tablero.añadeCasilla(new Casilla((float) 250.00,"IMPUESTO"));
         
         this.tablero.añadeJuez();

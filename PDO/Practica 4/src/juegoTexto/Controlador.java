@@ -6,6 +6,7 @@ import civitas.GestionInmobilarias;
 import civitas.OperacionesJuego;
 import civitas.Respuestas;
 import civitas.SalidasCarcel;
+import civitas.TipoCasilla;
 
 public class Controlador {
     private CivitasJuego juego;
@@ -43,6 +44,11 @@ public class Controlador {
             /* Texto del Diario.EventosPendientes() SI NO SE PASA DE TURNO */
             if (OperacionSiguiente != OperacionesJuego.PASAR_TURNO) {
                 vista.mostrarEventos();
+            }
+
+            /* Lo he hardcodeado aqui, ahora mismo no se desde donde arreglar este problema */
+            if (this.juego.getCasillaActual().getTipoCasilla() != TipoCasilla.CALLE ) {
+                this.juego.getJugadorActual().setPuedeComprar(false);
             }
 
 

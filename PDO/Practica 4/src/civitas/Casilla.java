@@ -102,7 +102,9 @@ public class Casilla {
             case JUEZ -> this.recibeJugador_juez(iActual, Jugadores);
             case SORPRESA -> this.recibeJugador_sorpresa(iActual, Jugadores);
             case DESCANSO -> {
-                if (jugadorCorrecto(iActual, Jugadores)) informe(iActual, Jugadores);
+                if (jugadorCorrecto(iActual, Jugadores)){ 
+                    informe(iActual, Jugadores);
+                }
             }
         }
     }

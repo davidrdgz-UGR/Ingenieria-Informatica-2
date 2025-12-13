@@ -11,8 +11,8 @@ public class Main{
 		
 		ArrayList<String> nombresPorDefecto = new ArrayList<>();
     	nombresPorDefecto.add("David");
-    	nombresPorDefecto.add("Jose");
-    	nombresPorDefecto.add("Patri");
+    	// nombresPorDefecto.add("Jose");
+    	// nombresPorDefecto.add("Patri");
 	
 		Dado.getInstance().setDebug(false);
 
