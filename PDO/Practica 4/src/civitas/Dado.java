@@ -32,6 +32,8 @@ public class Dado{
         
         this.ultimoResultado = ( debug ) ? 1 : random.nextInt(6) + 1;
 
+        System.out.println("\n Has sacado un " + this.ultimoResultado + " \n");
+
         return this.ultimoResultado;
 
     }

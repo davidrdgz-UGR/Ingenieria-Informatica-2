@@ -86,7 +86,8 @@ public class VistaTextual {
     }
 
     Respuestas comprar() {
-        System.out.println("\n Propiedad Prueba " + this.juegoModel.getCasillaActual() + "\n");
+        // System.out.println("\n Propiedad Prueba " + this.juegoModel.getTa + "\n");
+        // System.out.println("\n Propiedad Prueba " + this.juegoModel.getCasillaActual() + "\n");
 
         int opcion = menu ("Quieres comprar " + this.juegoModel.getCasillaActual().getNombre(),
         new ArrayList<> (Arrays.asList("SI","NO")));

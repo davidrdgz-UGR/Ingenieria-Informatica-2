@@ -58,6 +58,9 @@ class GestorEstados {
             siguienteEstado = EstadosJuego.DESPUES_CARCEL;
           else if (operacion==OperacionesJuego.AVANZAR)
             siguienteEstado = EstadosJuego.DESPUES_AVANZAR;
+          else if( operacion==OperacionesJuego.PASAR_TURNO){
+            siguienteEstado = EstadosJuego.INICIO_TURNO;
+          }
       }
 
       case DESPUES_CARCEL -> {
@@ -71,23 +74,29 @@ class GestorEstados {
               case PASAR_TURNO -> siguienteEstado = EstadosJuego.INICIO_TURNO;
               case COMPRAR -> siguienteEstado = EstadosJuego.DESPUES_COMPRAR;
               case GESTIONAR -> siguienteEstado = EstadosJuego.DESPUES_GESTIONAR;
-          }
+        }
       }
 
       case DESPUES_COMPRAR -> {
-        if (operacion==OperacionesJuego.GESTIONAR)
+        if (operacion==OperacionesJuego.GESTIONAR){
           siguienteEstado = EstadosJuego.DESPUES_GESTIONAR;
-        else if (operacion==OperacionesJuego.PASAR_TURNO)
+        }else if (operacion==OperacionesJuego.PASAR_TURNO){
+          // System.out.println("Cambio de Estado a Inicio_Turno");
           siguienteEstado = EstadosJuego.INICIO_TURNO;
+        }
       }
 
       case DESPUES_GESTIONAR -> {
-        if (operacion==OperacionesJuego.PASAR_TURNO)
+        if (operacion==OperacionesJuego.PASAR_TURNO){
+          // System.out.println("Cambio de Estado a Inicio_Turno");
           siguienteEstado = EstadosJuego.INICIO_TURNO;
+        }
       }
     }
 
-    Diario.getInstance().ocurreEvento("De: "+estado.toString()+ " con "+operacion.toString()+ " sale: "+siguienteEstado.toString());
+    Diario.getInstance().ocurreEvento(
+      "De: " + estado + " con " + operacion + " sale: " + String.valueOf(siguienteEstado)
+    );
 
     return siguienteEstado;
   }

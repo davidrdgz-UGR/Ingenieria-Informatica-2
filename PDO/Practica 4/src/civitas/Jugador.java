@@ -96,14 +96,14 @@ public class Jugador implements Comparable<Jugador>{
 
     /* Próxima Práctica */
     boolean construirCasa(int ip) {
-
-        return true;
+        return this.propiedades.get(ip).construirCasa(this);
     }
 
     /* Próxima Práctica */
     boolean construirHotel(int ip) {
 
-        return true;
+        return this.propiedades.get(ip).construirHotel
+        (this);
     }
 
     protected boolean debeSerEncarcelado() {
@@ -260,6 +260,7 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     boolean tieneAlgoQueGestionar() {
+        System.out.println("Propiedades Jugador -> " + !propiedades.isEmpty());
         return !propiedades.isEmpty();
     }
 
@@ -357,6 +358,10 @@ public class Jugador implements Comparable<Jugador>{
 
     public boolean isEncarcelado() {
         return this.encarcelado;
+    }
+
+    public void setNumCasillaActual(int nuevaCasilla){
+        this.numCasillaActual = nuevaCasilla;
     }
 
 }

@@ -2,7 +2,6 @@ package civitas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-// import java.util.Collections;
 import java.util.Random;
 
 
@@ -29,7 +28,7 @@ public class CivitasJuego {
         for (int i = 0; i < nombres.size(); i++) {
             this.jugadores[i] = new Jugador(nombres.get(i));
 
-            System.out.println("\n Creado jugador: " + this.jugadores[i].getNombre() + "\n");
+            // System.out.println("\n Creado jugador: " + this.jugadores[i].getNombre() + "\n");
             // System.out.println(this.jugadores[i].toString());
 
         }
@@ -83,15 +82,14 @@ public class CivitasJuego {
 
         int posicionNueva = tablero.nuevaPosicion(posicionActual, tirada);
 
-        Casilla casilla = tablero.getCasilla(posicionNueva);
+        jugadorActual.setNumCasillaActual( posicionNueva );
 
+
+        System.out.println("Comprobacion avanzaJugador: " + jugadorActual.getNombre() + " - " + posicionActual + " - " + posicionNueva + " - " + this.tablero.getCasilla(posicionNueva).getNombre());
         
         contabilizarPasosPorSalida(jugadorActual);
-
         jugadorActual.moverACasilla(posicionNueva);
-
-        casilla.recibeJugador(indiceJugadorActual, jugadores);
-
+        this.tablero.getCasilla(posicionNueva).recibeJugador(this.indiceJugadorActual, this.jugadores);
         contabilizarPasosPorSalida(jugadorActual);
 
     }
@@ -236,18 +234,17 @@ public class CivitasJuego {
     /* COMPLETAR MÉTODO  ?¿?¿?¿ */
     public OperacionesJuego siguientePaso(){
         
-        /* AQUI ESTA EL FALLO -> ESTADO ACTUAL */
         System.out.println("\n Estado Actual: " + this.estado + " Jugador Actual: " + this.getJugadorActual().getNombre() + " - Casilla " + this.getJugadorActual().getNumCasillaActual() + " / " + this.tablero.getCasilla(this.getJugadorActual().getNumCasillaActual()).getNombre() +"\n" );
 
         OperacionesJuego operacion = gestorEstados.operacionesPermitidas(this.getJugadorActual(), this.estado);
 
         if (operacion == OperacionesJuego.PASAR_TURNO) {
             this.pasarTurno();
-
             this.estado = gestorEstados.siguienteEstado(this.getJugadorActual(), this.estado, operacion);
 
         } else if (operacion == OperacionesJuego.AVANZAR) {
             this.avanzaJugador();
+            
         }
 
         return operacion;
@@ -255,13 +252,14 @@ public class CivitasJuego {
     }
 
     public void siguientePasoCompletado(OperacionesJuego operacion){
-        System.out.println("\n Entramos a SiguientePasoCompletado, Operacion: " + operacion );
+        System.out.println("\n Entramos a SiguientePasoCompletado, Operacion: " + operacion + " Estado - " + this.estado );
+
 
         Jugador jugadorActual = this.jugadores[this.indiceJugadorActual];
         // System.out.println("\n Jugador Actual: " + jugadorActual.getNombre());
 
         this.estado = gestorEstados.siguienteEstado(jugadorActual, this.estado, operacion);
-        System.out.println("\n Estado Actual: " + this.estado + "\n" );
+        System.out.println("\n Estado Nuevo: " + this.estado + "\n" );
 
     }
 
@@ -277,7 +275,7 @@ public class CivitasJuego {
     /* ---------------- SETTERS / GETTERS ---------------- */
 
     public Casilla getCasillaActual(){
-        return this.tablero.getCasilla(this.indiceJugadorActual);
+        return this.tablero.getCasilla(this.jugadores[indiceJugadorActual].getNumCasillaActual());
     }
 
     public Jugador getJugadorActual(){
