@@ -85,7 +85,7 @@ public class CivitasJuego {
         jugadorActual.setNumCasillaActual( posicionNueva );
 
 
-        System.out.println("Comprobacion avanzaJugador: " + jugadorActual.getNombre() + " - " + posicionActual + " - " + posicionNueva + " - " + this.tablero.getCasilla(posicionNueva).getNombre());
+        // System.out.println("Comprobacion avanzaJugador: " + jugadorActual.getNombre() + " - " + posicionActual + " - " + posicionNueva + " - " + this.tablero.getCasilla(posicionNueva).getNombre());
         
         contabilizarPasosPorSalida(jugadorActual);
         
@@ -114,7 +114,7 @@ public class CivitasJuego {
         Casilla casilla = this.tablero.getCasilla(jugador.getNumCasillaActual());
         TituloPropiedad titulo = casilla.getTituloPropiedad();
 
-        System.out.println("Comprar - " + jugador.getNombre() + " - " + casilla.getNombre() + " - " + titulo.getNombre() );
+        // System.out.println("Comprar - " + jugador.getNombre() + " - " + casilla.getNombre() + " - " + titulo.getNombre() );
         
         return jugador.comprar(titulo);
 
@@ -159,7 +159,7 @@ public class CivitasJuego {
         // System.out.println( this.mazo );
 
         if (this.mazo == null) {
-            System.out.println("Comprobacion");
+            // System.out.println("Comprobacion");
             this.mazo = new MazoSorpresa();
         }
 
@@ -237,7 +237,7 @@ public class CivitasJuego {
     /* COMPLETAR MÉTODO  ?¿?¿?¿ */
     public OperacionesJuego siguientePaso(){
         
-        System.out.println("\n Estado Actual: " + this.estado + " Jugador Actual: " + this.getJugadorActual().getNombre() + " - Casilla " + this.getJugadorActual().getNumCasillaActual() + " / " + this.tablero.getCasilla(this.getJugadorActual().getNumCasillaActual()).getNombre() +"\n" );
+        // System.out.println("\n Estado Actual: " + this.estado + " Jugador Actual: " + this.getJugadorActual().getNombre() + " - Casilla " + this.getJugadorActual().getNumCasillaActual() + " / " + this.tablero.getCasilla(this.getJugadorActual().getNumCasillaActual()).getNombre() +"\n" );
 
         OperacionesJuego operacion = gestorEstados.operacionesPermitidas(this.getJugadorActual(), this.estado);
 
@@ -255,14 +255,14 @@ public class CivitasJuego {
     }
 
     public void siguientePasoCompletado(OperacionesJuego operacion){
-        System.out.println("\n Entramos a SiguientePasoCompletado, Operacion: " + operacion + " Estado - " + this.estado );
+        // System.out.println("\n Entramos a SiguientePasoCompletado, Operacion: " + operacion + " Estado - " + this.estado );
 
 
         Jugador jugadorActual = this.jugadores[this.indiceJugadorActual];
         // System.out.println("\n Jugador Actual: " + jugadorActual.getNombre());
 
         this.estado = gestorEstados.siguienteEstado(jugadorActual, this.estado, operacion);
-        System.out.println("\n Estado Nuevo: " + this.estado + "\n" );
+        // System.out.println("\n Estado Nuevo: " + this.estado + "\n" );
 
     }
 

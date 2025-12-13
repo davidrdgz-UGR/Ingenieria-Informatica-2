@@ -266,7 +266,7 @@ public class Jugador implements Comparable<Jugador>{
     }
 
     boolean tieneAlgoQueGestionar() {
-        System.out.println("Propiedades Jugador -> " + !propiedades.isEmpty());
+        // System.out.println("Propiedades Jugador -> " + !propiedades.isEmpty());
         return !propiedades.isEmpty();
     }
 

@@ -168,11 +168,11 @@ public class TituloPropiedad {
     }
 
     void tramitarAlquiler(Jugador jugador) {
-        System.out.println("Entra a Tramitar Alquiler - Propietario: " + this.tienePropietario() + " - " + esEsteElPropietario(jugador) + " - " + this.getPropietario() );
+        // System.out.println("Entra a Tramitar Alquiler - Propietario: " + this.tienePropietario() + " - " + esEsteElPropietario(jugador) + " - " + this.getPropietario() );
 
         if( this.tienePropietario() && !this.hipotecado && !esEsteElPropietario(jugador)){
             
-            System.out.println("Precio Alquiler: " + this.getPrecioAlquiler() + " - Base: " + this.alquilerBase);
+            // System.out.println("Precio Alquiler: " + this.getPrecioAlquiler() + " - Base: " + this.alquilerBase);
 
             jugador.pagaAlquiler(this.getPrecioAlquiler() );
             this.propietario.recibe(this.getPrecioAlquiler());
