@@ -38,7 +38,12 @@ public:
 
     string toString() const;
 
+    bool modificarContacto(const string& nombre);
+
+
     bool cargar(const string& nombre_fichero);
+
+    bool guardar(const string& nombre_fichero) const;
 
 
  

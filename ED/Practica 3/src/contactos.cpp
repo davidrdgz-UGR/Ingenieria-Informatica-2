@@ -19,10 +19,16 @@ Contacto::Contacto(string nombreContacto){
 
     this->nombre = nombreContacto;
 
-
-
+    this->preguntarConstructor();
     
 }
+
+/* SOLO SE USA AL USAR CARGAR ARCHIVO */
+Contacto::Contacto(){
+    this->nombre = "";
+
+}
+
 
 
 /* -------------- MÉTODOS -------------- */
@@ -74,18 +80,19 @@ bool Contacto::borrarEtiqueta(const string& etiquetaBorrar){
 } */
 
 
-void Contacto::preguntarConstructor(string modo){
+void Contacto::preguntarConstructor(){
     
     int cantidadTelefonos,cantidadCorreos,cantidadEtiquetas;
 
     string añadirTelefono,añadirCorreo,añadirEtiquetas;
 
-    cout << "\n Cuantos telefonos tiene?";
+    cout << "\n Cuantos telefonos tiene? ";
     cin >> cantidadTelefonos;
 
     cout << "\n Escribe el numero de los telefonos:";
     for(int i = 0; i<cantidadTelefonos; i++){
-    
+        
+        cout << "\n" + to_string(i) + ": ";
         cin >> añadirTelefono;
 
         this->añadirTelefono(añadirTelefono);
@@ -97,7 +104,8 @@ void Contacto::preguntarConstructor(string modo){
 
     cout << "\n Escribe el nombre de los correos:";
     for(int i = 0; i<cantidadCorreos; i++){
-    
+        
+        cout << "\n" + to_string(i) + ": ";
         cin >> añadirCorreo;
 
         this->añadirCorreo(añadirCorreo);
@@ -111,9 +119,10 @@ void Contacto::preguntarConstructor(string modo){
     cout << "\n Escribe las etiquetas: ";
     for(int i = 0; i<cantidadEtiquetas; i++){
     
-        cin >> añadirCorreo;
+        cout << "\n" + to_string(i) + ": ";
+        cin >> añadirEtiquetas;
 
-        this->añadirCorreo(añadirCorreo);
+        this->añadirEtiqueta(añadirEtiquetas);
     }
 
 
@@ -123,32 +132,32 @@ string Contacto::toString() const {
     /* los foreach usan ya cons_iterator/begin/end por defecto ?¿ */
     string texto;
 
-    texto = "Contacto: " + nombre;
+    texto = " Contacto: " + nombre;
 
     texto += "\n Telefonos: ";
     if (telefonos.empty()) {
         texto += "No tiene telefonos";
     } else {
         for (const auto& telefono : telefonos) {
-            texto += telefono + " | ";
+            texto += telefono + "  ";
         }
     }
 
-    texto += "\nCorreos: ";
+    texto += "\n Correos: ";
     if (correos.empty()) {
         texto += "No tiene correos";
     } else {
         for (const auto& correo : correos) {
-            texto += correo + " | ";
+            texto += correo + "  ";
         }
     }
 
-    texto += "\nEtiquetas: ";
+    texto += "\n Etiquetas: ";
     if (etiquetas.empty()) {
         texto += "No tiene etiquetas";
     } else {
         for (const auto& etiqueta : etiquetas) {
-            texto += etiqueta + " | ";
+            texto += etiqueta + "  ";
         }
     }
 

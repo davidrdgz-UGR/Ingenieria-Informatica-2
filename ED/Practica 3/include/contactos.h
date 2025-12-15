@@ -24,7 +24,7 @@ class Contacto{
 	/* -------------- CONSTRUCTOR -------------- */
 	Contacto(string nombreContacto);
 
-
+	Contacto();
 
 	/* -------------- MÉTODOS -------------- */
 
@@ -41,9 +41,9 @@ class Contacto{
 	bool tieneEsteEtiqueta(const string& etiquetaBuscar) const;
 
 	
-	void preguntarConstructor(string modo);
+	void preguntarConstructor();
 
-	string Contacto::toString() const;
+	string toString() const;
 
 	/* -------------- SETTERS / GETTERS -------------- */
 

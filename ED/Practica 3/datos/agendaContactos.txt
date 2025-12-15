@@ -1,0 +1,4 @@
+David|654688355|david@gmail.com|amigo
+Jose|000000000|jose@gmail.com,jose@hotmail.com|universidad
+Julio|123456789,987654321|juliio@gmaail.com|amigo
+Raul|123123333,123123444|raulito@gmail.com|amigo,universidad
