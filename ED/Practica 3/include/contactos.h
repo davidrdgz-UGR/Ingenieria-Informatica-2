@@ -1,13 +1,11 @@
-#include <cassert>
+// #include <cassert>
+// #include <iosfwd>
 #include <string>
-#include <iosfwd>
-
 
 #include <set>
-#include <list>
-#include <vector>
-// #include <multiset>
-#include <map>
+// #include <list>
+// #include <vector>
+
 
 using namespace std;
 
@@ -24,39 +22,38 @@ class Contacto{
 	public:
 
 	/* -------------- CONSTRUCTOR -------------- */
-	Contacto();
+	Contacto(string nombreContacto);
 
 
 
-
-	/* -------------- SETTERS / GETTERS -------------- */
-
-	string& getNombre();
-
-	const set<string>& getTelefonos() const;
-
-	const set<string>& getCorreos() const;
-
-	const set<string>& getEtiquetas() const;
-
-
-	void setNombre(string nuevoNombre);
+	/* -------------- MÉTODOS -------------- */
 
 	bool añadirTelefono(const string& numTelefono);
     bool borrarTelefono(const string& numTelefono);
+	bool tieneEsteTelefono(const string& numTelefono) const;
 
-	bool añadirCorreo(const string& correo);
-    bool borrarCorreo(const string& correo);
+	bool añadirCorreo(const string& nuevoCorreo);
+    bool borrarCorreo(const string& correoBorrar);
+	bool tieneEsteCorreo(const string& correoBuscar) const;
 
-	bool añadirEtiqueta(const string& etiqueta);
-    bool borrarEtiqueta(const string& etiqueta);
-
+	bool añadirEtiqueta(const string& nuevaEtiqueta);
+    bool borrarEtiqueta(const string& etiquetaBorrar);
+	bool tieneEsteEtiqueta(const string& etiquetaBuscar) const;
 
 	
+	void preguntarConstructor(string modo);
+
+	string Contacto::toString() const;
+
+	/* -------------- SETTERS / GETTERS -------------- */
+
+	/* Los const significa que no copian ni modifican el valor devuelto, lo pasa por referencia. */
+	const string& getNombre() const;
+	const set<string>& getTelefonos() const;
+	const set<string>& getCorreos() const;
+	const set<string>& getEtiquetas() const;
 
 
-
-
-		
+	void setNombre( string nuevoNombre);	
 
 };
