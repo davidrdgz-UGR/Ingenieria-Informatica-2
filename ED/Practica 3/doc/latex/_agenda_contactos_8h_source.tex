@@ -1,0 +1,54 @@
+\doxysection{Agenda\+Contactos.\+h}
+\hypertarget{_agenda_contactos_8h_source}{}\label{_agenda_contactos_8h_source}\index{include/AgendaContactos.h@{include/AgendaContactos.h}}
+\mbox{\hyperlink{_agenda_contactos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{contactos_8h}{contactos.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00003}00003\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00008}00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00029}\mbox{\hyperlink{class_agenda_contactos}{00029}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_agenda_contactos_a77580815c4e6e707f1b05f2c5e4455e4}{AgendaContactos}}\ \{}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00031}00031\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00033}00033\ \ \ \ \ map<string,\ Contacto>\ listaContactos;}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00036}00036\ \ \ \ \ multimap<string,\ string>\ etiquetas;}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00038}00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00039}00039\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONSTRUCTOR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{class_agenda_contactos_a77580815c4e6e707f1b05f2c5e4455e4}{AgendaContactos}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nombre\_fichero);}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00051}00051\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MÉTODOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00062}00062\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_contactos_a05db12fa22ecf83748016e5456e305f1}{insertarContacto}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_contacto}{Contacto}}\&\ nuevoContacto);}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_contactos_ad15eb5f7b16d4282e1adbb5129986939}{eliminarContacto}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ borrarContacto);}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00081}00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_contactos_ad9d4e92d6395542a6bf6fde1df70af07}{existeContacto}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nombre)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00089}00089\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_contacto}{Contacto}}*\ \mbox{\hyperlink{class_agenda_contactos_ac308c3507ad4e5cd12037fe17c67bd78}{buscarContacto}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nombre)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00100}00100\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_contactos_a0e71329e0913a93e96a57e160ece383a}{contactosPorEtiqueta}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ etiqueta)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00109}00109\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_contactos_abc5ba68399a87e3808b536807375e959}{toString}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00120}00120\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_contactos_a6030ae23ec02e97117a3343e33c5ea96}{modificarContacto}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nombre);}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00131}00131\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_contactos_a070f94dc98c9d74bf946d202853cc287}{cargar}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nombre\_fichero);}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00142}00142\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_contactos_a5675b28018719235df2f9976bc7b5962}{guardar}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nombre\_fichero)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00144}00144\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SETTERS\ /\ GETTERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00151}00151\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_agenda_contactos_a1bfa97b6976f40a581505a1e7ef637b9}{getNumeroContactos}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00160}00160\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_agenda_contactos_a8820af07a66ae6fefbb5150bb994186b}{getEtiquetas}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00161}00161\ \};}
+\DoxyCodeLine{\Hypertarget{_agenda_contactos_8h_source_l00162}00162\ }
+
+\end{DoxyCode}

@@ -1,3 +1,8 @@
+/**
+ * @file contactos.cpp
+ * @brief Implementación de los métodos de la clase Contacto.
+ */
+
 #include "contactos.h"
 
 #include <iostream>
@@ -6,7 +11,6 @@
 #include <sstream>
 
 #include <string>
-
 #include <set>
 #include <map>
 

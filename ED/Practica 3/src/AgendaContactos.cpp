@@ -1,3 +1,8 @@
+/**
+ * @file AgendaContactos.cpp
+ * @brief Implementación de los métodos de AgendaContactos.
+ */
+
 #include "agendacontactos.h"
 
 #include <fstream>
@@ -36,7 +41,7 @@ bool AgendaContactos::eliminarContacto(const string& borrarContacto){
     /* Comprobacion de que existe. */
     
 
-    if ( this->existeContacto(borrarContacto) ) {
+    if ( !this->existeContacto(borrarContacto) ) {
         return false;
     }
 
@@ -299,12 +304,12 @@ bool AgendaContactos::guardar(const string& nombre_fichero ) const{
 /* -------------- SETTERS / GETTERS -------------- */
 
 
-const int AgendaContactos::getNumeroContactos() const{
+int AgendaContactos::getNumeroContactos() const{
     return this->listaContactos.size();
 }
 
 
-const string AgendaContactos::getEtiquetas() const{
+string AgendaContactos::getEtiquetas() const{
     string resultado = "\n ETIQUETAS: ";
 
     for (const auto& Etiqueta : this->etiquetas) {

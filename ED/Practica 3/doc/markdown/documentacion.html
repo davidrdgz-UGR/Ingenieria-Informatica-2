@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pr%C3%A1ctica-3-ed--2%C2%BA-ingenier%C3%ADa-inform%C3%A1tica-david-rodriguez-aparicio">Práctica 3 ED | 2º Ingeniería Informática David Rodriguez Aparicio</h1>
+<p>En esta hemos creado un programa que simula una Agenda de Contactos como puede ser la de un teléfono.</p>
+<p>Veremos explicaciones de algunos métodos y sus explicaciones, códigos y algunas imagenes del programa.</p>
+<p>Además esta práctica ha sido documentada con Doxygen, creando con Doxyfile una web con toda la estructura de clase.</p>
+<p>Para ejecutar el programa, primero hemos hecho &quot;make&quot; en la terminal, desde Practica 3, y a continuación hemos ejecutado agenda.exe, a partir de ahí se nos crea un menú con las distintas opciones del programa, y se carga la agenda de &quot;datos/agendaContactos.txt&quot;, que es la que usaremos. ( Se inicia automaticamente al inicio del main mediante el constructor de la clase)</p>
+<p>Se han añadido la mayoría de caracteristicas básicas de este tipo de proyectos, pero se pueden extender muchisimo y darle distintas funcionalidades extras.</p>
+<h2 id="contactoscpp">CONTACTOS.CPP</h2>
+<p>Este es el archivo cpp, aqui está toda la lógica de la propia clase de Contactos, hay algún que otro método que hemos optado por no usar por lo que están comentado, el resto son bastante intuitivos de su uso y funcionalidad.</p>
+<p>También hemos hecho un doble constructor, uno  que es para insertarContacto, que te va preguntando los datos necesarios y otro que usamos al crear los contactos al traerlos de un documento.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">/**
+ * @file contactos.cpp
+ * @brief Implementación de los métodos de la clase Contacto.
+ */</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"contactos.h"</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-comment">// #include &lt;cassert&gt;</span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iosfwd&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;set&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;map&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+
+<span class="hljs-comment">/* -------------- CONSTRUCTOR -------------- */</span>
+
+Contacto::Contacto(<span class="hljs-built_in">string</span> nombreContacto){
+
+    <span class="hljs-keyword">this</span>-&gt;nombre = nombreContacto;
+
+    <span class="hljs-keyword">this</span>-&gt;preguntarConstructor();
+    
+}
+
+<span class="hljs-comment">/* SOLO SE USA AL USAR CARGAR ARCHIVO */</span>
+Contacto::Contacto(){
+    <span class="hljs-keyword">this</span>-&gt;nombre = <span class="hljs-string">""</span>;
+
+}
+
+
+
+<span class="hljs-comment">/* -------------- MÉTODOS -------------- */</span>
+
+<span class="hljs-comment">/* Hacen falta los metodos tiene, set no crea duplicados ?¿?¿?¿?¿?¿?¿ */</span>
+
+<span class="hljs-keyword">bool</span> Contacto::añadirTelefono(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; numTelefono){
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;telefonos.insert(numTelefono).second;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Contacto::borrarTelefono</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; numTelefono)</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;telefonos.erase(numTelefono) &gt; <span class="hljs-number">0</span>;
+}
+
+<span class="hljs-comment">/* bool Contacto::tieneEsteTelefono(const string&amp; numTelefono) const{
+    return ( this-&gt;telefonos.find(numTelefono) != this-&gt;telefonos.end() );
+} */</span>
+
+
+
+<span class="hljs-keyword">bool</span> Contacto::añadirCorreo(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nuevoCorreo){
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;correos.insert(nuevoCorreo).second;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Contacto::borrarCorreo</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; correoBorrar)</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;correos.erase(correoBorrar) &gt; <span class="hljs-number">0</span>;
+
+}
+
+<span class="hljs-comment">/* bool Contacto::tieneEsteCorreo(const string&amp; correoBuscar) const{
+    return ( this-&gt;correos.find(correoBuscar) != this-&gt;correos.end() );
+} */</span>
+
+
+
+
+<span class="hljs-keyword">bool</span> Contacto::añadirEtiqueta(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nuevaEtiqueta){
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;etiquetas.insert(nuevaEtiqueta).second;
+
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Contacto::borrarEtiqueta</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; etiquetaBorrar)</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;etiquetas.erase(etiquetaBorrar) &gt; <span class="hljs-number">0</span>;
+
+}
+
+<span class="hljs-comment">/* bool Contacto::tieneEsteEtiqueta(const string&amp; etiquetaBuscar) const{
+    return ( this-&gt;etiquetas.find(etiquetaBuscar) != this-&gt;etiquetas.end() );
+} */</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Contacto::preguntarConstructor</span><span class="hljs-params">()</span></span>{
+    
+    <span class="hljs-keyword">int</span> cantidadTelefonos,cantidadCorreos,cantidadEtiquetas;
+
+    <span class="hljs-built_in">string</span> añadirTelefono,añadirCorreo,añadirEtiquetas;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Cuantos telefonos tiene? "</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; cantidadTelefonos;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Escribe el numero de los telefonos:"</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;cantidadTelefonos; i++){
+        
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span> + to_string(i) + <span class="hljs-string">": "</span>;
+        <span class="hljs-built_in">cin</span> &gt;&gt; añadirTelefono;
+
+        <span class="hljs-keyword">this</span>-&gt;añadirTelefono(añadirTelefono);
+    }
+
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Cuantos correos tiene?"</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; cantidadCorreos;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Escribe el nombre de los correos:"</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;cantidadCorreos; i++){
+        
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span> + to_string(i) + <span class="hljs-string">": "</span>;
+        <span class="hljs-built_in">cin</span> &gt;&gt; añadirCorreo;
+
+        <span class="hljs-keyword">this</span>-&gt;añadirCorreo(añadirCorreo);
+    }
+
+
+        
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Cuantas etiquetas tiene?"</span>;
+    <span class="hljs-built_in">cin</span> &gt;&gt; cantidadEtiquetas;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Escribe las etiquetas: "</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i&lt;cantidadEtiquetas; i++){
+    
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n"</span> + to_string(i) + <span class="hljs-string">": "</span>;
+        <span class="hljs-built_in">cin</span> &gt;&gt; añadirEtiquetas;
+
+        <span class="hljs-keyword">this</span>-&gt;añadirEtiqueta(añadirEtiquetas);
+    }
+
+
+}
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">Contacto::toString</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{
+    <span class="hljs-comment">/* los foreach usan ya cons_iterator/begin/end por defecto ?¿ */</span>
+    <span class="hljs-built_in">string</span> texto;
+
+    texto = <span class="hljs-string">" Contacto: "</span> + nombre;
+
+    texto += <span class="hljs-string">"\n Telefonos: "</span>;
+    <span class="hljs-keyword">if</span> (telefonos.empty()) {
+        texto += <span class="hljs-string">"No tiene telefonos"</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; telefono : telefonos) {
+            texto += telefono + <span class="hljs-string">"  "</span>;
+        }
+    }
+
+    texto += <span class="hljs-string">"\n Correos: "</span>;
+    <span class="hljs-keyword">if</span> (correos.empty()) {
+        texto += <span class="hljs-string">"No tiene correos"</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; correo : correos) {
+            texto += correo + <span class="hljs-string">"  "</span>;
+        }
+    }
+
+    texto += <span class="hljs-string">"\n Etiquetas: "</span>;
+    <span class="hljs-keyword">if</span> (etiquetas.empty()) {
+        texto += <span class="hljs-string">"No tiene etiquetas"</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; etiqueta : etiquetas) {
+            texto += etiqueta + <span class="hljs-string">"  "</span>;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> texto;
+}
+
+
+<span class="hljs-comment">/* -------------- SETTERS / GETTERS -------------- */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; <span class="hljs-title">Contacto::getNombre</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;nombre;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-built_in">set</span>&lt;<span class="hljs-built_in">string</span>&gt;&amp; <span class="hljs-title">Contacto::getTelefonos</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;telefonos;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-built_in">set</span>&lt;<span class="hljs-built_in">string</span>&gt;&amp; <span class="hljs-title">Contacto::getCorreos</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;correos;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> <span class="hljs-built_in">set</span>&lt;<span class="hljs-built_in">string</span>&gt;&amp; <span class="hljs-title">Contacto::getEtiquetas</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;etiquetas;
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Contacto::setNombre</span><span class="hljs-params">( <span class="hljs-built_in">string</span> nuevoNombre)</span></span>{
+    <span class="hljs-keyword">this</span>-&gt;nombre = nuevoNombre;
+}
+
+</div></code></pre>
+<h2 id="agendacontactoscpp">AGENDACONTACTOS.CPP</h2>
+<p>Aqui esta toda la gestión de la Agenda con sus distintas funcionalidades y busquedas en base a ciertos criterios.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">/**
+ * @file AgendaContactos.cpp
+ * @brief Implementación de los métodos de AgendaContactos.
+ */</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"agendacontactos.h"</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-comment">/* -------------- CONSTRUCTOR -------------- */</span>
+
+AgendaContactos::AgendaContactos(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nombre_fichero) {
+    cargar(nombre_fichero);
+}
+
+
+<span class="hljs-comment">/* -------------- MÉTODOS -------------- */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaContactos::insertarContacto</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Contacto&amp; nuevoContacto)</span> </span>{
+
+    pair&lt;<span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">string</span>, Contacto&gt;::iterator, <span class="hljs-keyword">bool</span>&gt; haInsertado = <span class="hljs-keyword">this</span>-&gt;listaContactos.insert({ nuevoContacto.getNombre(), nuevoContacto });
+    
+    <span class="hljs-keyword">const</span> <span class="hljs-built_in">set</span>&lt;<span class="hljs-built_in">string</span>&gt;&amp; etiquetasContacto = nuevoContacto.getEtiquetas();
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; etiqueta : etiquetasContacto) {
+        
+        <span class="hljs-keyword">this</span>-&gt;etiquetas.insert({ etiqueta, nuevoContacto.getNombre() });
+    }
+    
+    <span class="hljs-keyword">return</span> haInsertado.second;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaContactos::eliminarContacto</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; borrarContacto)</span></span>{
+
+    <span class="hljs-comment">/* Comprobacion de que existe. */</span>
+    
+
+    <span class="hljs-keyword">if</span> ( !<span class="hljs-keyword">this</span>-&gt;existeContacto(borrarContacto) ) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+
+    <span class="hljs-comment">/* Buscamos etiquetas y borramos */</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i = etiquetas.<span class="hljs-built_in">begin</span>(); i != etiquetas.<span class="hljs-built_in">end</span>(); ) {
+        <span class="hljs-keyword">if</span> (i-&gt;second == borrarContacto) {
+            i = etiquetas.erase(i);   
+        } <span class="hljs-keyword">else</span> {
+            ++i;
+        }
+    }
+
+    <span class="hljs-comment">/* Borramos el contacto */</span>
+    listaContactos.erase(borrarContacto);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaContactos::existeContacto</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nombre)</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> ( listaContactos.<span class="hljs-built_in">find</span>(nombre) != listaContactos.<span class="hljs-built_in">end</span>() );
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">const</span> Contacto* <span class="hljs-title">AgendaContactos::buscarContacto</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nombre)</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">auto</span> contactoMap = listaContactos.<span class="hljs-built_in">find</span>(nombre);
+
+    <span class="hljs-keyword">if</span> (contactoMap == listaContactos.<span class="hljs-built_in">end</span>()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+    }
+
+    <span class="hljs-keyword">return</span> &amp;(contactoMap-&gt;second);
+}
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">AgendaContactos::contactosPorEtiqueta</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; etiqueta)</span> <span class="hljs-keyword">const</span></span>{
+    
+    <span class="hljs-built_in">string</span> resultado = <span class="hljs-string">"\n Contactos con la etiqueta '"</span> + etiqueta + <span class="hljs-string">"':\n"</span>;
+    
+    <span class="hljs-keyword">auto</span> rango = etiquetas.equal_range(etiqueta);
+
+    <span class="hljs-comment">/* Significaria que las dos partes del multimap están vacias. */</span>
+    <span class="hljs-keyword">if</span> (rango.first == rango.second) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"No hay contactos con la etiqueta '"</span> + etiqueta + <span class="hljs-string">"'."</span>;
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> it = rango.first; it != rango.second; ++it) {
+        resultado += <span class="hljs-string">" - "</span> + it-&gt;second + <span class="hljs-string">"\n"</span>;
+    }
+
+    <span class="hljs-keyword">return</span> resultado;
+}
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">AgendaContactos::toString</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">if</span> (listaContactos.empty()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Agenda vacia."</span>;
+    }
+
+    <span class="hljs-built_in">string</span> resultado = <span class="hljs-string">"\n AGENDA DE CONTACTOS \n"</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; par : listaContactos) {
+        resultado += <span class="hljs-string">"\n----------------------\n"</span>;
+        resultado += par.second.toString();
+    }
+
+    <span class="hljs-keyword">return</span> resultado;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaContactos::modificarContacto</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nombre)</span> </span>{
+
+    <span class="hljs-keyword">auto</span> it = listaContactos.<span class="hljs-built_in">find</span>(nombre);
+    <span class="hljs-keyword">if</span> (it == listaContactos.<span class="hljs-built_in">end</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+    Contacto&amp; contactoModificar = it-&gt;second;
+
+    <span class="hljs-keyword">int</span> operacion = <span class="hljs-number">-1</span>;
+
+    <span class="hljs-keyword">while</span> (operacion != <span class="hljs-number">0</span>) {
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n\n--- MODIFICAR CONTACTO ---\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; contactoModificar.toString() &lt;&lt; <span class="hljs-string">"\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"1. Añadir telefono\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"2. Borrar telefono\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"3. Añadir correo\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"4. Borrar correo\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"5. Añadir etiqueta\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"6. Borrar etiqueta\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0. Volver\n"</span>;
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Opcion: "</span>;
+
+        <span class="hljs-built_in">cin</span> &gt;&gt; operacion;
+        <span class="hljs-built_in">cin</span>.ignore(<span class="hljs-number">10000</span>, <span class="hljs-string">'\n'</span>);
+
+        <span class="hljs-built_in">string</span> dato;
+
+        <span class="hljs-keyword">switch</span> (operacion) {
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Telefono a añadir: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; dato;
+                <span class="hljs-built_in">cout</span> &lt;&lt; (contactoModificar.añadirTelefono(dato) ? <span class="hljs-string">"Añadido\n"</span> : <span class="hljs-string">"Ya existia\n"</span>);
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Telefono a borrar: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; dato;
+                <span class="hljs-built_in">cout</span> &lt;&lt; (contactoModificar.borrarTelefono(dato) ? <span class="hljs-string">"Borrado\n"</span> : <span class="hljs-string">"No existia\n"</span>);
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Correo a añadir: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; dato;
+                <span class="hljs-built_in">cout</span> &lt;&lt; (contactoModificar.añadirCorreo(dato) ? <span class="hljs-string">"Añadido\n"</span> : <span class="hljs-string">"Ya existia\n"</span>);
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Correo a borrar: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; dato;
+                <span class="hljs-built_in">cout</span> &lt;&lt; (contactoModificar.borrarCorreo(dato) ? <span class="hljs-string">"Borrado\n"</span> : <span class="hljs-string">"No existia\n"</span>);
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Etiqueta a añadir: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; dato;
+
+                <span class="hljs-keyword">if</span> (contactoModificar.añadirEtiqueta(dato)) {
+                    etiquetas.insert({dato, nombre});   
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Añadida\n"</span>;
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Ya existia\n"</span>;
+                }
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Etiqueta a borrar: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; dato;
+                
+                <span class="hljs-keyword">if</span> (contactoModificar.borrarEtiqueta(dato)) {
+                    <span class="hljs-keyword">auto</span> rango = etiquetas.equal_range(dato);
+                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> mit = rango.first; mit != rango.second; ) {
+                        <span class="hljs-keyword">if</span> (mit-&gt;second == nombre) mit = etiquetas.erase(mit);
+                        <span class="hljs-keyword">else</span> ++mit;
+                    }
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Borrada\n"</span>;
+                } <span class="hljs-keyword">else</span> {
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"No existia\n"</span>;
+                }
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+                <span class="hljs-keyword">break</span>;
+
+            <span class="hljs-keyword">default</span>:
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Opcion no valida\n"</span>;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaContactos::cargar</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nombre_fichero)</span></span>{
+
+    <span class="hljs-function">ifstream <span class="hljs-title">fichero</span><span class="hljs-params">(nombre_fichero)</span></span>;
+    <span class="hljs-keyword">if</span> (!fichero) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+    <span class="hljs-comment">// Si hiciese falta limpiar la Agenda</span>
+    <span class="hljs-comment">// listaContactos.clear();</span>
+    <span class="hljs-comment">// etiquetas.clear();</span>
+
+    <span class="hljs-built_in">string</span> linea;
+    
+    <span class="hljs-keyword">while</span> (getline(fichero, linea)) {
+        
+        <span class="hljs-built_in">string</span> nombre, telefonos, correos, tags;
+        <span class="hljs-function"><span class="hljs-built_in">stringstream</span> <span class="hljs-title">ss</span><span class="hljs-params">(linea)</span></span>;
+
+        getline(ss, nombre, <span class="hljs-string">'|'</span>);
+        getline(ss, telefonos, <span class="hljs-string">'|'</span>);
+        getline(ss, correos, <span class="hljs-string">'|'</span>);
+        getline(ss, tags, <span class="hljs-string">'|'</span>);
+
+        Contacto nuevoContacto = Contacto();
+
+        nuevoContacto.setNombre(nombre);
+
+        <span class="hljs-built_in">string</span> dato;
+        
+        <span class="hljs-function"><span class="hljs-built_in">stringstream</span> <span class="hljs-title">ssTel</span><span class="hljs-params">(telefonos)</span></span>;
+        <span class="hljs-keyword">while</span> ( getline(ssTel, dato, <span class="hljs-string">','</span> )) {
+            <span class="hljs-keyword">if</span> (!dato.empty()) nuevoContacto.añadirTelefono(dato);
+        }
+
+        <span class="hljs-function"><span class="hljs-built_in">stringstream</span> <span class="hljs-title">ssCor</span><span class="hljs-params">(correos)</span></span>;
+        <span class="hljs-keyword">while</span> (getline(ssCor, dato, <span class="hljs-string">','</span>)) {
+            <span class="hljs-keyword">if</span> (!dato.empty()) nuevoContacto.añadirCorreo(dato);
+        }
+
+
+        <span class="hljs-function"><span class="hljs-built_in">stringstream</span> <span class="hljs-title">ssTag</span><span class="hljs-params">(tags)</span></span>;
+        <span class="hljs-keyword">while</span> (getline(ssTag, dato, <span class="hljs-string">','</span>)) {
+            <span class="hljs-keyword">if</span> (!dato.empty()) nuevoContacto.añadirEtiqueta(dato);
+            
+        }
+
+        <span class="hljs-keyword">if</span>( !<span class="hljs-keyword">this</span>-&gt;insertarContacto(nuevoContacto) ){
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaContactos::guardar</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; nombre_fichero )</span> <span class="hljs-keyword">const</span></span>{
+
+    <span class="hljs-function">ofstream <span class="hljs-title">fichero</span><span class="hljs-params">(nombre_fichero)</span></span>;
+    <span class="hljs-keyword">if</span> (!fichero) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> it = listaContactos.<span class="hljs-built_in">begin</span>(); it != listaContactos.<span class="hljs-built_in">end</span>(); ++it) {
+
+        <span class="hljs-keyword">const</span> Contacto&amp; c = it-&gt;second;
+
+        <span class="hljs-comment">// Nombre</span>
+        fichero &lt;&lt; c.getNombre() &lt;&lt; <span class="hljs-string">"|"</span>;
+
+        <span class="hljs-comment">// Telefonos</span>
+        <span class="hljs-keyword">const</span> <span class="hljs-built_in">set</span>&lt;<span class="hljs-built_in">string</span>&gt;&amp; telefonos = c.getTelefonos();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> itTel = telefonos.<span class="hljs-built_in">begin</span>(); itTel != telefonos.<span class="hljs-built_in">end</span>(); ++itTel) {
+            fichero &lt;&lt; *itTel;
+            <span class="hljs-keyword">auto</span> sig = itTel;
+            ++sig;
+            <span class="hljs-keyword">if</span> (sig != telefonos.<span class="hljs-built_in">end</span>()) fichero &lt;&lt; <span class="hljs-string">","</span>;
+        }
+        fichero &lt;&lt; <span class="hljs-string">"|"</span>;
+
+        <span class="hljs-comment">// Correos</span>
+        <span class="hljs-keyword">const</span> <span class="hljs-built_in">set</span>&lt;<span class="hljs-built_in">string</span>&gt;&amp; correos = c.getCorreos();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> itCor = correos.<span class="hljs-built_in">begin</span>(); itCor != correos.<span class="hljs-built_in">end</span>(); ++itCor) {
+            fichero &lt;&lt; *itCor;
+            <span class="hljs-keyword">auto</span> sig = itCor;
+            ++sig;
+            <span class="hljs-keyword">if</span> (sig != correos.<span class="hljs-built_in">end</span>()) fichero &lt;&lt; <span class="hljs-string">","</span>;
+        }
+        fichero &lt;&lt; <span class="hljs-string">"|"</span>;
+
+        <span class="hljs-comment">// Etiquetas</span>
+        <span class="hljs-keyword">const</span> <span class="hljs-built_in">set</span>&lt;<span class="hljs-built_in">string</span>&gt;&amp; etiquetasContacto = c.getEtiquetas();
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> itEt = etiquetasContacto.<span class="hljs-built_in">begin</span>(); itEt != etiquetasContacto.<span class="hljs-built_in">end</span>(); ++itEt) {
+            fichero &lt;&lt; *itEt;
+            <span class="hljs-keyword">auto</span> sig = itEt;
+            ++sig;
+            <span class="hljs-keyword">if</span> (sig != etiquetasContacto.<span class="hljs-built_in">end</span>()) fichero &lt;&lt; <span class="hljs-string">","</span>;
+        }
+
+        <span class="hljs-comment">// Salto de línea salvo último (opcional)</span>
+        fichero &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+
+<span class="hljs-comment">/* -------------- SETTERS / GETTERS -------------- */</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">AgendaContactos::getNumeroContactos</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;listaContactos.<span class="hljs-built_in">size</span>();
+}
+
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">AgendaContactos::getEtiquetas</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-built_in">string</span> resultado = <span class="hljs-string">"\n ETIQUETAS: "</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span>&amp; Etiqueta : <span class="hljs-keyword">this</span>-&gt;etiquetas) {
+        resultado += <span class="hljs-string">"\n - "</span> + Etiqueta.first + <span class="hljs-string">" - "</span> + Etiqueta.second;
+    }
+
+    <span class="hljs-keyword">return</span> resultado;
+}
+
+
+
+
+</div></code></pre>
+<h2 id="maincpp">MAIN.CPP</h2>
+<p>Y por último el main, que no tiene mucho misterio, es como una vista para la gestión de la Agenda y los mensajes por consola.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"AgendaContactos.h"</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">mostrarMenu</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n\n====== AGENDA DE CONTACTOS ======\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"1. Mostrar agenda completa\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"2. Insertar nuevo contacto\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"3. Eliminar contacto\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"4. Buscar contacto por nombre\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"5. Comprobar si existe contacto\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"6. Buscar contactos por etiqueta\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"7. Guardar Archivo\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"8. Modificar Contacto\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0. Salir\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Seleccione una opcion: "</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">leerOpcion</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">int</span> opcion;
+    <span class="hljs-built_in">cin</span> &gt;&gt; opcion;
+
+    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">cin</span>.fail()) {
+        <span class="hljs-built_in">cin</span>.<span class="hljs-built_in">clear</span>();
+        <span class="hljs-built_in">cin</span>.ignore(<span class="hljs-number">10000</span>, <span class="hljs-string">'\n'</span>);
+        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Entrada no valida. Introduce un numero: "</span>;
+        <span class="hljs-built_in">cin</span> &gt;&gt; opcion;
+    }
+
+    <span class="hljs-built_in">cin</span>.ignore(<span class="hljs-number">10000</span>, <span class="hljs-string">'\n'</span>); 
+    <span class="hljs-keyword">return</span> opcion;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    
+    <span class="hljs-function">AgendaContactos <span class="hljs-title">agenda</span><span class="hljs-params">(<span class="hljs-string">"./datos/agendaContactos.txt"</span>)</span></span>;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Agenda Actual: \n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; agenda.toString();
+
+    <span class="hljs-keyword">int</span> opcion = <span class="hljs-number">-1</span>;
+
+    <span class="hljs-keyword">do</span>{
+        
+        mostrarMenu();    
+        
+        opcion = leerOpcion();
+
+        <span class="hljs-keyword">switch</span>(opcion){
+            
+            <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:{
+                <span class="hljs-built_in">cout</span> &lt;&lt; agenda.toString();
+                <span class="hljs-keyword">break</span>;
+            }
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:{
+                <span class="hljs-built_in">string</span> nombre;
+
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nombre del contacto: "</span>;
+                getline(<span class="hljs-built_in">cin</span>, nombre);
+
+                <span class="hljs-function">Contacto <span class="hljs-title">nuevo</span><span class="hljs-params">(nombre)</span></span>;
+
+                <span class="hljs-keyword">if</span> (agenda.insertarContacto(nuevo))
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Contacto insertado correctamente.\n"</span>;
+                <span class="hljs-keyword">else</span>
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"El contacto ya existe.\n"</span>;
+
+                <span class="hljs-keyword">break</span>;
+            }
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:{
+                <span class="hljs-built_in">string</span> nombre;
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nombre del contacto a eliminar: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; nombre;
+
+                <span class="hljs-keyword">if</span> (agenda.eliminarContacto(nombre))
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Contacto eliminado.\n"</span>;
+                <span class="hljs-keyword">else</span>
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Contacto no encontrado.\n"</span>;
+
+                <span class="hljs-keyword">break</span>;
+            }
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">4</span>:{
+                <span class="hljs-built_in">string</span> nombre;
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nombre del contacto: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; nombre;
+
+
+                <span class="hljs-keyword">const</span> Contacto* c = agenda.buscarContacto(nombre);
+                <span class="hljs-keyword">if</span> (c != <span class="hljs-literal">nullptr</span>)
+                    <span class="hljs-built_in">cout</span> &lt;&lt; c-&gt;toString() &lt;&lt; <span class="hljs-built_in">endl</span>;
+                <span class="hljs-keyword">else</span>
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Contacto no encontrado.\n"</span>;
+
+                <span class="hljs-keyword">break</span>;
+            }
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">5</span>:{
+                <span class="hljs-built_in">string</span> nombre;
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nombre del contacto: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; nombre;
+
+                <span class="hljs-keyword">if</span> (agenda.existeContacto(nombre))
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"El contacto existe.\n"</span>;
+                <span class="hljs-keyword">else</span>
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"El contacto NO existe.\n"</span>;
+
+                <span class="hljs-keyword">break</span>;
+            }
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">6</span>:{
+                <span class="hljs-built_in">string</span> etiqueta;
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Etiqueta: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; etiqueta;
+
+                <span class="hljs-built_in">cout</span> &lt;&lt; agenda.contactosPorEtiqueta(etiqueta) &lt;&lt; <span class="hljs-built_in">endl</span>;
+                <span class="hljs-keyword">break</span>;
+            }
+
+
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">7</span>:{
+                
+                <span class="hljs-keyword">if</span>(agenda.guardar(<span class="hljs-string">"./datos/agendaContactos.txt"</span>)){
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Guardado Correctamente."</span>;
+                }<span class="hljs-keyword">else</span>{
+                    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\n Fallo al guardar."</span>;
+                }
+                <span class="hljs-keyword">break</span>;
+
+            }
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">8</span>:{
+
+                <span class="hljs-built_in">string</span> nombre;
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nombre del contacto: "</span>;
+                <span class="hljs-built_in">cin</span> &gt;&gt; nombre;
+
+                <span class="hljs-keyword">if</span> (!agenda.modificarContacto(nombre)) <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Contacto no encontrado.\n"</span>;
+
+                <span class="hljs-keyword">break</span>;
+
+            }
+
+
+            <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:{
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Saliendo de la agenda...\n"</span>;
+                <span class="hljs-keyword">break</span>;
+            }
+
+            <span class="hljs-keyword">default</span>: {
+                <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Opcion no valida.\n"</span>;
+                
+            }
+        }
+        
+    } <span class="hljs-keyword">while</span> (opcion != <span class="hljs-number">0</span>);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<h2 id="imagenes-del-programa">IMAGENES DEL PROGRAMA</h2>
+<p><img src="../img/cap1.png" alt="Im1">
+<img src="../img/cap2.png" alt="Im1">
+<img src="../img/cap3.png" alt="Im1">
+<img src="../img/cap4.png" alt="Im1">
+<img src="../img/cap5.png" alt="Im1"></p>
+
+</body>
+</html>

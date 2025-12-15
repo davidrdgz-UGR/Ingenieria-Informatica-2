@@ -1,0 +1,196 @@
+\doxysection{contactos.\+cpp}
+\hypertarget{contactos_8cpp_source}{}\label{contactos_8cpp_source}\index{src/contactos.cpp@{src/contactos.cpp}}
+\mbox{\hyperlink{contactos_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00005}00005\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00006}00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{contactos_8h}{contactos.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00009}00009\ \textcolor{comment}{//\ \#include\ <cassert>}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <iosfwd>}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00011}00011\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00013}00013\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00017}00017\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00020}00020\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONSTRUCTOR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00022}\mbox{\hyperlink{class_contacto_adfead8cb11a71e1f85f0eea56f406254}{00022}}\ \mbox{\hyperlink{class_contacto_a2e49cdfc7830386a92d699f078028887}{Contacto::Contacto}}(\textcolor{keywordtype}{string}\ nombreContacto)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00024}00024\ \ \ \ \ this-\/>nombre\ =\ nombreContacto;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00026}00026\ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_ae69b3be80826c0c573ffc273c5062ca6}{preguntarConstructor}}();}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00027}00027\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00028}00028\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00030}00030\ \textcolor{comment}{/*\ SOLO\ SE\ USA\ AL\ USAR\ CARGAR\ ARCHIVO\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00031}\mbox{\hyperlink{class_contacto_a2e49cdfc7830386a92d699f078028887}{00031}}\ \mbox{\hyperlink{class_contacto_a2e49cdfc7830386a92d699f078028887}{Contacto::Contacto}}()\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00032}00032\ \ \ \ \ this-\/>nombre\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00034}00034\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00038}00038\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ MÉTODOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00040}00040\ \textcolor{comment}{/*\ Hacen\ falta\ los\ metodos\ tiene,\ set\ no\ crea\ duplicados\ ?¿?¿?¿?¿?¿?¿\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00042}\mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{00042}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{Contacto::añadirTelefono}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ numTelefono)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00043}00043\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>telefonos.insert(numTelefono).second;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00044}00044\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00046}\mbox{\hyperlink{class_contacto_a814c6a1e2125eec328771bf6a38d85c9}{00046}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_contacto_a814c6a1e2125eec328771bf6a38d85c9}{Contacto::borrarTelefono}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ numTelefono)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>telefonos.erase(numTelefono)\ >\ 0;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00048}00048\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00050}00050\ \textcolor{comment}{/*\ bool\ Contacto::tieneEsteTelefono(const\ string\&\ numTelefono)\ const\{}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00051}00051\ \textcolor{comment}{\ \ \ \ return\ (\ this-\/>telefonos.find(numTelefono)\ !=\ this-\/>telefonos.end()\ );}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00052}00052\ \textcolor{comment}{\}\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00056}\mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{00056}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{Contacto::añadirCorreo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nuevoCorreo)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>correos.insert(nuevoCorreo).second;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00060}\mbox{\hyperlink{class_contacto_aee7aa7665ffafc0153225dce11d7584e}{00060}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_contacto_aee7aa7665ffafc0153225dce11d7584e}{Contacto::borrarCorreo}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ correoBorrar)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>correos.erase(correoBorrar)\ >\ 0;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00063}00063\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00065}00065\ \textcolor{comment}{/*\ bool\ Contacto::tieneEsteCorreo(const\ string\&\ correoBuscar)\ const\{}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00066}00066\ \textcolor{comment}{\ \ \ \ return\ (\ this-\/>correos.find(correoBuscar)\ !=\ this-\/>correos.end()\ );}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00067}00067\ \textcolor{comment}{\}\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00072}\mbox{\hyperlink{class_contacto_add1164c7459e58f1fb05a66c28064138}{00072}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_contacto_add1164c7459e58f1fb05a66c28064138}{Contacto::añadirEtiqueta}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ nuevaEtiqueta)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>etiquetas.insert(nuevaEtiqueta).second;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00075}00075\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00077}\mbox{\hyperlink{class_contacto_a0db9a97cdcb7c1bade8702db82523619}{00077}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_contacto_a0db9a97cdcb7c1bade8702db82523619}{Contacto::borrarEtiqueta}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ etiquetaBorrar)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>etiquetas.erase(etiquetaBorrar)\ >\ 0;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00080}00080\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00082}00082\ \textcolor{comment}{/*\ bool\ Contacto::tieneEsteEtiqueta(const\ string\&\ etiquetaBuscar)\ const\{}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00083}00083\ \textcolor{comment}{\ \ \ \ return\ (\ this-\/>etiquetas.find(etiquetaBuscar)\ !=\ this-\/>etiquetas.end()\ );}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00084}00084\ \textcolor{comment}{\}\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00087}\mbox{\hyperlink{class_contacto_ae69b3be80826c0c573ffc273c5062ca6}{00087}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_contacto_ae69b3be80826c0c573ffc273c5062ca6}{Contacto::preguntarConstructor}}()\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00088}00088\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{int}\ cantidadTelefonos,cantidadCorreos,cantidadEtiquetas;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadirTelefono}},\mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadirCorreo}},añadirEtiquetas;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00093}00093\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Cuantos\ telefonos\ tiene?\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00094}00094\ \ \ \ \ cin\ >>\ cantidadTelefonos;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00096}00096\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Escribe\ el\ numero\ de\ los\ telefonos:"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<cantidadTelefonos;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00098}00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00099}00099\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ to\_string(i)\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ cin\ >>\ \mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadirTelefono}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00102}00102\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadirTelefono}}(añadirTelefono);}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00103}00103\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00106}00106\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Cuantos\ correos\ tiene?"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00107}00107\ \ \ \ \ cin\ >>\ cantidadCorreos;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00109}00109\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Escribe\ el\ nombre\ de\ los\ correos:"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<cantidadCorreos;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ to\_string(i)\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ cin\ >>\ \mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadirCorreo}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadirCorreo}}(añadirCorreo);}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00116}00116\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00120}00120\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Cuantas\ etiquetas\ tiene?"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00121}00121\ \ \ \ \ cin\ >>\ cantidadEtiquetas;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00123}00123\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Escribe\ las\ etiquetas:\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00124}00124\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<cantidadEtiquetas;\ i++)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00125}00125\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00126}00126\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ to\_string(i)\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00127}00127\ \ \ \ \ \ \ \ \ cin\ >>\ añadirEtiquetas;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_add1164c7459e58f1fb05a66c28064138}{añadirEtiqueta}}(añadirEtiquetas);}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00133}00133\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00135}\mbox{\hyperlink{class_contacto_af16dd6b892a3122e96c364edd9c64c90}{00135}}\ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_contacto_af16dd6b892a3122e96c364edd9c64c90}{Contacto::toString}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00136}00136\ \ \ \ \ \textcolor{comment}{/*\ los\ foreach\ usan\ ya\ cons\_iterator/begin/end\ por\ defecto\ ?¿\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00137}00137\ \ \ \ \ \textcolor{keywordtype}{string}\ texto;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00139}00139\ \ \ \ \ texto\ =\ \textcolor{stringliteral}{"{}\ Contacto:\ "{}}\ +\ nombre;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00141}00141\ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Telefonos:\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00142}00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (telefonos.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00143}00143\ \ \ \ \ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}No\ tiene\ telefonos"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00144}00144\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ telefono\ :\ telefonos)\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ texto\ +=\ telefono\ +\ \textcolor{stringliteral}{"{}\ \ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00148}00148\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00150}00150\ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Correos:\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00151}00151\ \ \ \ \ \textcolor{keywordflow}{if}\ (correos.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00152}00152\ \ \ \ \ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}No\ tiene\ correos"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00153}00153\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00154}00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ correo\ :\ correos)\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ texto\ +=\ correo\ +\ \textcolor{stringliteral}{"{}\ \ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00156}00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00157}00157\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00159}00159\ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Etiquetas:\ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00160}00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (etiquetas.empty())\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00161}00161\ \ \ \ \ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}No\ tiene\ etiquetas"{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00162}00162\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00163}00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ etiqueta\ :\ etiquetas)\ \{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ texto\ +=\ etiqueta\ +\ \textcolor{stringliteral}{"{}\ \ "{}};}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00165}00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00166}00166\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{return}\ texto;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00169}00169\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00172}00172\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SETTERS\ /\ GETTERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00174}\mbox{\hyperlink{class_contacto_a2b7d1b08085f21bfa20bdf1abb8c6bbe}{00174}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\&\ \mbox{\hyperlink{class_contacto_a2b7d1b08085f21bfa20bdf1abb8c6bbe}{Contacto::getNombre}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00175}00175\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>nombre;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00176}00176\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00178}\mbox{\hyperlink{class_contacto_ae99a76a2283b287338dded5553ccf4de}{00178}}\ \textcolor{keyword}{const}\ set<string>\&\ \mbox{\hyperlink{class_contacto_ae99a76a2283b287338dded5553ccf4de}{Contacto::getTelefonos}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00179}00179\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>telefonos;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00180}00180\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00182}\mbox{\hyperlink{class_contacto_aba5227a6ed6da927f9d122ea6ec1af3b}{00182}}\ \textcolor{keyword}{const}\ set<string>\&\ \mbox{\hyperlink{class_contacto_aba5227a6ed6da927f9d122ea6ec1af3b}{Contacto::getCorreos}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00183}00183\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>correos;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00184}00184\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00186}\mbox{\hyperlink{class_contacto_a80f0d8c1b782c30fc2e172f29df2bf17}{00186}}\ \textcolor{keyword}{const}\ set<string>\&\ \mbox{\hyperlink{class_contacto_a80f0d8c1b782c30fc2e172f29df2bf17}{Contacto::getEtiquetas}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00187}00187\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>etiquetas;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00188}00188\ \}}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00190}00190\ }
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00191}\mbox{\hyperlink{class_contacto_a0fdd8b829530d5142d6ff34d809ac964}{00191}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_contacto_a0fdd8b829530d5142d6ff34d809ac964}{Contacto::setNombre}}(\ \textcolor{keywordtype}{string}\ nuevoNombre)\{}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00192}00192\ \ \ \ \ this-\/>nombre\ =\ nuevoNombre;}
+\DoxyCodeLine{\Hypertarget{contactos_8cpp_source_l00193}00193\ \}}
+
+\end{DoxyCode}

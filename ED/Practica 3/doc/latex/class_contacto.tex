@@ -1,0 +1,616 @@
+\doxysection{Contacto Class Reference}
+\hypertarget{class_contacto}{}\label{class_contacto}\index{Contacto@{Contacto}}
+
+
+TDA \doxylink{class_contacto}{Contacto}.  
+
+
+
+
+{\ttfamily \#include $<$contactos.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_contacto_adfead8cb11a71e1f85f0eea56f406254}{Contacto}} (string nombre\+Contacto)
+\begin{DoxyCompactList}\small\item\em Constructor con nombre. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_contacto_a2e49cdfc7830386a92d699f078028887}{Contacto}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadir\+Telefono}} (const string \&num\+Telefono)
+\begin{DoxyCompactList}\small\item\em Añade un teléfono al contacto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_a814c6a1e2125eec328771bf6a38d85c9}{borrar\+Telefono}} (const string \&num\+Telefono)
+\begin{DoxyCompactList}\small\item\em Elimina un teléfono del contacto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_a5254cc3c07f61ebede49a28e78ec0988}{tiene\+Este\+Telefono}} (const string \&num\+Telefono) const
+\begin{DoxyCompactList}\small\item\em Comprueba si el contacto tiene un teléfono concreto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadir\+Correo}} (const string \&nuevo\+Correo)
+\begin{DoxyCompactList}\small\item\em Añade un correo electrónico al contacto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_aee7aa7665ffafc0153225dce11d7584e}{borrar\+Correo}} (const string \&correo\+Borrar)
+\begin{DoxyCompactList}\small\item\em Elimina un correo electrónico del contacto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_a59044cbe96d9127074eaaaf1549783a5}{tiene\+Este\+Correo}} (const string \&correo\+Buscar) const
+\begin{DoxyCompactList}\small\item\em Comprueba si el contacto tiene un correo concreto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_add1164c7459e58f1fb05a66c28064138}{añadir\+Etiqueta}} (const string \&nueva\+Etiqueta)
+\begin{DoxyCompactList}\small\item\em Añade una etiqueta al contacto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_a0db9a97cdcb7c1bade8702db82523619}{borrar\+Etiqueta}} (const string \&etiqueta\+Borrar)
+\begin{DoxyCompactList}\small\item\em Elimina una etiqueta del contacto. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_contacto_aeeac19dadaa9cf31d40d62674ddcf6aa}{tiene\+Este\+Etiqueta}} (const string \&etiqueta\+Buscar) const
+\begin{DoxyCompactList}\small\item\em Comprueba si el contacto tiene una etiqueta concreta. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_contacto_ae69b3be80826c0c573ffc273c5062ca6}{preguntar\+Constructor}} ()
+\begin{DoxyCompactList}\small\item\em Solicita los datos del contacto por entrada estándar. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_contacto_af16dd6b892a3122e96c364edd9c64c90}{to\+String}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve una representación textual del contacto. \end{DoxyCompactList}\item 
+const string \& \mbox{\hyperlink{class_contacto_a2b7d1b08085f21bfa20bdf1abb8c6bbe}{get\+Nombre}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el nombre del contacto. \end{DoxyCompactList}\item 
+const set$<$ string $>$ \& \mbox{\hyperlink{class_contacto_ae99a76a2283b287338dded5553ccf4de}{get\+Telefonos}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve los teléfonos del contacto. \end{DoxyCompactList}\item 
+const set$<$ string $>$ \& \mbox{\hyperlink{class_contacto_aba5227a6ed6da927f9d122ea6ec1af3b}{get\+Correos}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve los correos del contacto. \end{DoxyCompactList}\item 
+const set$<$ string $>$ \& \mbox{\hyperlink{class_contacto_a80f0d8c1b782c30fc2e172f29df2bf17}{get\+Etiquetas}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve las etiquetas del contacto. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_contacto_a0fdd8b829530d5142d6ff34d809ac964}{set\+Nombre}} (string nuevo\+Nombre)
+\begin{DoxyCompactList}\small\item\em Establece el nombre del contacto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TDA \doxylink{class_contacto}{Contacto}. 
+
+Representa un contacto de una agenda identificado por un nombre y que contiene un conjunto de teléfonos, correos electrónicos y etiquetas asociadas.
+
+Invariante de representación\+:
+\begin{DoxyItemize}
+\item El nombre identifica de forma única al contacto.
+\item No existen teléfonos duplicados.
+\item No existen correos duplicados.
+\item No existen etiquetas duplicadas.
+\end{DoxyItemize}
+
+Función de abstracción\+:
+\begin{DoxyItemize}
+\item El objeto \doxylink{class_contacto}{Contacto} representa a una persona con un nombre y varios datos de contacto (teléfonos, correos y etiquetas). 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{contactos_8h_source_l00026}{26}} of file \mbox{\hyperlink{contactos_8h_source}{contactos.\+h}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{class_contacto_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_contacto_adfead8cb11a71e1f85f0eea56f406254}\index{Contacto@{Contacto}!Contacto@{Contacto}}
+\index{Contacto@{Contacto}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{Contacto()}{Contacto()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_contacto_adfead8cb11a71e1f85f0eea56f406254} 
+Contacto\+::\+Contacto (\begin{DoxyParamCaption}\item[{string}]{nombre\+Contacto}{}\end{DoxyParamCaption})}
+
+
+
+Constructor con nombre. 
+
+Crea un contacto con el nombre indicado.
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre\+Contacto} & Nombre del contacto. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00022}{22}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ this-\/>nombre\ =\ nombreContacto;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_ae69b3be80826c0c573ffc273c5062ca6}{preguntarConstructor}}();}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_a2e49cdfc7830386a92d699f078028887}\index{Contacto@{Contacto}!Contacto@{Contacto}}
+\index{Contacto@{Contacto}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{Contacto()}{Contacto()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_contacto_a2e49cdfc7830386a92d699f078028887} 
+Contacto\+::\+Contacto (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+Crea un contacto vacío. Se utiliza principalmente al cargar contactos desde fichero. 
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00031}{31}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ this-\/>nombre\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \}}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{class_contacto_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}\index{Contacto@{Contacto}!añadirCorreo@{añadirCorreo}}
+\index{añadirCorreo@{añadirCorreo}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{añadirCorreo()}{añadirCorreo()}}
+{\footnotesize\ttfamily \label{class_contacto_ab6753a3c00d1731686b765f15a73ce1c} 
+bool Contacto\+::añadir\+Correo (\begin{DoxyParamCaption}\item[{const string \&}]{nuevo\+Correo}{}\end{DoxyParamCaption})}
+
+
+
+Añade un correo electrónico al contacto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Correo} & Correo a añadir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se añade correctamente, false si ya existía. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>correos.insert(nuevoCorreo).second;}
+\DoxyCodeLine{00058\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_add1164c7459e58f1fb05a66c28064138}\index{Contacto@{Contacto}!añadirEtiqueta@{añadirEtiqueta}}
+\index{añadirEtiqueta@{añadirEtiqueta}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{añadirEtiqueta()}{añadirEtiqueta()}}
+{\footnotesize\ttfamily \label{class_contacto_add1164c7459e58f1fb05a66c28064138} 
+bool Contacto\+::añadir\+Etiqueta (\begin{DoxyParamCaption}\item[{const string \&}]{nueva\+Etiqueta}{}\end{DoxyParamCaption})}
+
+
+
+Añade una etiqueta al contacto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nueva\+Etiqueta} & Etiqueta a añadir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se añade correctamente, false si ya existía. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00072}{72}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>etiquetas.insert(nuevaEtiqueta).second;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}\index{Contacto@{Contacto}!añadirTelefono@{añadirTelefono}}
+\index{añadirTelefono@{añadirTelefono}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{añadirTelefono()}{añadirTelefono()}}
+{\footnotesize\ttfamily \label{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6} 
+bool Contacto\+::añadir\+Telefono (\begin{DoxyParamCaption}\item[{const string \&}]{num\+Telefono}{}\end{DoxyParamCaption})}
+
+
+
+Añade un teléfono al contacto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Telefono} & Teléfono a añadir. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se añade correctamente, false si ya existía. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00042}{42}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>telefonos.insert(numTelefono).second;}
+\DoxyCodeLine{00044\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_aee7aa7665ffafc0153225dce11d7584e}\index{Contacto@{Contacto}!borrarCorreo@{borrarCorreo}}
+\index{borrarCorreo@{borrarCorreo}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{borrarCorreo()}{borrarCorreo()}}
+{\footnotesize\ttfamily \label{class_contacto_aee7aa7665ffafc0153225dce11d7584e} 
+bool Contacto\+::borrar\+Correo (\begin{DoxyParamCaption}\item[{const string \&}]{correo\+Borrar}{}\end{DoxyParamCaption})}
+
+
+
+Elimina un correo electrónico del contacto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em correo\+Borrar} & Correo a eliminar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se elimina, false si no existía. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00060}{60}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>correos.erase(correoBorrar)\ >\ 0;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_a0db9a97cdcb7c1bade8702db82523619}\index{Contacto@{Contacto}!borrarEtiqueta@{borrarEtiqueta}}
+\index{borrarEtiqueta@{borrarEtiqueta}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{borrarEtiqueta()}{borrarEtiqueta()}}
+{\footnotesize\ttfamily \label{class_contacto_a0db9a97cdcb7c1bade8702db82523619} 
+bool Contacto\+::borrar\+Etiqueta (\begin{DoxyParamCaption}\item[{const string \&}]{etiqueta\+Borrar}{}\end{DoxyParamCaption})}
+
+
+
+Elimina una etiqueta del contacto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em etiqueta\+Borrar} & Etiqueta a eliminar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se elimina, false si no existía. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00077}{77}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>etiquetas.erase(etiquetaBorrar)\ >\ 0;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_a814c6a1e2125eec328771bf6a38d85c9}\index{Contacto@{Contacto}!borrarTelefono@{borrarTelefono}}
+\index{borrarTelefono@{borrarTelefono}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{borrarTelefono()}{borrarTelefono()}}
+{\footnotesize\ttfamily \label{class_contacto_a814c6a1e2125eec328771bf6a38d85c9} 
+bool Contacto\+::borrar\+Telefono (\begin{DoxyParamCaption}\item[{const string \&}]{num\+Telefono}{}\end{DoxyParamCaption})}
+
+
+
+Elimina un teléfono del contacto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Telefono} & Teléfono a eliminar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se elimina, false si no existía. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00046}{46}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>telefonos.erase(numTelefono)\ >\ 0;}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_aba5227a6ed6da927f9d122ea6ec1af3b}\index{Contacto@{Contacto}!getCorreos@{getCorreos}}
+\index{getCorreos@{getCorreos}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{getCorreos()}{getCorreos()}}
+{\footnotesize\ttfamily \label{class_contacto_aba5227a6ed6da927f9d122ea6ec1af3b} 
+const set$<$ string $>$ \& Contacto\+::get\+Correos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve los correos del contacto. 
+
+\begin{DoxyReturn}{Returns}
+Conjunto de correos. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00182}{182}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>correos;}
+\DoxyCodeLine{00184\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_a80f0d8c1b782c30fc2e172f29df2bf17}\index{Contacto@{Contacto}!getEtiquetas@{getEtiquetas}}
+\index{getEtiquetas@{getEtiquetas}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{getEtiquetas()}{getEtiquetas()}}
+{\footnotesize\ttfamily \label{class_contacto_a80f0d8c1b782c30fc2e172f29df2bf17} 
+const set$<$ string $>$ \& Contacto\+::get\+Etiquetas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve las etiquetas del contacto. 
+
+\begin{DoxyReturn}{Returns}
+Conjunto de etiquetas. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00186}{186}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>etiquetas;}
+\DoxyCodeLine{00188\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_a2b7d1b08085f21bfa20bdf1abb8c6bbe}\index{Contacto@{Contacto}!getNombre@{getNombre}}
+\index{getNombre@{getNombre}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{getNombre()}{getNombre()}}
+{\footnotesize\ttfamily \label{class_contacto_a2b7d1b08085f21bfa20bdf1abb8c6bbe} 
+const string \& Contacto\+::get\+Nombre (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve el nombre del contacto. 
+
+\begin{DoxyReturn}{Returns}
+Referencia constante al nombre. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00174}{174}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>nombre;}
+\DoxyCodeLine{00176\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_ae99a76a2283b287338dded5553ccf4de}\index{Contacto@{Contacto}!getTelefonos@{getTelefonos}}
+\index{getTelefonos@{getTelefonos}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{getTelefonos()}{getTelefonos()}}
+{\footnotesize\ttfamily \label{class_contacto_ae99a76a2283b287338dded5553ccf4de} 
+const set$<$ string $>$ \& Contacto\+::get\+Telefonos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve los teléfonos del contacto. 
+
+\begin{DoxyReturn}{Returns}
+Conjunto de teléfonos. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00178}{178}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>telefonos;}
+\DoxyCodeLine{00180\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_ae69b3be80826c0c573ffc273c5062ca6}\index{Contacto@{Contacto}!preguntarConstructor@{preguntarConstructor}}
+\index{preguntarConstructor@{preguntarConstructor}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{preguntarConstructor()}{preguntarConstructor()}}
+{\footnotesize\ttfamily \label{class_contacto_ae69b3be80826c0c573ffc273c5062ca6} 
+void Contacto\+::preguntar\+Constructor (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Solicita los datos del contacto por entrada estándar. 
+
+Permite introducir teléfonos, correos y etiquetas de forma interactiva. 
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00087}{87}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{int}\ cantidadTelefonos,cantidadCorreos,cantidadEtiquetas;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadirTelefono}},\mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadirCorreo}},añadirEtiquetas;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Cuantos\ telefonos\ tiene?\ "{}};}
+\DoxyCodeLine{00094\ \ \ \ \ cin\ >>\ cantidadTelefonos;}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Escribe\ el\ numero\ de\ los\ telefonos:"{}};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<cantidadTelefonos;\ i++)\{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ to\_string(i)\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ cin\ >>\ \mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadirTelefono}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadirTelefono}}(\mbox{\hyperlink{class_contacto_aa48b15e4a4a9f5b3d8cd09744ee4cdb6}{añadirTelefono}});}
+\DoxyCodeLine{00103\ \ \ \ \ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Cuantos\ correos\ tiene?"{}};}
+\DoxyCodeLine{00107\ \ \ \ \ cin\ >>\ cantidadCorreos;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Escribe\ el\ nombre\ de\ los\ correos:"{}};}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<cantidadCorreos;\ i++)\{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ to\_string(i)\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ cin\ >>\ \mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadirCorreo}};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadirCorreo}}(\mbox{\hyperlink{class_contacto_ab6753a3c00d1731686b765f15a73ce1c}{añadirCorreo}});}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Cuantas\ etiquetas\ tiene?"{}};}
+\DoxyCodeLine{00121\ \ \ \ \ cin\ >>\ cantidadEtiquetas;}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Escribe\ las\ etiquetas:\ "{}};}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<cantidadEtiquetas;\ i++)\{}
+\DoxyCodeLine{00125\ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ to\_string(i)\ +\ \textcolor{stringliteral}{"{}:\ "{}};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ cin\ >>\ añadirEtiquetas;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_contacto_add1164c7459e58f1fb05a66c28064138}{añadirEtiqueta}}(añadirEtiquetas);}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_a0fdd8b829530d5142d6ff34d809ac964}\index{Contacto@{Contacto}!setNombre@{setNombre}}
+\index{setNombre@{setNombre}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{setNombre()}{setNombre()}}
+{\footnotesize\ttfamily \label{class_contacto_a0fdd8b829530d5142d6ff34d809ac964} 
+void Contacto\+::set\+Nombre (\begin{DoxyParamCaption}\item[{string}]{nuevo\+Nombre}{}\end{DoxyParamCaption})}
+
+
+
+Establece el nombre del contacto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Nombre} & Nuevo nombre. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00191}{191}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ this-\/>nombre\ =\ nuevoNombre;}
+\DoxyCodeLine{00193\ \}}
+
+\end{DoxyCode}
+\Hypertarget{class_contacto_a59044cbe96d9127074eaaaf1549783a5}\index{Contacto@{Contacto}!tieneEsteCorreo@{tieneEsteCorreo}}
+\index{tieneEsteCorreo@{tieneEsteCorreo}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{tieneEsteCorreo()}{tieneEsteCorreo()}}
+{\footnotesize\ttfamily \label{class_contacto_a59044cbe96d9127074eaaaf1549783a5} 
+bool Contacto\+::tiene\+Este\+Correo (\begin{DoxyParamCaption}\item[{const string \&}]{correo\+Buscar}{}\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si el contacto tiene un correo concreto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em correo\+Buscar} & Correo a comprobar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_contacto_aeeac19dadaa9cf31d40d62674ddcf6aa}\index{Contacto@{Contacto}!tieneEsteEtiqueta@{tieneEsteEtiqueta}}
+\index{tieneEsteEtiqueta@{tieneEsteEtiqueta}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{tieneEsteEtiqueta()}{tieneEsteEtiqueta()}}
+{\footnotesize\ttfamily \label{class_contacto_aeeac19dadaa9cf31d40d62674ddcf6aa} 
+bool Contacto\+::tiene\+Este\+Etiqueta (\begin{DoxyParamCaption}\item[{const string \&}]{etiqueta\+Buscar}{}\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si el contacto tiene una etiqueta concreta. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em etiqueta\+Buscar} & Etiqueta a comprobar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_contacto_a5254cc3c07f61ebede49a28e78ec0988}\index{Contacto@{Contacto}!tieneEsteTelefono@{tieneEsteTelefono}}
+\index{tieneEsteTelefono@{tieneEsteTelefono}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{tieneEsteTelefono()}{tieneEsteTelefono()}}
+{\footnotesize\ttfamily \label{class_contacto_a5254cc3c07f61ebede49a28e78ec0988} 
+bool Contacto\+::tiene\+Este\+Telefono (\begin{DoxyParamCaption}\item[{const string \&}]{num\+Telefono}{}\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si el contacto tiene un teléfono concreto. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Telefono} & Teléfono a comprobar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si existe, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_contacto_af16dd6b892a3122e96c364edd9c64c90}\index{Contacto@{Contacto}!toString@{toString}}
+\index{toString@{toString}!Contacto@{Contacto}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_contacto_af16dd6b892a3122e96c364edd9c64c90} 
+string Contacto\+::to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve una representación textual del contacto. 
+
+\begin{DoxyReturn}{Returns}
+Cadena con los datos del contacto. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{contactos_8cpp_source_l00135}{135}} of file \mbox{\hyperlink{contactos_8cpp_source}{contactos.\+cpp}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{/*\ los\ foreach\ usan\ ya\ cons\_iterator/begin/end\ por\ defecto\ ?¿\ */}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{string}\ texto;}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ texto\ =\ \textcolor{stringliteral}{"{}\ Contacto:\ "{}}\ +\ nombre;}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Telefonos:\ "{}};}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordflow}{if}\ (telefonos.empty())\ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}No\ tiene\ telefonos"{}};}
+\DoxyCodeLine{00144\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ telefono\ :\ telefonos)\ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ texto\ +=\ telefono\ +\ \textcolor{stringliteral}{"{}\ \ "{}};}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Correos:\ "{}};}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{if}\ (correos.empty())\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}No\ tiene\ correos"{}};}
+\DoxyCodeLine{00153\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ correo\ :\ correos)\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ texto\ +=\ correo\ +\ \textcolor{stringliteral}{"{}\ \ "{}};}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n\ Etiquetas:\ "{}};}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (etiquetas.empty())\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ texto\ +=\ \textcolor{stringliteral}{"{}No\ tiene\ etiquetas"{}};}
+\DoxyCodeLine{00162\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ etiqueta\ :\ etiquetas)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ texto\ +=\ etiqueta\ +\ \textcolor{stringliteral}{"{}\ \ "{}};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{return}\ texto;}
+\DoxyCodeLine{00169\ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{contactos_8h}{contactos.\+h}}\item 
+src/\mbox{\hyperlink{contactos_8cpp}{contactos.\+cpp}}\end{DoxyCompactItemize}
