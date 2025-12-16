@@ -61,7 +61,7 @@ public class CivitasJuego {
 
         System.out.println("\n=== CASILLA ACTUAL ===");
         int pos = jugadorActual.getNumCasillaActual();
-        System.out.println(tablero.getCasilla(pos).toString());
+        System.out.println(tablero.getCasilla(pos).toString()); /* Aunque no sea ninguna de las herencias nos sirve como muestra */
 
         if (jugadorActual.enBancarrota()) {
             System.out.println("\n*** EL JUGADOR HA CAÍDO EN BANCARROTA ***");
@@ -112,10 +112,16 @@ public class CivitasJuego {
 
         Jugador jugador = getJugadorActual();
         Casilla casilla = this.tablero.getCasilla(jugador.getNumCasillaActual());
-        TituloPropiedad titulo = casilla.getTituloPropiedad();
-
-        // System.out.println("Comprar - " + jugador.getNombre() + " - " + casilla.getNombre() + " - " + titulo.getNombre() );
+        // TituloPropiedad titulo = casilla.getTituloPropiedad();
         
+        if (!(casilla instanceof CasillaCalle)) {
+            return false; 
+        }
+
+        CasillaCalle calle = (CasillaCalle) casilla;
+        TituloPropiedad titulo = calle.getTituloPropiedad();
+
+
         return jugador.comprar(titulo);
 
         
@@ -187,25 +193,25 @@ public class CivitasJuego {
         /* TABLERO PROVISIONAL */
         
         /*  0 */tablero.añadeCasilla(new Casilla("SALIDA")); /* Ya se crea por defecto, no hace falta. */
-        /*  1 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle1",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  2 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle2",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  3 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle3",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  4 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle4",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  5 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle5",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  6 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle6",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  7 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle7",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  8 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle8",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /*  9 */tablero.añadeCasilla(new Casilla(14,"JUEZ"));
-        /* 10 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle10",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 11 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle11",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 12 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle12",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 13 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle13",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  1 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle1",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  2 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle2",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  3 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle3",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  4 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle4",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  5 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle5",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  6 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle6",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  7 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle7",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  8 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle8",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /*  9 */tablero.añadeCasilla(new CasillaJuez(14,"JUEZ"));
+        /* 10 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle10",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 11 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle11",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 12 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle12",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 13 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle13",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
         /* 14 */tablero.añadeCasilla(new Casilla("CARCEL"));
-        /* 15 */tablero.añadeCasilla(new Casilla( mazo /* this.mazo */ ,"SORPRESA"));
-        /* 16 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle16",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 17 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle17",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 18 */tablero.añadeCasilla(new Casilla(new TituloPropiedad("calle18",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
-        /* 19 */tablero.añadeCasilla(new Casilla((float) 250.00,"IMPUESTO"));
+        /* 15 */tablero.añadeCasilla(new CasillaSorpresa( mazo /* this.mazo */ ,"SORPRESA"));
+        /* 16 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle16",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 17 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle17",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 18 */tablero.añadeCasilla(new CasillaCalle(new TituloPropiedad("calle18",  10.00f,  1.1f, 100.00f,  500.00f,  250.00f )));
+        /* 19 */tablero.añadeCasilla(new CasillaImpuesto((float) 250.00,"IMPUESTO"));
         
         this.tablero.añadeJuez();
 

@@ -1,12 +1,12 @@
 package juegoTexto;
 
 /* CLASES */
+import civitas.CasillaCalle;
 import civitas.CivitasJuego;
 import civitas.GestionInmobilarias;
 import civitas.OperacionesJuego;
 import civitas.Respuestas;
 import civitas.SalidasCarcel;
-import civitas.TipoCasilla;
 
 public class Controlador {
     private CivitasJuego juego;
@@ -47,7 +47,7 @@ public class Controlador {
             }
 
             /* Lo he hardcodeado aqui, ahora mismo no se desde donde arreglar este problema */
-            if (this.juego.getCasillaActual().getTipoCasilla() != TipoCasilla.CALLE ) {
+            if (!(this.juego.getCasillaActual() instanceof CasillaCalle ) ) {
                 this.juego.getJugadorActual().setPuedeComprar(false);
             }
 
