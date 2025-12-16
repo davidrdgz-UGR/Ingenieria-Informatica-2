@@ -174,13 +174,15 @@ public class CivitasJuego {
         int casillaAleatoria = r.nextInt(20);
 
 
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.IRCARCEL,tablero,tablero.getCarcel(),"Vas directo a la cárcel"));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA,tablero, casillaAleatoria ,"Te mueves a la casilla "+ casillaAleatoria));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,-200,"Pagas 200"));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR,200,"Cobras 200"));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.PORCASAHOTEL,50,"Cobras 50 por cada casa y hotel"));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.PORJUGADOR,100,"Cada jugador te paga 100"));
-        this.mazo.alMazo(new Sorpresa(TipoSorpresa.SALIRCARCEL,this.mazo));
+        this.mazo.alMazo(new SorpresaIrCarcel(tablero,"Vas directo a la cárcel"));
+        this.mazo.alMazo(new SorpresaIrCasilla(tablero ,"Te mueves a la casilla "+ casillaAleatoria, casillaAleatoria));
+        this.mazo.alMazo(new SorpresaPagarCobrar(-200,"Pagas 200"));
+        this.mazo.alMazo(new SorpresaPagarCobrar(200,"Cobras 200"));
+        this.mazo.alMazo(new SorpresaPorCasaHotel(50,"Cobras 50 por cada casa y hotel"));
+        this.mazo.alMazo(new SorpresaPorJugador(100,"Cada jugador te paga 100"));
+        this.mazo.alMazo(new SorpresaSalirCarcel(this.mazo,"SalvodConducto"));
+        this.mazo.alMazo(new SorpresaConvertir(3000f,"El jugador/a " + this.jugadores[this.indiceJugadorActual].getNombre() + " se ha convertido en un Especulador"));
+        
 
         // this.mazo.revisarMazo();
     }  

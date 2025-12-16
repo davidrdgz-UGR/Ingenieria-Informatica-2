@@ -258,5 +258,9 @@ public class TituloPropiedad {
     Jugador getPropietario() {
         return this.propietario;
     }
+
+    void setPropietario(Jugador nuevoPropietario){
+        this.propietario = nuevoPropietario;
+    }
 }
 

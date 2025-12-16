@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pr%C3%A1ctica-4-pdo--david-rodr%C3%ADguez-aparicio">Práctica 4 PDO | David Rodríguez Aparicio</h1>
+<p>En esta práctica hemos creado algunas extensiones de las clases que ya teniamos mediante herencia, y creando una clase abstracta, que en este caso en Sorpresa.</p>
+<p>Además hemos añadido la herencia de Jugador, JugadorEspeculador, que tiene ciertas ventajas sobre los normales, además se ha añadido su respectiva carta de Sorpresa.</p>
+<p>En principio se mantienen todas las funcionalidades como anteriormente, simplemente hemos hecho una refactorización del código y añadido un par de mecánicas.</p>
+<h2 id="herencias-de-casilla">Herencias de Casilla</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CasillaCalle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Casilla</span> </span>{
+    
+
+	TituloPropiedad tituloPropiedad;
+
+
+    <span class="hljs-comment">/* ----------------- Constructores ----------------- */</span>
+
+	CasillaCalle(TituloPropiedad titulo){
+        
+		<span class="hljs-keyword">super</span>(titulo.getNombre());
+		<span class="hljs-keyword">this</span>.tituloPropiedad = titulo;
+        
+    }
+
+
+
+	<span class="hljs-comment">/* ----------------- MODULOS ----------------- */</span>
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+
+            <span class="hljs-comment">// System.out.println("\n recibirjugador_calle - tiene propietario" + tituloPropiedad.tienePropietario());</span>
+            
+            <span class="hljs-keyword">if</span> (!tituloPropiedad.tienePropietario() <span class="hljs-comment">/* &amp;&amp; this.tipo != TipoCasilla.CALLE */</span> ) {
+                Jugadores[iActual].puedeComprarCasilla();
+                <span class="hljs-comment">// Diario.getInstance().ocurreEvento("El jugador " + Jugadores[iActual].getNombre() + " ha recibido: " + this.tituloPropiedad.getNombre()  );</span>
+
+
+            } <span class="hljs-keyword">else</span> {
+                
+                <span class="hljs-comment">// System.out.println("\n Entada a recibir calle - tramitarAlquiler \n");</span>
+                tituloPropiedad.tramitarAlquiler(Jugadores[iActual]);
+                
+            }
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span></span>{
+        String info = <span class="hljs-string">"Casilla{"</span> +
+                        <span class="hljs-string">"nombre='"</span> + <span class="hljs-keyword">this</span>.getNombre() + <span class="hljs-string">'\''</span> + <span class="hljs-string">", titulo="</span> + tituloPropiedad.getNombre() + <span class="hljs-string">"}"</span>;
+        <span class="hljs-keyword">return</span> info;
+    }
+
+
+
+    <span class="hljs-function">TituloPropiedad <span class="hljs-title">getTituloPropiedad</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tituloPropiedad;
+    }
+}
+
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CasillaImpuesto</span>  <span class="hljs-keyword">extends</span> <span class="hljs-title">Casilla</span> </span>{
+    
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> importe;
+	
+	
+
+    <span class="hljs-comment">/* ----------------- Constructores ----------------- */</span>
+
+	CasillaImpuesto(<span class="hljs-keyword">float</span> cantidad,String nombre){
+        
+        <span class="hljs-keyword">this</span>.importe = cantidad;
+        <span class="hljs-keyword">super</span>(nombre);        
+    }
+
+
+	<span class="hljs-comment">/* ----------------- MODULOS ----------------- */</span>
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + Jugadores[iActual].getNombre() + <span class="hljs-string">" ha caido en: "</span> + <span class="hljs-keyword">this</span>.getNombre() );
+
+            Jugadores[iActual].pagaImpuesto(importe);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span></span>{
+        String info = <span class="hljs-string">"Casilla{"</span> +
+                        <span class="hljs-string">"nombre='"</span> + <span class="hljs-keyword">this</span>.getNombre() + <span class="hljs-string">'\''</span> + <span class="hljs-string">", importe= "</span> + <span class="hljs-keyword">this</span>.importe + <span class="hljs-string">"}"</span>;
+        <span class="hljs-keyword">return</span> info;
+    }
+
+}
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CasillaJuez</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Casilla</span></span>{
+    
+
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> carcel;
+
+    <span class="hljs-comment">/* ----------------- Constructores ----------------- */</span>
+
+	CasillaJuez(<span class="hljs-keyword">int</span> numCasillaCarcel, String nombre){
+        
+		<span class="hljs-keyword">super</span>(nombre);
+
+        <span class="hljs-keyword">this</span>.carcel = numCasillaCarcel;
+        
+    }
+
+
+	<span class="hljs-comment">/* ----------------- MODULOS ----------------- */</span>
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+            Jugadores[iActual].encarcelar(carcel);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span></span>{
+        String info = <span class="hljs-string">"Casilla{"</span> +
+                        <span class="hljs-string">"nombre='"</span> + <span class="hljs-keyword">this</span>.getNombre() + <span class="hljs-string">'\''</span> + <span class="hljs-string">", carcel="</span> + <span class="hljs-keyword">this</span>.carcel + <span class="hljs-string">"}"</span>;
+        <span class="hljs-keyword">return</span> info;
+    }
+
+}
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CasillaSorpresa</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Casilla</span> </span>{
+
+	Sorpresa sorpresa;
+	MazoSorpresa mazo;
+
+
+
+    <span class="hljs-comment">/* ----------------- Constructores ----------------- */</span>
+
+	CasillaSorpresa(MazoSorpresa mazo, String nombre){
+        
+		<span class="hljs-keyword">super</span>(nombre);
+        <span class="hljs-keyword">this</span>.mazo = mazo;
+        
+    }
+
+
+
+	<span class="hljs-comment">/* ----------------- MODULOS ----------------- */</span>
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">recibeJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> iActual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(iActual, Jugadores)) {
+            informe(iActual, Jugadores);
+            <span class="hljs-keyword">this</span>.sorpresa = <span class="hljs-keyword">this</span>.mazo.siguiente();
+            <span class="hljs-keyword">this</span>.sorpresa.aplicarAJugador(iActual, Jugadores);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span></span>{
+        String info = <span class="hljs-string">"Casilla{"</span> +
+                        <span class="hljs-string">"nombre='"</span> + <span class="hljs-keyword">this</span>.getNombre() + <span class="hljs-string">'\''</span> + <span class="hljs-string">", mazoSorpresas"</span> + <span class="hljs-string">"}"</span>;
+        <span class="hljs-keyword">return</span> info;
+    }
+}
+
+
+
+
+</div></code></pre>
+<h2 id="herencias-de-sorpresa">Herencias de Sorpresa</h2>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">package</span> civitas;
+
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sorpresa</span></span>{
+    <span class="hljs-keyword">private</span> String texto;    
+    <span class="hljs-keyword">protected</span> MazoSorpresa mazo;
+
+
+    <span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+    <span class="hljs-comment">/* Constructor para herencias */</span>
+    Sorpresa(){
+
+    }
+
+    Sorpresa(String texto) {
+        <span class="hljs-keyword">this</span>.texto = texto;
+        <span class="hljs-keyword">this</span>.mazo = <span class="hljs-keyword">null</span>;
+    }
+
+    <span class="hljs-comment">/* ----------------- METODOS ----------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] jugadores)</span></span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">informe</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        Diario.getInstance().ocurreEvento( <span class="hljs-string">"Se le está aplicando una sorpresa a: "</span> + Jugadores[actual] );
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">jugadorCorrecto</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">return</span> (actual &gt;= <span class="hljs-number">0</span> &amp;&amp; actual &lt; Jugadores.length);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">salirDelMazo</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> SorpresaSalirCarcel ) &amp;&amp; mazo != <span class="hljs-keyword">null</span>) {
+            mazo.inhabilitarCartaEspecial(<span class="hljs-keyword">this</span>);
+        }
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.texto;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">usada</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">if</span> ( (<span class="hljs-keyword">this</span> <span class="hljs-keyword">instanceof</span> SorpresaSalirCarcel ) &amp;&amp; mazo != <span class="hljs-keyword">null</span>) {
+                mazo.habilitarCartaEspecial(<span class="hljs-keyword">this</span>);
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SorpresaConvertir</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sorpresa</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> fianza;
+
+    <span class="hljs-comment">/* ----------------- CONSTRUCTOR ----------------- */</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SorpresaConvertir</span><span class="hljs-params">(<span class="hljs-keyword">float</span> fianza, String texto)</span> </span>{
+        <span class="hljs-keyword">super</span>(texto);
+        <span class="hljs-keyword">this</span>.fianza = fianza;
+    }
+
+    <span class="hljs-comment">/* ----------------- APLICAR ----------------- */</span>
+	<span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] jugadores)</span> </span>{
+        <span class="hljs-keyword">if</span> (!jugadorCorrecto(actual, jugadores)) <span class="hljs-keyword">return</span>;
+
+        Jugador jugador = jugadores[actual];
+
+        <span class="hljs-comment">// Evita convertir dos veces (si ya es especulador)</span>
+        <span class="hljs-keyword">if</span> (jugador <span class="hljs-keyword">instanceof</span> JugadorEspeculador) {
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"El jugador "</span> + jugador.getNombre() + <span class="hljs-string">" ya es ESPECULADOR."</span>);
+            <span class="hljs-keyword">return</span>;
+        }
+
+        JugadorEspeculador nuevo = <span class="hljs-keyword">new</span> JugadorEspeculador(jugador, fianza);
+
+        <span class="hljs-comment">// Sustitución en el array (esto ES la conversión real)</span>
+        jugadores[actual] = nuevo;
+
+        Diario.getInstance().ocurreEvento(
+            <span class="hljs-string">"El jugador "</span> + jugador.getNombre() + <span class="hljs-string">" se convierte en ESPECULADOR con fianza "</span> + fianza
+        );
+    }
+}
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SorpresaIrCarcel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sorpresa</span> </span>{
+    
+    Tablero tablero;
+
+	<span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+	<span class="hljs-comment">/* Para IRCASILLA */</span>
+    SorpresaIrCarcel(Tablero tablero,String texto) {
+        
+        <span class="hljs-keyword">this</span>.tablero = tablero;
+
+		<span class="hljs-keyword">super</span>(texto);
+
+    }
+
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span>(jugadorCorrecto(actual, Jugadores)){
+            Jugadores[actual].encarcelar( tablero.getCarcel() );<span class="hljs-comment">/*   Casilla de la carcel  */</span>
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha encarcelado al jugador: "</span> + Jugadores[actual].getNombre() );
+        }
+    }
+}
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SorpresaIrCasilla</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sorpresa</span></span>{
+    
+    Tablero tablero;
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> valor;
+	
+	<span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+	<span class="hljs-comment">/* Para IRCASILLA */</span>
+    SorpresaIrCasilla(Tablero tablero,String texto,<span class="hljs-keyword">int</span> valor) {
+        
+		<span class="hljs-keyword">this</span>.tablero = tablero;
+        <span class="hljs-keyword">this</span>.valor = valor;
+
+		<span class="hljs-keyword">super</span>(texto);
+
+    }
+
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span>(jugadorCorrecto(actual, Jugadores)){
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado irCasilla en: "</span> + Jugadores[actual].getNombre() );
+            
+
+            <span class="hljs-keyword">int</span> casillaActual = Jugadores[actual].getNumCasillaActual();
+
+            <span class="hljs-keyword">int</span> tirada = tablero.calcularTirada(casillaActual, <span class="hljs-keyword">this</span>.valor); <span class="hljs-comment">/* Falta añadir el numero del dado. ?¿ */</span>
+
+            <span class="hljs-keyword">int</span> nuevaPosicion = tablero.nuevaPosicion(casillaActual, tirada);
+
+            Jugadores[actual].moverACasilla(nuevaPosicion);
+
+            tablero.getCasilla(nuevaPosicion).recibeJugador(actual, Jugadores);   
+        }
+    }
+}
+
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SorpresaPagarCobrar</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sorpresa</span> </span>{
+
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> valor;
+
+	
+	<span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+	SorpresaPagarCobrar(<span class="hljs-keyword">int</span> valor, String texto) {
+
+        <span class="hljs-keyword">this</span>.valor = valor;
+		<span class="hljs-keyword">super</span>(texto);
+
+    }
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span>(jugadorCorrecto(actual, Jugadores)){
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado pagarCobrar en: "</span> + Jugadores[actual].getNombre() );
+            Jugadores[actual].modificarSaldo(<span class="hljs-keyword">this</span>.valor);
+
+        }
+    }
+
+}
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SorpresaPorCasaHotel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sorpresa</span></span>{
+    
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> valor;
+
+	<span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+	SorpresaPorCasaHotel(<span class="hljs-keyword">int</span> valor, String texto) {
+        <span class="hljs-keyword">this</span>.valor = valor;
+
+		<span class="hljs-keyword">super</span>(texto);
+
+    }
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(actual, Jugadores)) {
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado porCasaHotel en: "</span> + Jugadores[actual].getNombre() );
+
+            <span class="hljs-keyword">int</span> numCasasHoteles = Jugadores[actual].cantidadCasasHoteles();
+
+            <span class="hljs-keyword">int</span> cantidad = valor * numCasasHoteles;
+
+            Jugadores[actual].modificarSaldo(cantidad);
+    	}
+
+	}
+
+}
+
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SorpresaPorJugador</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sorpresa</span> </span>{
+    
+	<span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> valor;
+
+
+	<span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+	SorpresaPorJugador( <span class="hljs-keyword">int</span> valor, String texto) {
+        
+        <span class="hljs-keyword">this</span>.valor = valor;
+        
+		<span class="hljs-keyword">super</span>(texto);
+
+    }
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(actual, Jugadores)) {
+
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado porJugador en: "</span> + Jugadores[actual].getNombre() );
+
+
+            <span class="hljs-keyword">int</span> numJugadores = Jugadores.length;
+
+            SorpresaPagarCobrar paga = <span class="hljs-keyword">new</span> SorpresaPagarCobrar( -valor, <span class="hljs-string">"Paga al jugador "</span> + Jugadores[actual].getNombre());
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; numJugadores; i++) {
+                <span class="hljs-keyword">if</span> ( i != actual ) {
+                    paga.aplicarAJugador(actual, Jugadores);
+                }
+            }
+
+            SorpresaPagarCobrar cobra = <span class="hljs-keyword">new</span> SorpresaPagarCobrar(valor * (numJugadores - <span class="hljs-number">1</span>),<span class="hljs-string">"Cobra del resto de Jugadores"</span>);
+
+            cobra.aplicarAJugador(actual, Jugadores);
+        }
+    }
+
+}
+
+
+
+
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SorpresaSalirCarcel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Sorpresa</span></span>{
+
+	
+
+	<span class="hljs-comment">/* ----------------- CONSTRUCTORES ----------------- */</span>
+
+	SorpresaSalirCarcel(MazoSorpresa mazo, String texto) {
+
+        <span class="hljs-keyword">super</span>(texto);
+    }
+
+
+    <span class="hljs-meta">@Override</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">aplicarAJugador</span><span class="hljs-params">(<span class="hljs-keyword">int</span> actual, Jugador[] Jugadores)</span></span>{
+        <span class="hljs-keyword">if</span> (jugadorCorrecto(actual, Jugadores)) {
+
+            informe(actual, Jugadores);
+            Diario.getInstance().ocurreEvento(<span class="hljs-string">"Se ha usado salirCarcel en: "</span> + Jugadores[actual].getNombre() );
+
+
+            <span class="hljs-keyword">boolean</span> alguienTieneSalvoconducto = <span class="hljs-keyword">false</span>;
+
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; Jugadores.length &amp;&amp; !alguienTieneSalvoconducto; i++) {
+                <span class="hljs-keyword">if</span> (Jugadores[i].tieneSalvoconducto()) {
+                    alguienTieneSalvoconducto = <span class="hljs-keyword">true</span>;
+                }
+            }
+
+            <span class="hljs-keyword">if</span> (!alguienTieneSalvoconducto) {
+                Jugadores[actual].obtenerSalvoconducto(<span class="hljs-keyword">this</span>);
+                salirDelMazo();
+            }
+        }
+    }
+
+}
+
+
+</div></code></pre>
+<h2 id="herencia-de-jugador-especulador">Herencia de Jugador, Especulador</h2>
+<pre class="hljs"><code><div>
+
+<span class="hljs-keyword">package</span> civitas;
+
+<span class="hljs-keyword">import</span> java.util.ArrayList;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">JugadorEspeculador</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Jugador</span> </span>{
+
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> FACTOR_ESPECULADOR = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">float</span> fianza;
+
+    <span class="hljs-comment">/* ---------------- CONSTRUCTOR ---------------- */</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">JugadorEspeculador</span><span class="hljs-params">(Jugador otro, <span class="hljs-keyword">float</span> fianza)</span> </span>{
+        <span class="hljs-keyword">super</span>(otro);
+        <span class="hljs-keyword">this</span>.fianza = fianza;
+
+        <span class="hljs-keyword">for</span> (TituloPropiedad propiedad : <span class="hljs-keyword">this</span>.propiedades) {
+            propiedad.setPropietario(<span class="hljs-keyword">this</span>);
+        }
+
+        Diario.getInstance().ocurreEvento(
+            <span class="hljs-string">"El jugador "</span> + <span class="hljs-keyword">this</span>.getNombre() + <span class="hljs-string">" se ha convertido en ESPECULADOR (fianza: "</span> + fianza + <span class="hljs-string">")"</span>
+        );
+    }
+
+	<span class="hljs-comment">/* ---------------- METODOS ---------------- */</span>
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">pagaImpuesto</span><span class="hljs-params">(<span class="hljs-keyword">float</span> cantidad)</span> </span>{
+        <span class="hljs-comment">// El especulador paga la mitad</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.pagaImpuesto(cantidad / FACTOR_ESPECULADOR);
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">debeSerEncarcelado</span><span class="hljs-params">()</span> </span>{
+
+        <span class="hljs-comment">// Si ya tiene salvoconducto - comportamiento normal</span>
+        <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">super</span>.debeSerEncarcelado()) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+
+        <span class="hljs-comment">// Si puede pagar la fianza, no entra en la cárcel</span>
+        <span class="hljs-keyword">if</span> (getSaldo() &gt;= fianza) {
+            paga(fianza);
+            Diario.getInstance().ocurreEvento(
+                <span class="hljs-string">"El jugador "</span> + getNombre() + <span class="hljs-string">" paga la fianza ("</span> + fianza + <span class="hljs-string">") y evita la cárcel"</span>
+            );
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getCasasMax</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.getCasasMax() * FACTOR_ESPECULADOR;
+    }
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">getHotelesMax</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.getHotelesMax() * FACTOR_ESPECULADOR;
+    }
+
+
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">super</span>.toString() + <span class="hljs-string">" [ESPECULADOR | fianza="</span> + fianza + <span class="hljs-string">"]"</span>;
+    }
+}
+
+
+
+</div></code></pre>
+
+</body>
+</html>

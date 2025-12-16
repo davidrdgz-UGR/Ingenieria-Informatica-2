@@ -25,7 +25,7 @@ public class Jugador implements Comparable<Jugador>{
     
     
 
-    private ArrayList<TituloPropiedad> propiedades;
+    protected  ArrayList<TituloPropiedad> propiedades;
     private Sorpresa salvoconducto; /* Tipo = SalirCarcel */
 
 
@@ -323,7 +323,7 @@ public class Jugador implements Comparable<Jugador>{
 
     /* ---------------- SETTERS / GETTERS ---------------- */
 
-    private int getCasasMax() {
+    public int getCasasMax() {
         return CasasMax;
     }
 
@@ -331,7 +331,7 @@ public class Jugador implements Comparable<Jugador>{
         return CasasPorHotel;
     }
 
-    private int getHotelesMax() {
+    public int getHotelesMax() {
         return HotelesMax;
     }
 
