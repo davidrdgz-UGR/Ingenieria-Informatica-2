@@ -12,6 +12,11 @@ class Sorpresa{
 
     /* ----------------- CONSTRUCTORES ----------------- */
 
+    /* Constructor para herencias */
+    Sorpresa(){
+
+    }
+
     Sorpresa(TipoSorpresa tipo, Tablero tablero) {
         this.init();
         this.tipo = tipo;

@@ -18,6 +18,11 @@ public class Casilla {
 
     /* REVISAR CONSTRUCTORES */
     
+    /* Constructor para herencias */
+    Casilla (){
+
+    }
+
     Casilla(String nombre) {
         this.init();
         this.nombre = nombre;
