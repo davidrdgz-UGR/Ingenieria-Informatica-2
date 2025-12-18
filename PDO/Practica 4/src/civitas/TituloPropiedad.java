@@ -227,7 +227,7 @@ public class TituloPropiedad {
         return  this.numHoteles;
     }
 
-    private float getPrecioAlquiler() {
+    public float getPrecioAlquiler() {
         
         if( this.hipotecado || this.propietarioEncarcelado() ){
             return (float) 0;
@@ -259,7 +259,13 @@ public class TituloPropiedad {
         return this.propietario;
     }
 
-    void setPropietario(Jugador nuevoPropietario){
+    public void setPropietario(Jugador nuevoPropietario){
+
+        this.propietario = nuevoPropietario;
+    }
+
+    public void setPropietario(JugadorNovato nuevoPropietario){
+
         this.propietario = nuevoPropietario;
     }
 }

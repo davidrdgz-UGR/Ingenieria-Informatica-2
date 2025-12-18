@@ -25,7 +25,7 @@ public class Jugador implements Comparable<Jugador>{
     
     
 
-    protected  ArrayList<TituloPropiedad> propiedades;
+    public  ArrayList<TituloPropiedad> propiedades;
     private Sorpresa salvoconducto; /* Tipo = SalirCarcel */
 
 
@@ -374,6 +374,12 @@ public class Jugador implements Comparable<Jugador>{
 
     public void setPuedeComprar(boolean valor){
         this.puedeComprar = valor;
+    }
+
+
+    /* SOLO PARA EXAMEN P4 */
+    public void añadirPropiedad(TituloPropiedad propiedad){
+        this.propiedades.add(propiedad);
     }
 
 }

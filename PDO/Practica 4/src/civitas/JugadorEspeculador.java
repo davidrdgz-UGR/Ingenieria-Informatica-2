@@ -1,7 +1,5 @@
 package civitas;
 
-import java.util.ArrayList;
-
 public class JugadorEspeculador extends Jugador {
 
     private static final int FACTOR_ESPECULADOR = 2;
