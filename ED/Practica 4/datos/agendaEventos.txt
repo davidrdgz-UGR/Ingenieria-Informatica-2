@@ -1,0 +1,9 @@
+12 12 2025 Evento de Prueba 1 Para Agenda 
+24 12 2025 Evento de Prueba 2 Para Agenda 
+12 12 2025 Evento de Prueba 3 Para Agenda 
+12 10 2025 Examen de Estructura de Datos
+05 11 2025 Entrega practica de arboles binarios
+21 09 2025 Inicio del curso academico
+15 01 2026 Examen final del primer cuatrimestre
+01 12 2025 Presentacion del proyecto final
+30 09 2025 Primer control parcial
