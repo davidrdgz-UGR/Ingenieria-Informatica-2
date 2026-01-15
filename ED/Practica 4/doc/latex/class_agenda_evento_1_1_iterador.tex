@@ -1,0 +1,149 @@
+\doxysection{Agenda\+Evento\+::Iterador Class Reference}
+\hypertarget{class_agenda_evento_1_1_iterador}{}\label{class_agenda_evento_1_1_iterador}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+
+
+\doxylink{class_agenda_evento_1_1_iterador}{Iterador} inorden para recorrer el árbol en orden cronológico.  
+
+
+
+
+{\ttfamily \#include $<$Agenda\+Evento.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto (iterador vacío). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador_a8437335dd22dabedd52098fc556c3a04}{Iterador}} (Nodo \texorpdfstring{$\ast$}{*}raiz)
+\begin{DoxyCompactList}\small\item\em Constructor que inicializa el iterador desde la raíz del árbol. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador_a0c925c524a9f7043aa37fe87d71aa983}{Iterador}} (const Iterador \&otro\+Iterador)
+\begin{DoxyCompactList}\small\item\em Constructor de copia del iterador. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}} \& \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a35ed17fa246722245ef4029dcbb9fa81}{operator=}} (const \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}} \&\mbox{\hyperlink{class_agenda_evento_a72f3aa866ac06139e98f047d78cc9cf8}{iterador}})
+\begin{DoxyCompactList}\small\item\em Operador de asignación del iterador. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador_ad3947ac3b075310fe0fb46bb3794dd32}{\texorpdfstring{$\sim$}{\string~}\+Iterador}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Libera la pila interna del iterador. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_evento_1_1_iterador_ace296efe632ee35b0d89ac0087e2f267}{tiene\+Siguiente}} () const
+\begin{DoxyCompactList}\small\item\em Indica si quedan eventos por recorrer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_evento}{Evento}} \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a92fadd1f7ad8fb221f3d2108fa9e8c64}{siguiente\+Evento}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve el siguiente \doxylink{class_evento}{Evento} en orden cronológico (inorden). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_agenda_evento_1_1_iterador}{Iterador} inorden para recorrer el árbol en orden cronológico. 
+
+Implementa un recorrido inorden (izq, nodo, der) usando una pila enlazada propia, sin STL, para devolver los eventos de menor a mayor fecha. 
+
+\label{doc-constructors}
+\Hypertarget{class_agenda_evento_1_1_iterador_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}!Iterador@{Iterador}}
+\index{Iterador@{Iterador}!AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+\doxysubsubsection{\texorpdfstring{Iterador()}{Iterador()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8} 
+Agenda\+Evento\+::\+Iterador\+::\+Iterador (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto (iterador vacío). 
+
+\Hypertarget{class_agenda_evento_1_1_iterador_a8437335dd22dabedd52098fc556c3a04}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}!Iterador@{Iterador}}
+\index{Iterador@{Iterador}!AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+\doxysubsubsection{\texorpdfstring{Iterador()}{Iterador()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_agenda_evento_1_1_iterador_a8437335dd22dabedd52098fc556c3a04} 
+Agenda\+Evento\+::\+Iterador\+::\+Iterador (\begin{DoxyParamCaption}\item[{Nodo \texorpdfstring{$\ast$}{*}}]{raiz}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor que inicializa el iterador desde la raíz del árbol. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em raiz} & Raíz del árbol a recorrer. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+El iterador queda posicionado para devolver el primer elemento en inorden. 
+\end{DoxyPostcond}
+\Hypertarget{class_agenda_evento_1_1_iterador_a0c925c524a9f7043aa37fe87d71aa983}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}!Iterador@{Iterador}}
+\index{Iterador@{Iterador}!AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+\doxysubsubsection{\texorpdfstring{Iterador()}{Iterador()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_agenda_evento_1_1_iterador_a0c925c524a9f7043aa37fe87d71aa983} 
+Agenda\+Evento\+::\+Iterador\+::\+Iterador (\begin{DoxyParamCaption}\item[{const Iterador \&}]{otro\+Iterador}{}\end{DoxyParamCaption})}
+
+
+
+Constructor de copia del iterador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otro\+Iterador} & \doxylink{class_agenda_evento_1_1_iterador}{Iterador} a copiar. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_agenda_evento_1_1_iterador_ad3947ac3b075310fe0fb46bb3794dd32}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}!````~Iterador@{\texorpdfstring{$\sim$}{\string~}Iterador}}
+\index{````~Iterador@{\texorpdfstring{$\sim$}{\string~}Iterador}!AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Iterador()}{\string~Iterador()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_1_1_iterador_ad3947ac3b075310fe0fb46bb3794dd32} 
+Agenda\+Evento\+::\+Iterador\+::\texorpdfstring{$\sim$}{\string~}\+Iterador (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. Libera la pila interna del iterador. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_agenda_evento_1_1_iterador_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_agenda_evento_1_1_iterador_a35ed17fa246722245ef4029dcbb9fa81}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}!operator=@{operator=}}
+\index{operator=@{operator=}!AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_1_1_iterador_a35ed17fa246722245ef4029dcbb9fa81} 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador}{Agenda\+Evento\+::\+Iterador}} \& Agenda\+Evento\+::\+Iterador\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}} \&}]{iterador}{}\end{DoxyParamCaption})}
+
+
+
+Operador de asignación del iterador. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em iterador} & \doxylink{class_agenda_evento_1_1_iterador}{Iterador} fuente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referencia a \texorpdfstring{$\ast$}{*}this. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_1_1_iterador_a92fadd1f7ad8fb221f3d2108fa9e8c64}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}!siguienteEvento@{siguienteEvento}}
+\index{siguienteEvento@{siguienteEvento}!AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+\doxysubsubsection{\texorpdfstring{siguienteEvento()}{siguienteEvento()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_1_1_iterador_a92fadd1f7ad8fb221f3d2108fa9e8c64} 
+\mbox{\hyperlink{class_evento}{Evento}} Agenda\+Evento\+::\+Iterador\+::siguiente\+Evento (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Devuelve el siguiente \doxylink{class_evento}{Evento} en orden cronológico (inorden). 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_evento}{Evento} siguiente. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+\doxylink{class_agenda_evento_1_1_iterador_ace296efe632ee35b0d89ac0087e2f267}{tiene\+Siguiente()} == true. 
+\end{DoxyPrecond}
+\Hypertarget{class_agenda_evento_1_1_iterador_ace296efe632ee35b0d89ac0087e2f267}\index{AgendaEvento::Iterador@{AgendaEvento::Iterador}!tieneSiguiente@{tieneSiguiente}}
+\index{tieneSiguiente@{tieneSiguiente}!AgendaEvento::Iterador@{AgendaEvento::Iterador}}
+\doxysubsubsection{\texorpdfstring{tieneSiguiente()}{tieneSiguiente()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_1_1_iterador_ace296efe632ee35b0d89ac0087e2f267} 
+bool Agenda\+Evento\+::\+Iterador\+::tiene\+Siguiente (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica si quedan eventos por recorrer. 
+
+\begin{DoxyReturn}{Returns}
+true si existe un siguiente evento, false en caso contrario. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_agenda_evento_8h}{Agenda\+Evento.\+h}}\item 
+src/\mbox{\hyperlink{agenda_evento_8cpp}{agenda\+Evento.\+cpp}}\end{DoxyCompactItemize}

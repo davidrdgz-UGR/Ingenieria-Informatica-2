@@ -252,13 +252,11 @@ AgendaEvento::Iterador& AgendaEvento::Iterador::operator=(const Iterador& iterad
 
 /* ---------------- Metodos Iterador ---------------- */
 
-bool AgendaEvento::Iterador::tieneSiguiente() const
-{
+bool AgendaEvento::Iterador::tieneSiguiente() const{
     return (pila != nullptr);
 }
 
-Evento AgendaEvento::Iterador::siguienteEvento()
-{
+Evento AgendaEvento::Iterador::siguienteEvento(){
     Nodo* nodo = pop();
     actual = nodo;
 

@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="pr%C3%A1ctica-4-ed--2%C2%BA-ingenier%C3%ADa-inform%C3%A1tica-david-rodriguez-aparicio">Práctica 4 ED | 2º Ingeniería Informática David Rodriguez Aparicio</h1>
+<p>En esta práctica hemos creado una agenda de eventos mediante un Arbol Binario de Busqueda, en el que cada evento se almacena en el árbol de forma cronológica.</p>
+<p>En base a los ejemplos y conocimientos del temario he creado el código, que carga un fichero de texto y lo convierte en Eventos, y de estos creamos la agenda de eventos.</p>
+<p>Se usa un Iterador con pila, que recorre el arbol con recorrido inorden, también hemos usado recursividad.</p>
+<h2 id="eventoscpp">EVENTOS.CPP</h2>
+<p>Aqui vemos la base del programa que es la estructura de los eventos.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"Eventos.h"</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cassert&gt;</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+<span class="hljs-comment">// #include &lt;iomanip&gt;</span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+
+<span class="hljs-comment">/* -------------- CONSTRUCTORES -------------- */</span>
+
+Evento::Evento(){
+    <span class="hljs-keyword">this</span>-&gt;dia = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">this</span>-&gt;mes = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">this</span>-&gt;anio = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">this</span>-&gt;descripcion = <span class="hljs-string">" "</span>;
+}
+
+
+Evento::Evento(<span class="hljs-keyword">int</span> dia, <span class="hljs-keyword">int</span> mes, <span class="hljs-keyword">int</span> anio, <span class="hljs-built_in">string</span> descripcion){
+    <span class="hljs-keyword">this</span>-&gt;dia = dia;
+    <span class="hljs-keyword">this</span>-&gt;mes = mes;
+    <span class="hljs-keyword">this</span>-&gt;anio = anio;
+    <span class="hljs-keyword">this</span>-&gt;descripcion = descripcion;
+}
+
+
+Evento::Evento(<span class="hljs-keyword">const</span> Evento&amp; otroEvento){
+    <span class="hljs-keyword">this</span>-&gt;dia = otroEvento.dia;
+    <span class="hljs-keyword">this</span>-&gt;mes = otroEvento.mes;
+    <span class="hljs-keyword">this</span>-&gt;anio = otroEvento.anio;
+    <span class="hljs-keyword">this</span>-&gt;descripcion = otroEvento.descripcion;
+}
+
+
+<span class="hljs-comment">/* -------------- METODOS -------------- */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Evento::comprobarFecha</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;anio &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;mes &lt; <span class="hljs-number">1</span> || <span class="hljs-keyword">this</span>-&gt;mes &gt; <span class="hljs-number">12</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;dia &lt; <span class="hljs-number">1</span> || <span class="hljs-keyword">this</span>-&gt;dia &gt; <span class="hljs-number">31</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">Evento::toString</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-built_in">string</span> texto;
+
+    texto += <span class="hljs-string">"Evento: "</span> + <span class="hljs-keyword">this</span>-&gt;descripcion;
+    texto += <span class="hljs-string">"\n Fecha: "</span> + to_string( <span class="hljs-keyword">this</span>-&gt;dia ) + <span class="hljs-string">"/"</span> + to_string( <span class="hljs-keyword">this</span>-&gt;mes ) + <span class="hljs-string">"/"</span> + to_string( <span class="hljs-keyword">this</span>-&gt;anio ) + <span class="hljs-string">"\n"</span> ;
+    
+    <span class="hljs-keyword">return</span> texto;
+    
+}
+
+<span class="hljs-keyword">bool</span> Evento::<span class="hljs-keyword">operator</span>&lt;(<span class="hljs-keyword">const</span> Evento&amp; otroEvento) <span class="hljs-keyword">const</span>{
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;anio != otroEvento.anio) <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;anio &lt; otroEvento.anio;
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>-&gt;mes  != otroEvento.mes)  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;mes  &lt; otroEvento.mes;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;dia &lt; otroEvento.dia;
+}
+
+<span class="hljs-keyword">bool</span> Evento::<span class="hljs-keyword">operator</span>==(<span class="hljs-keyword">const</span> Evento&amp; otroEvento) <span class="hljs-keyword">const</span>{
+    <span class="hljs-keyword">return</span> (dia == otroEvento.dia &amp;&amp; mes == otroEvento.mes &amp;&amp; anio == otroEvento.anio);
+}
+
+<span class="hljs-comment">/* -------------- SETTERS / GETTERS -------------- */</span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Evento::getDia</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> dia;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Evento::getMes</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> mes;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Evento::getAnio</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> anio;
+}
+
+<span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">Evento::getDescripcion</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> descripcion;
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Evento::setDia</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nuevoDia)</span></span>{
+    <span class="hljs-keyword">this</span>-&gt;dia = nuevoDia;
+    assert(comprobarFecha());
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Evento::setMes</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nuevoMes)</span></span>{
+    <span class="hljs-keyword">this</span>-&gt;mes = nuevoMes;
+    assert(comprobarFecha());
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Evento::setAnio</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nuevoAnio)</span></span>{
+    <span class="hljs-keyword">this</span>-&gt;anio = nuevoAnio;
+    assert(comprobarFecha());
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Evento::setDescripcion</span><span class="hljs-params">(<span class="hljs-built_in">string</span> nuevaDescripcion)</span></span>{
+    <span class="hljs-keyword">this</span>-&gt;descripcion = nuevaDescripcion;
+}
+
+</div></code></pre>
+<h2 id="agendaeventocpp">AGENDAEVENTO.CPP</h2>
+<p>Y aqui tenemos la agenda, donde implementamos la estructura nodo e Iterador, dento de la propia clase de AgendaEvento, de esta manera conseguimos abstracción.</p>
+<p>Puede que algunos métodos estén pensados para la interacción con el usuario, pero al final no se ha terminado de implementar esta característica ( Creo que el enunciado no lo menciona ).</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"AgendaEvento.h"</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cassert&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+
+
+<span class="hljs-comment">/* ---------------- Parte Recursiva ----------------  */</span>
+
+<span class="hljs-function">AgendaEvento::Nodo* <span class="hljs-title">AgendaEvento::clonarNodo</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Nodo* nodo)</span></span>{
+    <span class="hljs-keyword">if</span> (nodo == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+
+    Nodo* nuevo = <span class="hljs-keyword">new</span> Nodo(nodo-&gt;evento);
+    nuevo-&gt;HijoIzq = clonarNodo(nodo-&gt;HijoIzq);
+    nuevo-&gt;HijoDer = clonarNodo(nodo-&gt;HijoDer);
+    <span class="hljs-keyword">return</span> nuevo;
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AgendaEvento::liberarNodo</span><span class="hljs-params">(Nodo* nodo)</span></span>{
+    <span class="hljs-keyword">if</span> (nodo == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span>;
+
+    liberarNodo(nodo-&gt;HijoIzq);
+    liberarNodo(nodo-&gt;HijoDer);
+    <span class="hljs-keyword">delete</span> nodo;
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaEvento::insertarNodo</span><span class="hljs-params">(Nodo*&amp; nodo, <span class="hljs-keyword">const</span> Evento&amp; evento, <span class="hljs-keyword">bool</span> actualizarSiExiste)</span></span>{
+    <span class="hljs-keyword">if</span> (nodo == <span class="hljs-literal">nullptr</span>) {
+        nodo = <span class="hljs-keyword">new</span> Nodo(evento);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (evento &lt; nodo-&gt;evento) {
+        <span class="hljs-keyword">return</span> insertarNodo(nodo-&gt;HijoIzq, evento, actualizarSiExiste);
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (nodo-&gt;evento &lt; evento) {
+        <span class="hljs-keyword">return</span> insertarNodo(nodo-&gt;HijoDer, evento, actualizarSiExiste);
+    }
+    <span class="hljs-keyword">else</span> {
+
+        <span class="hljs-keyword">if</span> (actualizarSiExiste) {
+            nodo-&gt;evento.setDescripcion( evento.getDescripcion() );
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}
+
+<span class="hljs-function">AgendaEvento::Nodo* <span class="hljs-title">AgendaEvento::buscarNodo</span><span class="hljs-params">(Nodo* nodo, <span class="hljs-keyword">const</span> Evento&amp; clave)</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">if</span> (nodo == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+
+    <span class="hljs-keyword">if</span> (clave == nodo-&gt;evento) <span class="hljs-keyword">return</span> nodo;
+
+    <span class="hljs-keyword">if</span> (clave &lt; nodo-&gt;evento)
+        <span class="hljs-keyword">return</span> buscarNodo(nodo-&gt;HijoIzq, clave);
+
+    <span class="hljs-keyword">return</span> buscarNodo(nodo-&gt;HijoDer, clave);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">AgendaEvento::alturaNodo</span><span class="hljs-params">(Nodo* nodo)</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">if</span> (nodo == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">int</span> hi = alturaNodo(nodo-&gt;HijoIzq);
+    <span class="hljs-keyword">int</span> hd = alturaNodo(nodo-&gt;HijoDer);
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + (hi &gt; hd ? hi : hd);
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">AgendaEvento::cantidadNodos</span><span class="hljs-params">(Nodo* nodo)</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">if</span> (nodo == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + cantidadNodos(nodo-&gt;HijoIzq) + cantidadNodos(nodo-&gt;HijoDer);
+}
+
+
+
+<span class="hljs-comment">/* ----------------  Parte Pública ----------------  */</span>
+
+<span class="hljs-comment">/* ----------------  CONSTRUCTOR / DESTRUCTOR ----------------  */</span>
+
+AgendaEvento::AgendaEvento(){
+    <span class="hljs-keyword">this</span>-&gt;raiz = <span class="hljs-literal">nullptr</span>;
+}
+
+AgendaEvento::AgendaEvento(<span class="hljs-keyword">const</span> AgendaEvento&amp; otraAgenda){
+    <span class="hljs-keyword">this</span>-&gt;raiz = clonarNodo(otraAgenda.raiz);
+}
+
+
+AgendaEvento&amp; AgendaEvento::<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> AgendaEvento&amp; otraAgenda){
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == &amp;otraAgenda) <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+
+    liberarNodo(<span class="hljs-keyword">this</span>-&gt;raiz);
+    <span class="hljs-keyword">this</span>-&gt;raiz = <span class="hljs-literal">nullptr</span>;
+
+    <span class="hljs-keyword">this</span>-&gt;raiz = clonarNodo(otraAgenda.raiz);
+
+    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+}
+
+AgendaEvento::~AgendaEvento(){
+    liberarNodo(<span class="hljs-keyword">this</span>-&gt;raiz);
+    <span class="hljs-keyword">this</span>-&gt;raiz = <span class="hljs-literal">nullptr</span>;
+}
+
+
+<span class="hljs-comment">/* ----------------  METODOS ----------------  */</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaEvento::insertar</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Evento&amp; nuevoEvento, <span class="hljs-keyword">bool</span> actualizarSiExiste)</span></span>{
+    <span class="hljs-keyword">return</span> insertarNodo(<span class="hljs-keyword">this</span>-&gt;raiz, nuevoEvento, actualizarSiExiste);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaEvento::existe</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Evento&amp; clave)</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> (buscarNodo(<span class="hljs-keyword">this</span>-&gt;raiz, clave) != <span class="hljs-literal">nullptr</span>);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaEvento::obtener</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Evento&amp; clave, Evento&amp; out)</span> <span class="hljs-keyword">const</span></span>{
+    Nodo* n = buscarNodo(<span class="hljs-keyword">this</span>-&gt;raiz, clave);
+    <span class="hljs-keyword">if</span> (n == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+    out = n-&gt;evento;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">AgendaEvento::alturaArbol</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> alturaNodo(<span class="hljs-keyword">this</span>-&gt;raiz);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">AgendaEvento::numNodos</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> cantidadNodos(<span class="hljs-keyword">this</span>-&gt;raiz);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AgendaEvento::estaVacia</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>-&gt;raiz == <span class="hljs-literal">nullptr</span>);
+}
+
+
+
+<span class="hljs-comment">/* ---------------- Parte ITERADOR ----------------  */</span>
+
+
+<span class="hljs-keyword">void</span> AgendaEvento::Iterador::push(Nodo* nodo){
+    pila = <span class="hljs-keyword">new</span> PilaNodo(nodo, pila);
+}
+
+AgendaEvento::Nodo* AgendaEvento::Iterador::pop(){
+    <span class="hljs-keyword">if</span> (pila == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+
+    PilaNodo* top = pila;
+    Nodo* n = top-&gt;nodo;
+
+    pila = top-&gt;sig;
+    <span class="hljs-keyword">delete</span> top;
+
+    <span class="hljs-keyword">return</span> n;
+}
+
+<span class="hljs-keyword">void</span> AgendaEvento::Iterador::bajarIzquierda(Nodo* nodo){
+    Nodo* cur = nodo;
+    <span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">nullptr</span>) {
+        push(cur);
+        cur = cur-&gt;HijoIzq;
+    }
+}
+
+<span class="hljs-comment">/* ---------------- Constructores Iterador ----------------   */</span>
+
+AgendaEvento::Iterador::Iterador(){
+    <span class="hljs-keyword">this</span>-&gt;actual = <span class="hljs-literal">nullptr</span>;
+    <span class="hljs-keyword">this</span>-&gt;pila = <span class="hljs-literal">nullptr</span>;
+}
+
+AgendaEvento::Iterador::Iterador(Nodo* raiz){
+    <span class="hljs-keyword">this</span>-&gt;actual = <span class="hljs-literal">nullptr</span>;
+    <span class="hljs-keyword">this</span>-&gt;pila = <span class="hljs-literal">nullptr</span>;
+
+    bajarIzquierda(raiz);
+}
+
+
+AgendaEvento::Iterador::Iterador(<span class="hljs-keyword">const</span> Iterador&amp; otroIterador){
+    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (PilaNodo* p = otroIterador.pila; p != <span class="hljs-literal">nullptr</span>; p = p-&gt;sig) count++;
+
+    Nodo** arr = <span class="hljs-literal">nullptr</span>;
+    <span class="hljs-keyword">if</span> (count &gt; <span class="hljs-number">0</span>) arr = <span class="hljs-keyword">new</span> Nodo*[count];
+
+    <span class="hljs-keyword">int</span> i = count - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (PilaNodo* p = otroIterador.pila; p != <span class="hljs-literal">nullptr</span>; p = p-&gt;sig) {
+        arr[i--] = p-&gt;nodo;
+    }
+
+    <span class="hljs-keyword">this</span>-&gt;pila = <span class="hljs-literal">nullptr</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; count; k++) {
+        <span class="hljs-keyword">this</span>-&gt;pila = <span class="hljs-keyword">new</span> PilaNodo(arr[k], <span class="hljs-keyword">this</span>-&gt;pila);
+    }
+
+    <span class="hljs-keyword">delete</span>[] arr;
+
+    <span class="hljs-keyword">this</span>-&gt;actual = otroIterador.actual;
+}
+
+AgendaEvento::Iterador::~Iterador(){
+    <span class="hljs-keyword">while</span> (pila != <span class="hljs-literal">nullptr</span>) {
+        PilaNodo* tmp = pila;
+        pila = pila-&gt;sig;
+        <span class="hljs-keyword">delete</span> tmp;
+    }
+    actual = <span class="hljs-literal">nullptr</span>;
+}
+
+<span class="hljs-comment">/* Sobrecarga de =  */</span>
+AgendaEvento::Iterador&amp; AgendaEvento::Iterador::<span class="hljs-keyword">operator</span>=(<span class="hljs-keyword">const</span> Iterador&amp; iterador){
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == &amp;iterador) <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+
+    <span class="hljs-comment">// liberar mi pila</span>
+    <span class="hljs-keyword">while</span> (<span class="hljs-keyword">this</span>-&gt;pila != <span class="hljs-literal">nullptr</span>) {
+        PilaNodo* tmp = <span class="hljs-keyword">this</span>-&gt;pila;
+        <span class="hljs-keyword">this</span>-&gt;pila = <span class="hljs-keyword">this</span>-&gt;pila-&gt;sig;
+        <span class="hljs-keyword">delete</span> tmp;
+    }
+
+    <span class="hljs-comment">// copiar pila del otro </span>
+    <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">for</span> (PilaNodo* p = iterador.pila; p != <span class="hljs-literal">nullptr</span>; p = p-&gt;sig) count++;
+
+    Nodo** arr = <span class="hljs-literal">nullptr</span>;
+    <span class="hljs-keyword">if</span> (count &gt; <span class="hljs-number">0</span>) arr = <span class="hljs-keyword">new</span> Nodo*[count];
+
+    <span class="hljs-keyword">int</span> i = count - <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (PilaNodo* p = iterador.pila; p != <span class="hljs-literal">nullptr</span>; p = p-&gt;sig) {
+        arr[i--] = p-&gt;nodo;
+    }
+
+    <span class="hljs-keyword">this</span>-&gt;pila = <span class="hljs-literal">nullptr</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; count; k++) {
+        <span class="hljs-keyword">this</span>-&gt;pila = <span class="hljs-keyword">new</span> PilaNodo(arr[k], <span class="hljs-keyword">this</span>-&gt;pila);
+    }
+
+    <span class="hljs-keyword">delete</span>[] arr;
+
+    <span class="hljs-keyword">this</span>-&gt;actual = iterador.actual;
+
+    <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;
+}
+
+<span class="hljs-comment">/* ---------------- Metodos Iterador ---------------- */</span>
+
+<span class="hljs-keyword">bool</span> AgendaEvento::Iterador::tieneSiguiente() <span class="hljs-keyword">const</span>{
+    <span class="hljs-keyword">return</span> (pila != <span class="hljs-literal">nullptr</span>);
+}
+
+Evento AgendaEvento::Iterador::siguienteEvento(){
+    Nodo* nodo = pop();
+    actual = nodo;
+
+    <span class="hljs-keyword">if</span> (nodo != <span class="hljs-literal">nullptr</span> &amp;&amp; nodo-&gt;HijoDer != <span class="hljs-literal">nullptr</span>) {
+        bajarIzquierda(nodo-&gt;HijoDer);
+    }
+
+    <span class="hljs-keyword">return</span> nodo-&gt;evento;
+}
+
+<span class="hljs-function">AgendaEvento::Iterador <span class="hljs-title">AgendaEvento::iterador</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>{
+    <span class="hljs-keyword">return</span> Iterador(<span class="hljs-keyword">this</span>-&gt;raiz);
+}
+
+</div></code></pre>
+<h2 id="maincpp">MAIN.CPP</h2>
+<p>Finalmente tenemos el main, creamos una funcion para cargar el archivo y usamos lo creado anteriormente para mostrar la Agenda.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"AgendaEvento.h"</span></span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;sstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>; 
+
+<span class="hljs-comment">/**
+ * @brief Lee y parsea una línea de texto con un evento.
+ *
+ * Formato esperado por línea:
+ *   dia mes anio descripcion...
+ * Ejemplo:
+ *   12 10 2025 Examen de Estructura de Datos
+ *
+ * @param linea Línea completa del fichero.
+ * @param outEvento Evento de salida (se rellena si el parseo es correcto).
+ * @return true si la línea contiene un evento válido a nivel de formato, false si no.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">leerEventoDeLinea</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; linea, Evento&amp; outEvento)</span></span>{
+    <span class="hljs-function"><span class="hljs-built_in">istringstream</span> <span class="hljs-title">iss</span><span class="hljs-params">(linea)</span></span>;
+
+    <span class="hljs-keyword">int</span> dia, mes, anio;
+    <span class="hljs-keyword">if</span> (!(iss &gt;&gt; dia &gt;&gt; mes &gt;&gt; anio)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>; <span class="hljs-comment">// línea inválida o vacía</span>
+    }
+
+    <span class="hljs-built_in">string</span> descripcion;
+    getline(iss, descripcion);
+
+    <span class="hljs-comment">// Elimina el espacio inicial típico tras leer anio y luego hacer getline</span>
+    <span class="hljs-keyword">if</span> (!descripcion.empty() &amp;&amp; descripcion[<span class="hljs-number">0</span>] == <span class="hljs-string">' '</span>) descripcion.erase(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>);
+
+    outEvento = Evento(dia, mes, anio, descripcion);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-comment">/**
+ * @brief Programa principal de la práctica.
+ *
+ * - Lee un fichero de eventos (por defecto: "datos/agendaEventos.txt").
+ * - Inserta cada evento en un ABB (AgendaEvento) ordenado por fecha.
+ * - Muestra información estructural del árbol (nº nodos y altura).
+ * - Recorre y muestra los eventos en orden cronológico usando un iterador inorden.
+ *
+ * Uso:
+ *   practica4.exe [ruta_fichero]
+ *
+ * Si se proporciona ruta por argumento, se utilizará en lugar de la ruta por defecto.
+ *
+ * @param argc Número de argumentos.
+ * @param argv Vector de argumentos (argv[1] puede contener la ruta del fichero).
+ * @return 0 si finaliza correctamente, 1 si no se puede abrir el fichero.
+ */</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span></span>{
+
+    <span class="hljs-built_in">string</span> ruta = <span class="hljs-string">"datos/agendaEventos.txt"</span>;
+    <span class="hljs-keyword">if</span> (argc &gt;= <span class="hljs-number">2</span>) {
+        ruta = argv[<span class="hljs-number">1</span>];
+    }
+
+    <span class="hljs-function">ifstream <span class="hljs-title">fin</span><span class="hljs-params">(ruta)</span></span>;
+    <span class="hljs-keyword">if</span> (!fin) {
+        <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"No se pudo abrir el fichero '"</span> &lt;&lt; ruta &lt;&lt; <span class="hljs-string">"'\n"</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+    }
+
+    AgendaEvento agenda;
+
+    <span class="hljs-built_in">string</span> linea;
+    <span class="hljs-keyword">int</span> numLeidas = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">int</span> numInsertadas = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">while</span> (getline(fin, linea)) {
+        <span class="hljs-comment">// Saltar líneas vacías</span>
+        <span class="hljs-keyword">if</span> (linea.size() == <span class="hljs-number">0</span>) <span class="hljs-keyword">continue</span>;
+
+        Evento ev;
+        <span class="hljs-keyword">if</span> (!leerEventoDeLinea(linea, ev)) {
+            <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"línea inválida ignorada: "</span> &lt;&lt; linea &lt;&lt; <span class="hljs-string">"\n"</span>;
+            <span class="hljs-keyword">continue</span>;
+        }
+
+        numLeidas++;
+
+        <span class="hljs-comment">// Inserta el evento; si ya existe esa fecha, se actualiza (actualizarSiExiste = true)</span>
+        <span class="hljs-keyword">if</span> (agenda.insertar(ev, <span class="hljs-literal">true</span>)) {
+            numInsertadas++;
+        }
+    }
+
+    fin.close();
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Eventos leidos: "</span> &lt;&lt; numLeidas &lt;&lt; <span class="hljs-string">"\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Eventos insertados: "</span> &lt;&lt; numInsertadas &lt;&lt; <span class="hljs-string">"\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nodos en el arbol: "</span> &lt;&lt; agenda.numNodos() &lt;&lt; <span class="hljs-string">"\n"</span>;
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Altura del arbol: "</span> &lt;&lt; agenda.alturaArbol() &lt;&lt; <span class="hljs-string">"\n\n"</span>;
+
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"--- Eventos en orden cronologico --- \n"</span>;
+
+    <span class="hljs-comment">// Recorrido ordenado mediante iterador inorden</span>
+    AgendaEvento::Iterador it = agenda.iterador();
+    <span class="hljs-keyword">while</span> (it.tieneSiguiente()) {
+        Evento ev = it.siguienteEvento();
+        <span class="hljs-built_in">cout</span> &lt;&lt; ev.toString() &lt;&lt; <span class="hljs-string">"\n"</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+
+</div></code></pre>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+\doxysection{Evento Class Reference}
+\hypertarget{class_evento}{}\label{class_evento}\index{Evento@{Evento}}
+
+
+TDA \doxylink{class_evento}{Evento}.  
+
+
+
+
+{\ttfamily \#include $<$Eventos.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_evento_a5497a80e2be920e7a93dcbe3aad35258}{Evento}} (int dia, int mes, int anio, string descripcion)
+\begin{DoxyCompactList}\small\item\em Constructor con parámetros. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_evento_a22b6c8371bb5c6cbb052978dbc56b7ef}{Evento}} (const \mbox{\hyperlink{class_evento}{Evento}} \&otro\+Evento)
+\begin{DoxyCompactList}\small\item\em Constructor de copia. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_evento_ad7936f38ce982abc111997eb9abdd143}{comprobar\+Fecha}} () const
+\begin{DoxyCompactList}\small\item\em Comprueba si la fecha almacenada es válida (validación básica). \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_evento_ab752cdbb9ea60f4fc794ffe541c7f897}{to\+String}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve una representación en texto del evento. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_evento_ae0cd39895f40146c761289aa7a849fc7}{operator$<$}} (const \mbox{\hyperlink{class_evento}{Evento}} \&otro\+Evento) const
+\begin{DoxyCompactList}\small\item\em Comparación cronológica estricta por fecha. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_evento_ab7b666c38a332d657528be087b1490bc}{operator==}} (const \mbox{\hyperlink{class_evento}{Evento}} \&otro\+Evento) const
+\begin{DoxyCompactList}\small\item\em Igualdad por fecha. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_evento_ada9e824d608a68594b316d74f6d0ea84}{get\+Dia}} () const
+\begin{DoxyCompactList}\small\item\em Obtiene el día del evento. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_evento_a4337547adbcf5991e96dfdb770aede84}{get\+Mes}} () const
+\begin{DoxyCompactList}\small\item\em Obtiene el mes del evento. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_evento_a9557500597c5687d4830f9d280b6beaf}{get\+Anio}} () const
+\begin{DoxyCompactList}\small\item\em Obtiene el año del evento. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_evento_afaf31fb57e1331f41188ad56d272e3e8}{get\+Descripcion}} () const
+\begin{DoxyCompactList}\small\item\em Obtiene la descripción del evento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_evento_a8b0cc6f3e008e2c170d596425dbb0116}{set\+Dia}} (int nuevo\+Dia)
+\begin{DoxyCompactList}\small\item\em Establece el día del evento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_evento_a8822f5ee87584d62f0095e4b4bed081e}{set\+Mes}} (int nuevo\+Mes)
+\begin{DoxyCompactList}\small\item\em Establece el mes del evento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_evento_aca0c9286b464631b7a1ad3e8087984f4}{set\+Anio}} (int nuevo\+Anio)
+\begin{DoxyCompactList}\small\item\em Establece el año del evento. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_evento_ac4ae42cd47977ef5df71f2168ba7d665}{set\+Descripcion}} (string nueva\+Descripcion)
+\begin{DoxyCompactList}\small\item\em Establece la descripción del evento. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TDA \doxylink{class_evento}{Evento}. 
+
+Representa un suceso asociado a una fecha (día/mes/año) y una descripción textual. Se usa como elemento almacenado en el ABB (\doxylink{class_agenda_evento}{Agenda\+Evento}), ordenándose cronológicamente mediante el operador \texorpdfstring{$<$}{<} (por fecha).
+
+Invariante (validación básica)\+:
+\begin{DoxyItemize}
+\item 1 \texorpdfstring{$<$}{<}= mes \texorpdfstring{$<$}{<}= 12
+\item 1 \texorpdfstring{$<$}{<}= dia \texorpdfstring{$<$}{<}= 31
+\item anio \texorpdfstring{$>$}{>} 0 (según criterio del proyecto) 
+\end{DoxyItemize}
+
+\label{doc-constructors}
+\Hypertarget{class_evento_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_evento_a7aba3bd7a832c5365ea0ccb318511452}\index{Evento@{Evento}!Evento@{Evento}}
+\index{Evento@{Evento}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{Evento()}{Evento()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily \label{class_evento_a7aba3bd7a832c5365ea0ccb318511452} 
+Evento\+::\+Evento (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. 
+
+\begin{DoxyPostcond}{Postcondition}
+El evento queda inicializado con una fecha válida básica y descripción vacía. 
+\end{DoxyPostcond}
+\Hypertarget{class_evento_a5497a80e2be920e7a93dcbe3aad35258}\index{Evento@{Evento}!Evento@{Evento}}
+\index{Evento@{Evento}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{Evento()}{Evento()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily \label{class_evento_a5497a80e2be920e7a93dcbe3aad35258} 
+Evento\+::\+Evento (\begin{DoxyParamCaption}\item[{int}]{dia}{, }\item[{int}]{mes}{, }\item[{int}]{anio}{, }\item[{string}]{descripcion}{}\end{DoxyParamCaption})}
+
+
+
+Constructor con parámetros. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dia} & Día del mes (1..31). \\
+\hline
+{\em mes} & Mes del año (1..12). \\
+\hline
+{\em anio} & Año (\texorpdfstring{$>$}{>}0). \\
+\hline
+{\em descripcion} & Texto descriptivo del evento. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+Los parámetros deben representar una fecha válida (al menos a nivel básico). 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondition}
+El evento queda inicializado con la fecha y descripción proporcionadas. 
+\end{DoxyPostcond}
+\Hypertarget{class_evento_a22b6c8371bb5c6cbb052978dbc56b7ef}\index{Evento@{Evento}!Evento@{Evento}}
+\index{Evento@{Evento}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{Evento()}{Evento()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily \label{class_evento_a22b6c8371bb5c6cbb052978dbc56b7ef} 
+Evento\+::\+Evento (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_evento}{Evento}} \&}]{otro\+Evento}{}\end{DoxyParamCaption})}
+
+
+
+Constructor de copia. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otro\+Evento} & \doxylink{class_evento}{Evento} a copiar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+El nuevo evento contiene la misma fecha y descripción que otro\+Evento. 
+\end{DoxyPostcond}
+
+
+\label{doc-func-members}
+\Hypertarget{class_evento_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_evento_ad7936f38ce982abc111997eb9abdd143}\index{Evento@{Evento}!comprobarFecha@{comprobarFecha}}
+\index{comprobarFecha@{comprobarFecha}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{comprobarFecha()}{comprobarFecha()}}
+{\footnotesize\ttfamily \label{class_evento_ad7936f38ce982abc111997eb9abdd143} 
+bool Evento\+::comprobar\+Fecha (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si la fecha almacenada es válida (validación básica). 
+
+\begin{DoxyReturn}{Returns}
+true si (anio\texorpdfstring{$>$}{>}0, 1\texorpdfstring{$<$}{<}=mes\texorpdfstring{$<$}{<}=12, 1\texorpdfstring{$<$}{<}=dia\texorpdfstring{$<$}{<}=31), false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_evento_a9557500597c5687d4830f9d280b6beaf}\index{Evento@{Evento}!getAnio@{getAnio}}
+\index{getAnio@{getAnio}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{getAnio()}{getAnio()}}
+{\footnotesize\ttfamily \label{class_evento_a9557500597c5687d4830f9d280b6beaf} 
+int Evento\+::get\+Anio (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtiene el año del evento. 
+
+\begin{DoxyReturn}{Returns}
+Año (\texorpdfstring{$>$}{>}0). 
+\end{DoxyReturn}
+\Hypertarget{class_evento_afaf31fb57e1331f41188ad56d272e3e8}\index{Evento@{Evento}!getDescripcion@{getDescripcion}}
+\index{getDescripcion@{getDescripcion}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{getDescripcion()}{getDescripcion()}}
+{\footnotesize\ttfamily \label{class_evento_afaf31fb57e1331f41188ad56d272e3e8} 
+string Evento\+::get\+Descripcion (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtiene la descripción del evento. 
+
+\begin{DoxyReturn}{Returns}
+Descripción del evento. 
+\end{DoxyReturn}
+\Hypertarget{class_evento_ada9e824d608a68594b316d74f6d0ea84}\index{Evento@{Evento}!getDia@{getDia}}
+\index{getDia@{getDia}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{getDia()}{getDia()}}
+{\footnotesize\ttfamily \label{class_evento_ada9e824d608a68594b316d74f6d0ea84} 
+int Evento\+::get\+Dia (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtiene el día del evento. 
+
+\begin{DoxyReturn}{Returns}
+Día (1..31). 
+\end{DoxyReturn}
+\Hypertarget{class_evento_a4337547adbcf5991e96dfdb770aede84}\index{Evento@{Evento}!getMes@{getMes}}
+\index{getMes@{getMes}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{getMes()}{getMes()}}
+{\footnotesize\ttfamily \label{class_evento_a4337547adbcf5991e96dfdb770aede84} 
+int Evento\+::get\+Mes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtiene el mes del evento. 
+
+\begin{DoxyReturn}{Returns}
+Mes (1..12). 
+\end{DoxyReturn}
+\Hypertarget{class_evento_ae0cd39895f40146c761289aa7a849fc7}\index{Evento@{Evento}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily \label{class_evento_ae0cd39895f40146c761289aa7a849fc7} 
+bool Evento\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_evento}{Evento}} \&}]{otro\+Evento}{}\end{DoxyParamCaption}) const}
+
+
+
+Comparación cronológica estricta por fecha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otro\+Evento} & \doxylink{class_evento}{Evento} con el que comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si \texorpdfstring{$\ast$}{*}this es anterior a otro\+Evento (por fecha), false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_evento_ab7b666c38a332d657528be087b1490bc}\index{Evento@{Evento}!operator==@{operator==}}
+\index{operator==@{operator==}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{class_evento_ab7b666c38a332d657528be087b1490bc} 
+bool Evento\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_evento}{Evento}} \&}]{otro\+Evento}{}\end{DoxyParamCaption}) const}
+
+
+
+Igualdad por fecha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otro\+Evento} & \doxylink{class_evento}{Evento} con el que comparar. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si ambos eventos tienen la misma fecha (día, mes y año). 
+\end{DoxyReturn}
+\Hypertarget{class_evento_aca0c9286b464631b7a1ad3e8087984f4}\index{Evento@{Evento}!setAnio@{setAnio}}
+\index{setAnio@{setAnio}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{setAnio()}{setAnio()}}
+{\footnotesize\ttfamily \label{class_evento_aca0c9286b464631b7a1ad3e8087984f4} 
+void Evento\+::set\+Anio (\begin{DoxyParamCaption}\item[{int}]{nuevo\+Anio}{}\end{DoxyParamCaption})}
+
+
+
+Establece el año del evento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Anio} & Nuevo año. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+El año pasa a ser nuevo\+Anio (se espera que la fecha siga siendo válida). 
+\end{DoxyPostcond}
+\Hypertarget{class_evento_ac4ae42cd47977ef5df71f2168ba7d665}\index{Evento@{Evento}!setDescripcion@{setDescripcion}}
+\index{setDescripcion@{setDescripcion}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{setDescripcion()}{setDescripcion()}}
+{\footnotesize\ttfamily \label{class_evento_ac4ae42cd47977ef5df71f2168ba7d665} 
+void Evento\+::set\+Descripcion (\begin{DoxyParamCaption}\item[{string}]{nueva\+Descripcion}{}\end{DoxyParamCaption})}
+
+
+
+Establece la descripción del evento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nueva\+Descripcion} & Nueva descripción. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+La descripción pasa a ser nueva\+Descripcion. 
+\end{DoxyPostcond}
+\Hypertarget{class_evento_a8b0cc6f3e008e2c170d596425dbb0116}\index{Evento@{Evento}!setDia@{setDia}}
+\index{setDia@{setDia}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{setDia()}{setDia()}}
+{\footnotesize\ttfamily \label{class_evento_a8b0cc6f3e008e2c170d596425dbb0116} 
+void Evento\+::set\+Dia (\begin{DoxyParamCaption}\item[{int}]{nuevo\+Dia}{}\end{DoxyParamCaption})}
+
+
+
+Establece el día del evento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Dia} & Nuevo día. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+El día pasa a ser nuevo\+Dia (se espera que la fecha siga siendo válida). 
+\end{DoxyPostcond}
+\Hypertarget{class_evento_a8822f5ee87584d62f0095e4b4bed081e}\index{Evento@{Evento}!setMes@{setMes}}
+\index{setMes@{setMes}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{setMes()}{setMes()}}
+{\footnotesize\ttfamily \label{class_evento_a8822f5ee87584d62f0095e4b4bed081e} 
+void Evento\+::set\+Mes (\begin{DoxyParamCaption}\item[{int}]{nuevo\+Mes}{}\end{DoxyParamCaption})}
+
+
+
+Establece el mes del evento. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Mes} & Nuevo mes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyPostcond}{Postcondition}
+El mes pasa a ser nuevo\+Mes (se espera que la fecha siga siendo válida). 
+\end{DoxyPostcond}
+\Hypertarget{class_evento_ab752cdbb9ea60f4fc794ffe541c7f897}\index{Evento@{Evento}!toString@{toString}}
+\index{toString@{toString}!Evento@{Evento}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily \label{class_evento_ab752cdbb9ea60f4fc794ffe541c7f897} 
+string Evento\+::to\+String (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve una representación en texto del evento. 
+
+\begin{DoxyReturn}{Returns}
+Cadena con formato "{}dd/mm/aaaa descripcion"{}. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_eventos_8h}{Eventos.\+h}}\item 
+src/\mbox{\hyperlink{_eventos_8cpp}{Eventos.\+cpp}}\end{DoxyCompactItemize}

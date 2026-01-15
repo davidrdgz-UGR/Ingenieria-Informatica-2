@@ -1,0 +1,231 @@
+\doxysection{Agenda\+Evento Class Reference}
+\hypertarget{class_agenda_evento}{}\label{class_agenda_evento}\index{AgendaEvento@{AgendaEvento}}
+
+
+TDA \doxylink{class_agenda_evento}{Agenda\+Evento} basado en un Árbol Binario de Búsqueda (ABB) de eventos.  
+
+
+
+
+{\ttfamily \#include $<$Agenda\+Evento.\+h$>$}
+
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_agenda_evento_1_1_iterador}{Iterador}}
+\begin{DoxyCompactList}\small\item\em \doxylink{class_agenda_evento_1_1_iterador}{Iterador} inorden para recorrer el árbol en orden cronológico. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador}{Iterador}} \mbox{\hyperlink{class_agenda_evento_a72f3aa866ac06139e98f047d78cc9cf8}{iterador}} () const
+\begin{DoxyCompactList}\small\item\em Crea un iterador para recorrer el árbol en orden cronológico. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}{Agenda\+Evento}} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto. Crea un árbol vacío. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento_a473d6dbe349ed576e368cf5555f81b16}{Agenda\+Evento}} (const \mbox{\hyperlink{class_agenda_evento}{Agenda\+Evento}} \&otra\+Agenda)
+\begin{DoxyCompactList}\small\item\em Constructor de copia (copia profunda del árbol). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento}{Agenda\+Evento}} \& \mbox{\hyperlink{class_agenda_evento_a2b61c9c1a07114d2e4844535e9452c74}{operator=}} (const \mbox{\hyperlink{class_agenda_evento}{Agenda\+Evento}} \&otra\+Agenda)
+\begin{DoxyCompactList}\small\item\em Operador de asignación (copia profunda). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_agenda_evento_a4e4f29d806ef82eec049faad22b42d06}{\texorpdfstring{$\sim$}{\string~}\+Agenda\+Evento}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Libera toda la memoria del árbol. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_evento_a3578447b281d210a167744cb6f35b59f}{insertar}} (const \mbox{\hyperlink{class_evento}{Evento}} \&nuevo\+Evento, bool actualizar\+Si\+Existe=true)
+\begin{DoxyCompactList}\small\item\em Inserta un evento en el ABB. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_evento_acff52758fa8774a6dc9cb76db916e9b4}{existe}} (const \mbox{\hyperlink{class_evento}{Evento}} \&clave) const
+\begin{DoxyCompactList}\small\item\em Comprueba si existe un evento con la clave indicada. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_evento_af1c62bb9c627408a65384b215d887c25}{obtener}} (const \mbox{\hyperlink{class_evento}{Evento}} \&clave, \mbox{\hyperlink{class_evento}{Evento}} \&out) const
+\begin{DoxyCompactList}\small\item\em Obtiene el evento asociado a una clave. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_agenda_evento_ac028c30dc108650b002f6bb75d4a6ce7}{altura\+Arbol}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve la altura del árbol. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_agenda_evento_a00cbf1be15e998fb708f18b9eabf8633}{num\+Nodos}} () const
+\begin{DoxyCompactList}\small\item\em Devuelve el número total de nodos del árbol. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_agenda_evento_afaab5f742fa2de847b8b49f0dd9806a5}{esta\+Vacia}} () const
+\begin{DoxyCompactList}\small\item\em Indica si el árbol está vacío. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+TDA \doxylink{class_agenda_evento}{Agenda\+Evento} basado en un Árbol Binario de Búsqueda (ABB) de eventos. 
+
+Almacena objetos \doxylink{class_evento}{Evento} ordenados cronológicamente (según \doxylink{class_evento_ae0cd39895f40146c761289aa7a849fc7}{Evento\+::operator$<$}). El árbol mantiene la propiedad del ABB\+:
+\begin{DoxyItemize}
+\item Subárbol izquierdo\+: eventos "{}menores"{} (anteriores)
+\item Subárbol derecho\+: eventos "{}mayores"{} (posteriores)
+\end{DoxyItemize}
+
+Permite insertar, buscar, obtener información estructural (altura, número de nodos) y recorrer en orden mediante un iterador inorden. 
+
+\label{doc-constructors}
+\Hypertarget{class_agenda_evento_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}\index{AgendaEvento@{AgendaEvento}!AgendaEvento@{AgendaEvento}}
+\index{AgendaEvento@{AgendaEvento}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{AgendaEvento()}{AgendaEvento()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570} 
+Agenda\+Evento\+::\+Agenda\+Evento (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructor por defecto. Crea un árbol vacío. 
+
+\Hypertarget{class_agenda_evento_a473d6dbe349ed576e368cf5555f81b16}\index{AgendaEvento@{AgendaEvento}!AgendaEvento@{AgendaEvento}}
+\index{AgendaEvento@{AgendaEvento}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{AgendaEvento()}{AgendaEvento()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_agenda_evento_a473d6dbe349ed576e368cf5555f81b16} 
+Agenda\+Evento\+::\+Agenda\+Evento (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_agenda_evento}{Agenda\+Evento}} \&}]{otra\+Agenda}{}\end{DoxyParamCaption})}
+
+
+
+Constructor de copia (copia profunda del árbol). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otra\+Agenda} & \doxylink{class_agenda_evento}{Agenda\+Evento} a copiar. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_agenda_evento_a4e4f29d806ef82eec049faad22b42d06}\index{AgendaEvento@{AgendaEvento}!````~AgendaEvento@{\texorpdfstring{$\sim$}{\string~}AgendaEvento}}
+\index{````~AgendaEvento@{\texorpdfstring{$\sim$}{\string~}AgendaEvento}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AgendaEvento()}{\string~AgendaEvento()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_a4e4f29d806ef82eec049faad22b42d06} 
+Agenda\+Evento\+::\texorpdfstring{$\sim$}{\string~}\+Agenda\+Evento (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructor. Libera toda la memoria del árbol. 
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_agenda_evento_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_agenda_evento_ac028c30dc108650b002f6bb75d4a6ce7}\index{AgendaEvento@{AgendaEvento}!alturaArbol@{alturaArbol}}
+\index{alturaArbol@{alturaArbol}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{alturaArbol()}{alturaArbol()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_ac028c30dc108650b002f6bb75d4a6ce7} 
+int Agenda\+Evento\+::altura\+Arbol (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve la altura del árbol. 
+
+\begin{DoxyReturn}{Returns}
+Altura del árbol (0 si está vacío). 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_afaab5f742fa2de847b8b49f0dd9806a5}\index{AgendaEvento@{AgendaEvento}!estaVacia@{estaVacia}}
+\index{estaVacia@{estaVacia}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{estaVacia()}{estaVacia()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_afaab5f742fa2de847b8b49f0dd9806a5} 
+bool Agenda\+Evento\+::esta\+Vacia (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Indica si el árbol está vacío. 
+
+\begin{DoxyReturn}{Returns}
+true si no hay nodos, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_acff52758fa8774a6dc9cb76db916e9b4}\index{AgendaEvento@{AgendaEvento}!existe@{existe}}
+\index{existe@{existe}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{existe()}{existe()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_acff52758fa8774a6dc9cb76db916e9b4} 
+bool Agenda\+Evento\+::existe (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_evento}{Evento}} \&}]{clave}{}\end{DoxyParamCaption}) const}
+
+
+
+Comprueba si existe un evento con la clave indicada. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clave} & \doxylink{class_evento}{Evento} “clave” (normalmente solo interesa la fecha). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si existe, false si no. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_a3578447b281d210a167744cb6f35b59f}\index{AgendaEvento@{AgendaEvento}!insertar@{insertar}}
+\index{insertar@{insertar}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{insertar()}{insertar()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_a3578447b281d210a167744cb6f35b59f} 
+bool Agenda\+Evento\+::insertar (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_evento}{Evento}} \&}]{nuevo\+Evento}{, }\item[{bool}]{actualizar\+Si\+Existe}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Inserta un evento en el ABB. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuevo\+Evento} & \doxylink{class_evento}{Evento} a insertar. \\
+\hline
+{\em actualizar\+Si\+Existe} & Si ya existe un evento con la misma fecha, indica si se actualiza. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se insertó o actualizó, false si no se modificó el árbol. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_a72f3aa866ac06139e98f047d78cc9cf8}\index{AgendaEvento@{AgendaEvento}!iterador@{iterador}}
+\index{iterador@{iterador}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{iterador()}{iterador()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_a72f3aa866ac06139e98f047d78cc9cf8} 
+\mbox{\hyperlink{class_agenda_evento_1_1_iterador}{Agenda\+Evento\+::\+Iterador}} Agenda\+Evento\+::iterador (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Crea un iterador para recorrer el árbol en orden cronológico. 
+
+\begin{DoxyReturn}{Returns}
+\doxylink{class_agenda_evento_1_1_iterador}{Iterador} inicializado con la raíz del árbol. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_a00cbf1be15e998fb708f18b9eabf8633}\index{AgendaEvento@{AgendaEvento}!numNodos@{numNodos}}
+\index{numNodos@{numNodos}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{numNodos()}{numNodos()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_a00cbf1be15e998fb708f18b9eabf8633} 
+int Agenda\+Evento\+::num\+Nodos (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Devuelve el número total de nodos del árbol. 
+
+\begin{DoxyReturn}{Returns}
+Número de nodos. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_af1c62bb9c627408a65384b215d887c25}\index{AgendaEvento@{AgendaEvento}!obtener@{obtener}}
+\index{obtener@{obtener}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{obtener()}{obtener()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_af1c62bb9c627408a65384b215d887c25} 
+bool Agenda\+Evento\+::obtener (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_evento}{Evento}} \&}]{clave}{, }\item[{\mbox{\hyperlink{class_evento}{Evento}} \&}]{out}{}\end{DoxyParamCaption}) const}
+
+
+
+Obtiene el evento asociado a una clave. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em clave} & \doxylink{class_evento}{Evento} “clave” (normalmente solo interesa la fecha). \\
+\hline
+{\em out} & \doxylink{class_evento}{Evento} de salida (se rellena si se encuentra). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si se encontró, false en caso contrario. 
+\end{DoxyReturn}
+\Hypertarget{class_agenda_evento_a2b61c9c1a07114d2e4844535e9452c74}\index{AgendaEvento@{AgendaEvento}!operator=@{operator=}}
+\index{operator=@{operator=}!AgendaEvento@{AgendaEvento}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \label{class_agenda_evento_a2b61c9c1a07114d2e4844535e9452c74} 
+\mbox{\hyperlink{class_agenda_evento}{Agenda\+Evento}} \& Agenda\+Evento\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_agenda_evento}{Agenda\+Evento}} \&}]{otra\+Agenda}{}\end{DoxyParamCaption})}
+
+
+
+Operador de asignación (copia profunda). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em otra\+Agenda} & \doxylink{class_agenda_evento}{Agenda\+Evento} fuente. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Referencia a \texorpdfstring{$\ast$}{*}this. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_agenda_evento_8h}{Agenda\+Evento.\+h}}\item 
+src/\mbox{\hyperlink{agenda_evento_8cpp}{agenda\+Evento.\+cpp}}\end{DoxyCompactItemize}

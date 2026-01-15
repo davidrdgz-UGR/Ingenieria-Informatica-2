@@ -1,0 +1,131 @@
+\doxysection{Agenda\+Evento.\+h}
+\hypertarget{_agenda_evento_8h_source}{}\label{_agenda_evento_8h_source}\index{include/AgendaEvento.h@{include/AgendaEvento.h}}
+\mbox{\hyperlink{_agenda_evento_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_eventos_8h}{Eventos.h}}"{}}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}{AgendaEvento}}\{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Estructura\ Nodo\ como\ en\ el\ temario.\ -\/>\ Abstraccion\ */}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }Nodo\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_evento}{Evento}}\ evento;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ Nodo*\ HijoIzq;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ Nodo*\ HijoDer;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Constructor\ Nodo\ */}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ Nodo(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento}{Evento}}\&\ evento)\{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>evento\ =\ evento;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>HijoIzq\ =\ nullptr\ ;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>HijoDer\ =\ nullptr\ ;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ Nodo*\ raiz;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Funciones\ Recursivas\ */}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ Nodo*\ clonarNodo(\textcolor{keyword}{const}\ Nodo*\ nodo);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ liberarNodo(Nodo*\ nodo);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ insertarNodo(\ Nodo*\&\ nodo,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento}{Evento}}\&\ evento,\ \textcolor{keywordtype}{bool}\ actualizarSiExiste);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ Nodo*\ buscarNodo(Nodo*\ nodo,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento}{Evento}}\&\ clave)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ alturaNodo(Nodo*\ nodo)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cantidadNodos(Nodo*\ nodo)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ ITERADOR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ */}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ El\ iterador\ se\ declara\ dentro\ de\ la\ clase\ -\/>\ Abstraccion\ */}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}}\{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }PilaNodo\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nodo*\ nodo;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PilaNodo*\ sig;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PilaNodo(Nodo*\ nodo,\ PilaNodo*\ sig)\{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>nodo\ =\ nodo;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>sig\ =\ sig;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nodo*\ actual;\ \textcolor{comment}{/*\ Puede\ que\ no\ se\ use,\ no\ es\ obligatorio\ con\ pila\ */}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PilaNodo*\ pila;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ push(Nodo*\ nodo);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Nodo*\ pop();}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ bajarIzquierda(Nodo*\ nodo);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ void\ bajarDerecha(Nodo*\ nodo);}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}}();}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}}(Nodo*\ raiz);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}}\&\ otroIterador);}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}}\&\ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a35ed17fa246722245ef4029dcbb9fa81}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a53400eea99b95d9d6ed4eb1281c1e2e8}{Iterador}}\&\ \mbox{\hyperlink{class_agenda_evento_a72f3aa866ac06139e98f047d78cc9cf8}{iterador}});}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_ad3947ac3b075310fe0fb46bb3794dd32}{\string~Iterador}}();}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_ace296efe632ee35b0d89ac0087e2f267}{tieneSiguiente}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_evento}{Evento}}\ \mbox{\hyperlink{class_agenda_evento_1_1_iterador_a92fadd1f7ad8fb221f3d2108fa9e8c64}{siguienteEvento}}();\ \textcolor{comment}{//\ devuelve\ el\ siguiente\ Evento\ en\ orden\ cronológico}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_1_1_iterador}{Iterador}}\ \mbox{\hyperlink{class_agenda_evento_a72f3aa866ac06139e98f047d78cc9cf8}{iterador}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONSTRUCTORES\ /\ DESTRUCTOR\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}{AgendaEvento}}();}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}{AgendaEvento}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}{AgendaEvento}}\&\ otraAgenda);}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}{AgendaEvento}}\&\ \mbox{\hyperlink{class_agenda_evento_a2b61c9c1a07114d2e4844535e9452c74}{operator=}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_agenda_evento_a78589bab0ed0ecaccbbc69be61c69570}{AgendaEvento}}\&\ otraAgenda);\ }
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_agenda_evento_a4e4f29d806ef82eec049faad22b42d06}{\string~AgendaEvento}}();}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ METODOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_evento_a3578447b281d210a167744cb6f35b59f}{insertar}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento}{Evento}}\&\ nuevoEvento,\ \textcolor{keywordtype}{bool}\ actualizarSiExiste\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_evento_acff52758fa8774a6dc9cb76db916e9b4}{existe}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento}{Evento}}\&\ clave)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_evento_af1c62bb9c627408a65384b215d887c25}{obtener}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento}{Evento}}\&\ clave,\ \mbox{\hyperlink{class_evento}{Evento}}\&\ out)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_agenda_evento_ac028c30dc108650b002f6bb75d4a6ce7}{alturaArbol}}()\ \textcolor{keyword}{const};\ \ \ }
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_agenda_evento_a00cbf1be15e998fb708f18b9eabf8633}{numNodos}}()\ \textcolor{keyword}{const};\ \ \ \ \ }
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_agenda_evento_afaab5f742fa2de847b8b49f0dd9806a5}{estaVacia}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,49 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include "{}Agenda\+Evento.\+h"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Programa principal de la práctica. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{main_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97} 
+int main (\begin{DoxyParamCaption}\item[{int}]{argc}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{argv}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+Programa principal de la práctica. 
+
+
+\begin{DoxyItemize}
+\item Lee un fichero de eventos (por defecto\+: "{}datos/agenda\+Eventos.\+txt"{}).
+\item Inserta cada evento en un ABB (\doxylink{class_agenda_evento}{Agenda\+Evento}) ordenado por fecha.
+\item Muestra información estructural del árbol (nº nodos y altura).
+\item Recorre y muestra los eventos en orden cronológico usando un iterador inorden.
+\end{DoxyItemize}
+
+Uso\+: practica4.\+exe \mbox{[}ruta\+\_\+fichero\mbox{]}
+
+Si se proporciona ruta por argumento, se utilizará en lugar de la ruta por defecto.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Número de argumentos. \\
+\hline
+{\em argv} & Vector de argumentos (argv\mbox{[}1\mbox{]} puede contener la ruta del fichero). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si finaliza correctamente, 1 si no se puede abrir el fichero. 
+\end{DoxyReturn}

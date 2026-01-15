@@ -7,7 +7,18 @@
 
 using namespace std; 
 
-
+/**
+ * @brief Lee y parsea una línea de texto con un evento.
+ *
+ * Formato esperado por línea:
+ *   dia mes anio descripcion...
+ * Ejemplo:
+ *   12 10 2025 Examen de Estructura de Datos
+ *
+ * @param linea Línea completa del fichero.
+ * @param outEvento Evento de salida (se rellena si el parseo es correcto).
+ * @return true si la línea contiene un evento válido a nivel de formato, false si no.
+ */
 static bool leerEventoDeLinea(const string& linea, Evento& outEvento){
     istringstream iss(linea);
 
@@ -19,12 +30,30 @@ static bool leerEventoDeLinea(const string& linea, Evento& outEvento){
     string descripcion;
     getline(iss, descripcion);
 
+    // Elimina el espacio inicial típico tras leer anio y luego hacer getline
     if (!descripcion.empty() && descripcion[0] == ' ') descripcion.erase(0, 1);
 
     outEvento = Evento(dia, mes, anio, descripcion);
     return true;
 }
 
+/**
+ * @brief Programa principal de la práctica.
+ *
+ * - Lee un fichero de eventos (por defecto: "datos/agendaEventos.txt").
+ * - Inserta cada evento en un ABB (AgendaEvento) ordenado por fecha.
+ * - Muestra información estructural del árbol (nº nodos y altura).
+ * - Recorre y muestra los eventos en orden cronológico usando un iterador inorden.
+ *
+ * Uso:
+ *   practica4.exe [ruta_fichero]
+ *
+ * Si se proporciona ruta por argumento, se utilizará en lugar de la ruta por defecto.
+ *
+ * @param argc Número de argumentos.
+ * @param argv Vector de argumentos (argv[1] puede contener la ruta del fichero).
+ * @return 0 si finaliza correctamente, 1 si no se puede abrir el fichero.
+ */
 int main(int argc, char* argv[]){
 
     string ruta = "datos/agendaEventos.txt";
@@ -56,6 +85,7 @@ int main(int argc, char* argv[]){
 
         numLeidas++;
 
+        // Inserta el evento; si ya existe esa fecha, se actualiza (actualizarSiExiste = true)
         if (agenda.insertar(ev, true)) {
             numInsertadas++;
         }
@@ -70,6 +100,7 @@ int main(int argc, char* argv[]){
 
     cout << "--- Eventos en orden cronologico --- \n";
 
+    // Recorrido ordenado mediante iterador inorden
     AgendaEvento::Iterador it = agenda.iterador();
     while (it.tieneSiguiente()) {
         Evento ev = it.siguienteEvento();

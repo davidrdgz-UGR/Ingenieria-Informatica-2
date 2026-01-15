@@ -1,0 +1,63 @@
+\doxysection{Eventos.\+h}
+\hypertarget{_eventos_8h_source}{}\label{_eventos_8h_source}\index{include/Eventos.h@{include/Eventos.h}}
+\mbox{\hyperlink{_eventos_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}}\ \{}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ dia;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 1-\/31\ */}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ mes;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 1-\/12\ */}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ anio;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ \ */}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ descripcion;}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ CONSTRUCTORES\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}}();\ \ \ \textcolor{comment}{/*\ Por\ Defecto\ */}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}}(\textcolor{keywordtype}{int}\ dia,\ \textcolor{keywordtype}{int}\ mes,\ \textcolor{keywordtype}{int}\ anio,\ \textcolor{keywordtype}{string}\ descripcion);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}}\&\ otroEvento);\ \textcolor{comment}{/*\ Copia\ */}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ METODOS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_evento_ad7936f38ce982abc111997eb9abdd143}{comprobarFecha}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_evento_ab752cdbb9ea60f4fc794ffe541c7f897}{toString}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Ambos\ funcionan\ por\ fechas\ */}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_evento_ae0cd39895f40146c761289aa7a849fc7}{operator<}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}}\&\ otroEvento)\ \textcolor{keyword}{const};\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_evento_ab7b666c38a332d657528be087b1490bc}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_evento_a7aba3bd7a832c5365ea0ccb318511452}{Evento}}\&\ otroEvento)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ SETTERS\ /\ GETTERS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evento_ada9e824d608a68594b316d74f6d0ea84}{getDia}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evento_a4337547adbcf5991e96dfdb770aede84}{getMes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_evento_a9557500597c5687d4830f9d280b6beaf}{getAnio}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_evento_afaf31fb57e1331f41188ad56d272e3e8}{getDescripcion}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_evento_a8b0cc6f3e008e2c170d596425dbb0116}{setDia}}(\textcolor{keywordtype}{int}\ nuevoDia);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_evento_a8822f5ee87584d62f0095e4b4bed081e}{setMes}}(\textcolor{keywordtype}{int}\ nuevoMes);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_evento_aca0c9286b464631b7a1ad3e8087984f4}{setAnio}}(\textcolor{keywordtype}{int}\ nuevoAnio);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_evento_ac4ae42cd47977ef5df71f2168ba7d665}{setDescripcion}}(\textcolor{keywordtype}{string}\ nuevaDescripcion);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \};}
+
+\end{DoxyCode}
