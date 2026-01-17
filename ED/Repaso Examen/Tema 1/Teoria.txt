@@ -1,0 +1,178 @@
+
+------------------------------------------------
+-------------------- TEORIA --------------------
+------------------------------------------------
+
+
+
+------------------- TEMA 1 -------------------
+
+---------- 1 - Conceptos Básicos
+
+1.¿Qué es un algoritmo? 
+
+---> Una lista definida ordenada y finita de operaciones que dan una solución a un problema.
+
+
+2.¿Qué características debe cumplir un algoritmo para ser correcto? 
+
+---> No ser ambigüo, ser efectivo, entradas y salidas bien definidas y tener generalidad.
+---> Sin ambiguedades, con los mismos datos los mismos resultados (coherente), finito, efectivo y producir una salida dependiente a la entrada.
+
+
+3.¿Qué se entiende por eficiencia de un algoritmo?
+
+---> La cantidad de tiempo o recursos que este emplea al ejecutarse.
+---> Algunos criterios son el tiempo, memoria, simplicidad y adaptabilidad, costo económico o exactitud.
+
+
+4.¿Por qué no es suficiente medir el tiempo de ejecución real de un algoritmo?
+
+---> Porque las ejecuciones reales pueden tener fallos o modificaciones, incluso que no dependan del mismo, por eso se realiza una medición teórica.
+
+1+.Explica los metodos de calculo de eficiencia:
+
+---> Empirico: Se programa y evalúa el algoritmo
+---> Teórico: Se mide la rapidez antes de programarlo.
+---> Híbrido: Se usan ambos métodos.
+
+
+
+---------- 2 - Medidas de eficiencia
+
+5.¿Qué diferencia hay entre eficiencia temporal y eficiencia espacial?
+
+---> Temporal: Mide El numero de operaciones / tiempo usado
+---> Espacial: Mide la memoria utilizada.
+
+
+6.¿Qué es el tamaño del problema y por qué es importante definirlo?
+
+---> Es una medida que cuantifica la dimensión de la entrada, la complejidad se expresa en función de n.
+
+
+7.¿Qué se entiende por caso mejor, caso peor y caso promedio?
+
+---> Peor: Nos ponemos en el peor caso. (El que más consume)
+---> Mejor: Nos ponemos en el mejor caso. (El que menos consume o menos tarda)
+---> Promeido: Es el caso que nos encontraremos la mayoría de veces, digamos que es el caso más común.
+
+
+8.¿Cuál de estos casos se suele usar para comparar algoritmos y por qué?
+
+---> Se suele usar el Peor caso, ya que al usar este nos evitamos problemas puntuales si usamos casos promedios o mejores.
+
+
+
+---------- 3 - Principio de invarianza (suele caer como definición)
+
+9.¿Qué es el principio de invarianza en el análisis de algoritmos?
+
+---> El principio de invarianza son una serie de reglas que tiene que cumplir un algoritmo, pe: las entradas que puede tener o como funciona.
+
+
+10.¿Qué factores sí y no influyen en la eficiencia según este principio?
+
+---> SI: La estructura del algoritmo, el tamaño de n, las  iteraciones.
+---> NO: Las constantes, la velocidad de los componentes, etc.
+
+
+11.¿Por qué el principio de invarianza permite comparar algoritmos escritos en distintos lenguajes?
+
+---> Porque el orden de crecimiento será el mismo en ambos, las diferencias del lenguaje se podrían denominar como constantes que no cambian.
+
+
+
+---------- 4 - Complejidad asintótica
+
+12.¿Qué es la complejidad asintótica de un algoritmo?
+
+---> Es el coste cuando n crece mucho.
+
+
+13.¿Qué significa que un algoritmo sea O(f(n))?
+
+--->
+
+14.¿Qué diferencias hay entre las notaciones O, Ω y Θ?
+
+---> O: Cota Superior
+---> Ω: Cota Inferior
+---> Θ: Cota ajustada, superior e inferior a la vez en el mismo orden.
+
+15.¿Qué se entiende por cota superior, cota inferior y cota ajustada?
+
+---> Superior: El algoritmo no crece más rápido que f(n)
+---> Inferior: El algoritmo crece al menos como f(n)
+---> Ajustada: Crece exactamente como f(n)
+
+
+---------- 5 - Reglas de cálculo (muy típicas)
+
+16.¿Cómo se calcula la complejidad de una secuencia de instrucciones?
+
+---> Se suman el coste de cada secuencia.
+
+
+17.¿Cómo se calcula la complejidad de un condicional?
+
+---> El coste de la condicion, más el coste más alto de las salidas de esa condicion. (then/else)
+
+
+18.¿Cómo se calcula la complejidad de un bucle?
+
+---> Se calcula con el número de iteraciones * el coste del cuerpo.
+
+
+19.¿Qué ocurre cuando hay bucles anidados?
+
+---> Se multiplicacion las iteraciones internas por las externas. Por ejemplo para 2 bucles, O(n^2)   
+
+
+
+---------- 6 - Análisis de algoritmos concretos
+
+20.¿Cuál es la complejidad del algoritmo de búsqueda binaria y por qué?
+
+---> O(log n) en el peor de los casos (ya que va reduciendo a la mitad en cada paso), o O(1) si lo encuentra a la primera.
+
+
+21.¿Cuál es la complejidad del algoritmo de selección?
+
+---> O(n^2) ya que tiene un doble bucle.
+
+
+22.¿Cuál es la complejidad del algoritmo de multiplicación de matrices clásico?
+
+---> Realmente en cualquier matriz se usa un bucle triple, por lo que deberia de ser O(n^3), siempre que sea cuadrada.
+---> Si la matriz no fuese cuadrada (n*m | m*p = n*p) sería O(n*m*p).
+
+
+
+---------- 7 - Preguntas más finas / de nota
+
+23.¿Por qué en complejidad asintótica se ignoran constantes y términos de menor orden?
+
+---> Ya que al crecer n los terminos constantes no cambian ese orden. PE: O(n+5) para n muy grandes es irrelevante.
+
+
+24.¿Dos algoritmos con la misma complejidad asintótica son igual de eficientes en la práctica?
+
+---> Asintoticamente crecen igual si, pero hay muchos factores tanto internos del algoritmo como externos que pueden afectar.
+
+
+25.¿Puede un algoritmo tener distinta complejidad en mejor y peor caso? Pon un ejemplo.
+
+---> Si claro, por ejemplo en una busqueda en un vector puede ser O(1) o O(n).
+
+
+
+
+---------- EXTRAS
+
+1.Si tengo dos algoritmos para resolver un problema, ¿cómo decidir cuál es el mejor?
+
+---> Hay varios factores, pero lo normal es fijarnos en el que tenga la complejidad asintótica menor, sino el que menos coste tenga.
+
+
+
