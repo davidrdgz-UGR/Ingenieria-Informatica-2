@@ -5,3 +5,135 @@
 
 
 ------------------- TEMA 3 -------------------
+
+
+1.¿Qué es un Tipo de Dato Abstracto (TDA) lineal?
+
+---> Es un TDA cuyos elementos están organizados de forma secuencial y hay relacion de orden lineal entre ellos.
+
+
+2.¿Qué características definen a una lista como TDA lineal?
+
+---> Una lista es un TDA formado por una secuencia ordenada de elementos en el cual todos los elementos tienen siguiente y anterior.
+
+
+3.¿Cuáles son las operaciones básicas de una lista?
+
+---> Construir/Vaciar la lista, saber si está vacía, su cantidad de elementos, insertar o eliminar un elemento, conocer elemento de una posicion, conocer la posicion siguiente, anterior, primer y ultima de la lista y copiar 2 listas.
+
+
+4.¿Qué se entiende por posición en una lista?
+
+---> El lugar de un elemento dentro de la lista.
+
+
+5.¿Qué ventajas aporta el uso de una clase Posición frente a usar índices enteros?
+
+---> Evita dependencias de los índices, mejora la seguridad y su reutilización. Además ayuda al movernos sobre la lista.
+
+
+6.¿Qué diferencias existen entre una lista implementada con vector y una lista implementada con celdas enlazadas?
+
+---> Vector: Los elementos están contiguios de memoria y el acceso es directo.
+---> Celdas: Estan dispersos, pero todos los elementos estan enlazados con su siguiente y se accede desde cada celda a la siguiente.
+
+
+7.¿Cuáles son las ventajas e inconvenientes de las listas enlazadas frente a las listas con vector?
+
+---> Insercion y borrados más eficientes (ya que solo cambiamos los punteros de las celdas), pero tiene acceso secuencial y en general hay mayor uso de memoria.
+
+
+8.¿Qué es una lista doblemente enlazada y qué ventajas tiene sobre una simplemente enlazada?
+
+--->  Tiene enlaces al elemento siguiente y anterior, permite recorridos en ambos sentidos y borrados mucho más eficientes.
+
+
+9.¿Qué es una cola y qué política de acceso sigue?
+
+---> Es similar a una lista, pero solo se puede ver el primer elemento que se ha introducido (FIFO)
+
+
+10.¿Cuáles son las operaciones básicas de una cola?
+
+---> Crear,vaciar, añadir o elimar, consultar primero, comprobar si está vacia y copiar 2 colas.
+
+
+11.¿Qué diferencias existen entre cola y pila?
+
+---> Las colas son FIFO y las pilas son LIFO.
+
+
+12.¿Qué es una pila y qué política de acceso sigue?
+
+---> Una pila es un TDA en la que solo se puede acceder al ultimo elemento que se ha insertado. 
+
+
+13.¿Cuáles son las operaciones básicas de una pila?
+
+--->
+
+
+14.¿Qué ventajas tiene implementar una pila o cola a partir de una lista?
+
+--->
+
+
+15.¿Qué es una cola circular y por qué se utiliza?
+
+--->
+
+
+16.¿Qué ventajas tiene una implementación con vector circular frente a un vector normal?
+
+--->
+
+
+17.¿Qué es un vector dinámico?
+
+--->
+
+
+18.¿Qué es un vector disperso?
+
+--->
+
+
+19.¿Qué es un conjunto como TDA lineal?
+
+--->
+
+
+20.¿Qué aplicaciones típicas tienen las pilas?
+
+--->
+
+
+21.¿Qué aplicaciones típicas tienen las colas?
+
+--->
+
+
+22.¿Cómo se puede utilizar una pila para detectar palíndromos?
+
+--->
+
+
+23.¿Cómo se puede transformar un algoritmo recursivo en uno no recursivo usando pilas?
+
+--->
+
+
+24.¿Qué ventajas tienen los TDA lineales frente al uso directo de estructuras básicas del lenguaje?
+
+--->
+
+
+25.¿Qué implementación elegirías para una lista si necesitas muchos accesos aleatorios y por qué?
+
+--->
+
+
+26.¿Qué implementación elegirías para una lista si necesitas muchas inserciones y borrados y por qué?
+
+--->
+

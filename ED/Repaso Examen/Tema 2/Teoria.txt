@@ -5,3 +5,120 @@
 
 
 ------------------- TEMA 2 -------------------
+
+1.¿Qué se entiende por abstracción en programación?
+
+---> Es un proceso que ignora partes irrelevantes para facilitar la comprensión.
+
+
+2.¿Qué ventajas aporta la abstracción al desarrollo de software?
+
+---> Facilita comprensión, mantenimiento y reutilización del código.
+
+
+3.¿Cuáles son los tipos de abstracción en programación?
+
+---> Por parametrización, Funcional, de Datos (TDA) y Generalización.
+
+4.¿Qué es la abstracción procedimental?
+
+---> Consiste en separar que hace una función de su implementación.
+
+
+5.¿Qué información debe contener una documentación procedimental correcta?
+
+---> Entradas, salidas, precondiciones y postcondiciones, y efectos de la función.
+
+6.¿Qué es Doxygen y para qué se utiliza?
+
+---> Es una herramienta de documentación que genera archivos HTML,PDF,LaTEX, etc, en base a los comentarios del código.
+
+
+7.¿Qué es un Tipo de Dato Abstracto (TDA)?
+
+---> Es una entidad abstracta que contiene valores y operaciones. PE: Una clase, una estructura, etc.
+
+
+8.¿Qué diferencia hay entre especificación e implementación de un TDA?
+
+---> La especificación son las normas e información sobre un dato o una función, mientras que la implementación es su representación en código.
+
+9.¿Qué se entiende por visión externa y visión interna de un TDA?
+
+---> Externa: Como se usa el TDA.
+---> Interna: Sus especificaciones e implementación.
+
+
+10.¿Qué es la Función de Abstracción?
+
+---> Define el significado de los atributos del objeto, se usa como relacion entre los atributos y el objeto abstracto.
+
+
+11.¿Qué es el Invariante de la Representación?
+
+---> Son las normas y condiciones que deben cumplir estos atributos.
+
+
+12.¿Por qué el invariante debe cumplirse antes y después de cada operación?
+
+---> Para que el funcionamiento de la funcion o el TDA sea correcto.
+
+
+13.¿Cómo se implementan los TDA en C++?
+
+---> Mediante clases o estructuras, encapsulando datos y operaciones(funciones).
+
+
+14.¿Qué papel juegan las palabras public, private y protected?
+
+---> Es la visibilidad que tendrán los atributos y funciones, en base a estas tendrán una serie de reestricciones de acceso.
+
+
+15.¿Qué son los constructores y los destructores?
+
+---> Son funciones de creacion/liberacion de estos datos abstractos (funciones), suelen pedir una serie de parametros y hay varios tipos.
+
+
+16.¿Qué es la sobrecarga de operadores y para qué se usa?
+
+---> Es la forma de adaptar los operadores y cambiar su funcionalidad a nuestro gusto dependiendo de lo que necesitemos.
+
+
+17.¿Qué es la abstracción por parametrización?
+
+---> Describir un conjunto de objetos/operaciones mediante una serie de parámetros.
+
+
+18.¿Qué son las plantillas (templates) en C++?
+
+---> Son archivos en los que encontraremos la estructura de nuestro dato abstracto (clase), después en otro archivo le daremos la funcionalidad.
+
+
+19.¿Qué problemas presenta la compilación separada con plantillas?
+
+---> En caso de no conocer las instancias puede generar errores de enlazado, se puede solucionar con lineas de inclusión o instanciacion explícita.
+
+
+20.¿Qué es la herencia y qué ventajas aporta?
+
+---> Es una forma de crear una subclase, reutilizando y generalizando el código de una clase padre.
+
+
+21.¿Qué es una clase abstracta?
+
+---> Es una clase no instanciable, que usaremos como base para crear otras subclases o herencias.
+
+
+22.¿Qué significa que un método sea virtual?
+
+---> Son los métodos de la clase abstracta que se usarán o modificarán en sus subclases/herencias.
+
+
+23.¿Qué es la herencia múltiple?
+
+---> Una clase heredada de más de una clase padre, pero no es muy común.
+
+
+24.¿Qué problemas puede causar la herencia múltiple?
+
+---> Puede generar ambiguedad de atributos o métodos, e incluso herencia repetida.
