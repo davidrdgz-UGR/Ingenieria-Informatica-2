@@ -6,6 +6,165 @@
 
 ------------------- TEMA 5 -------------------
 
+1.¿Qué es un árbol como estructura de datos?
+
+--->
+
+
+2.¿Qué se entiende por nodo raíz, nodo hoja y nodo interno?
+
+--->
+
+
+3.¿Qué es el grado de un nodo y el grado de un árbol?
+
+--->
+
+
+4.¿Qué diferencia hay entre nivel y altura de un árbol?
+
+--->
+
+
+5.¿Qué es un árbol binario?
+
+--->
+
+
+6.¿Cuáles son las propiedades fundamentales de los árboles binarios?
+
+--->
+
+
+7.¿Qué tipos de recorridos existen en un árbol binario?
+
+--->
+
+
+8.¿En qué consiste el recorrido preorden?
+
+--->
+
+
+9.¿En qué consiste el recorrido inorden?
+
+--->
+
+
+10.¿En qué consiste el recorrido postorden?
+
+--->
+
+
+11.¿Qué es el recorrido por niveles?
+
+--->
+
+
+12.¿Qué es un árbol binario de búsqueda (ABB)?
+
+--->
+
+
+13.¿Qué operaciones básicas se realizan sobre un ABB?
+
+--->
+
+
+14.¿Cuál es la complejidad de búsqueda, inserción y borrado en un ABB?
+
+--->
+
+
+15.¿Qué problema presentan los ABB no equilibrados?
+
+--->
+
+
+16.¿Qué es un árbol AVL?
+
+--->
+
+
+17.¿Qué es el factor de equilibrio de un nodo?
+
+--->
+
+
+18.¿Qué son las rotaciones simples y rotaciones dobles?
+
+--->
+
+
+19.¿Qué es un árbol parcialmente ordenado (heap)?
+
+--->
+
+
+20.¿Qué es un montículo mínimo y un montículo máximo?
+
+--->
+
+
+21.¿Qué es HeapSort?
+
+--->
+
+
+22.¿Qué es un árbol n-ario?
+
+--->
+
+
+23.¿Qué es un grafo?
+
+--->
+
+
+24.¿Qué diferencia hay entre grafo dirigido y grafo no dirigido?
+
+--->
+
+
+25.¿Qué representaciones existen para un grafo?
+
+--->
+
+
+26.¿Qué es un recorrido en anchura (BFS)?
+
+--->
+
+
+27.¿Qué es un recorrido en profundidad (DFS)?
+
+--->
+
+
+28.¿Qué es una tabla hash?
+
+--->
+
+
+29.¿Qué es una función hash?
+
+--->
+
+
+30.¿Qué es una colisión en una tabla hash?
+
+--->
+
+
+31.¿Qué métodos existen para la resolución de colisiones?
+
+--->
+
+
+32.¿Qué ventajas e inconvenientes tienen las tablas hash?
+
+--->
+
 
 
 
