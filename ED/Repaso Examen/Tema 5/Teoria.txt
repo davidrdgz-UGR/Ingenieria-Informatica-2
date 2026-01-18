@@ -8,162 +8,168 @@
 
 1.¿Qué es un árbol como estructura de datos?
 
---->
+---> Es una estructura de datos jerarquica formada por nodos.
 
 
 2.¿Qué se entiende por nodo raíz, nodo hoja y nodo interno?
 
---->
+---> Raiz: El nodo base, es decir el primero y más alto.
+---> Hoja: Son los nodos finales, es decir los que no tienen más hijos.
+---> Interno: Es cualquier nodo intermedio, que tenga nodo padre y nodo hijo.
 
 
 3.¿Qué es el grado de un nodo y el grado de un árbol?
 
---->
+---> El número de hijos que tiene y el máximo grado de sus nodos (pe: si hay un nodo que tiene 4 hijos, el árbol es de grado 4).
 
 
 4.¿Qué diferencia hay entre nivel y altura de un árbol?
 
---->
+---> Nivel: Es la distancia desde la raíz hasta el propio nodo.
+---> Altura: Es la máxima distancia desde la raíz hasta una hoja.
 
 
 5.¿Qué es un árbol binario?
 
---->
+---> Es un árbol en el que cada nodo puede tener como máximo 2 hijos, suelen representarse mediante celdas binarias.
 
 
 6.¿Cuáles son las propiedades fundamentales de los árboles binarios?
 
---->
+---> Los nodos pueden tener hijo izquierda, hijo derecha o ninguno, y existe un único camino entre 2 nodos.
 
 
 7.¿Qué tipos de recorridos existen en un árbol binario?
 
---->
+---> Preorden, Inorden, PostOrden, y Por Niveles.
 
 
 8.¿En qué consiste el recorrido preorden?
 
---->
+---> Preorden: Visitamos la raiz, subarbol izquierdo y subarbol derecho recursivamente, es decir se aplica igual a sus hijos.
 
 
 9.¿En qué consiste el recorrido inorden?
 
---->
+---> Inorden:  Recorremos subarbol izquierdo, visitamos raiz y recorremos subarbol derecho, también recursivamente.
 
 
 10.¿En qué consiste el recorrido postorden?
 
---->
+---> Postorden: Recorremos subarbol izquierdo, despues derecho y visitamos raiz, recursviamente.
 
 
 11.¿Qué es el recorrido por niveles?
 
---->
+---> Por Niveles: Se va recorriendo los nodos por los niveles empezando por la raiz.
 
 
 12.¿Qué es un árbol binario de búsqueda (ABB)?
 
---->
+---> Es un arbol binario en el que los valores izquierdos son menores que los valores derechos.
 
 
 13.¿Qué operaciones básicas se realizan sobre un ABB?
 
---->
+---> Busqueda, borrado/inserción y recorrido del arbol entre otras operaciones.
 
 
 14.¿Cuál es la complejidad de búsqueda, inserción y borrado en un ABB?
 
---->
+---> En el peor caso es O(n), aunque puede llegar a O(log n)
 
 
 15.¿Qué problema presentan los ABB no equilibrados?
 
---->
+---> Sobre todo que pierden eficiencia, ya que tendremos subarboles desestructurados.
 
 
 16.¿Qué es un árbol AVL?
 
---->
+---> Es un arbol binario de busqueda equilibrado en todo momento.
 
 
 17.¿Qué es el factor de equilibrio de un nodo?
 
---->
+---> La diferencia de alturas entre subarboles no puede superar 1.
 
 
 18.¿Qué son las rotaciones simples y rotaciones dobles?
 
---->
+---> Son rotaciones que se le hacen al arbol y a sus nodos, ya sea a derecha o izquierda para equilibrar el arbol, al ser dobles simplemente se le añade un movimiento más en vez de ser individual.
 
 
 19.¿Qué es un árbol parcialmente ordenado (heap)?
 
---->
+---> Es un arbol donde el padre cumple la relación de orden con sus hijos. Se suele usar para devolver el mínimo y borrarlo, e insertar nuevos valores. / Utilidades -> Recuperar el minimo de un conjunto O(1) / Ordenar conjunto O(n * log n).
 
 
 20.¿Qué es un montículo mínimo y un montículo máximo?
 
---->
+---> Mínimo: El montículo padre es menor que sus hijos
+---> Máximo: El monticulo padre es mayor que sus hijos
 
 
 21.¿Qué es HeapSort?
 
---->
+---> Un algoritmo de ordenacion basado en heaps. ( complejidad O(n * log n) )
 
 
 22.¿Qué es un árbol n-ario?
 
---->
+---> Pues una estructura de arboles con un maximo de n hijos cada nodo, menos los nodos hoja.
+---> Estructura de arboles que no tiene limitación en cuanto a nodos hijos.
+
 
 
 23.¿Qué es un grafo?
 
---->
+---> Es un conjunto de nodos y aristas que relaciona nodos entre si.
 
 
 24.¿Qué diferencia hay entre grafo dirigido y grafo no dirigido?
 
---->
+---> El grafo dirigido tiene aristas con dirección, es decir no son bidireccionales.
 
 
 25.¿Qué representaciones existen para un grafo?
 
---->
+---> Matrices de adyacencia o Lista de adyacencia (suele hacerse con celdas enlazadas).
 
 
 26.¿Qué es un recorrido en anchura (BFS)?
 
---->
+---> Recorrido que visita primero los nodos más cercanos usando una cola.
 
 
 27.¿Qué es un recorrido en profundidad (DFS)?
 
---->
+---> Recorrido que explora lo más profundo posible antes de retroceder (pila o recursividad)
 
 
 28.¿Qué es una tabla hash?
 
---->
+---> Es una tabla que permite acceder a datos en tiempo constante mediante claves.
 
 
 29.¿Qué es una función hash?
 
---->
+---> Una función que transforma una clave en una posicion de la tabla hash.
 
 
 30.¿Qué es una colisión en una tabla hash?
 
---->
+---> Cuando 2 claves producen la misma posicion en la tabla.
 
 
 31.¿Qué métodos existen para la resolución de colisiones?
 
---->
+---> Encadenamiento o direccionamiento abierto (Lineal/cuadrático/doble hash).
 
 
 32.¿Qué ventajas e inconvenientes tienen las tablas hash?
 
---->
+---> Acceso muy rápido O(1) / Colisiones, dependencia de función hash y uso extra de memoria.
 
 
 
