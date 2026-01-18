@@ -1,0 +1,142 @@
+------------------------------------------------
+------------------- EXAMEN 1 -------------------
+------------------------------------------------
+
+EJERCICIO 1
+
+a. Enumera y explica suficientemente los tipos de métodos que hay para medir la 
+eficiencia de un algoritmo y compara las ventajas y desventajas entre ellos.
+
+    Hay 3 tipos, empírico, teórico y hibrido.
+
+    Empírico: Refleja el comportamiento real del algoritmo, pero hay que programarlo y depende del sistema, maquina, compilador, etc.
+
+    Teórico: Es independiente del lenguaje o maquina y no hay que programarlo, pero, no tiene en cuenta constantes ni otros detalles de la implementación.
+
+    Hibrido: Es una mezcla que aprovecha las ventajas de los 2 anteriores.
+
+
+b. ¿Es posible comparar la eficiencia de dos algoritmos, cada uno
+implementado en un lenguaje distinto, aunque un lenguaje sea más rápido que otro?
+¿En que te basas para afirmar o negar la pregunta anterior?
+
+    Si es posible, usamos analisis teórico y comparamos la complejidad asintotica de ambos algoritmos, las diferencias que tendrán los algoritmos serán las constantes que dependen de factores externos.
+
+
+
+c. Dado el siguiente algoritmo:
+
+    int Busqueda(const int v[ ] ,int n,int x) {
+        int izq=0,der=n−1;
+        int centro;
+
+        while(izq<=der) {
+            centro= (izq+der)/2;
+
+            if(x<v[centro] )
+                der=centro−1;
+            else if(x>v[centro] )
+                izq=centro+1;
+            else return centro;
+        }
+            return−1;
+    }
+
+¿Que eficiencia tiene el método? ¿Por qué?
+
+    if/else -> O(1) o O(n)
+
+    while -> O(1)
+
+    Es el método de busqueda -> O(log n)
+
+    Respuesta final: Dependiendo de si las asignaciones son grandes sería O(log n) o O(n * log n)
+
+
+
+EJERCICIO 2
+
+a.  Insertar las claves {10, 39, 6, 32, 49, 18, 41, 37} en una tabla hash de
+tamaño 11, usando como función hash h(k) = (2k +5) %11. Para resolver las colisiones
+utilice hashing doble usando como función hash secundaria h'(k) = 7 − (k %7).
+
+    (2*10 + 5) % 11 = 25 % 11 = 3
+    (2*39 + 5) % 11 = 83 % 11 = 6 
+    (2* 6 + 5) % 11 =  % 11 = 6     -> 7 - (6 % 7) = 1
+    (2*32 + 5) % 11 =  % 11 = 3     -> 7 - (32 % 7) = 3 -> 6 (32*2) -> 9 (32*3)
+    (2*49 + 5) % 11 =  % 11 = 4
+    (2*18 + 5) % 11 =  % 11 = 8
+    (2*41 + 5) % 11 =  % 11 = 10
+    (2*37 + 5) % 11 =  % 11 = 2
+
+    0-
+    1- (6)
+    2- 37
+    3- 10   (32)
+    4- 49
+    5-
+    6- 39   (6)
+    7-
+    8- 18
+    9- (32)
+    10- 41
+
+
+b. Partiendo de un árbol AVL de números enteros vacío representar,
+dibujando la evolución del árbol, cómo se realizan las siguientes acciones (en el orden
+en el que se listan).
+1 Insertar los enteros 16, 19, 12, 21, 13, 17, 18, 15, 8, 7, 6 .
+2 Borrar 21, Borrar 17, Borrar 16 .
+3 Insertar 20, Insertar 24.
+4 Listar los nodos siguiendo los recorridos en preorden, inorden y postorden.
+
+
+1 -> Imagen 1 
+2 -> Imagen 2
+3 -> Imagen 3
+
+4   -> Preorden:    15-8-7-6-13-12-19-18-20-24
+    -> Inorden:     6-7-8-12-13-15-18-19-20-24
+    -> Postorden:   6-7-12-13-8-18-24-20-19-15
+    -> Por niveles: 15-8-19-7-13-18-20-6-12-24
+
+
+
+------ PARTE PRACTICA ------
+
+1. Una estación ferroviaria se compone de N vías para el tránsito de trenes (solo
+puede haber un tren en cada una), una vía muerta para el estacionamiento de trenes sin salida
+inmediata y otra vía de maniobras que se utilizará sólo para el movimiento de trenes dentro de la
+estación cuando sea necesario (ambas, supuestamente, de capacidad ilimitada). Los trenes que
+circulan por la estación de identifican mediante un código de tren.
+
+    a. Especifica e implementa el TDA estación con las siguientes operaciones:
+    • Crear una estación de N vías en tránsito
+    • Llegada de un tren concreto a la estación
+    • Salida de la estación del tren situado en una vía dada
+    • Llevar un determinado tren desde una vía de tránsito a la vía de
+    estacionamiento
+    • Llevar un tren determinado desde la vía de estacionamiento a una de las vías
+    de tránsito
+    • Vía en la que se encuentra el tren
+    • Código del tren situado en una vía de tránsito
+    • Destruir una estación
+
+
+
+    b. Dada la información relativa al horario de salidas y llegadas de trenes a la estación
+    un día cualquiera, implementa un subprograma que devuelva el estado de la estación
+    (qué trenes se encuentran en qué vías) a una hora determinada. Por simplificar el
+    problema, se supone que todos los trenes que parten de la estación están en alguna
+    vía, bien porque se han efectuado su llegada previamente o bien porque se
+    encontraban en la estación desde el principio del día.
+
+
+
+2. Se desea recorrer un grafo mediante los siguientes recorridos. Implementa el
+método que realice el recorrido e imprima las etiquetas por pantalla apoyándote en la estructura de
+datos necesaria de la STL para ello (pista: ayúdate del TDA pila (stack) y del TDA cola (queue) para
+realizar el ejercicio).
+    
+    a. Recorrido en profundidad
+    b. Recorrido en anchura
