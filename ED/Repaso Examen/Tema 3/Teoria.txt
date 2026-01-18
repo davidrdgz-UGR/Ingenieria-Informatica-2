@@ -70,70 +70,70 @@
 
 13.¿Cuáles son las operaciones básicas de una pila?
 
---->
+---> Construir/Vaciar la pila, saber si está vacía, el numero de elementos y su máximo, insertar/eliminar el último elemento de la fila, copiar dos pilas.
 
 
 14.¿Qué ventajas tiene implementar una pila o cola a partir de una lista?
 
---->
+---> Pues que reusaremos el código de la lista usando las funciones de esta, además mantendremos la abstracción.
 
 
 15.¿Qué es una cola circular y por qué se utiliza?
 
---->
+---> Es una cola hecha a partir de un vector en la cuál el ultimo elemento se conecta con el primero para reutilizar posiciones libres.
 
 
 16.¿Qué ventajas tiene una implementación con vector circular frente a un vector normal?
 
---->
+---> Evita desplazamientos de elementos y aprovecha mejor la memoria disponible.
 
 
 17.¿Qué es un vector dinámico?
 
---->
+---> Un vector que puede cambiar de tamaño si es necesario.
 
 
 18.¿Qué es un vector disperso?
 
---->
+---> Un vector en el que la mayoría de elementos son cero/vacios, y se almacenan solo los valores significativos
 
 
 19.¿Qué es un conjunto como TDA lineal?
 
---->
+---> Es un TDA que almacena elementos sin repetición y sin importar el orden,de elementos del mismo tipo.
 
 
 20.¿Qué aplicaciones típicas tienen las pilas?
 
---->
+---> Evaluar expresiones, llamar a funciones, recursividad.
 
 
 21.¿Qué aplicaciones típicas tienen las colas?
 
---->
+---> Gestion de procesos, simulaciones, atención por turnos.
 
 
 22.¿Cómo se puede utilizar una pila para detectar palíndromos?
 
---->
+---> Fijandonos en el recorrido que hace la cadena al desapilar.
 
 
 23.¿Cómo se puede transformar un algoritmo recursivo en uno no recursivo usando pilas?
 
---->
+---> Haciendo que una pila simula otra pila de llamadas a funciones, llamandolas de forma externa por decirlo de alguna forma.
 
 
 24.¿Qué ventajas tienen los TDA lineales frente al uso directo de estructuras básicas del lenguaje?
 
---->
+---> Independencia en su implementación, claridad, reutilizacion de código, de forma que le podemos dar las funcionalidades que queramos.
 
 
 25.¿Qué implementación elegirías para una lista si necesitas muchos accesos aleatorios y por qué?
 
---->
+---> Lo suyo sería una lista a partir de un vector, ya que aprovechamos los índices, haciendo que el acceso sea directo y rápido.
 
 
 26.¿Qué implementación elegirías para una lista si necesitas muchas inserciones y borrados y por qué?
 
---->
+---> Una lista a partir de celdas enlazadas, para no tener que estar desplazando elementos o redimensionando el vector.
 
