@@ -49,8 +49,9 @@ private:
 
 	int N;
     int* transito;     // -1 = vacía
-    Nodo* estacionamiento;	 // lista enlazada de trenes
+    Nodo* estacionamiento;	 // lista enlazada de trenes, puntero al primer nodo
 
+    /* Se busca la primera via( transito[N] ) que tenga como valor -1, es decir, que este vacía */
 	int primeraViaLibre() const {
         for (int i = 0; i < N; ++i)
             if (transito[i] == -1) return i;
