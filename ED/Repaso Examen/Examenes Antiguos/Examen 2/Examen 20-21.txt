@@ -1,3 +1,64 @@
 ------------------------------------------------
 ------------------- EXAMEN 2 -------------------
 ------------------------------------------------
+
+1.- (2,5 puntos) Responde a las siguientes preguntas relacionada con la eficiencia de algoritmos:
+    a. (1 puntos) Enumera y explica suficientemente que notaciones existen para la
+    complejidad asintótica.
+
+    O -->  Es la cota superior, y se basa en que el algoritmo no crece más rápido que f(n) a partir de un tamaño grande.
+
+    Ω --> Es la cota inferior, y se basa en que el algoritmo crece al menos como f(n).
+
+    Θ --> Es la cota ajustada y se basa en que el algoritmo describe exactamente el orden de crecimiento de f(n).
+
+
+    b. (1,5 puntos) Dado el siguiente algoritmo:
+
+    void Insercion(int numbers[], int array_size) {
+        int i, a, index;
+        for (i=1; i < array_size; i++) {
+            index = numbers[i];
+            a = i-1;
+            while (a >= 0 && numbers[a] > index) {
+                numbers[a + 1] = numbers[a];
+                a--;
+            }
+        numbers[a+1] = index;
+        }
+    }
+
+    a. (1 puntos) ¿Que eficiencia tiene el método? ¿Por qué? -> Dependiendo de si está ordenado el array o no puede ser O(n) o O(n^2).
+
+    b. (0,5 puntos) Si el algoritmo anterior lo programo en Java, ¿Será más rápido que
+    el proporcionado en C++? ¿Será más eficiente? Explica y justifica
+    suficientemente tu respuesta.
+
+    Eficientemente sería igual, ya que el algoritmo es el mismo, otra cosa sería cuál lenguaje es más rápido (por lo general C++), ya el tiempo depende también de las constantes externas, en este caso el lenguaje es una de ellas.
+
+
+2.- (2,5 puntos) Resuelva las siguientes cuestiones:
+
+    a. (1 punto) Partiendo de un árbol APOC de números enteros vacío representar,
+    dibujando la evolución del árbol, cómo se realizan las siguientes acciones (en el
+    orden en el que se listan).
+        • Insertar los enteros 3, 9, 2, 5, 1, 7, 4, 6, 11, −4.
+        • Listar los nodos siguiendo los recorridos en preorden, inorden y postorden.
+
+        Preorden: -4 1 2 6 7 3 11 4 5 11 9 
+        Inorden:  6 2 7 1 11 3 -4 5 4 9 11
+        Postorden:6 7 2 11 3 1 5 11 9 4 -4
+
+
+
+    b. (1,5 puntos) Partiendo de un árbol AVL de números enteros vacío representar,
+    dibujando la evolución del árbol, cómo se realizan las siguientes acciones (en el orden
+    en el que se listan).
+        § Insertar los enteros 10, 100, 20, 80, 40, 70.
+        § Borrar 100, Borrar 40.
+        § Insertar 35, insertar 60.
+        § Listar los nodos siguiendo los recorridos en preorden, inorden y postorden.
+
+        Preorden:   60 20 10 35 70 80
+        Inorden:    10 20 35 60 70 80
+        Postorden:  10 35 20 80 70 60

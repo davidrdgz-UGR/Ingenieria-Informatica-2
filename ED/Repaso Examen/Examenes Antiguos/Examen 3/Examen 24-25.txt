@@ -1,0 +1,57 @@
+1. (1 punto) Responde las siguientes preguntas relacionadas con la eficiencia de los
+algoritmos:
+    
+    a. (0,25 puntos) Dame un ejemplo de cada caso (caso mejor, caso peor y caso
+    promedio) suponiendo que queremos realizar un algoritmo de búsqueda con un vector.
+
+    Mejor caso: el elemento está en la primera posición → O(1).
+    Peor caso: el elemento está en la última posición o no está → O(n).
+    Caso promedio: si está en una posición aleatoria, se revisan ~ n/2 elementos
+
+2. (1,5 puntos) Responde a las siguientes preguntas relacionada con la eficiencia de
+algoritmos:
+    a. (1 punto) Dado el siguiente algoritmo de búsqueda:
+    
+    int binarySearch(int arr[], int size, int target) {
+        int left = 0, right = size - 1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (arr[mid] == target) {
+                return mid; // Elemento encontrado
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        return -1; // Elemento no encontrado
+    }
+
+¿Qué eficiencia tiene el método teniendo en cuenta el peor caso? ¿Por qué?
+¿Cuál sería el mejor caso? Explica que situación se daría y qué eficiencia sería.
+
+    Mejor caso O(1), peor caso O(log n)
+
+b. (0,5 puntos) Si el algoritmo anterior lo programo en Java, ¿Será más rápido que el
+proporcionado en C++? ¿Será más eficiente? Explica y justifica suficientemente tu
+respuesta.
+
+Lo más seguro es que no, pero serían igual de eficientes, ya que la complejidad asintótica y el orden de crecimiento son los mismos.
+
+
+3 (1,5 puntos) Resuelve las siguientes cuestiones:
+    a. (1 punto) Construye un árbol AVL realizando las siguientes operaciones, indicando
+    todos los pasos y las rotaciones que se realizan en caso de que sean necesarias.
+        i. Inserta los valores: 40, 20, 60, 10, 30, 70, 50, 25, 15, 65.
+        ii. Elimina los valores: 60, 30, 70.
+        iii. Inserta los valores: 55, 35.
+    
+    b. (0,5 puntos) Listar los nodos del árbol resultante en los recorridos Preorden, Inorden
+    Postorden.
+
+    Preorden:   25 15 10 20 50 40 35 65 55
+    Inorden:    10 15 20 25 35 40 50 65 55
+    Postorden:  10 20 15 35 40 55 65 50 25
+
