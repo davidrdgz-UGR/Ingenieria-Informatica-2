@@ -12,6 +12,7 @@ int main(int argc, char* argv[]){
         {
                 ID = omp_get_thread_num(); 
                 printf("Hola. Soy el hilo: %d\n",ID);
+                printf("Hola. Soy el hilo: %d\n",ID);
         }
         return 0;
 }
