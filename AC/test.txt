@@ -1,0 +1,547 @@
+
+EXAMEN 1
+
+
+1.
+
+¿Cuál de los siguientes NO es un problema propio de la programación paralela? ✅
+
+A) Sincronización
+B) Comunicación
+    C) Recursividad             
+D) Asignación de tareas
+
+2.
+
+El punto de partida para paralelizar un programa es: ✅
+
+A) Código paralelo optimizado
+    B) Código secuencial        
+C) Código en ensamblador
+D) Código GPU
+
+3.
+
+En el modelo SPMD: ❌
+
+    A) Cada procesador ejecuta distinto programa 
+B) Todos ejecutan el mismo programa ✅
+C) No hay paralelismo
+D) Solo hay un hilo
+
+4.
+
+¿Cuál es un ejemplo de API basada en directivas? ✅
+
+A) MPI
+B) Pthreads
+    C) OpenMP
+D) CUDA
+
+5.
+
+MPI pertenece al paradigma de: ✅
+
+A) Memoria compartida
+    B) Paso de mensajes
+C) Paralelismo de datos
+D) Secuencial
+
+6.
+
+¿Qué hace la operación broadcast? ✅
+
+A) Todos envían datos a uno
+    B) Uno envía datos a todos
+C) Todos combinan datos
+D) Todos envían a todos
+
+7.
+
+¿Qué operación recoge datos de varios procesos en uno? ✅
+
+A) Scatter
+B) Broadcast
+    C) Gather
+D) Barrier
+
+8.
+
+¿Qué hace reduce? ✅
+
+A) Reparte datos
+    B) Combina datos
+C) Sincroniza
+D) Duplica datos
+
+9.
+
+¿Cuál es una comunicación de sincronización? ✅
+
+A) Reduce
+B) Broadcast
+    C) Barrier
+D) Gather
+
+10.
+
+OpenMP utiliza: ✅
+
+A) Memoria distribuida
+    B) Memoria compartida
+C) GPU
+D) Red
+
+11.
+
+En el modelo master-slave: ✅
+
+A) Todos hacen lo mismo
+    B) Uno reparte trabajo
+C) No hay comunicación
+D) Solo hay un hilo
+
+12.
+
+¿Qué estructura divide datos en partes? ✅
+
+A) Pipeline
+B) Cliente-servidor
+    C) Descomposición de dominio
+D) Master-slave
+
+13.
+
+El proceso de paralelización empieza por: ✅
+
+A) Evaluar
+B) Programar
+C) Asignar
+    D) Descomponer
+
+14.
+
+El scheduling es: ✅
+
+A) Medición del tiempo
+    B) Asignación de tareas
+C) Comunicación
+D) Sincronización
+
+15.
+
+El mapping es:  ❌
+
+    A) Asignar tareas a hilos
+B) Asignar hilos a procesadores ✅
+C) Medir rendimiento
+D) Crear procesos
+
+16.
+
+¿Qué tipo de asignación decide en tiempo de ejecución? ✅
+
+A) Estática
+    B) Dinámica 
+C) Secuencial
+D) Lineal
+
+17.
+
+¿Cuál tiene menos overhead?
+
+A) Dinámica
+B) Estática  ❌
+C) Ambas igual
+D) Ninguna
+
+18.
+
+¿Qué mejora el load balancing? ✅
+
+A) Reducir hilos
+    B) Evitar esperas 
+C) Reducir memoria
+D) Evitar sincronización
+
+19.
+
+La ganancia en velocidad es:
+
+A) Tp / T1
+B) T1 / Tp ❌
+C) Tp × T1
+D) Tp + T1
+
+20.
+
+¿Cuándo es el speedup ideal? ✅
+
+A) S = 1
+    B) S = p
+C) S < p
+D) S > p
+
+21.
+
+La eficiencia es: ✅
+
+A) S × p
+    B) S / p
+C) p / S
+D) Tp / p
+
+22.
+
+¿Qué reduce el speedup?
+
+A) Paralelismo
+B) Overhead ❌
+C) Más cores
+D) Más memoria
+
+23.
+
+¿Qué incluye overhead?
+
+A) Solo cálculo
+B) Comunicación  ❌
+C) Solo memoria
+D) Solo CPU
+
+24.
+
+En Amdahl, f representa: ✅
+
+A) Parte paralela
+    B) Parte secuencial 
+C) Tiempo total
+D) Núcleos
+
+25.
+
+Si f aumenta: ✅
+
+A) Mejora el speedup
+B) No cambia
+    C) Disminuye el speedup
+D) Duplica el speedup
+
+26.
+
+Cuando p → infinito en Amdahl: ✅
+
+A) S → infinito
+B) S → p
+    C) S → 1/f
+D) S → 0
+
+27.
+
+Amdahl es: ✅
+
+A) Optimista
+    B) Pesimista
+C) Exacto
+D) Irrelevante
+
+28.
+
+Gustafson propone: ✅
+
+A) Reducir procesadores
+    B) Aumentar el problema
+C) Eliminar sincronización
+D) Usar GPU
+
+29.
+
+Escalabilidad fuerte: ✅
+
+A) Aumenta el problema
+    B) Problema fijo
+C) Sin paralelismo
+D) Solo GPU
+
+30.
+
+Escalabilidad débil: ✅
+
+A) Problema fijo
+    B) Problema crece con p
+C) No hay paralelismo
+D) Solo CPU
+
+
+
+EXAMEN 2 
+
+1.
+
+¿Cuál de las siguientes afirmaciones sobre programación paralela es CORRECTA? ✅
+
+A) El paralelismo elimina la necesidad de sincronización
+    B) El paralelismo introduce dependencias adicionales
+C) El paralelismo reduce siempre el tiempo de ejecución
+D) El paralelismo elimina el overhead
+
+2.
+
+En el proceso de paralelización, ¿cuál es el orden correcto? ✅
+
+A) Scheduling → Decomposition → Mapping → Evaluation
+    B) Decomposition → Scheduling → Mapping → Evaluation
+C) Mapping → Decomposition → Scheduling → Evaluation
+D) Evaluation → Mapping → Scheduling → Decomposition
+
+3.
+
+¿Cuál de los siguientes es un ejemplo de paralelismo de datos? ✅
+
+A) Pipeline
+B) Divide y vencerás
+    C) Paralelizar un bucle for
+D) Cliente-servidor
+
+4.
+
+¿Qué caracteriza mejor a SPMD frente a MPMD? ✅
+
+A) Menor comunicación
+    B) Uso del mismo código con distintos datos
+C) Mayor eficiencia siempre
+D) No usa memoria compartida
+
+5.
+
+¿Cuál de las siguientes afirmaciones es FALSA sobre OpenMP? ✅
+
+A) Es una API basada en directivas
+B) Usa memoria compartida
+    C) Requiere comunicación explícita entre nodos
+D) Permite paralelismo a nivel de bucle
+
+6.
+
+En MPI, una operación reduce implica: ✅
+
+A) Distribuir datos entre procesos
+    B) Combinar datos de varios procesos en uno
+C) Sincronizar procesos
+D) Duplicar datos
+
+7.
+
+¿Qué diferencia clave hay entre scatter y broadcast? -
+
+A) Scatter combina datos
+B) Broadcast reparte datos diferentes
+    C) Scatter reparte partes distintas
+D) Broadcast es bidireccional
+
+8.
+
+¿Cuál de estas operaciones implica sincronización implícita? ✅
+
+A) Reduce
+    B) Barrier
+C) Scatter
+D) Gather
+
+9.
+
+¿Qué implica el término “grain size” en paralelismo? -
+
+A) Número de cores
+    B) Tamaño de las tareas
+C) Tiempo de ejecución
+D) Tipo de memoria
+
+10.
+
+¿Cuál es el principal problema de una descomposición demasiado fina? ✅
+
+A) Falta de paralelismo
+    B) Exceso de comunicación y overhead
+C) Falta de memoria
+D) Baja utilización de CPU
+
+11.
+
+¿Qué implica una mala asignación (scheduling)? ✅
+
+A) Mejora de rendimiento
+B) Load balancing perfecto
+    C) Threads inactivos
+D) Menor overhead
+
+12.
+
+¿Qué es el load balancing óptimo? ❌
+
+A) Todos los threads trabajan el mismo tiempo ✅
+    B) Todos los threads hacen el mismo número de operaciones
+C) Se minimiza la memoria
+D) Se elimina la sincronización
+
+13.
+
+¿Cuál es la diferencia clave entre asignación estática y dinámica? ✅
+
+A) La estática es más flexible
+    B) La dinámica se decide en tiempo de ejecución
+C) La dinámica tiene menos overhead
+D) La estática mejora el balance
+
+14.
+
+¿Qué caracteriza a la asignación dinámica? ✅
+
+A) Menor overhead
+    B) Mejor balance de carga
+C) Menor paralelismo
+D) No usa threads
+
+15.
+
+En términos de rendimiento, ¿qué mide el speedup? ✅
+
+A) Tiempo absoluto
+    B) Mejora relativa respecto al secuencial
+C) Uso de memoria
+D) Número de hilos
+
+16.
+
+¿Cuándo ocurre speedup superlineal? ✅
+
+A) Cuando S = p
+    B) Cuando S > p
+C) Cuando S < p
+D) Nunca ocurre
+
+17.
+
+¿Qué explicación es válida para speedup superlineal? ❌
+
+A) Error de cálculo
+B) Mejor uso de caché ✅
+C) Menos threads
+    D) Mayor overhead
+
+18.
+
+¿Cuál es el principal límite del speedup según Amdahl? ✅
+
+A) Número de cores
+B) Parte paralela
+    C) Parte secuencial
+D) Memoria
+
+19.
+
+Si f = 0.1, el speedup máximo teórico es: ✅
+
+    A) 10
+B) 1
+C) 100
+D) 0.1
+
+20.
+
+¿Cuál es la principal crítica a la ley de Amdahl? ✅
+
+A) Es demasiado optimista
+B) No considera overhead
+    C) Asume tamaño de problema fijo
+D) No usa threads
+
+21.
+
+¿Qué aporta la ley de Gustafson? ✅
+
+A) Reduce el número de cores
+    B) Considera tamaño de problema variable
+C) Elimina overhead
+D) Mejora sincronización
+
+22.
+
+¿Qué caracteriza la escalabilidad fuerte? ✅
+
+A) Aumentar el problema
+    B) Problema constante
+C) Reducir threads
+D) Uso de GPU
+
+23.
+
+¿Qué caracteriza la escalabilidad débil? ✅
+
+    A) Problema fijo
+B) Problema crece con threads
+C) Sin paralelismo
+D) Uso de memoria compartida
+
+24.
+
+¿Cuál de estos NO es overhead? ✅
+
+A) Comunicación
+B) Sincronización
+    C) Cálculo útil
+D) Creación de threads
+
+25.
+
+¿Cuál es el impacto principal del overhead? ✅
+
+A) Aumenta speedup
+    B) Reduce eficiencia
+C) Reduce memoria
+D) Mejora paralelismo
+
+26.
+
+¿Qué ocurre si el overhead domina? ✅
+
+A) Speedup mejora
+B) Paralelismo mejora
+    C) Rendimiento empeora
+D) No afecta
+
+27.
+
+¿Qué ocurre si hay mucha sincronización? ✅
+
+A) Mejora el rendimiento
+B) Aumenta el paralelismo
+    C) Reduce rendimiento
+D) Elimina overhead
+
+28.
+
+¿Qué tipo de paralelismo es más escalable? ✅
+
+A) Tasks (sections)
+    B) Datos (for)
+C) Secuencial
+D) Cliente-servidor
+
+29.
+
+¿Por qué el paralelismo de datos escala mejor? ❌
+
+A) Menos comunicación ✅
+B) Más código
+     C) Más memoria
+D) Menos threads
+
+30.
+
+¿Qué afirmación resume mejor el rendimiento en paralelo? ✅
+
+A) Más threads siempre mejora rendimiento
+    B) El rendimiento depende del balance, overhead y paralelismo
+C) Solo depende del hardware
+D) Solo depende del compilador
