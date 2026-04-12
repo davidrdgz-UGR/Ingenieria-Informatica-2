@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="practica-1---algoritmica"><strong>PRACTICA 1 - ALGORITMICA</strong></h1>
+<h3 id="ejercicio-1"><strong>EJERCICIO 1</strong></h3>
+<p>He creado el código añadiendo el resto de algoritmos mediante includes, y en base a los parametros de entrada se elige una función u otra.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">/* Archivos con funciones */</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"bubble.cpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"insertion.cpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"selection.cpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"mergesort.cpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"quicksort.cpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"heapsort.cpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"fibonacci.cpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"hanoi.cpp"</span></span>
+
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstdlib&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;ctime&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;fstream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span> *argv[])</span> </span>{
+
+	<span class="hljs-keyword">if</span> (argc &lt;= <span class="hljs-number">3</span>) {
+        <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"Error: El programa se debe ejecutar de la siguiente forma:\n"</span>;
+        <span class="hljs-built_in">cerr</span> &lt;&lt; argv[<span class="hljs-number">0</span>] &lt;&lt; <span class="hljs-string">" NombreAlgoritmo Semilla tamCaso1 tamCaso2 ... tamCasoN\n"</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+	<span class="hljs-keyword">int</span> *vectorAlgoritmo;
+    <span class="hljs-keyword">int</span> tam, i;
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> tiempoInicio, tiempoFin;
+    <span class="hljs-keyword">double</span> tiempoEjecucion;
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">int</span> semilla;
+    ofstream fsalida;
+    <span class="hljs-built_in">string</span> algoritmo;
+
+	algoritmo = argv[<span class="hljs-number">1</span>];
+	
+	fsalida.<span class="hljs-built_in">open</span>(<span class="hljs-string">"../dat/"</span> + algoritmo + <span class="hljs-string">".dat"</span>);
+    <span class="hljs-keyword">if</span> (!fsalida.is_open()) {
+        <span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"Error: No se pudo abrir el fichero "</span> &lt;&lt; algoritmo &lt;&lt; <span class="hljs-string">".dat\n"</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+	semilla = atoi(argv[<span class="hljs-number">2</span>]);
+    srand(semilla);
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> argumento = <span class="hljs-number">3</span>; argumento &lt; argc; argumento++) {
+
+		tam = atoi(argv[argumento]);
+
+		vectorAlgoritmo = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[tam];
+
+		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; tam; i++) {
+			vectorAlgoritmo[i] = rand() % tam;
+		}
+
+		tiempoInicio = clock();
+
+		<span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"bubble"</span>)
+			bubble(vectorAlgoritmo, tam);
+
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"insertion"</span>)
+			insertion(vectorAlgoritmo, tam);
+
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"selection"</span>)
+			seleccion(vectorAlgoritmo, tam);
+
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"mergesort"</span>)
+			mergesort(vectorAlgoritmo, tam);
+
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"quicksort"</span>)
+			quicksort(vectorAlgoritmo, tam);
+
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"heapsort"</span>)
+			heapsort(vectorAlgoritmo, tam);
+
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"fibonacci"</span>)
+			fibo(tam);
+
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (algoritmo == <span class="hljs-string">"hanoi"</span>)
+			hanoi(tam, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+
+		<span class="hljs-keyword">else</span> {
+			<span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"Algoritmo no reconocido\n"</span>;
+			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		}
+
+		tiempoFin = clock();
+
+		tiempoEjecucion = <span class="hljs-number">1000.0</span> * (tiempoFin - tiempoInicio) / CLOCKS_PER_SEC;
+
+		fsalida &lt;&lt; tam &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; tiempoEjecucion &lt;&lt; <span class="hljs-string">"\n"</span>;
+
+		<span class="hljs-built_in">cerr</span> &lt;&lt; <span class="hljs-string">"Tam: "</span> &lt;&lt; tam &lt;&lt; <span class="hljs-string">" Tiempo: "</span> &lt;&lt; tiempoEjecucion &lt;&lt; <span class="hljs-string">" ms"</span> &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+		<span class="hljs-keyword">delete</span>[] vectorAlgoritmo;
+
+	}
+
+	fsalida.<span class="hljs-built_in">close</span>();
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+
+
+}
+
+</div></code></pre>
+<p><img src="../cap/cap1-1.png" alt="cap1"></p>
+<h3 id="ejercicio-2"><strong>EJERCICIO 2</strong></h3>
+<p>En este ejercicio hemos ejecutado cada algoritmo con una serie de parametros y la semilla 1333. En la carpeta cap están todos los resultados, no pongo las imagenes ya que los resultados se usan en las tablas del Ejercicio 3.</p>
+<h3 id="ejercicio-3"><strong>EJERCICIO 3</strong></h3>
+<ul>
+<li><strong>BUBBLE (n^2)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>T(n) ms</th>
+<th>f(n) operaciones</th>
+<th>K(n) ms/operacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>1</td>
+<td>1000000</td>
+<td>0.000001</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>5</td>
+<td>4000000</td>
+<td>0.00000125</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>9</td>
+<td>9000000</td>
+<td>0.000001</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>15</td>
+<td>16000000</td>
+<td>0.0000009375</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>25</td>
+<td>25000000</td>
+<td>0.000001</td>
+</tr>
+<tr>
+<td>6000</td>
+<td>34</td>
+<td>36000000</td>
+<td>0.0000009444</td>
+</tr>
+<tr>
+<td>7000</td>
+<td>46</td>
+<td>49000000</td>
+<td>0.0000009388</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>58</td>
+<td>64000000</td>
+<td>0.00000090625</td>
+</tr>
+<tr>
+<td>9000</td>
+<td>77</td>
+<td>81000000</td>
+<td>0.0000009506</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>99</td>
+<td>100000000</td>
+<td>0.00000099</td>
+</tr>
+<tr>
+<td>11000</td>
+<td>123</td>
+<td>121000000</td>
+<td>0.0000010165</td>
+</tr>
+<tr>
+<td>12000</td>
+<td>156</td>
+<td>144000000</td>
+<td>0.0000010833</td>
+</tr>
+<tr>
+<td>13000</td>
+<td>185</td>
+<td>169000000</td>
+<td>0.0000010946</td>
+</tr>
+<tr>
+<td>14000</td>
+<td>226</td>
+<td>196000000</td>
+<td>0.0000011530</td>
+</tr>
+<tr>
+<td>15000</td>
+<td>268</td>
+<td>225000000</td>
+<td>0.0000011911</td>
+</tr>
+<tr>
+<td>16000</td>
+<td>336</td>
+<td>256000000</td>
+<td>0.0000013125</td>
+</tr>
+<tr>
+<td>17000</td>
+<td>378</td>
+<td>289000000</td>
+<td>0.0000013079</td>
+</tr>
+<tr>
+<td>18000</td>
+<td>431</td>
+<td>324000000</td>
+<td>0.0000013302</td>
+</tr>
+<tr>
+<td>19000</td>
+<td>475</td>
+<td>361000000</td>
+<td>0.0000013158</td>
+</tr>
+<tr>
+<td>20000</td>
+<td>518</td>
+<td>400000000</td>
+<td>0.000001295</td>
+</tr>
+<tr>
+<td>22000</td>
+<td>683</td>
+<td>484000000</td>
+<td>0.0000014111</td>
+</tr>
+<tr>
+<td>24000</td>
+<td>812</td>
+<td>576000000</td>
+<td>0.0000014097</td>
+</tr>
+<tr>
+<td>26000</td>
+<td>978</td>
+<td>676000000</td>
+<td>0.0000014467</td>
+</tr>
+<tr>
+<td>28000</td>
+<td>1125</td>
+<td>784000000</td>
+<td>0.000001435</td>
+</tr>
+<tr>
+<td>30000</td>
+<td>1325</td>
+<td>900000000</td>
+<td>0.0000014722</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>SELECTION (n^2)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n</th>
+<th style="text-align:right">T(n) ms</th>
+<th style="text-align:right">f(n) operaciones</th>
+<th style="text-align:right">K(n)=T(n)/f(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1000</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">1000000</td>
+<td style="text-align:right">0.000001</td>
+</tr>
+<tr>
+<td style="text-align:center">2000</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">4000000</td>
+<td style="text-align:right">0.0000005</td>
+</tr>
+<tr>
+<td style="text-align:center">3000</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">9000000</td>
+<td style="text-align:right">0.0000004444444444</td>
+</tr>
+<tr>
+<td style="text-align:center">4000</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">16000000</td>
+<td style="text-align:right">0.0000003125</td>
+</tr>
+<tr>
+<td style="text-align:center">5000</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">25000000</td>
+<td style="text-align:right">0.00000028</td>
+</tr>
+<tr>
+<td style="text-align:center">6000</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">36000000</td>
+<td style="text-align:right">0.0000003055555556</td>
+</tr>
+<tr>
+<td style="text-align:center">7000</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">49000000</td>
+<td style="text-align:right">0.0000002857142857</td>
+</tr>
+<tr>
+<td style="text-align:center">8000</td>
+<td style="text-align:right">19</td>
+<td style="text-align:right">64000000</td>
+<td style="text-align:right">0.000000296875</td>
+</tr>
+<tr>
+<td style="text-align:center">9000</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">81000000</td>
+<td style="text-align:right">0.0000003086419753</td>
+</tr>
+<tr>
+<td style="text-align:center">10000</td>
+<td style="text-align:right">29</td>
+<td style="text-align:right">100000000</td>
+<td style="text-align:right">0.00000029</td>
+</tr>
+<tr>
+<td style="text-align:center">11000</td>
+<td style="text-align:right">36</td>
+<td style="text-align:right">121000000</td>
+<td style="text-align:right">0.0000002975206612</td>
+</tr>
+<tr>
+<td style="text-align:center">12000</td>
+<td style="text-align:right">41</td>
+<td style="text-align:right">144000000</td>
+<td style="text-align:right">0.0000002847222222</td>
+</tr>
+<tr>
+<td style="text-align:center">13000</td>
+<td style="text-align:right">48</td>
+<td style="text-align:right">169000000</td>
+<td style="text-align:right">0.0000002840236686</td>
+</tr>
+<tr>
+<td style="text-align:center">14000</td>
+<td style="text-align:right">54</td>
+<td style="text-align:right">196000000</td>
+<td style="text-align:right">0.0000002755102041</td>
+</tr>
+<tr>
+<td style="text-align:center">15000</td>
+<td style="text-align:right">64</td>
+<td style="text-align:right">225000000</td>
+<td style="text-align:right">0.0000002844444444</td>
+</tr>
+<tr>
+<td style="text-align:center">16000</td>
+<td style="text-align:right">71</td>
+<td style="text-align:right">256000000</td>
+<td style="text-align:right">0.00000027734375</td>
+</tr>
+<tr>
+<td style="text-align:center">17000</td>
+<td style="text-align:right">82</td>
+<td style="text-align:right">289000000</td>
+<td style="text-align:right">0.0000002837370242</td>
+</tr>
+<tr>
+<td style="text-align:center">18000</td>
+<td style="text-align:right">92</td>
+<td style="text-align:right">324000000</td>
+<td style="text-align:right">0.0000002839506173</td>
+</tr>
+<tr>
+<td style="text-align:center">19000</td>
+<td style="text-align:right">103</td>
+<td style="text-align:right">361000000</td>
+<td style="text-align:right">0.0000002853185596</td>
+</tr>
+<tr>
+<td style="text-align:center">20000</td>
+<td style="text-align:right">114</td>
+<td style="text-align:right">400000000</td>
+<td style="text-align:right">0.000000285</td>
+</tr>
+<tr>
+<td style="text-align:center">22000</td>
+<td style="text-align:right">137</td>
+<td style="text-align:right">484000000</td>
+<td style="text-align:right">0.0000002830578512</td>
+</tr>
+<tr>
+<td style="text-align:center">24000</td>
+<td style="text-align:right">162</td>
+<td style="text-align:right">576000000</td>
+<td style="text-align:right">0.00000028125</td>
+</tr>
+<tr>
+<td style="text-align:center">26000</td>
+<td style="text-align:right">194</td>
+<td style="text-align:right">676000000</td>
+<td style="text-align:right">0.0000002869822485</td>
+</tr>
+<tr>
+<td style="text-align:center">28000</td>
+<td style="text-align:right">219</td>
+<td style="text-align:right">784000000</td>
+<td style="text-align:right">0.0000002793367347</td>
+</tr>
+<tr>
+<td style="text-align:center">30000</td>
+<td style="text-align:right">251</td>
+<td style="text-align:right">900000000</td>
+<td style="text-align:right">0.0000002788888889</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>INSERTION (n^2)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>T(n) ms</th>
+<th>f(n) operaciones</th>
+<th>K(n) ms/operacion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>0</td>
+<td>1000000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2000</td>
+<td>2</td>
+<td>4000000</td>
+<td>0.0000005</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>5</td>
+<td>9000000</td>
+<td>0.0000005555555556</td>
+</tr>
+<tr>
+<td>4000</td>
+<td>8</td>
+<td>16000000</td>
+<td>0.0000005</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>13</td>
+<td>25000000</td>
+<td>0.00000052</td>
+</tr>
+<tr>
+<td>6000</td>
+<td>17</td>
+<td>36000000</td>
+<td>0.0000004722222222</td>
+</tr>
+<tr>
+<td>7000</td>
+<td>23</td>
+<td>49000000</td>
+<td>0.0000004693877551</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>31</td>
+<td>64000000</td>
+<td>0.000000484375</td>
+</tr>
+<tr>
+<td>9000</td>
+<td>38</td>
+<td>81000000</td>
+<td>0.0000004691358025</td>
+</tr>
+<tr>
+<td>10000</td>
+<td>48</td>
+<td>100000000</td>
+<td>0.00000048</td>
+</tr>
+<tr>
+<td>11000</td>
+<td>56</td>
+<td>121000000</td>
+<td>0.0000004628099174</td>
+</tr>
+<tr>
+<td>12000</td>
+<td>72</td>
+<td>144000000</td>
+<td>0.0000005</td>
+</tr>
+<tr>
+<td>13000</td>
+<td>78</td>
+<td>169000000</td>
+<td>0.0000004615384615</td>
+</tr>
+<tr>
+<td>14000</td>
+<td>92</td>
+<td>196000000</td>
+<td>0.0000004693877551</td>
+</tr>
+<tr>
+<td>15000</td>
+<td>103</td>
+<td>225000000</td>
+<td>0.0000004577777778</td>
+</tr>
+<tr>
+<td>16000</td>
+<td>122</td>
+<td>256000000</td>
+<td>0.0000004765625</td>
+</tr>
+<tr>
+<td>17000</td>
+<td>134</td>
+<td>289000000</td>
+<td>0.0000004636678201</td>
+</tr>
+<tr>
+<td>18000</td>
+<td>149</td>
+<td>324000000</td>
+<td>0.0000004598765432</td>
+</tr>
+<tr>
+<td>19000</td>
+<td>171</td>
+<td>361000000</td>
+<td>0.0000004736842105</td>
+</tr>
+<tr>
+<td>20000</td>
+<td>189</td>
+<td>400000000</td>
+<td>0.0000004725</td>
+</tr>
+<tr>
+<td>22000</td>
+<td>233</td>
+<td>484000000</td>
+<td>0.0000004814049587</td>
+</tr>
+<tr>
+<td>24000</td>
+<td>262</td>
+<td>576000000</td>
+<td>0.0000004548611111</td>
+</tr>
+<tr>
+<td>26000</td>
+<td>325</td>
+<td>676000000</td>
+<td>0.0000004807692308</td>
+</tr>
+<tr>
+<td>28000</td>
+<td>349</td>
+<td>784000000</td>
+<td>0.0000004451530612</td>
+</tr>
+<tr>
+<td>30000</td>
+<td>402</td>
+<td>900000000</td>
+<td>0.0000004466666667</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>MERGESORT (n * log n)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n</th>
+<th style="text-align:right">T(n) ms</th>
+<th style="text-align:right">f(n) operaciones</th>
+<th style="text-align:right">K(n)=T(n)/f(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">5000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">42585.96596</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">10000</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">92103.40372</td>
+<td style="text-align:right">0.00001085736205</td>
+</tr>
+<tr>
+<td style="text-align:center">15000</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">144237.0822</td>
+<td style="text-align:right">0.00001386605975</td>
+</tr>
+<tr>
+<td style="text-align:center">20000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">198069.7511</td>
+<td style="text-align:right">0.00001514617949</td>
+</tr>
+<tr>
+<td style="text-align:center">25000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">253165.7776</td>
+<td style="text-align:right">0.00001184994287</td>
+</tr>
+<tr>
+<td style="text-align:center">30000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">309268.5798</td>
+<td style="text-align:right">0.000009700306451</td>
+</tr>
+<tr>
+<td style="text-align:center">35000</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">366208.6169</td>
+<td style="text-align:right">0.00001092273588</td>
+</tr>
+<tr>
+<td style="text-align:center">40000</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">423865.3893</td>
+<td style="text-align:right">0.00001179619786</td>
+</tr>
+<tr>
+<td style="text-align:center">45000</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">482148.7996</td>
+<td style="text-align:right">0.00001244429107</td>
+</tr>
+<tr>
+<td style="text-align:center">50000</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">540988.9142</td>
+<td style="text-align:right">0.00001293926699</td>
+</tr>
+<tr>
+<td style="text-align:center">60000</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">660125.9905</td>
+<td style="text-align:right">0.00001060403635</td>
+</tr>
+<tr>
+<td style="text-align:center">70000</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">780937.5365</td>
+<td style="text-align:right">0.00001152460931</td>
+</tr>
+<tr>
+<td style="text-align:center">80000</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">903182.5531</td>
+<td style="text-align:right">0.00001217915466</td>
+</tr>
+<tr>
+<td style="text-align:center">90000</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">1026680.845</td>
+<td style="text-align:right">0.00001168815027</td>
+</tr>
+<tr>
+<td style="text-align:center">100000</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">1151292.546</td>
+<td style="text-align:right">0.00001302883446</td>
+</tr>
+<tr>
+<td style="text-align:center">120000</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">1403429.643</td>
+<td style="text-align:right">0.00001068810259</td>
+</tr>
+<tr>
+<td style="text-align:center">140000</td>
+<td style="text-align:right">18</td>
+<td style="text-align:right">1658915.678</td>
+<td style="text-align:right">0.00001085046108</td>
+</tr>
+<tr>
+<td style="text-align:center">160000</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">1917268.655</td>
+<td style="text-align:right">0.00001043150627</td>
+</tr>
+<tr>
+<td style="text-align:center">180000</td>
+<td style="text-align:right">24</td>
+<td style="text-align:right">2178128.183</td>
+<td style="text-align:right">0.00001101863526</td>
+</tr>
+<tr>
+<td style="text-align:center">200000</td>
+<td style="text-align:right">27</td>
+<td style="text-align:right">2441214.529</td>
+<td style="text-align:right">0.00001106006853</td>
+</tr>
+<tr>
+<td style="text-align:center">220000</td>
+<td style="text-align:right">27</td>
+<td style="text-align:right">2706304.222</td>
+<td style="text-align:right">0.000009976705422</td>
+</tr>
+<tr>
+<td style="text-align:center">240000</td>
+<td style="text-align:right">33</td>
+<td style="text-align:right">2973214.609</td>
+<td style="text-align:right">0.00001109909789</td>
+</tr>
+<tr>
+<td style="text-align:center">260000</td>
+<td style="text-align:right">34</td>
+<td style="text-align:right">3241793.597</td>
+<td style="text-align:right">0.00001048802121</td>
+</tr>
+<tr>
+<td style="text-align:center">280000</td>
+<td style="text-align:right">37</td>
+<td style="text-align:right">3511912.567</td>
+<td style="text-align:right">0.00001053556981</td>
+</tr>
+<tr>
+<td style="text-align:center">300000</td>
+<td style="text-align:right">38</td>
+<td style="text-align:right">3783461.326</td>
+<td style="text-align:right">0.00001004371308</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>QUICKSORT (n * log n)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n</th>
+<th style="text-align:right">T(n) ms</th>
+<th style="text-align:right">f(n) operaciones</th>
+<th style="text-align:right">K(n)=T(n)/f(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">5000</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">42585.96596</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">10000</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">92103.40372</td>
+<td style="text-align:right">0.00001085736205</td>
+</tr>
+<tr>
+<td style="text-align:center">15000</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">144237.0822</td>
+<td style="text-align:right">0.000006933029875</td>
+</tr>
+<tr>
+<td style="text-align:center">20000</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">198069.7511</td>
+<td style="text-align:right">0.00001009745299</td>
+</tr>
+<tr>
+<td style="text-align:center">25000</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">253165.7776</td>
+<td style="text-align:right">0.00000789996191</td>
+</tr>
+<tr>
+<td style="text-align:center">30000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">309268.5798</td>
+<td style="text-align:right">0.000009700306451</td>
+</tr>
+<tr>
+<td style="text-align:center">35000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">366208.6169</td>
+<td style="text-align:right">0.000008192051911</td>
+</tr>
+<tr>
+<td style="text-align:center">40000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">423865.3893</td>
+<td style="text-align:right">0.000007077718718</td>
+</tr>
+<tr>
+<td style="text-align:center">45000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">482148.7996</td>
+<td style="text-align:right">0.000006222145534</td>
+</tr>
+<tr>
+<td style="text-align:center">50000</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">540988.9142</td>
+<td style="text-align:right">0.000007393866852</td>
+</tr>
+<tr>
+<td style="text-align:center">60000</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">660125.9905</td>
+<td style="text-align:right">0.00000757431168</td>
+</tr>
+<tr>
+<td style="text-align:center">70000</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">780937.5365</td>
+<td style="text-align:right">0.00000768307287</td>
+</tr>
+<tr>
+<td style="text-align:center">80000</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">903182.5531</td>
+<td style="text-align:right">0.000007750371147</td>
+</tr>
+<tr>
+<td style="text-align:center">90000</td>
+<td style="text-align:right">7</td>
+<td style="text-align:right">1026680.845</td>
+<td style="text-align:right">0.000006818087657</td>
+</tr>
+<tr>
+<td style="text-align:center">100000</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">1151292.546</td>
+<td style="text-align:right">0.00000694871171</td>
+</tr>
+<tr>
+<td style="text-align:center">120000</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">1403429.643</td>
+<td style="text-align:right">0.0000078379419</td>
+</tr>
+<tr>
+<td style="text-align:center">140000</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">1658915.678</td>
+<td style="text-align:right">0.000006630837326</td>
+</tr>
+<tr>
+<td style="text-align:center">160000</td>
+<td style="text-align:right">14</td>
+<td style="text-align:right">1917268.655</td>
+<td style="text-align:right">0.00000730205439</td>
+</tr>
+<tr>
+<td style="text-align:center">180000</td>
+<td style="text-align:right">15</td>
+<td style="text-align:right">2178128.183</td>
+<td style="text-align:right">0.000006886647037</td>
+</tr>
+<tr>
+<td style="text-align:center">200000</td>
+<td style="text-align:right">16</td>
+<td style="text-align:right">2441214.529</td>
+<td style="text-align:right">0.000006554114687</td>
+</tr>
+<tr>
+<td style="text-align:center">220000</td>
+<td style="text-align:right">17</td>
+<td style="text-align:right">2706304.222</td>
+<td style="text-align:right">0.00000628162934</td>
+</tr>
+<tr>
+<td style="text-align:center">240000</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">2973214.609</td>
+<td style="text-align:right">0.000006726725996</td>
+</tr>
+<tr>
+<td style="text-align:center">260000</td>
+<td style="text-align:right">22</td>
+<td style="text-align:right">3241793.597</td>
+<td style="text-align:right">0.000006786366665</td>
+</tr>
+<tr>
+<td style="text-align:center">280000</td>
+<td style="text-align:right">22</td>
+<td style="text-align:right">3511912.567</td>
+<td style="text-align:right">0.000006264392857</td>
+</tr>
+<tr>
+<td style="text-align:center">300000</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">3783461.326</td>
+<td style="text-align:right">0.000006079089494</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>HEAPSORT (n * log n)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n</th>
+<th style="text-align:right">T(n) ms</th>
+<th style="text-align:right">f(n) operaciones</th>
+<th style="text-align:right">K(n)=T(n)/f(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">5000</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">42585.96596</td>
+<td style="text-align:right">0.00002348191423</td>
+</tr>
+<tr>
+<td style="text-align:center">10000</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">92103.40372</td>
+<td style="text-align:right">0.00001085736205</td>
+</tr>
+<tr>
+<td style="text-align:center">15000</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">144237.0822</td>
+<td style="text-align:right">0.00001386605975</td>
+</tr>
+<tr>
+<td style="text-align:center">20000</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">198069.7511</td>
+<td style="text-align:right">0.00001009745299</td>
+</tr>
+<tr>
+<td style="text-align:center">25000</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">253165.7776</td>
+<td style="text-align:right">0.00001184994287</td>
+</tr>
+<tr>
+<td style="text-align:center">30000</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">309268.5798</td>
+<td style="text-align:right">0.00001293374194</td>
+</tr>
+<tr>
+<td style="text-align:center">35000</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">366208.6169</td>
+<td style="text-align:right">0.00001092273588</td>
+</tr>
+<tr>
+<td style="text-align:center">40000</td>
+<td style="text-align:right">5</td>
+<td style="text-align:right">423865.3893</td>
+<td style="text-align:right">0.00001179619786</td>
+</tr>
+<tr>
+<td style="text-align:center">45000</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">482148.7996</td>
+<td style="text-align:right">0.00001244429107</td>
+</tr>
+<tr>
+<td style="text-align:center">50000</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">540988.9142</td>
+<td style="text-align:right">0.00001109080028</td>
+</tr>
+<tr>
+<td style="text-align:center">60000</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">660125.9905</td>
+<td style="text-align:right">0.00001363376102</td>
+</tr>
+<tr>
+<td style="text-align:center">70000</td>
+<td style="text-align:right">10</td>
+<td style="text-align:right">780937.5365</td>
+<td style="text-align:right">0.00001280512145</td>
+</tr>
+<tr>
+<td style="text-align:center">80000</td>
+<td style="text-align:right">11</td>
+<td style="text-align:right">903182.5531</td>
+<td style="text-align:right">0.00001217915466</td>
+</tr>
+<tr>
+<td style="text-align:center">90000</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">1026680.845</td>
+<td style="text-align:right">0.00001168815027</td>
+</tr>
+<tr>
+<td style="text-align:center">100000</td>
+<td style="text-align:right">13</td>
+<td style="text-align:right">1151292.546</td>
+<td style="text-align:right">0.00001129165653</td>
+</tr>
+<tr>
+<td style="text-align:center">120000</td>
+<td style="text-align:right">18</td>
+<td style="text-align:right">1403429.643</td>
+<td style="text-align:right">0.00001282572311</td>
+</tr>
+<tr>
+<td style="text-align:center">140000</td>
+<td style="text-align:right">19</td>
+<td style="text-align:right">1658915.678</td>
+<td style="text-align:right">0.00001145326447</td>
+</tr>
+<tr>
+<td style="text-align:center">160000</td>
+<td style="text-align:right">20</td>
+<td style="text-align:right">1917268.655</td>
+<td style="text-align:right">0.00001043150627</td>
+</tr>
+<tr>
+<td style="text-align:center">180000</td>
+<td style="text-align:right">24</td>
+<td style="text-align:right">2178128.183</td>
+<td style="text-align:right">0.00001101863526</td>
+</tr>
+<tr>
+<td style="text-align:center">200000</td>
+<td style="text-align:right">26</td>
+<td style="text-align:right">2441214.529</td>
+<td style="text-align:right">0.00001065043637</td>
+</tr>
+<tr>
+<td style="text-align:center">220000</td>
+<td style="text-align:right">30</td>
+<td style="text-align:right">2706304.222</td>
+<td style="text-align:right">0.00001108522825</td>
+</tr>
+<tr>
+<td style="text-align:center">240000</td>
+<td style="text-align:right">34</td>
+<td style="text-align:right">2973214.609</td>
+<td style="text-align:right">0.00001143543419</td>
+</tr>
+<tr>
+<td style="text-align:center">260000</td>
+<td style="text-align:right">36</td>
+<td style="text-align:right">3241793.597</td>
+<td style="text-align:right">0.00001110496363</td>
+</tr>
+<tr>
+<td style="text-align:center">280000</td>
+<td style="text-align:right">42</td>
+<td style="text-align:right">3511912.567</td>
+<td style="text-align:right">0.00001195929545</td>
+</tr>
+<tr>
+<td style="text-align:center">300000</td>
+<td style="text-align:right">43</td>
+<td style="text-align:right">3783461.326</td>
+<td style="text-align:right">0.00001136525427</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>FIBONACCI ( ((1 + √5) / 2)^2 )</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n</th>
+<th style="text-align:right">T(n) ms</th>
+<th style="text-align:right">f(n) operaciones</th>
+<th style="text-align:right">K(n)=T(n)/f(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1.618033989</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2.618033989</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">6.854101966</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">17.94427191</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">46.97871376</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">122.9918694</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">521.0019194</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2206.999547</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">5777.999827</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">15126.99993</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">39602.99997</td>
+<td style="text-align:right">0.00002525061234</td>
+</tr>
+<tr>
+<td style="text-align:center">24</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">103682</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">167761</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">26</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">271443</td>
+<td style="text-align:right">0.000003684014692</td>
+</tr>
+<tr>
+<td style="text-align:center">28</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">710647</td>
+<td style="text-align:right">0.000001407168397</td>
+</tr>
+<tr>
+<td style="text-align:center">30</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">1860498</td>
+<td style="text-align:right">0.0000016124715</td>
+</tr>
+<tr>
+<td style="text-align:center">32</td>
+<td style="text-align:right">9</td>
+<td style="text-align:right">4870847</td>
+<td style="text-align:right">0.000001847727921</td>
+</tr>
+<tr>
+<td style="text-align:center">34</td>
+<td style="text-align:right">23</td>
+<td style="text-align:right">12752043</td>
+<td style="text-align:right">0.000001803632563</td>
+</tr>
+<tr>
+<td style="text-align:center">36</td>
+<td style="text-align:right">56</td>
+<td style="text-align:right">33385282</td>
+<td style="text-align:right">0.000001677385861</td>
+</tr>
+<tr>
+<td style="text-align:center">38</td>
+<td style="text-align:right">144</td>
+<td style="text-align:right">87403803</td>
+<td style="text-align:right">0.000001647525566</td>
+</tr>
+<tr>
+<td style="text-align:center">40</td>
+<td style="text-align:right">378</td>
+<td style="text-align:right">228826127</td>
+<td style="text-align:right">0.000001651909268</td>
+</tr>
+<tr>
+<td style="text-align:center">42</td>
+<td style="text-align:right">992</td>
+<td style="text-align:right">599074578</td>
+<td style="text-align:right">0.000001655887324</td>
+</tr>
+<tr>
+<td style="text-align:center">44</td>
+<td style="text-align:right">2597</td>
+<td style="text-align:right">1568397607</td>
+<td style="text-align:right">0.000001655830121</td>
+</tr>
+<tr>
+<td style="text-align:center">45</td>
+<td style="text-align:right">4222</td>
+<td style="text-align:right">2537720636</td>
+<td style="text-align:right">0.000001663697706</td>
+</tr>
+<tr>
+<td style="text-align:center">50</td>
+<td style="text-align:right">46985</td>
+<td style="text-align:right">28143753123</td>
+<td style="text-align:right">0.000001669464616</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>HANOI (2^n)</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">n</th>
+<th style="text-align:right">T(n) ms</th>
+<th style="text-align:right">f(n) operaciones</th>
+<th style="text-align:right">K(n)=T(n)/f(n)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">16</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">32</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">6</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">64</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">128</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">8</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">256</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">512</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">1024</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">2048</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">4096</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">13</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">8192</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">14</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">16384</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">32768</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">16</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">65536</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">17</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">131072</td>
+<td style="text-align:right">0.000007629394531</td>
+</tr>
+<tr>
+<td style="text-align:center">18</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">262144</td>
+<td style="text-align:right">0</td>
+</tr>
+<tr>
+<td style="text-align:center">19</td>
+<td style="text-align:right">1</td>
+<td style="text-align:right">524288</td>
+<td style="text-align:right">0.000001907348633</td>
+</tr>
+<tr>
+<td style="text-align:center">20</td>
+<td style="text-align:right">3</td>
+<td style="text-align:right">1048576</td>
+<td style="text-align:right">0.000002861022949</td>
+</tr>
+<tr>
+<td style="text-align:center">21</td>
+<td style="text-align:right">6</td>
+<td style="text-align:right">2097152</td>
+<td style="text-align:right">0.000002861022949</td>
+</tr>
+<tr>
+<td style="text-align:center">22</td>
+<td style="text-align:right">12</td>
+<td style="text-align:right">4194304</td>
+<td style="text-align:right">0.000002861022949</td>
+</tr>
+<tr>
+<td style="text-align:center">23</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">8388608</td>
+<td style="text-align:right">0.000002980232239</td>
+</tr>
+<tr>
+<td style="text-align:center">24</td>
+<td style="text-align:right">47</td>
+<td style="text-align:right">16777216</td>
+<td style="text-align:right">0.000002801418304</td>
+</tr>
+<tr>
+<td style="text-align:center">25</td>
+<td style="text-align:right">98</td>
+<td style="text-align:right">33554432</td>
+<td style="text-align:right">0.000002920627594</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ejercicio-4"><strong>EJERCICIO 4</strong></h3>
+<p>Finalmente mediante gnuplot hemos generado las gráficas de cada algoritmo con su tiempo real y su tiempo teórico.</p>
+<ul>
+<li><strong>BUBBLE (n^2)</strong></li>
+</ul>
+<p><img src="../graficas/bubble.png" alt="bubble"></p>
+<ul>
+<li><strong>SELECTION (n^2)</strong></li>
+</ul>
+<p><img src="../graficas/selection.png" alt="selection"></p>
+<ul>
+<li><strong>INSERTION (n^2)</strong></li>
+</ul>
+<p><img src="../graficas/insertion.png" alt="insertion"></p>
+<ul>
+<li><strong>MERGESORT (n * log n)</strong></li>
+</ul>
+<p><img src="../graficas/mergesort.png" alt="mergesort"></p>
+<ul>
+<li><strong>QUICKSORT (n * log n)</strong></li>
+</ul>
+<p><img src="../graficas/quicksort.png" alt="quicksort"></p>
+<ul>
+<li><strong>HEAPSORT (n * log n)</strong></li>
+</ul>
+<p><img src="../graficas/heapsort.png" alt="heapsort"></p>
+<ul>
+<li><strong>FIBONACCI ( ((1 + √5) / 2)^2 )</strong></li>
+</ul>
+<p><img src="../graficas/fibonacci.png" alt="fibonacci"></p>
+<ul>
+<li><strong>HANOI (2^n)</strong></li>
+</ul>
+<p><img src="../graficas/hanoi.png" alt="hanoi"></p>
+
+</body>
+</html>

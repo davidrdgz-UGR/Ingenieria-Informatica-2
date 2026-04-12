@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
 
 	algoritmo = argv[1];
 	
-	fsalida.open(algoritmo + ".dat");
+	fsalida.open("../dat/" + algoritmo + ".dat");
     if (!fsalida.is_open()) {
         cerr << "Error: No se pudo abrir el fichero " << algoritmo << ".dat\n";
         return 0;
