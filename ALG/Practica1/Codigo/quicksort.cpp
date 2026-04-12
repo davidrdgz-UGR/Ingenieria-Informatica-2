@@ -188,7 +188,7 @@ static void dividir_qs(int T[], int inicial, int final, int & pp)
 
 
 
-
+/* 
 int main(int argc, char * argv[])
 {
   
@@ -227,4 +227,4 @@ int main(int argc, char * argv[])
     delete [] T;
 
     return 0;
-}
+} */

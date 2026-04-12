@@ -26,7 +26,7 @@ int fibo(int n)
         return fibo(n-1) + fibo(n-2);
 }
 
-
+/* 
 int main(int argc, char * argv[])
 {
 
@@ -57,4 +57,4 @@ int main(int argc, char * argv[])
     cout << tv_usecs << endl;
 
     return 0;
-}
+} */

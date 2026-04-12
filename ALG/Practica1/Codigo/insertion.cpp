@@ -82,7 +82,7 @@ static void insertion_lims(int T[], int inicial, int final)
 }
 
 
-
+/* 
 int main(int argc, char * argv[])
 {
   
@@ -121,4 +121,4 @@ int main(int argc, char * argv[])
     delete [] T;
 
     return 0;
-}
+} */

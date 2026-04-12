@@ -40,7 +40,7 @@ void hanoi (int M, int i, int j)
         hanoi (M-1, 6-i-j, j);
     }
 }
-
+/* 
 int main(int argc, char * argv[])
 {
   
@@ -67,4 +67,4 @@ int main(int argc, char * argv[])
     cout << tv_usecs << endl;
 
     return 0;
-}
+} */

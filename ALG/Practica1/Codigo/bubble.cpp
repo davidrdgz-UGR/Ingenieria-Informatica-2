@@ -77,7 +77,7 @@ static void bubble_lims(int T[], int inicial, int final)
                 T[j-1] = aux;
             }
 }
-
+/* 
 int main(int argc, char * argv[])
 {
 
@@ -117,4 +117,4 @@ int main(int argc, char * argv[])
     delete [] T;
 
     return 0;
-}
+} */

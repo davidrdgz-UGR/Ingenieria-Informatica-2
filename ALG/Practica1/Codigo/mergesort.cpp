@@ -195,7 +195,7 @@ static void fusion(int T[], int inicial, int final, int U[], int V[])
 
 
 
-
+/* 
 int main(int argc, char * argv[])
 {
 
@@ -235,4 +235,4 @@ int main(int argc, char * argv[])
 
     return 0;
 };
- 
+  */

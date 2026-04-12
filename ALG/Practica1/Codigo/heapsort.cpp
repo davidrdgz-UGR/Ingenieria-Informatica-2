@@ -88,7 +88,7 @@ static void reajustar(int T[], int num_elem, int k)
     T[k] = v;
 }
 
-
+/* 
 int main(int argc, char * argv[])
 {
 
@@ -128,4 +128,4 @@ int main(int argc, char * argv[])
     delete [] T;
 
     return 0;
-}
+} */
