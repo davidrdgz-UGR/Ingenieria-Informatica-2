@@ -59,7 +59,34 @@ int main(int argc, char *argv[]) {
 
 		tiempoInicio = clock();
 
-		/* SWITCH CON LOS ALGORITMOS  */
+		if (algoritmo == "bubble")
+			bubble(vectorAlgoritmo, tam);
+
+		else if (algoritmo == "insertion")
+			insertion(vectorAlgoritmo, tam);
+
+		else if (algoritmo == "selection")
+			seleccion(vectorAlgoritmo, tam);
+
+		else if (algoritmo == "mergesort")
+			mergesort(vectorAlgoritmo, tam);
+
+		else if (algoritmo == "quicksort")
+			quicksort(vectorAlgoritmo, tam);
+
+		else if (algoritmo == "heapsort")
+			heapsort(vectorAlgoritmo, tam);
+
+		else if (algoritmo == "fibonacci")
+			fibo(tam);
+
+		else if (algoritmo == "hanoi")
+			hanoi(tam, 1, 2);
+
+		else {
+			cerr << "Algoritmo no reconocido\n";
+			return 0;
+		}
 
 		tiempoFin = clock();
 
@@ -67,7 +94,7 @@ int main(int argc, char *argv[]) {
 
 		fsalida << tam << " " << tiempoEjecucion << "\n";
 
-		cerr << "Tam: " << tam << " Tiempo: " << tiempoEjecucion << endl;
+		cerr << "Tam: " << tam << " Tiempo: " << tiempoEjecucion << " ms" << endl;
 
 		delete[] vectorAlgoritmo;
 

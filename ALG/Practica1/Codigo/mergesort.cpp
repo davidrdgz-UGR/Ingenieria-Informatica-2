@@ -117,7 +117,7 @@ static void fusion(int T[], int inicial, int final, int U[], int V[]);
 **/
 
 
-inline static void insertion(int T[], int num_elem)
+/* inline static void insertion(int T[], int num_elem)
 {
     insertion_lims(T, 0, num_elem);
 }
@@ -136,7 +136,7 @@ static void insertion_lims(int T[], int inicial, int final)
             j--;
         }
     }
-}
+} */
 
 
 const int UMBRAL_MS = 100;
