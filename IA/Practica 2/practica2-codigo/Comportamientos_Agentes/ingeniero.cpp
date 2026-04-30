@@ -29,10 +29,133 @@ Action ComportamientoIngeniero::think(Sensores sensores)
   return accion;
 }
 
+/**
+ * @brief Determina la mejor casilla interesante para el Ingeniero.
+ * Devuelve:
+ * 2 -> avanzar
+ * 1 -> girar izquierda
+ * 3 -> girar derecha
+ * 0 -> no hay opción interesante
+ */
+int VeoCasillaInteresanteI(char i, char c, char d, bool zap)
+{
+  // Primero, prioridad absoluta: llegar a U
+  if (c == 'U') return 2;
+  else if (i == 'U') return 1;
+  else if (d == 'U') return 3;
+
+  // Si no tengo zapatillas, interesa cogerlas
+  if (!zap)
+  {
+    if (c == 'D') return 2;
+    else if (i == 'D') return 1;
+    else if (d == 'D') return 3;
+  }
+
+  // Después seguir camino
+  if (c == 'C') return 2;
+  else if (i == 'C') return 1;
+  else if (d == 'C') return 3;
+
+  return 0;
+}
+
+/**
+ * @brief Filtra una casilla según si es viable por altura para el Ingeniero.
+ * Sin zapatillas permite desnivel máximo 1.
+ * Con zapatillas permite desnivel máximo 2.
+ */
+char ViablePorAlturaI(char casilla, int dif, bool zap)
+{
+  if (abs(dif) <= 1 || (zap && abs(dif) <= 2))
+    return casilla;
+  else
+    return 'P';
+}
+
+
 // Niveles iniciales (Comportamientos reactivos simples)
 Action ComportamientoIngeniero::ComportamientoIngenieroNivel_0(Sensores sensores)
 {
   Action accion = IDLE;
+
+  // 1. Actualización del mapa conocido
+  ActualizarMapa(sensores);
+
+  // Si tengo giros pendientes, los ejecuto antes de decidir otra cosa.
+  // Esto sirve para completar un giro de 180º cuando hay bloqueo con otro agente.
+  if (giros_pendientes > 0)
+  {
+    giros_pendientes--;
+    last_action = TURN_SR;
+    return TURN_SR;
+  }
+
+  // 2. Actualización de variables de estado
+  if (sensores.superficie[0] == 'D')
+  {
+    tiene_zapatillas = true;
+  }
+
+  // 3. Si ya he llegado a una planta de tratamiento, me quedo quieto
+  if (sensores.superficie[0] == 'U')
+  {
+    accion = IDLE;
+  }
+  else
+  {
+    // 4. Filtramos las tres casillas cercanas por altura
+    char i = ViablePorAlturaI(
+        sensores.superficie[1],
+        sensores.cota[1] - sensores.cota[0],
+        tiene_zapatillas);
+
+    char c = ViablePorAlturaI(
+        sensores.superficie[2],
+        sensores.cota[2] - sensores.cota[0],
+        tiene_zapatillas);
+
+    char d = ViablePorAlturaI(
+        sensores.superficie[3],
+        sensores.cota[3] - sensores.cota[0],
+        tiene_zapatillas);
+
+    
+    
+
+    // 5. Evitamos avanzar si hay otro agente justo delante
+
+    // Si tengo otro agente justo delante, me doy la vuelta.
+    // El Ingeniero actúa primero, así que él toma la iniciativa para desbloquear.
+    if (sensores.agentes[2] != '_')
+    {
+      giros_pendientes = 3; // este turno giro + 3 más = 4 giros de 45º = 180º
+      accion = TURN_SR;
+      last_action = accion;
+      return accion;
+    }
+
+    // 6. Elegimos la mejor casilla interesante
+    int pos = VeoCasillaInteresanteI(i, c, d, tiene_zapatillas);
+
+    switch (pos)
+    {
+    case 2:
+      accion = WALK;
+      break;
+    case 1:
+      accion = TURN_SL;
+      break;
+    case 3:
+      accion = TURN_SR;
+      break;
+    default:
+      accion = TURN_SL;
+      break;
+    }
+  }
+
+  last_action = accion;
   return accion;
 }
 

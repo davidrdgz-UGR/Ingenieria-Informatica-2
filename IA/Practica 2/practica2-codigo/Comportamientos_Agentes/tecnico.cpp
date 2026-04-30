@@ -29,10 +29,119 @@ Action ComportamientoTecnico::think(Sensores sensores) {
 }
 
 
+/**
+ * @brief Determina la mejor casilla interesante para el Técnico.
+ * Devuelve:
+ * 2 -> avanzar
+ * 1 -> girar izquierda
+ * 3 -> girar derecha
+ * 0 -> no hay opción interesante
+ */
+int VeoCasillaInteresanteT(char i, char c, char d)
+{
+  // Primero, prioridad absoluta: llegar a U
+  if (c == 'U') return 2;
+  else if (i == 'U') return 1;
+  else if (d == 'U') return 3;
+
+  // Después puede coger zapatillas, aunque en nivel 0 no le mejoran la altura
+  if (c == 'D') return 2;
+  else if (i == 'D') return 1;
+  else if (d == 'D') return 3;
+
+  // Después seguir camino
+  if (c == 'C') return 2;
+  else if (i == 'C') return 1;
+  else if (d == 'C') return 3;
+
+  return 0;
+}
+
+/**
+ * @brief Filtra una casilla según si es viable por altura para el Técnico.
+ * El Técnico solo permite desnivel máximo 1.
+ */
+char ViablePorAlturaT(char casilla, int dif)
+{
+  if (abs(dif) <= 1)
+    return casilla;
+  else
+    return 'P';
+}
+
 // Niveles del técnico
-Action ComportamientoTecnico::ComportamientoTecnicoNivel_0(Sensores sensores) {
+Action ComportamientoTecnico::ComportamientoTecnicoNivel_0(Sensores sensores)
+{
   Action accion = IDLE;
 
+  // 1. Actualización del mapa conocido
+  ActualizarMapa(sensores);
+
+  if (giros_pendientes > 0)
+  {
+    giros_pendientes--;
+    last_action = TURN_SL;
+    return TURN_SL;
+  }
+
+  // 2. Actualización de variables de estado
+  if (sensores.superficie[0] == 'D')
+  {
+    tiene_zapatillas = true;
+  }
+
+  // 3. Si ya ha llegado a una planta de tratamiento, se queda quieto
+  if (sensores.superficie[0] == 'U')
+  {
+    accion = IDLE;
+  }
+  else
+  {
+    // 4. Filtramos las tres casillas cercanas por altura
+    char i = ViablePorAlturaT(
+        sensores.superficie[1],
+        sensores.cota[1] - sensores.cota[0]);
+
+    char c = ViablePorAlturaT(
+        sensores.superficie[2],
+        sensores.cota[2] - sensores.cota[0]);
+
+    char d = ViablePorAlturaT(
+        sensores.superficie[3],
+        sensores.cota[3] - sensores.cota[0]);
+
+    // 5. Evitamos avanzar si hay otro agente justo delante
+    
+    // Si tengo otro agente delante, espero.
+    // El Ingeniero se encargará de darse la vuelta y liberar el paso.
+    if (sensores.agentes[2] != '_')
+    {
+      accion = IDLE;
+      last_action = accion;
+      return accion;
+    }
+
+    // 6. Elegimos la mejor casilla interesante
+    int pos = VeoCasillaInteresanteT(i, c, d);
+
+    switch (pos)
+    {
+    case 2:
+      accion = WALK;
+      break;
+    case 1:
+      accion = TURN_SL;
+      break;
+    case 3:
+      accion = TURN_SR;
+      break;
+    default:
+      accion = TURN_SR;
+      break;
+    }
+  }
+
+  last_action = accion;
   return accion;
 }
 

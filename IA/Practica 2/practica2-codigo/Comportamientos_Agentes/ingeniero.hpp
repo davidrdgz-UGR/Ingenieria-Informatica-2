@@ -21,18 +21,20 @@ public:
    * @param size Tamaño del mapa (si es 0, se inicializa más tarde)
    */
   ComportamientoIngeniero(unsigned int size = 0) : Comportamiento(size) {
-    // Inicializar Variables de Estado
+    last_action = IDLE;
+    tiene_zapatillas = false;
+    giros_pendientes = 0;
   }
-
   /**
    * @brief Constructor para niveles 2, 3, 4 y 5 (con mapa completo conocido)
    * @param mapaR Mapa de terreno conocido
    * @param mapaC Mapa de cotas conocido
    */
   ComportamientoIngeniero(std::vector<std::vector<unsigned char>> mapaR, 
-                         std::vector<std::vector<unsigned char>> mapaC): 
-                         Comportamiento(mapaR, mapaC) {
-    // Inicializar Variables de Estado
+                       std::vector<std::vector<unsigned char>> mapaC): 
+                       Comportamiento(mapaR, mapaC) {
+    last_action = IDLE;
+    tiene_zapatillas = false;
   }
 
   ComportamientoIngeniero(const ComportamientoIngeniero &comport)
@@ -183,6 +185,9 @@ private:
   // VARIABLES DE ESTADO (PUEDEN SER EXTENDIDAS POR EL ALUMNO)
   // =========================================================================
 
+  Action last_action;
+  bool tiene_zapatillas;
+  int giros_pendientes;
 };
 
 #endif
