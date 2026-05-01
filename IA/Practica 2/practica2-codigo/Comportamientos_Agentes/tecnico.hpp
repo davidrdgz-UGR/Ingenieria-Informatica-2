@@ -1,6 +1,7 @@
 #ifndef COMPORTAMIENTOTECNICO_H
 #define COMPORTAMIENTOTECNICO_H
 
+#include <vector>
 #include <chrono>
 #include <time.h>
 #include <thread>
@@ -35,7 +36,13 @@ public:
     // Inicializar Variables de Estado
     last_action = IDLE;
     tiene_zapatillas = false;
-    giros_pendientes = 0;
+    giros_pendientes=0;
+    fila_anterior_1 = -1;
+    columna_anterior_1 = -1;
+    fila_anterior_2 = -1;
+    columna_anterior_2 = -1;
+    giros_escape = 0;
+    
   }
 
   /**
@@ -47,8 +54,7 @@ public:
                        std::vector<std::vector<unsigned char>> mapaC): 
                        Comportamiento(mapaR, mapaC) {
     // Inicializar Variables de Estado
-    last_action = IDLE;
-    tiene_zapatillas = false;
+
 
   }
 
@@ -196,6 +202,13 @@ private:
   Action last_action;
   bool tiene_zapatillas;
   int giros_pendientes;
+
+  vector<vector<int>> visitadas_n1;
+  int fila_anterior_1;
+  int columna_anterior_1;
+  int fila_anterior_2;
+  int columna_anterior_2;
+  int giros_escape;
 };
 
 #endif

@@ -155,13 +155,184 @@ bool ComportamientoTecnico::es_camino(unsigned char c) const {
 }
 
 
+
+bool EsTransitableNivel1T(char casilla)
+{
+  return casilla == 'C' || casilla == 'S' || casilla == 'D' || casilla == 'U';
+}
+
+int VeoCasillaInteresanteNivel1T(char i, char c, char d)
+{
+  // Prioridad: avanzar si se puede
+  if (c == 'C' || c == 'S' || c == 'D' || c == 'U')
+    return 2;
+
+  // Técnico prioriza derecha para separarse del Ingeniero
+  if (d == 'C' || d == 'S' || d == 'D' || d == 'U')
+    return 3;
+
+  if (i == 'C' || i == 'S' || i == 'D' || i == 'U')
+    return 1;
+
+  return 0;
+}
+
 /**
  * @brief Comportamiento reactivo del técnico para el Nivel 1.
  * @param sensores Datos actuales de los sensores.
  * @return Acción a realizar.
- */
-Action ComportamientoTecnico::ComportamientoTecnicoNivel_1(Sensores sensores) {
-  return IDLE;
+ */Action ComportamientoTecnico::ComportamientoTecnicoNivel_1(Sensores sensores)
+{
+  Action accion = IDLE;
+
+  ActualizarMapa(sensores);
+
+  if (sensores.superficie[0] == 'D')
+  {
+    tiene_zapatillas = true;
+  }
+
+  if (visitadas_n1.empty())
+  {
+    visitadas_n1 = vector<vector<int>>(
+        mapaResultado.size(),
+        vector<int>(mapaResultado[0].size(), 0));
+  }
+
+  visitadas_n1[sensores.posF][sensores.posC]++;
+
+  auto esValidaN1 = [](char casilla) -> bool
+  {
+    return casilla == 'C' || casilla == 'S' || casilla == 'D' || casilla == 'U';
+  };
+
+  char i = ViablePorAlturaT(
+      sensores.superficie[1],
+      sensores.cota[1] - sensores.cota[0]);
+
+  char c = ViablePorAlturaT(
+      sensores.superficie[2],
+      sensores.cota[2] - sensores.cota[0]);
+
+  char d = ViablePorAlturaT(
+      sensores.superficie[3],
+      sensores.cota[3] - sensores.cota[0]);
+
+  if (sensores.agentes[1] != '_') i = 'P';
+  if (sensores.agentes[2] != '_') c = 'P';
+  if (sensores.agentes[3] != '_') d = 'P';
+
+  ubicacion actual;
+  actual.f = sensores.posF;
+  actual.c = sensores.posC;
+  actual.brujula = sensores.rumbo;
+
+  auto posicionTrasGiro = [&](int giro) -> ubicacion
+  {
+    ubicacion aux = actual;
+    aux.brujula = static_cast<Orientacion>(((int)sensores.rumbo + giro + 8) % 8);
+    return Delante(aux);
+  };
+
+  auto dentroMapa = [&](const ubicacion &u) -> bool
+  {
+    return u.f >= 0 && u.f < mapaResultado.size() &&
+           u.c >= 0 && u.c < mapaResultado[0].size();
+  };
+
+  auto cuentaDesconocidas = [&](const ubicacion &u) -> int
+  {
+    int total = 0;
+
+    for (int df = -3; df <= 3; df++)
+    {
+      for (int dc = -3; dc <= 3; dc++)
+      {
+        int nf = u.f + df;
+        int nc = u.c + dc;
+
+        if (nf >= 0 && nf < mapaResultado.size() &&
+            nc >= 0 && nc < mapaResultado[0].size())
+        {
+          if (mapaResultado[nf][nc] == '?')
+          {
+            total++;
+          }
+        }
+      }
+    }
+
+    return total;
+  };
+
+  ubicacion delante = posicionTrasGiro(0);
+  ubicacion izquierda = posicionTrasGiro(-1);
+  ubicacion derecha = posicionTrasGiro(1);
+
+  bool centroValido = esValidaN1(c) && dentroMapa(delante);
+  bool izquierdaValida = esValidaN1(i) && dentroMapa(izquierda);
+  bool derechaValida = esValidaN1(d) && dentroMapa(derecha);
+
+  // Si acaba de girar y ahora puede avanzar, avanza.
+  if ((last_action == TURN_SL || last_action == TURN_SR) && centroValido)
+  {
+    accion = WALK;
+    last_action = accion;
+    return accion;
+  }
+
+  int mejorPuntuacion = -999999;
+  Action mejorAccion = IDLE;
+
+  if (centroValido)
+  {
+    int puntuacion = cuentaDesconocidas(delante) * 10
+                     - visitadas_n1[delante.f][delante.c] * 3
+                     + 2;
+
+    if (puntuacion > mejorPuntuacion)
+    {
+      mejorPuntuacion = puntuacion;
+      mejorAccion = WALK;
+    }
+  }
+
+  // El Técnico revisa primero derecha para separarse más del Ingeniero
+  if (derechaValida)
+  {
+    int puntuacion = cuentaDesconocidas(derecha) * 10
+                     - visitadas_n1[derecha.f][derecha.c] * 3;
+
+    if (puntuacion > mejorPuntuacion)
+    {
+      mejorPuntuacion = puntuacion;
+      mejorAccion = TURN_SR;
+    }
+  }
+
+  if (izquierdaValida)
+  {
+    int puntuacion = cuentaDesconocidas(izquierda) * 10
+                     - visitadas_n1[izquierda.f][izquierda.c] * 3;
+
+    if (puntuacion > mejorPuntuacion)
+    {
+      mejorPuntuacion = puntuacion;
+      mejorAccion = TURN_SL;
+    }
+  }
+
+  if (mejorAccion != IDLE)
+  {
+    accion = mejorAccion;
+  }
+  else
+  {
+    accion = TURN_SR;
+  }
+
+  last_action = accion;
+  return accion;
 }
 
 /**
@@ -169,7 +340,8 @@ Action ComportamientoTecnico::ComportamientoTecnicoNivel_1(Sensores sensores) {
  * @param sensores Datos actuales de los sensores.
  * @return Acción a realizar.
  */
-Action ComportamientoTecnico::ComportamientoTecnicoNivel_2(Sensores sensores) {
+Action ComportamientoTecnico::ComportamientoTecnicoNivel_2(Sensores sensores)
+{
   return IDLE;
 }
 

@@ -4,6 +4,11 @@
 #include <queue>
 #include <set>
 
+/* Añadidas */
+#include <map>
+#include <list>
+#include <cmath>
+
 using namespace std;
 
 // =========================================================================
@@ -169,6 +174,31 @@ bool ComportamientoIngeniero::es_camino(unsigned char c) const
   return (c == 'C' || c == 'D' || c == 'U');
 }
 
+
+
+
+bool EsTransitableNivel1I(char casilla)
+{
+  return casilla == 'C' || casilla == 'S' || casilla == 'D' || casilla == 'U';
+}
+
+int VeoCasillaInteresanteNivel1I(char i, char c, char d)
+{
+  // Prioridad: avanzar si se puede
+  if (c == 'C' || c == 'S' || c == 'D' || c == 'U')
+    return 2;
+
+  // Ingeniero prioriza izquierda
+  if (i == 'C' || i == 'S' || i == 'D' || i == 'U')
+    return 1;
+
+  if (d == 'C' || d == 'S' || d == 'D' || d == 'U')
+    return 3;
+
+  return 0;
+}
+
+
 /**
  * @brief Comportamiento reactivo del ingeniero para el Nivel 1.
  * @param sensores Datos actuales de los sensores.
@@ -176,11 +206,186 @@ bool ComportamientoIngeniero::es_camino(unsigned char c) const
  */
 Action ComportamientoIngeniero::ComportamientoIngenieroNivel_1(Sensores sensores)
 {
-  // TODO: Implementar comportamiento reactivo para el Nivel 1.
-  return IDLE;
+  Action accion = IDLE;
+
+  ActualizarMapa(sensores);
+
+  if (sensores.superficie[0] == 'D')
+  {
+    tiene_zapatillas = true;
+  }
+
+  if (visitadas_n1.empty())
+  {
+    visitadas_n1 = vector<vector<int>>(
+        mapaResultado.size(),
+        vector<int>(mapaResultado[0].size(), 0));
+  }
+
+  visitadas_n1[sensores.posF][sensores.posC]++;
+
+  auto esValidaN1 = [](char casilla) -> bool
+  {
+    return casilla == 'C' || casilla == 'S' || casilla == 'D' || casilla == 'U';
+  };
+
+  char i = ViablePorAlturaI(
+      sensores.superficie[1],
+      sensores.cota[1] - sensores.cota[0],
+      tiene_zapatillas);
+
+  char c = ViablePorAlturaI(
+      sensores.superficie[2],
+      sensores.cota[2] - sensores.cota[0],
+      tiene_zapatillas);
+
+  char d = ViablePorAlturaI(
+      sensores.superficie[3],
+      sensores.cota[3] - sensores.cota[0],
+      tiene_zapatillas);
+
+  if (sensores.agentes[1] != '_') i = 'P';
+  if (sensores.agentes[2] != '_') c = 'P';
+  if (sensores.agentes[3] != '_') d = 'P';
+
+  ubicacion actual;
+  actual.f = sensores.posF;
+  actual.c = sensores.posC;
+  actual.brujula = sensores.rumbo;
+
+  auto posicionTrasGiro = [&](int giro) -> ubicacion
+  {
+    ubicacion aux = actual;
+    aux.brujula = static_cast<Orientacion>(((int)sensores.rumbo + giro + 8) % 8);
+    return Delante(aux);
+  };
+
+  auto dentroMapa = [&](const ubicacion &u) -> bool
+  {
+    return u.f >= 0 && u.f < mapaResultado.size() &&
+           u.c >= 0 && u.c < mapaResultado[0].size();
+  };
+
+  auto cuentaDesconocidas = [&](const ubicacion &u) -> int
+  {
+    int total = 0;
+
+    for (int df = -3; df <= 3; df++)
+    {
+      for (int dc = -3; dc <= 3; dc++)
+      {
+        int nf = u.f + df;
+        int nc = u.c + dc;
+
+        if (nf >= 0 && nf < mapaResultado.size() &&
+            nc >= 0 && nc < mapaResultado[0].size())
+        {
+          if (mapaResultado[nf][nc] == '?')
+          {
+            total++;
+          }
+        }
+      }
+    }
+
+    return total;
+  };
+
+  ubicacion delante = posicionTrasGiro(0);
+  ubicacion izquierda = posicionTrasGiro(-1);
+  ubicacion derecha = posicionTrasGiro(1);
+
+  bool centroValido = esValidaN1(c) && dentroMapa(delante);
+  bool izquierdaValida = esValidaN1(i) && dentroMapa(izquierda);
+  bool derechaValida = esValidaN1(d) && dentroMapa(derecha);
+
+  // Si acaba de girar y ahora puede avanzar, avanza.
+  // Esto evita quedarse girando en el mismo sitio.
+  if ((last_action == TURN_SL || last_action == TURN_SR) && centroValido)
+  {
+    accion = WALK;
+    last_action = accion;
+    return accion;
+  }
+
+  int mejorPuntuacion = -999999;
+  Action mejorAccion = IDLE;
+
+  if (centroValido)
+  {
+    int puntuacion = cuentaDesconocidas(delante) * 10
+                     - visitadas_n1[delante.f][delante.c] * 3
+                     + 2; // pequeña preferencia por avanzar
+
+    if (puntuacion > mejorPuntuacion)
+    {
+      mejorPuntuacion = puntuacion;
+      mejorAccion = WALK;
+    }
+  }
+
+  if (izquierdaValida)
+  {
+    int puntuacion = cuentaDesconocidas(izquierda) * 10
+                     - visitadas_n1[izquierda.f][izquierda.c] * 3;
+
+    if (puntuacion > mejorPuntuacion)
+    {
+      mejorPuntuacion = puntuacion;
+      mejorAccion = TURN_SL;
+    }
+  }
+
+  if (derechaValida)
+  {
+    int puntuacion = cuentaDesconocidas(derecha) * 10
+                     - visitadas_n1[derecha.f][derecha.c] * 3;
+
+    if (puntuacion > mejorPuntuacion)
+    {
+      mejorPuntuacion = puntuacion;
+      mejorAccion = TURN_SR;
+    }
+  }
+
+  if (mejorAccion != IDLE)
+  {
+    accion = mejorAccion;
+  }
+  else
+  {
+    accion = TURN_SL;
+  }
+
+  last_action = accion;
+  return accion;
 }
 
+
 // Niveles avanzados (Uso de búsqueda)
+
+struct EstadoN2
+{
+  int f;
+  int c;
+  int brujula;
+  bool zapatillas;
+
+  bool operator<(const EstadoN2 &otro) const
+  {
+    if (f != otro.f) return f < otro.f;
+    if (c != otro.c) return c < otro.c;
+    if (brujula != otro.brujula) return brujula < otro.brujula;
+    return zapatillas < otro.zapatillas;
+  }
+};
+
+struct NodoN2
+{
+  EstadoN2 estado;
+  list<Action> plan;
+};
+
 /**
  * @brief Comportamiento del ingeniero para el Nivel 2 (búsqueda).
  * @param sensores Datos actuales de los sensores.
@@ -188,7 +393,230 @@ Action ComportamientoIngeniero::ComportamientoIngenieroNivel_1(Sensores sensores
  */
 Action ComportamientoIngeniero::ComportamientoIngenieroNivel_2(Sensores sensores)
 {
-  // TODO: Implementar búsqueda para el Nivel 2.
+  // Si ya estoy en la Belkanita, no hago nada.
+  if (sensores.posF == sensores.BelPosF && sensores.posC == sensores.BelPosC)
+  {
+    return IDLE;
+  }
+
+  // Si ya tengo un plan calculado, ejecuto la siguiente acción.
+  if (!plan_n2.empty())
+  {
+    Action sig = plan_n2.front();
+    plan_n2.pop_front();
+    return sig;
+  }
+
+  // ============================================================
+  // Cálculo del plan mediante BFS
+  // ============================================================
+
+  auto dentroMapa = [&](int f, int c) -> bool
+  {
+    return f >= 0 && f < mapaResultado.size() &&
+           c >= 0 && c < mapaResultado[0].size();
+  };
+
+  auto transitableIngeniero = [&](int f, int c) -> bool
+  {
+    if (!dentroMapa(f, c)) return false;
+
+    unsigned char casilla = mapaResultado[f][c];
+
+    // Para el Ingeniero consideramos intransitables precipicio, muro y bosque.
+    // El resto de terrenos principales se pueden atravesar.
+    if (casilla == 'P' || casilla == 'M' || casilla == 'B')
+      return false;
+
+    return true;
+  };
+
+  auto siguienteCasilla = [&](int f, int c, int brujula) -> pair<int, int>
+  {
+    switch (brujula)
+    {
+    case 0: return {f - 1, c};     // norte
+    case 1: return {f - 1, c + 1}; // noreste
+    case 2: return {f, c + 1};     // este
+    case 3: return {f + 1, c + 1}; // sureste
+    case 4: return {f + 1, c};     // sur
+    case 5: return {f + 1, c - 1}; // suroeste
+    case 6: return {f, c - 1};     // oeste
+    case 7: return {f - 1, c - 1}; // noroeste
+    default: return {f, c};
+    }
+  };
+
+  auto alturaValida = [&](int f1, int c1, int f2, int c2, bool zap) -> bool
+  {
+    if (!dentroMapa(f1, c1) || !dentroMapa(f2, c2)) return false;
+
+    int dif = abs((int)mapaCotas[f2][c2] - (int)mapaCotas[f1][c1]);
+
+    if (zap)
+      return dif <= 2;
+    else
+      return dif <= 1;
+  };
+
+  queue<NodoN2> abiertos;
+  set<EstadoN2> cerrados;
+
+  EstadoN2 inicial;
+  inicial.f = sensores.posF;
+  inicial.c = sensores.posC;
+  inicial.brujula = (int)sensores.rumbo;
+  inicial.zapatillas = tiene_zapatillas || sensores.superficie[0] == 'D';
+
+  NodoN2 nodoInicial;
+  nodoInicial.estado = inicial;
+  nodoInicial.plan.clear();
+
+  abiertos.push(nodoInicial);
+  cerrados.insert(inicial);
+
+  bool encontrado = false;
+  list<Action> mejorPlan;
+
+  while (!abiertos.empty() && !encontrado)
+  {
+    NodoN2 actual = abiertos.front();
+    abiertos.pop();
+
+    EstadoN2 st = actual.estado;
+
+    // Objetivo: llegar a la casilla de Belkanita
+    if (st.f == sensores.BelPosF && st.c == sensores.BelPosC)
+    {
+      encontrado = true;
+      mejorPlan = actual.plan;
+      break;
+    }
+
+    // ------------------------------------------------------------
+    // Acción TURN_SL
+    // ------------------------------------------------------------
+    {
+      EstadoN2 hijo = st;
+      hijo.brujula = (hijo.brujula + 7) % 8;
+
+      if (cerrados.find(hijo) == cerrados.end())
+      {
+        NodoN2 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SL);
+
+        abiertos.push(nuevo);
+        cerrados.insert(hijo);
+      }
+    }
+
+    // ------------------------------------------------------------
+    // Acción TURN_SR
+    // ------------------------------------------------------------
+    {
+      EstadoN2 hijo = st;
+      hijo.brujula = (hijo.brujula + 1) % 8;
+
+      if (cerrados.find(hijo) == cerrados.end())
+      {
+        NodoN2 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SR);
+
+        abiertos.push(nuevo);
+        cerrados.insert(hijo);
+      }
+    }
+
+    // ------------------------------------------------------------
+    // Acción WALK
+    // ------------------------------------------------------------
+    {
+      pair<int, int> sig = siguienteCasilla(st.f, st.c, st.brujula);
+      int nf = sig.first;
+      int nc = sig.second;
+
+      if (transitableIngeniero(nf, nc) &&
+          alturaValida(st.f, st.c, nf, nc, st.zapatillas))
+      {
+        EstadoN2 hijo = st;
+        hijo.f = nf;
+        hijo.c = nc;
+
+        if (mapaResultado[nf][nc] == 'D')
+          hijo.zapatillas = true;
+
+        if (cerrados.find(hijo) == cerrados.end())
+        {
+          NodoN2 nuevo;
+          nuevo.estado = hijo;
+          nuevo.plan = actual.plan;
+          nuevo.plan.push_back(WALK);
+
+          abiertos.push(nuevo);
+          cerrados.insert(hijo);
+        }
+      }
+    }
+
+    // ------------------------------------------------------------
+    // Acción JUMP
+    // ------------------------------------------------------------
+    {
+      pair<int, int> intermedia = siguienteCasilla(st.f, st.c, st.brujula);
+      pair<int, int> fin = siguienteCasilla(intermedia.first, intermedia.second, st.brujula);
+
+      int fi = intermedia.first;
+      int ci = intermedia.second;
+      int nf = fin.first;
+      int nc = fin.second;
+
+      if (transitableIngeniero(fi, ci) &&
+          transitableIngeniero(nf, nc) &&
+          alturaValida(st.f, st.c, nf, nc, st.zapatillas))
+      {
+        EstadoN2 hijo = st;
+        hijo.f = nf;
+        hijo.c = nc;
+
+        if (mapaResultado[fi][ci] == 'D' || mapaResultado[nf][nc] == 'D')
+          hijo.zapatillas = true;
+
+        if (cerrados.find(hijo) == cerrados.end())
+        {
+          NodoN2 nuevo;
+          nuevo.estado = hijo;
+          nuevo.plan = actual.plan;
+          nuevo.plan.push_back(JUMP);
+
+          abiertos.push(nuevo);
+          cerrados.insert(hijo);
+        }
+      }
+    }
+  }
+
+  if (encontrado)
+  {
+    plan_n2 = mejorPlan;
+
+    cout << "Plan Nivel 2 encontrado: ";
+    PintaPlan(plan_n2);
+
+    VisualizaPlan({sensores.posF, sensores.posC, sensores.rumbo}, plan_n2);
+
+    if (!plan_n2.empty())
+    {
+      Action sig = plan_n2.front();
+      plan_n2.pop_front();
+      return sig;
+    }
+  }
+
+  // Si no encuentra plan, se queda quieto.
   return IDLE;
 }
 

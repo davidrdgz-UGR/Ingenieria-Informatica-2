@@ -1,6 +1,7 @@
 #ifndef COMPORTAMIENTOINGENIERO_H
 #define COMPORTAMIENTOINGENIERO_H
 
+#include <vector>
 #include <chrono>
 #include <list>
 #include <map>
@@ -24,17 +25,34 @@ public:
     last_action = IDLE;
     tiene_zapatillas = false;
     giros_pendientes = 0;
+
+    fila_anterior_1 = -1;
+    columna_anterior_1 = -1;
+    fila_anterior_2 = -1;
+    columna_anterior_2 = -1;
+    giros_escape = 0;
+
+    hay_plan = false;
   }
   /**
    * @brief Constructor para niveles 2, 3, 4 y 5 (con mapa completo conocido)
    * @param mapaR Mapa de terreno conocido
    * @param mapaC Mapa de cotas conocido
    */
-  ComportamientoIngeniero(std::vector<std::vector<unsigned char>> mapaR, 
-                       std::vector<std::vector<unsigned char>> mapaC): 
-                       Comportamiento(mapaR, mapaC) {
+  ComportamientoIngeniero(std::vector<std::vector<unsigned char>> mapaR,
+                     std::vector<std::vector<unsigned char>> mapaC):
+                     Comportamiento(mapaR, mapaC) {
     last_action = IDLE;
     tiene_zapatillas = false;
+    giros_pendientes = 0;
+
+    fila_anterior_1 = -1;
+    columna_anterior_1 = -1;
+    fila_anterior_2 = -1;
+    columna_anterior_2 = -1;
+    giros_escape = 0;
+
+    hay_plan = false;
   }
 
   ComportamientoIngeniero(const ComportamientoIngeniero &comport)
@@ -185,9 +203,21 @@ private:
   // VARIABLES DE ESTADO (PUEDEN SER EXTENDIDAS POR EL ALUMNO)
   // =========================================================================
 
+  /* Nivel 0-1 */
   Action last_action;
   bool tiene_zapatillas;
   int giros_pendientes;
+
+  vector<vector<int>> visitadas_n1;
+  int fila_anterior_1;
+  int columna_anterior_1;
+  int fila_anterior_2;
+  int columna_anterior_2;
+  int giros_escape;
+  
+  /* Para Nivel 2 */
+  list<Action> plan_n2;
+  bool hay_plan;
 };
 
 #endif
