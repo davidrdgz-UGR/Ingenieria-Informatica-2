@@ -4,6 +4,10 @@
 #include <queue>
 #include <set>
 
+#include <map>
+#include <list>
+#include <cmath>
+
 using namespace std;
 
 // =========================================================================
@@ -345,12 +349,323 @@ Action ComportamientoTecnico::ComportamientoTecnicoNivel_2(Sensores sensores)
   return IDLE;
 }
 
+
+struct EstadoN3
+{
+  int f;
+  int c;
+  int brujula;
+  bool zapatillas;
+
+  bool operator<(const EstadoN3 &otro) const
+  {
+    if (f != otro.f) return f < otro.f;
+    if (c != otro.c) return c < otro.c;
+    if (brujula != otro.brujula) return brujula < otro.brujula;
+    return zapatillas < otro.zapatillas;
+  }
+};
+
+struct NodoN3
+{
+  EstadoN3 estado;
+  list<Action> plan;
+  int coste;
+  int prioridad;
+};
+
+struct ComparadorNodoN3
+{
+  bool operator()(const NodoN3 &a, const NodoN3 &b) const
+  {
+    return a.prioridad > b.prioridad;
+  }
+};
+
 /**
  * @brief Comportamiento del técnico para el Nivel 3.
  * @param sensores Datos actuales de los sensores.
  * @return Acción a realizar.
  */
-Action ComportamientoTecnico::ComportamientoTecnicoNivel_3(Sensores sensores) {
+Action ComportamientoTecnico::ComportamientoTecnicoNivel_3(Sensores sensores)
+{
+  // Si ya estoy en la Belkanita, paro
+  if (sensores.posF == sensores.BelPosF && sensores.posC == sensores.BelPosC)
+  {
+    return IDLE;
+  }
+
+  // Si ya tengo un plan, ejecuto la siguiente acción
+  if (!plan_n3.empty())
+  {
+    Action sig = plan_n3.front();
+    plan_n3.pop_front();
+    last_action = sig;
+    return sig;
+  }
+
+  // Si ya intenté calcular y no encontré plan, no recalculo todo el rato
+  if (plan_n3_calculado)
+  {
+    return IDLE;
+  }
+
+  plan_n3_calculado = true;
+
+  // ============================================================
+  // Funciones auxiliares locales
+  // ============================================================
+
+  auto dentroMapa = [&](int f, int c) -> bool
+  {
+    return f >= 0 && f < mapaResultado.size() &&
+           c >= 0 && c < mapaResultado[0].size();
+  };
+
+  auto transitableTecnico = [&](int f, int c, bool zap) -> bool
+  {
+    if (!dentroMapa(f, c)) return false;
+
+    unsigned char casilla = mapaResultado[f][c];
+
+    // Precipicio y muro nunca son transitables
+    if (casilla == 'P' || casilla == 'M')
+      return false;
+
+    // El bosque solo es transitable para el Técnico con zapatillas
+    if (casilla == 'B' && !zap)
+      return false;
+
+    return true;
+  };
+
+  auto siguienteCasilla = [&](int f, int c, int brujula) -> pair<int, int>
+  {
+    switch (brujula)
+    {
+    case 0: return {f - 1, c};     // norte
+    case 1: return {f - 1, c + 1}; // noreste
+    case 2: return {f, c + 1};     // este
+    case 3: return {f + 1, c + 1}; // sureste
+    case 4: return {f + 1, c};     // sur
+    case 5: return {f + 1, c - 1}; // suroeste
+    case 6: return {f, c - 1};     // oeste
+    case 7: return {f - 1, c - 1}; // noroeste
+    default: return {f, c};
+    }
+  };
+
+  auto alturaValidaTecnico = [&](int f1, int c1, int f2, int c2) -> bool
+  {
+    if (!dentroMapa(f1, c1) || !dentroMapa(f2, c2)) return false;
+
+    int dif = abs((int)mapaCotas[f2][c2] - (int)mapaCotas[f1][c1]);
+
+    // El Técnico solo tolera desnivel máximo 1
+    return dif <= 1;
+  };
+
+  auto costeGiroTecnico = [&](int f, int c) -> int
+  {
+    unsigned char casilla = mapaResultado[f][c];
+
+    if (casilla == 'A') return 5;
+    if (casilla == 'H') return 2;
+    if (casilla == 'S') return 1;
+
+    // Camino, U, D, X, bosque con zapatillas, etc.
+    return 1;
+  };
+
+  auto costeWalkTecnico = [&](int f1, int c1, int f2, int c2) -> int
+  {
+    unsigned char casillaOrigen = mapaResultado[f1][c1];
+    int base = 1;
+
+    if (casillaOrigen == 'A')
+      base = 60;
+    else if (casillaOrigen == 'H')
+      base = 6;
+    else if (casillaOrigen == 'S')
+      base = 3;
+    else
+      base = 1;
+
+    int dif = (int)mapaCotas[f2][c2] - (int)mapaCotas[f1][c1];
+
+    // Según tabla: A/H/S aplican +5 al subir y -2 al bajar.
+    // Resto de casillas no tienen incremento/decremento.
+    if (casillaOrigen == 'A' || casillaOrigen == 'H' || casillaOrigen == 'S')
+    {
+      if (dif > 0)
+        base += 5;
+      else if (dif < 0)
+        base -= 2;
+    }
+
+    if (base < 1)
+      base = 1;
+
+    return base;
+  };
+
+  auto heuristica = [&](int f, int c) -> int
+  {
+    int df = abs(f - sensores.BelPosF);
+    int dc = abs(c - sensores.BelPosC);
+
+    // Como puede moverse en 8 direcciones, usamos distancia tipo tablero de ajedrez.
+    // Es admisible si el coste mínimo por avance es 1.
+    return max(df, dc);
+  };
+
+  // ============================================================
+  // A*
+  // ============================================================
+
+  priority_queue<NodoN3, vector<NodoN3>, ComparadorNodoN3> abiertos;
+  map<EstadoN3, int> mejorCoste;
+
+  EstadoN3 inicial;
+  inicial.f = sensores.posF;
+  inicial.c = sensores.posC;
+  inicial.brujula = (int)sensores.rumbo;
+  inicial.zapatillas = tiene_zapatillas || sensores.superficie[0] == 'D';
+
+  NodoN3 nodoInicial;
+  nodoInicial.estado = inicial;
+  nodoInicial.plan.clear();
+  nodoInicial.coste = 0;
+  nodoInicial.prioridad = heuristica(inicial.f, inicial.c);
+
+  abiertos.push(nodoInicial);
+  mejorCoste[inicial] = 0;
+
+  bool encontrado = false;
+  list<Action> mejorPlan;
+
+  while (!abiertos.empty() && !encontrado)
+  {
+    NodoN3 actual = abiertos.top();
+    abiertos.pop();
+
+    EstadoN3 st = actual.estado;
+
+    // Si este nodo ya está superado por otro más barato, lo ignoramos
+    if (mejorCoste[st] < actual.coste)
+      continue;
+
+    // Objetivo
+    if (st.f == sensores.BelPosF && st.c == sensores.BelPosC)
+    {
+      encontrado = true;
+      mejorPlan = actual.plan;
+      break;
+    }
+
+    // ------------------------------------------------------------
+    // TURN_SL
+    // ------------------------------------------------------------
+    {
+      EstadoN3 hijo = st;
+      hijo.brujula = (hijo.brujula + 7) % 8;
+
+      int nuevoCoste = actual.coste + costeGiroTecnico(st.f, st.c);
+
+      if (mejorCoste.find(hijo) == mejorCoste.end() ||
+          nuevoCoste < mejorCoste[hijo])
+      {
+        NodoN3 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SL);
+        nuevo.coste = nuevoCoste;
+        nuevo.prioridad = nuevoCoste + heuristica(hijo.f, hijo.c);
+
+        abiertos.push(nuevo);
+        mejorCoste[hijo] = nuevoCoste;
+      }
+    }
+
+    // ------------------------------------------------------------
+    // TURN_SR
+    // ------------------------------------------------------------
+    {
+      EstadoN3 hijo = st;
+      hijo.brujula = (hijo.brujula + 1) % 8;
+
+      int nuevoCoste = actual.coste + costeGiroTecnico(st.f, st.c);
+
+      if (mejorCoste.find(hijo) == mejorCoste.end() ||
+          nuevoCoste < mejorCoste[hijo])
+      {
+        NodoN3 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SR);
+        nuevo.coste = nuevoCoste;
+        nuevo.prioridad = nuevoCoste + heuristica(hijo.f, hijo.c);
+
+        abiertos.push(nuevo);
+        mejorCoste[hijo] = nuevoCoste;
+      }
+    }
+
+    // ------------------------------------------------------------
+    // WALK
+    // ------------------------------------------------------------
+    {
+      pair<int, int> sig = siguienteCasilla(st.f, st.c, st.brujula);
+      int nf = sig.first;
+      int nc = sig.second;
+
+      if (transitableTecnico(nf, nc, st.zapatillas) &&
+          alturaValidaTecnico(st.f, st.c, nf, nc))
+      {
+        EstadoN3 hijo = st;
+        hijo.f = nf;
+        hijo.c = nc;
+
+        if (mapaResultado[nf][nc] == 'D')
+          hijo.zapatillas = true;
+
+        int nuevoCoste = actual.coste + costeWalkTecnico(st.f, st.c, nf, nc);
+
+        if (mejorCoste.find(hijo) == mejorCoste.end() ||
+            nuevoCoste < mejorCoste[hijo])
+        {
+          NodoN3 nuevo;
+          nuevo.estado = hijo;
+          nuevo.plan = actual.plan;
+          nuevo.plan.push_back(WALK);
+          nuevo.coste = nuevoCoste;
+          nuevo.prioridad = nuevoCoste + heuristica(hijo.f, hijo.c);
+
+          abiertos.push(nuevo);
+          mejorCoste[hijo] = nuevoCoste;
+        }
+      }
+    }
+  }
+
+  if (encontrado)
+  {
+    plan_n3 = mejorPlan;
+
+    cout << "Plan Nivel 3 encontrado: ";
+    PintaPlan(plan_n3);
+
+    VisualizaPlan({sensores.posF, sensores.posC, sensores.rumbo}, plan_n3);
+
+    if (!plan_n3.empty())
+    {
+      Action sig = plan_n3.front();
+      plan_n3.pop_front();
+      last_action = sig;
+      return sig;
+    }
+  }
+
   return IDLE;
 }
 

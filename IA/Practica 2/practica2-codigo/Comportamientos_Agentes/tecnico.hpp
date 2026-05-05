@@ -37,11 +37,14 @@ public:
     last_action = IDLE;
     tiene_zapatillas = false;
     giros_pendientes=0;
+    
     fila_anterior_1 = -1;
     columna_anterior_1 = -1;
     fila_anterior_2 = -1;
     columna_anterior_2 = -1;
     giros_escape = 0;
+    
+    plan_n3_calculado = false;
     
   }
 
@@ -51,11 +54,19 @@ public:
    * @param mapaC Mapa de cotas conocido
    */
   ComportamientoTecnico(std::vector<std::vector<unsigned char>> mapaR, 
-                       std::vector<std::vector<unsigned char>> mapaC): 
-                       Comportamiento(mapaR, mapaC) {
-    // Inicializar Variables de Estado
+                     std::vector<std::vector<unsigned char>> mapaC): 
+                     Comportamiento(mapaR, mapaC) {
+    last_action = IDLE;
+    tiene_zapatillas = false;
+    giros_pendientes = 0;
 
+    fila_anterior_1 = -1;
+    columna_anterior_1 = -1;
+    fila_anterior_2 = -1;
+    columna_anterior_2 = -1;
+    giros_escape = 0;
 
+    plan_n3_calculado = false;
   }
 
   ComportamientoTecnico(const ComportamientoTecnico &comport): Comportamiento(comport) {}
@@ -209,6 +220,9 @@ private:
   int fila_anterior_2;
   int columna_anterior_2;
   int giros_escape;
+
+  list<Action> plan_n3;
+  bool plan_n3_calculado;
 };
 
 #endif
