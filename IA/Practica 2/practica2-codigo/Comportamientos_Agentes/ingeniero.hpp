@@ -33,6 +33,12 @@ public:
     giros_escape = 0;
 
     hay_plan = false;
+    plan_n4_calculado = false;
+
+    plan_n5_calculado = false;
+    estado_n5 = 0;
+    espera_tecnico_n5 = 0;
+    operacion_altura_hecha_n5 = false;
   }
   /**
    * @brief Constructor para niveles 2, 3, 4 y 5 (con mapa completo conocido)
@@ -53,6 +59,12 @@ public:
     giros_escape = 0;
 
     hay_plan = false;
+    plan_n4_calculado = false;
+
+    plan_n5_calculado = false;
+    estado_n5 = 0;
+    espera_tecnico_n5 = 0;
+    operacion_altura_hecha_n5 = false;
   }
 
   ComportamientoIngeniero(const ComportamientoIngeniero &comport)
@@ -218,6 +230,20 @@ private:
   /* Para Nivel 2 */
   list<Action> plan_n2;
   bool hay_plan;
+
+  /* Para Nivel 4 */
+  bool plan_n4_calculado;
+  list<Paso> plan_tuberias_n4;
+
+    /* Para Nivel 5 */
+  bool plan_n5_calculado;
+  list<Paso> plan_tuberias_n5;
+  list<Paso>::iterator paso_actual_n5;
+
+  list<Action> plan_movimiento_n5;
+  int estado_n5;
+  int espera_tecnico_n5;
+  bool operacion_altura_hecha_n5;
 };
 
 #endif

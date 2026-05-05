@@ -382,6 +382,165 @@ struct ComparadorNodoN3
   }
 };
 
+list<Action> BuscarPlanTecnicoHasta(
+    int origenF,
+    int origenC,
+    int origenRumbo,
+    bool tieneZapatillas,
+    int destinoF,
+    int destinoC,
+    const vector<vector<unsigned char>> &mapaResultado,
+    const vector<vector<unsigned char>> &mapaCotas)
+{
+  auto dentroMapa = [&](int f, int c) -> bool
+  {
+    return f >= 0 && f < mapaResultado.size() &&
+           c >= 0 && c < mapaResultado[0].size();
+  };
+
+  auto transitableTecnico = [&](int f, int c, bool zap) -> bool
+  {
+    if (!dentroMapa(f, c)) return false;
+
+    unsigned char casilla = mapaResultado[f][c];
+
+    if (casilla == 'P' || casilla == 'M')
+      return false;
+
+    if (casilla == 'B' && !zap)
+      return false;
+
+    return true;
+  };
+
+  auto siguienteCasilla = [&](int f, int c, int brujula) -> pair<int, int>
+  {
+    switch (brujula)
+    {
+    case 0: return {f - 1, c};
+    case 1: return {f - 1, c + 1};
+    case 2: return {f, c + 1};
+    case 3: return {f + 1, c + 1};
+    case 4: return {f + 1, c};
+    case 5: return {f + 1, c - 1};
+    case 6: return {f, c - 1};
+    case 7: return {f - 1, c - 1};
+    default: return {f, c};
+    }
+  };
+
+  auto alturaValidaTecnico = [&](int f1, int c1, int f2, int c2) -> bool
+  {
+    if (!dentroMapa(f1, c1) || !dentroMapa(f2, c2)) return false;
+
+    int dif = abs((int)mapaCotas[f2][c2] - (int)mapaCotas[f1][c1]);
+
+    return dif <= 1;
+  };
+
+  queue<NodoN3> abiertos;
+  set<EstadoN3> cerrados;
+
+  EstadoN3 inicial;
+  inicial.f = origenF;
+  inicial.c = origenC;
+  inicial.brujula = origenRumbo;
+  inicial.zapatillas = tieneZapatillas;
+
+  NodoN3 nodoInicial;
+  nodoInicial.estado = inicial;
+  nodoInicial.plan.clear();
+  nodoInicial.coste = 0;
+  nodoInicial.prioridad = 0;
+
+  abiertos.push(nodoInicial);
+  cerrados.insert(inicial);
+
+  while (!abiertos.empty())
+  {
+    NodoN3 actual = abiertos.front();
+    abiertos.pop();
+
+    EstadoN3 st = actual.estado;
+
+    if (st.f == destinoF && st.c == destinoC)
+    {
+      return actual.plan;
+    }
+
+    // TURN_SL
+    {
+      EstadoN3 hijo = st;
+      hijo.brujula = (hijo.brujula + 7) % 8;
+
+      if (cerrados.find(hijo) == cerrados.end())
+      {
+        NodoN3 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SL);
+        nuevo.coste = 0;
+        nuevo.prioridad = 0;
+
+        abiertos.push(nuevo);
+        cerrados.insert(hijo);
+      }
+    }
+
+    // TURN_SR
+    {
+      EstadoN3 hijo = st;
+      hijo.brujula = (hijo.brujula + 1) % 8;
+
+      if (cerrados.find(hijo) == cerrados.end())
+      {
+        NodoN3 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SR);
+        nuevo.coste = 0;
+        nuevo.prioridad = 0;
+
+        abiertos.push(nuevo);
+        cerrados.insert(hijo);
+      }
+    }
+
+    // WALK
+    {
+      pair<int, int> sig = siguienteCasilla(st.f, st.c, st.brujula);
+      int nf = sig.first;
+      int nc = sig.second;
+
+      if (transitableTecnico(nf, nc, st.zapatillas) &&
+          alturaValidaTecnico(st.f, st.c, nf, nc))
+      {
+        EstadoN3 hijo = st;
+        hijo.f = nf;
+        hijo.c = nc;
+
+        if (mapaResultado[nf][nc] == 'D')
+          hijo.zapatillas = true;
+
+        if (cerrados.find(hijo) == cerrados.end())
+        {
+          NodoN3 nuevo;
+          nuevo.estado = hijo;
+          nuevo.plan = actual.plan;
+          nuevo.plan.push_back(WALK);
+          nuevo.coste = 0;
+          nuevo.prioridad = 0;
+
+          abiertos.push(nuevo);
+          cerrados.insert(hijo);
+        }
+      }
+    }
+  }
+
+  return list<Action>();
+}
+
 /**
  * @brief Comportamiento del técnico para el Nivel 3.
  * @param sensores Datos actuales de los sensores.
@@ -678,12 +837,631 @@ Action ComportamientoTecnico::ComportamientoTecnicoNivel_4(Sensores sensores) {
   return IDLE;
 }
 
+
+
+struct NodoTubTech
+{
+  int f;
+  int c;
+  int alturaAjustada;
+  int impacto;
+  int longitud;
+  list<Paso> plan;
+};
+
+struct ComparadorNodoTubTech
+{
+  bool operator()(const NodoTubTech &a, const NodoTubTech &b) const
+  {
+    if (a.longitud != b.longitud)
+      return a.longitud > b.longitud;
+
+    return a.impacto > b.impacto;
+  }
+};
+
+struct ClaveTubTech
+{
+  int f;
+  int c;
+  int alturaAjustada;
+
+  bool operator<(const ClaveTubTech &otra) const
+  {
+    if (f != otra.f) return f < otra.f;
+    if (c != otra.c) return c < otra.c;
+    return alturaAjustada < otra.alturaAjustada;
+  }
+};
+
+bool DentroMapaTubTech(int f, int c, const vector<vector<unsigned char>> &mapa)
+{
+  return f >= 0 && f < mapa.size() && c >= 0 && c < mapa[0].size();
+}
+
+bool TransitableTuberiaTech(char casilla)
+{
+  return casilla != 'P' && casilla != 'M';
+}
+
+bool OperacionPermitidaTubTech(char casilla, int op)
+{
+  if (casilla == 'P' || casilla == 'M')
+    return false;
+
+  if (casilla == 'A' && op != 0)
+    return false;
+
+  return true;
+}
+
+int ImpactoInstallTubTech(char casilla)
+{
+  if (casilla == 'A') return 50;
+  if (casilla == 'H') return 45;
+  if (casilla == 'S') return 25;
+  if (casilla == 'C' || casilla == 'U') return 15;
+
+  return 30;
+}
+
+int ImpactoOperacionTubTech(char casilla, int op)
+{
+  if (op == 0)
+    return 0;
+
+  if (op == 1)
+  {
+    if (casilla == 'H') return 55;
+    if (casilla == 'S') return 30;
+    if (casilla == 'C' || casilla == 'U') return 10;
+
+    return 40;
+  }
+
+  if (op == -1)
+  {
+    if (casilla == 'H') return 65;
+    if (casilla == 'S') return 40;
+    if (casilla == 'C' || casilla == 'U') return 25;
+
+    return 50;
+  }
+
+  return 999999;
+}
+
+int ImpactoPasoTubTech(char casilla, int op)
+{
+  return ImpactoInstallTubTech(casilla) + ImpactoOperacionTubTech(casilla, op);
+}
+
+list<Paso> CalcularPlanTuberiasTech(
+    int origenF,
+    int origenC,
+    const vector<vector<unsigned char>> &mapaResultado,
+    const vector<vector<unsigned char>> &mapaCotas)
+{
+  const int IMPACTO_MAXIMO = 1000;
+
+  list<Paso> planVacio;
+
+  if (!DentroMapaTubTech(origenF, origenC, mapaResultado))
+    return planVacio;
+
+  priority_queue<NodoTubTech, vector<NodoTubTech>, ComparadorNodoTubTech> abiertos;
+  map<ClaveTubTech, int> mejorImpacto;
+
+  for (int opInicial = -1; opInicial <= 1; opInicial++)
+  {
+    char casillaOrigen = mapaResultado[origenF][origenC];
+
+    if (!OperacionPermitidaTubTech(casillaOrigen, opInicial))
+      continue;
+
+    int impactoInicial = ImpactoPasoTubTech(casillaOrigen, opInicial);
+
+    if (impactoInicial > IMPACTO_MAXIMO)
+      continue;
+
+    NodoTubTech inicial;
+    inicial.f = origenF;
+    inicial.c = origenC;
+    inicial.alturaAjustada = mapaCotas[origenF][origenC] + opInicial;
+    inicial.impacto = impactoInicial;
+    inicial.longitud = 1;
+    inicial.plan.clear();
+    inicial.plan.push_back({origenF, origenC, opInicial});
+
+    abiertos.push(inicial);
+
+    ClaveTubTech clave{origenF, origenC, inicial.alturaAjustada};
+    mejorImpacto[clave] = impactoInicial;
+  }
+
+  int df[4] = {-1, 1, 0, 0};
+  int dc[4] = {0, 0, -1, 1};
+
+  while (!abiertos.empty())
+  {
+    NodoTubTech actual = abiertos.top();
+    abiertos.pop();
+
+    ClaveTubTech claveActual{actual.f, actual.c, actual.alturaAjustada};
+
+    if (mejorImpacto.find(claveActual) != mejorImpacto.end() &&
+        actual.impacto > mejorImpacto[claveActual])
+    {
+      continue;
+    }
+
+    if (mapaResultado[actual.f][actual.c] == 'U' &&
+        !(actual.f == origenF && actual.c == origenC))
+    {
+      return actual.plan;
+    }
+
+    for (int k = 0; k < 4; k++)
+    {
+      int nf = actual.f + df[k];
+      int nc = actual.c + dc[k];
+
+      if (!DentroMapaTubTech(nf, nc, mapaResultado))
+        continue;
+
+      char casilla = mapaResultado[nf][nc];
+
+      if (!TransitableTuberiaTech(casilla))
+        continue;
+
+      int alturaOriginal = mapaCotas[nf][nc];
+
+      for (int op = -1; op <= 1; op++)
+      {
+        if (!OperacionPermitidaTubTech(casilla, op))
+          continue;
+
+        int alturaNueva = alturaOriginal + op;
+        int diferencia = actual.alturaAjustada - alturaNueva;
+
+        if (!(diferencia == 0 || diferencia == 1))
+          continue;
+
+        int impactoPaso = ImpactoPasoTubTech(casilla, op);
+        int nuevoImpacto = actual.impacto + impactoPaso;
+
+        if (nuevoImpacto > IMPACTO_MAXIMO)
+          continue;
+
+        NodoTubTech hijo;
+        hijo.f = nf;
+        hijo.c = nc;
+        hijo.alturaAjustada = alturaNueva;
+        hijo.impacto = nuevoImpacto;
+        hijo.longitud = actual.longitud + 1;
+        hijo.plan = actual.plan;
+        hijo.plan.push_back({nf, nc, op});
+
+        ClaveTubTech claveHijo{nf, nc, alturaNueva};
+
+        if (mejorImpacto.find(claveHijo) == mejorImpacto.end() ||
+            nuevoImpacto < mejorImpacto[claveHijo])
+        {
+          mejorImpacto[claveHijo] = nuevoImpacto;
+          abiertos.push(hijo);
+        }
+      }
+    }
+  }
+
+  return planVacio;
+}
+
 /**
  * @brief Comportamiento del técnico para el Nivel 5.
  * @param sensores Datos actuales de los sensores.
  * @return Acción a realizar.
  */
-Action ComportamientoTecnico::ComportamientoTecnicoNivel_5(Sensores sensores) {
+Action ComportamientoTecnico::ComportamientoTecnicoNivel_5(Sensores sensores)
+{
+  ActualizarMapa(sensores);
+
+  if (sensores.superficie[0] == 'D')
+  {
+    tiene_zapatillas = true;
+  }
+
+  // ============================================================
+  // VARIABLES INTERNAS DEL NIVEL 5
+  // ============================================================
+
+  static bool plan_tuberias_calculado = false;
+  static list<Paso> plan_tuberias_tech;
+
+  static bool pendiente_instalar = false;
+  static int ultimo_gotoF = -1;
+  static int ultimo_gotoC = -1;
+
+  static int avanceF = -1;
+  static int avanceC = -1;
+
+  static int despeje = 0;
+
+  // Control para que el Técnico modifique la altura de SU casilla
+  // antes de instalar.
+  static bool operacion_altura_tech_hecha = false;
+
+  auto casillaSensorValida = [&](int pos) -> bool
+  {
+    if (sensores.agentes[pos] != '_')
+      return false;
+
+    char casilla = sensores.superficie[pos];
+
+    if (casilla == 'P' || casilla == 'M')
+      return false;
+
+    if (casilla == 'B' && !tiene_zapatillas)
+      return false;
+
+    int dif = abs((int)sensores.cota[pos] - (int)sensores.cota[0]);
+
+    return dif <= 1;
+  };
+
+  auto orientacionHacia = [&](int desdeF, int desdeC, int hastaF, int hastaC) -> int
+  {
+    if (hastaF == desdeF - 1 && hastaC == desdeC) return 0; // norte
+    if (hastaF == desdeF && hastaC == desdeC + 1) return 2; // este
+    if (hastaF == desdeF + 1 && hastaC == desdeC) return 4; // sur
+    if (hastaF == desdeF && hastaC == desdeC - 1) return 6; // oeste
+
+    return (int)sensores.rumbo;
+  };
+
+  auto girarHacia = [&](int orientacionDeseada) -> Action
+  {
+    int actual = (int)sensores.rumbo;
+
+    if (actual == orientacionDeseada)
+      return IDLE;
+
+    int derecha = (orientacionDeseada - actual + 8) % 8;
+    int izquierda = (actual - orientacionDeseada + 8) % 8;
+
+    if (derecha <= izquierda)
+      return TURN_SR;
+    else
+      return TURN_SL;
+  };
+
+  // ============================================================
+  // 0. CALCULAR EL MISMO PLAN DE TUBERÍAS QUE USA EL INGENIERO
+  // ============================================================
+
+  if (!plan_tuberias_calculado)
+  {
+    plan_tuberias_calculado = true;
+
+    plan_tuberias_tech = CalcularPlanTuberiasTech(
+        sensores.BelPosF,
+        sensores.BelPosC,
+        mapaResultado,
+        mapaCotas);
+
+    cout << "Tecnico Nivel 5: plan tuberias calculado:" << endl;
+
+    for (auto itp = plan_tuberias_tech.begin(); itp != plan_tuberias_tech.end(); ++itp)
+    {
+      cout << itp->fil << ", " << itp->col << " (" << itp->op << ")" << endl;
+    }
+
+    if (plan_tuberias_tech.empty())
+    {
+      cout << "Tecnico Nivel 5: no se ha podido calcular plan de tuberias" << endl;
+      return IDLE;
+    }
+  }
+
+  vector<Paso> planVec(plan_tuberias_tech.begin(), plan_tuberias_tech.end());
+
+  auto indiceEnPlan = [&](int f, int c) -> int
+  {
+    for (int i = 0; i < (int)planVec.size(); i++)
+    {
+      if (planVec[i].fil == f && planVec[i].col == c)
+        return i;
+    }
+
+    return -1;
+  };
+
+  // ============================================================
+  // 1. DESPEJE FINAL
+  // Solo se usa al terminar si hiciera falta apartarse.
+  // ============================================================
+
+  if (despeje > 0)
+  {
+    plan_movimiento_n5.clear();
+
+    cout << "Tecnico Nivel 5: despeje final " << despeje << endl;
+
+    if (despeje == 4)
+    {
+      despeje--;
+      return TURN_SL;
+    }
+
+    if (despeje == 3)
+    {
+      if (casillaSensorValida(2))
+      {
+        despeje--;
+        return WALK;
+      }
+      else
+      {
+        despeje = 4;
+        return TURN_SR;
+      }
+    }
+
+    if (despeje == 2)
+    {
+      if (casillaSensorValida(2))
+      {
+        despeje--;
+        return WALK;
+      }
+      else
+      {
+        despeje--;
+        return TURN_SR;
+      }
+    }
+
+    if (despeje == 1)
+    {
+      despeje--;
+      return TURN_SR;
+    }
+  }
+
+  // ============================================================
+  // 2. DESPUÉS DE INSTALAR, EL TÉCNICO AVANZA A LA SIGUIENTE
+  // CASILLA DEL PLAN PARA DEJAR PASO AL INGENIERO
+  // ============================================================
+
+  if (avanceF != -1 && avanceC != -1)
+  {
+    if (sensores.posF == avanceF && sensores.posC == avanceC)
+    {
+      avanceF = -1;
+      avanceC = -1;
+      plan_movimiento_n5.clear();
+    }
+    else
+    {
+      if (plan_movimiento_n5.empty())
+      {
+        bool zap = tiene_zapatillas || sensores.superficie[0] == 'D';
+
+        plan_movimiento_n5 = BuscarPlanTecnicoHasta(
+            sensores.posF,
+            sensores.posC,
+            (int)sensores.rumbo,
+            zap,
+            avanceF,
+            avanceC,
+            mapaResultado,
+            mapaCotas);
+
+        if (plan_movimiento_n5.empty())
+        {
+          cout << "Tecnico Nivel 5: no puedo avanzar al siguiente tramo "
+               << avanceF << ", " << avanceC << endl;
+
+          avanceF = -1;
+          avanceC = -1;
+
+          return IDLE;
+        }
+
+        cout << "Tecnico Nivel 5: avanzando al siguiente tramo: ";
+        PintaPlan(plan_movimiento_n5);
+      }
+
+      if (!plan_movimiento_n5.empty())
+      {
+        Action sig = plan_movimiento_n5.front();
+        plan_movimiento_n5.pop_front();
+        last_action = sig;
+        return sig;
+      }
+    }
+  }
+
+  // ============================================================
+  // 3. GUARDAR LLAMADA DEL INGENIERO
+  // ============================================================
+
+  if (sensores.venpaca)
+  {
+    if (sensores.GotoF != ultimo_gotoF || sensores.GotoC != ultimo_gotoC)
+    {
+      ultimo_gotoF = sensores.GotoF;
+      ultimo_gotoC = sensores.GotoC;
+
+      plan_movimiento_n5.clear();
+      operacion_altura_tech_hecha = false;
+    }
+
+    pendiente_instalar = true;
+  }
+
+  if (!pendiente_instalar)
+  {
+    plan_movimiento_n5.clear();
+    return IDLE;
+  }
+
+  int gotoF = ultimo_gotoF;
+  int gotoC = ultimo_gotoC;
+
+  // ============================================================
+  // 4. BUSCAR LA POSICIÓN DEL INGENIERO EN EL PLAN
+  // ============================================================
+
+  int idx = indiceEnPlan(gotoF, gotoC);
+
+  if (idx == -1)
+  {
+    cout << "Tecnico Nivel 5: Goto no está en el plan de tuberías: "
+         << gotoF << ", " << gotoC << endl;
+
+    pendiente_instalar = false;
+    plan_movimiento_n5.clear();
+    return IDLE;
+  }
+
+  int destinoF = -1;
+  int destinoC = -1;
+
+  // El Técnico debe ir a la siguiente casilla real del plan.
+  if (idx + 1 < (int)planVec.size())
+  {
+    destinoF = planVec[idx + 1].fil;
+    destinoC = planVec[idx + 1].col;
+  }
+  else
+  {
+    // Si ya estamos al final, no hay nada más que instalar.
+    pendiente_instalar = false;
+    plan_movimiento_n5.clear();
+    return IDLE;
+  }
+
+  // ============================================================
+  // 5. SI ESTÁ ENFRENTADO, PRIMERO PREPARA SU ALTURA Y LUEGO INSTALA
+  // ============================================================
+
+  if (sensores.enfrente)
+  {
+    // El Técnico está colocado en plan[idx+1].
+    // Antes de instalar, debe aplicar la operación de altura de SU casilla.
+    if (!operacion_altura_tech_hecha)
+    {
+      int opTech = planVec[idx + 1].op;
+
+      if (opTech == -1)
+      {
+        cout << "Tecnico Nivel 5: DIG en "
+             << sensores.posF << ", " << sensores.posC << endl;
+
+        operacion_altura_tech_hecha = true;
+        return DIG;
+      }
+
+      if (opTech == 1)
+      {
+        cout << "Tecnico Nivel 5: RAISE en "
+             << sensores.posF << ", " << sensores.posC << endl;
+
+        operacion_altura_tech_hecha = true;
+        return RAISE;
+      }
+
+      operacion_altura_tech_hecha = true;
+    }
+
+    cout << "Tecnico Nivel 5: INSTALL coordinado" << endl;
+
+    plan_movimiento_n5.clear();
+    pendiente_instalar = false;
+    operacion_altura_tech_hecha = false;
+
+    // Después de instalar entre plan[idx] y plan[idx+1],
+    // el Técnico se adelanta a plan[idx+2] para dejar paso.
+    if (idx + 2 < (int)planVec.size())
+    {
+      avanceF = planVec[idx + 2].fil;
+      avanceC = planVec[idx + 2].col;
+    }
+    else
+    {
+      // Último tramo: no hace falta moverse más.
+      avanceF = -1;
+      avanceC = -1;
+      despeje = 0;
+    }
+
+    return INSTALL;
+  }
+
+  // ============================================================
+  // 6. SI YA ESTÁ EN LA CASILLA DESTINO, SE ORIENTA HACIA EL INGENIERO
+  // ============================================================
+
+  if (sensores.posF == destinoF && sensores.posC == destinoC)
+  {
+    plan_movimiento_n5.clear();
+
+    int orientacionDeseada = orientacionHacia(
+        sensores.posF,
+        sensores.posC,
+        gotoF,
+        gotoC);
+
+    Action giro = girarHacia(orientacionDeseada);
+
+    if (giro != IDLE)
+    {
+      cout << "Tecnico Nivel 5: girando hacia Ingeniero" << endl;
+      return giro;
+    }
+
+    return IDLE;
+  }
+
+  // ============================================================
+  // 7. MOVERSE A LA SIGUIENTE CASILLA REAL DE LA TUBERÍA
+  // ============================================================
+
+  if (plan_movimiento_n5.empty())
+  {
+    bool zap = tiene_zapatillas || sensores.superficie[0] == 'D';
+
+    plan_movimiento_n5 = BuscarPlanTecnicoHasta(
+        sensores.posF,
+        sensores.posC,
+        (int)sensores.rumbo,
+        zap,
+        destinoF,
+        destinoC,
+        mapaResultado,
+        mapaCotas);
+
+    if (plan_movimiento_n5.empty())
+    {
+      cout << "Tecnico Nivel 5: no puedo ir a tramo real "
+           << destinoF << ", " << destinoC << endl;
+
+      return IDLE;
+    }
+
+    cout << "Tecnico Nivel 5: plan hacia tramo real: ";
+    PintaPlan(plan_movimiento_n5);
+  }
+
+  if (!plan_movimiento_n5.empty())
+  {
+    Action sig = plan_movimiento_n5.front();
+    plan_movimiento_n5.pop_front();
+    last_action = sig;
+    return sig;
+  }
+
   return IDLE;
 }
 
@@ -692,10 +1470,83 @@ Action ComportamientoTecnico::ComportamientoTecnicoNivel_5(Sensores sensores) {
  * @param sensores Datos actuales de los sensores.
  * @return Acción a realizar.
  */
-Action ComportamientoTecnico::ComportamientoTecnicoNivel_6(Sensores sensores) {
+Action ComportamientoTecnico::ComportamientoTecnicoNivel_6(Sensores sensores)
+{
+  static int fase_n6 = 0;
+  static int turnos_explorando_n6 = 0;
+  static bool mensaje_cambio_fase_n6 = false;
+
+  ActualizarMapa(sensores);
+
+  // ============================================================
+  // Contar cuánto mapa conocemos
+  // ============================================================
+
+  int conocidas = 0;
+  int total = 0;
+
+  for (int f = 0; f < mapaResultado.size(); f++)
+  {
+    for (int c = 0; c < mapaResultado[0].size(); c++)
+    {
+      total++;
+
+      if (mapaResultado[f][c] != '?')
+      {
+        conocidas++;
+      }
+    }
+  }
+
+  double porcentajeConocido = 0.0;
+
+  if (total > 0)
+  {
+    porcentajeConocido = (100.0 * conocidas) / total;
+  }
+
+  // ============================================================
+  // FASE 0: exploración
+  // ============================================================
+
+  if (fase_n6 == 0)
+  {
+    turnos_explorando_n6++;
+
+    // Mismo criterio que el Ingeniero:
+    // cuando se conoce suficiente mapa o pasan bastantes turnos,
+    // pasamos a construcción.
+    if (porcentajeConocido >= 65.0 || turnos_explorando_n6 >= 1200)
+    {
+      fase_n6 = 1;
+
+      if (!mensaje_cambio_fase_n6)
+      {
+        cout << "Nivel 6 Tecnico: cambio a fase de construccion. Mapa conocido: "
+             << porcentajeConocido << "%" << endl;
+
+        mensaje_cambio_fase_n6 = true;
+      }
+
+      return IDLE;
+    }
+
+    // Mientras tanto, explorar con el comportamiento del Nivel 1
+    return ComportamientoTecnicoNivel_1(sensores);
+  }
+
+  // ============================================================
+  // FASE 1: construcción
+  // ============================================================
+
+  if (fase_n6 == 1)
+  {
+    // Reutilizamos la lógica del Nivel 5.
+    return ComportamientoTecnicoNivel_5(sensores);
+  }
+
   return IDLE;
 }
-
 
 
 

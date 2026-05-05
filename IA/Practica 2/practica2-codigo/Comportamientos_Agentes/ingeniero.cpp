@@ -386,6 +386,192 @@ struct NodoN2
   list<Action> plan;
 };
 
+/* Para N5 */
+list<Action> BuscarPlanIngenieroHasta(
+    int origenF,
+    int origenC,
+    int origenRumbo,
+    bool tieneZapatillas,
+    int destinoF,
+    int destinoC,
+    const vector<vector<unsigned char>> &mapaResultado,
+    const vector<vector<unsigned char>> &mapaCotas)
+{
+  auto dentroMapa = [&](int f, int c) -> bool
+  {
+    return f >= 0 && f < mapaResultado.size() &&
+           c >= 0 && c < mapaResultado[0].size();
+  };
+
+  auto transitableIngeniero = [&](int f, int c) -> bool
+  {
+    if (!dentroMapa(f, c)) return false;
+
+    unsigned char casilla = mapaResultado[f][c];
+
+    if (casilla == 'P' || casilla == 'M' || casilla == 'B')
+      return false;
+
+    return true;
+  };
+
+  auto siguienteCasilla = [&](int f, int c, int brujula) -> pair<int, int>
+  {
+    switch (brujula)
+    {
+    case 0: return {f - 1, c};
+    case 1: return {f - 1, c + 1};
+    case 2: return {f, c + 1};
+    case 3: return {f + 1, c + 1};
+    case 4: return {f + 1, c};
+    case 5: return {f + 1, c - 1};
+    case 6: return {f, c - 1};
+    case 7: return {f - 1, c - 1};
+    default: return {f, c};
+    }
+  };
+
+  auto alturaValida = [&](int f1, int c1, int f2, int c2, bool zap) -> bool
+  {
+    if (!dentroMapa(f1, c1) || !dentroMapa(f2, c2)) return false;
+
+    int dif = abs((int)mapaCotas[f2][c2] - (int)mapaCotas[f1][c1]);
+
+    if (zap)
+      return dif <= 2;
+    else
+      return dif <= 1;
+  };
+
+  queue<NodoN2> abiertos;
+  set<EstadoN2> cerrados;
+
+  EstadoN2 inicial;
+  inicial.f = origenF;
+  inicial.c = origenC;
+  inicial.brujula = origenRumbo;
+  inicial.zapatillas = tieneZapatillas;
+
+  NodoN2 nodoInicial;
+  nodoInicial.estado = inicial;
+  nodoInicial.plan.clear();
+
+  abiertos.push(nodoInicial);
+  cerrados.insert(inicial);
+
+  while (!abiertos.empty())
+  {
+    NodoN2 actual = abiertos.front();
+    abiertos.pop();
+
+    EstadoN2 st = actual.estado;
+
+    if (st.f == destinoF && st.c == destinoC)
+    {
+      return actual.plan;
+    }
+
+    // TURN_SL
+    {
+      EstadoN2 hijo = st;
+      hijo.brujula = (hijo.brujula + 7) % 8;
+
+      if (cerrados.find(hijo) == cerrados.end())
+      {
+        NodoN2 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SL);
+
+        abiertos.push(nuevo);
+        cerrados.insert(hijo);
+      }
+    }
+
+    // TURN_SR
+    {
+      EstadoN2 hijo = st;
+      hijo.brujula = (hijo.brujula + 1) % 8;
+
+      if (cerrados.find(hijo) == cerrados.end())
+      {
+        NodoN2 nuevo;
+        nuevo.estado = hijo;
+        nuevo.plan = actual.plan;
+        nuevo.plan.push_back(TURN_SR);
+
+        abiertos.push(nuevo);
+        cerrados.insert(hijo);
+      }
+    }
+
+    // WALK
+    {
+      pair<int, int> sig = siguienteCasilla(st.f, st.c, st.brujula);
+      int nf = sig.first;
+      int nc = sig.second;
+
+      if (transitableIngeniero(nf, nc) &&
+          alturaValida(st.f, st.c, nf, nc, st.zapatillas))
+      {
+        EstadoN2 hijo = st;
+        hijo.f = nf;
+        hijo.c = nc;
+
+        if (mapaResultado[nf][nc] == 'D')
+          hijo.zapatillas = true;
+
+        if (cerrados.find(hijo) == cerrados.end())
+        {
+          NodoN2 nuevo;
+          nuevo.estado = hijo;
+          nuevo.plan = actual.plan;
+          nuevo.plan.push_back(WALK);
+
+          abiertos.push(nuevo);
+          cerrados.insert(hijo);
+        }
+      }
+    }
+
+    // JUMP
+    {
+      pair<int, int> intermedia = siguienteCasilla(st.f, st.c, st.brujula);
+      pair<int, int> fin = siguienteCasilla(intermedia.first, intermedia.second, st.brujula);
+
+      int fi = intermedia.first;
+      int ci = intermedia.second;
+      int nf = fin.first;
+      int nc = fin.second;
+
+      if (transitableIngeniero(fi, ci) &&
+          transitableIngeniero(nf, nc) &&
+          alturaValida(st.f, st.c, nf, nc, st.zapatillas))
+      {
+        EstadoN2 hijo = st;
+        hijo.f = nf;
+        hijo.c = nc;
+
+        if (mapaResultado[fi][ci] == 'D' || mapaResultado[nf][nc] == 'D')
+          hijo.zapatillas = true;
+
+        if (cerrados.find(hijo) == cerrados.end())
+        {
+          NodoN2 nuevo;
+          nuevo.estado = hijo;
+          nuevo.plan = actual.plan;
+          nuevo.plan.push_back(JUMP);
+
+          abiertos.push(nuevo);
+          cerrados.insert(hijo);
+        }
+      }
+    }
+  }
+
+  return list<Action>();
+}
+
 /**
  * @brief Comportamiento del ingeniero para el Nivel 2 (búsqueda).
  * @param sensores Datos actuales de los sensores.
@@ -630,13 +816,267 @@ Action ComportamientoIngeniero::ComportamientoIngenieroNivel_3(Sensores sensores
   return IDLE;
 }
 
+
+
+struct NodoN4
+{
+  int f;
+  int c;
+  int alturaAjustada;
+  int impacto;
+  int longitud;
+  list<Paso> plan;
+};
+
+struct ComparadorNodoN4
+{
+  bool operator()(const NodoN4 &a, const NodoN4 &b) const
+  {
+    if (a.longitud != b.longitud)
+      return a.longitud > b.longitud; // primero menor longitud
+
+    return a.impacto > b.impacto; // si empatan, menor impacto
+  }
+};
+
+struct ClaveN4
+{
+  int f;
+  int c;
+  int alturaAjustada;
+
+  bool operator<(const ClaveN4 &otra) const
+  {
+    if (f != otra.f) return f < otra.f;
+    if (c != otra.c) return c < otra.c;
+    return alturaAjustada < otra.alturaAjustada;
+  }
+};
+
+bool DentroMapaN4(int f, int c, const vector<vector<unsigned char>> &mapa)
+{
+  return f >= 0 && f < mapa.size() && c >= 0 && c < mapa[0].size();
+}
+
+bool TransitableTuberiaN4(char casilla)
+{
+  // La tubería no debería pasar por muros ni precipicios.
+  return casilla != 'P' && casilla != 'M';
+}
+
+bool OperacionPermitidaN4(char casilla, int op)
+{
+  // Muro y precipicio no son válidos.
+  if (casilla == 'P' || casilla == 'M')
+    return false;
+
+  // En agua permitimos INSTALL, pero no DIG/RAISE.
+  if (casilla == 'A' && op != 0)
+    return false;
+
+  return true;
+}
+
+int ImpactoInstallN4(char casilla)
+{
+  if (casilla == 'A') return 50;
+  if (casilla == 'H') return 45;
+  if (casilla == 'S') return 25;
+  if (casilla == 'C' || casilla == 'U') return 15;
+
+  return 30; // resto
+}
+
+int ImpactoOperacionN4(char casilla, int op)
+{
+  if (op == 0)
+    return 0;
+
+  if (op == 1) // RAISE
+  {
+    if (casilla == 'H') return 55;
+    if (casilla == 'S') return 30;
+    if (casilla == 'C' || casilla == 'U') return 10;
+
+    return 40;
+  }
+
+  if (op == -1) // DIG
+  {
+    if (casilla == 'H') return 65;
+    if (casilla == 'S') return 40;
+    if (casilla == 'C' || casilla == 'U') return 25;
+
+    return 50;
+  }
+
+  return 999999;
+}
+
+int ImpactoPasoN4(char casilla, int op)
+{
+  return ImpactoInstallN4(casilla) + ImpactoOperacionN4(casilla, op);
+}
+
 /**
  * @brief Comportamiento del ingeniero para el Nivel 4.
  * @param sensores Datos actuales de los sensores.
  * @return Acción a realizar.
  */
-Action ComportamientoIngeniero::ComportamientoIngenieroNivel_4(Sensores sensores)
+
+ Action ComportamientoIngeniero::ComportamientoIngenieroNivel_4(Sensores sensores)
 {
+  const int IMPACTO_MAXIMO = 1000;
+
+  if (plan_n4_calculado)
+  {
+    return IDLE;
+  }
+
+  plan_n4_calculado = true;
+  plan_tuberias_n4.clear();
+
+  int origenF = sensores.BelPosF;
+  int origenC = sensores.BelPosC;
+
+  if (!DentroMapaN4(origenF, origenC, mapaResultado))
+  {
+    cout << "Nivel 4: posicion de Belkanita fuera del mapa" << endl;
+    return IDLE;
+  }
+
+  priority_queue<NodoN4, vector<NodoN4>, ComparadorNodoN4> abiertos;
+  map<ClaveN4, int> mejorImpacto;
+
+  // Probamos las tres operaciones posibles en la casilla inicial:
+  // -1 DIG, 0 nada, 1 RAISE
+  for (int opInicial = -1; opInicial <= 1; opInicial++)
+  {
+    char casillaOrigen = mapaResultado[origenF][origenC];
+
+    if (!OperacionPermitidaN4(casillaOrigen, opInicial))
+      continue;
+
+    int impactoInicial = ImpactoPasoN4(casillaOrigen, opInicial);
+
+    if (impactoInicial > IMPACTO_MAXIMO)
+      continue;
+
+    NodoN4 inicial;
+    inicial.f = origenF;
+    inicial.c = origenC;
+    inicial.alturaAjustada = mapaCotas[origenF][origenC] + opInicial;
+    inicial.impacto = impactoInicial;
+    inicial.longitud = 1;
+    inicial.plan.clear();
+    inicial.plan.push_back({origenF, origenC, opInicial});
+
+    abiertos.push(inicial);
+
+    ClaveN4 clave{origenF, origenC, inicial.alturaAjustada};
+    mejorImpacto[clave] = impactoInicial;
+  }
+
+  bool encontrado = false;
+  list<Paso> mejorPlan;
+
+  int df[4] = {-1, 1, 0, 0};
+  int dc[4] = {0, 0, -1, 1};
+
+  while (!abiertos.empty() && !encontrado)
+  {
+    NodoN4 actual = abiertos.top();
+    abiertos.pop();
+
+    ClaveN4 claveActual{actual.f, actual.c, actual.alturaAjustada};
+
+    if (mejorImpacto.find(claveActual) != mejorImpacto.end() &&
+        actual.impacto > mejorImpacto[claveActual])
+    {
+      continue;
+    }
+
+    // Si llegamos a una U distinta del origen, tenemos solución.
+    if (mapaResultado[actual.f][actual.c] == 'U' &&
+        !(actual.f == origenF && actual.c == origenC))
+    {
+      encontrado = true;
+      mejorPlan = actual.plan;
+      break;
+    }
+
+    for (int k = 0; k < 4; k++)
+    {
+      int nf = actual.f + df[k];
+      int nc = actual.c + dc[k];
+
+      if (!DentroMapaN4(nf, nc, mapaResultado))
+        continue;
+
+      char casilla = mapaResultado[nf][nc];
+
+      if (!TransitableTuberiaN4(casilla))
+        continue;
+
+      int alturaOriginal = mapaCotas[nf][nc];
+
+      for (int op = -1; op <= 1; op++)
+      {
+        if (!OperacionPermitidaN4(casilla, op))
+          continue;
+
+        int alturaNueva = alturaOriginal + op;
+
+        // Gravedad:
+        // La casilla actual debe tener altura igual o una unidad mayor
+        // que la siguiente.
+        int diferencia = actual.alturaAjustada - alturaNueva;
+
+        if (!(diferencia == 0 || diferencia == 1))
+          continue;
+
+        int impactoPaso = ImpactoPasoN4(casilla, op);
+        int nuevoImpacto = actual.impacto + impactoPaso;
+
+        if (nuevoImpacto > IMPACTO_MAXIMO)
+          continue;
+
+        NodoN4 hijo;
+        hijo.f = nf;
+        hijo.c = nc;
+        hijo.alturaAjustada = alturaNueva;
+        hijo.impacto = nuevoImpacto;
+        hijo.longitud = actual.longitud + 1;
+        hijo.plan = actual.plan;
+        hijo.plan.push_back({nf, nc, op});
+
+        ClaveN4 claveHijo{nf, nc, alturaNueva};
+
+        if (mejorImpacto.find(claveHijo) == mejorImpacto.end() ||
+            nuevoImpacto < mejorImpacto[claveHijo])
+        {
+          mejorImpacto[claveHijo] = nuevoImpacto;
+          abiertos.push(hijo);
+        }
+      }
+    }
+  }
+
+  if (encontrado)
+  {
+    plan_tuberias_n4 = mejorPlan;
+
+    cout << "Plan Nivel 4 encontrado:" << endl;
+    PintaPlan(plan_tuberias_n4);
+
+    VisualizaRedTuberias(plan_tuberias_n4);
+  }
+  else
+  {
+    cout << "Nivel 4: no se ha encontrado plan de tuberias con impacto <= "
+         << IMPACTO_MAXIMO << endl;
+  }
+
   return IDLE;
 }
 
@@ -647,6 +1087,397 @@ Action ComportamientoIngeniero::ComportamientoIngenieroNivel_4(Sensores sensores
  */
 Action ComportamientoIngeniero::ComportamientoIngenieroNivel_5(Sensores sensores)
 {
+  const int IMPACTO_MAXIMO = 1000;
+
+  // ============================================================
+  // FASE 0: calcular el plan de tuberías una sola vez
+  // ============================================================
+  if (!plan_n5_calculado)
+  {
+    plan_n5_calculado = true;
+    plan_tuberias_n5.clear();
+    plan_movimiento_n5.clear();
+
+    int origenF = sensores.BelPosF;
+    int origenC = sensores.BelPosC;
+
+    if (!DentroMapaN4(origenF, origenC, mapaResultado))
+    {
+      cout << "Nivel 5: posicion de Belkanita fuera del mapa" << endl;
+      estado_n5 = -1;
+      return IDLE;
+    }
+
+    priority_queue<NodoN4, vector<NodoN4>, ComparadorNodoN4> abiertos;
+    map<ClaveN4, int> mejorImpacto;
+
+    for (int opInicial = -1; opInicial <= 1; opInicial++)
+    {
+      char casillaOrigen = mapaResultado[origenF][origenC];
+
+      if (!OperacionPermitidaN4(casillaOrigen, opInicial))
+        continue;
+
+      int impactoInicial = ImpactoPasoN4(casillaOrigen, opInicial);
+
+      if (impactoInicial > IMPACTO_MAXIMO)
+        continue;
+
+      NodoN4 inicial;
+      inicial.f = origenF;
+      inicial.c = origenC;
+      inicial.alturaAjustada = mapaCotas[origenF][origenC] + opInicial;
+      inicial.impacto = impactoInicial;
+      inicial.longitud = 1;
+      inicial.plan.clear();
+      inicial.plan.push_back({origenF, origenC, opInicial});
+
+      abiertos.push(inicial);
+
+      ClaveN4 clave{origenF, origenC, inicial.alturaAjustada};
+      mejorImpacto[clave] = impactoInicial;
+    }
+
+    bool encontrado = false;
+    list<Paso> mejorPlan;
+
+    int df[4] = {-1, 1, 0, 0};
+    int dc[4] = {0, 0, -1, 1};
+
+    while (!abiertos.empty() && !encontrado)
+    {
+      NodoN4 actual = abiertos.top();
+      abiertos.pop();
+
+      ClaveN4 claveActual{actual.f, actual.c, actual.alturaAjustada};
+
+      if (mejorImpacto.find(claveActual) != mejorImpacto.end() &&
+          actual.impacto > mejorImpacto[claveActual])
+      {
+        continue;
+      }
+
+      if (mapaResultado[actual.f][actual.c] == 'U' &&
+          !(actual.f == origenF && actual.c == origenC))
+      {
+        encontrado = true;
+        mejorPlan = actual.plan;
+        break;
+      }
+
+      for (int k = 0; k < 4; k++)
+      {
+        int nf = actual.f + df[k];
+        int nc = actual.c + dc[k];
+
+        if (!DentroMapaN4(nf, nc, mapaResultado))
+          continue;
+
+        char casilla = mapaResultado[nf][nc];
+
+        if (!TransitableTuberiaN4(casilla))
+          continue;
+
+        int alturaOriginal = mapaCotas[nf][nc];
+
+        for (int op = -1; op <= 1; op++)
+        {
+          if (!OperacionPermitidaN4(casilla, op))
+            continue;
+
+          int alturaNueva = alturaOriginal + op;
+          int diferencia = actual.alturaAjustada - alturaNueva;
+
+          if (!(diferencia == 0 || diferencia == 1))
+            continue;
+
+          int impactoPaso = ImpactoPasoN4(casilla, op);
+          int nuevoImpacto = actual.impacto + impactoPaso;
+
+          if (nuevoImpacto > IMPACTO_MAXIMO)
+            continue;
+
+          NodoN4 hijo;
+          hijo.f = nf;
+          hijo.c = nc;
+          hijo.alturaAjustada = alturaNueva;
+          hijo.impacto = nuevoImpacto;
+          hijo.longitud = actual.longitud + 1;
+          hijo.plan = actual.plan;
+          hijo.plan.push_back({nf, nc, op});
+
+          ClaveN4 claveHijo{nf, nc, alturaNueva};
+
+          if (mejorImpacto.find(claveHijo) == mejorImpacto.end() ||
+              nuevoImpacto < mejorImpacto[claveHijo])
+          {
+            mejorImpacto[claveHijo] = nuevoImpacto;
+            abiertos.push(hijo);
+          }
+        }
+      }
+    }
+
+    if (encontrado)
+    {
+      plan_tuberias_n5 = mejorPlan;
+      paso_actual_n5 = plan_tuberias_n5.begin();
+
+      cout << "Plan Nivel 5 calculado:" << endl;
+      PintaPlan(plan_tuberias_n5);
+
+      estado_n5 = 1;
+    }
+    else
+    {
+      cout << "Nivel 5: no se ha encontrado plan de tuberias con impacto <= "
+           << IMPACTO_MAXIMO << endl;
+
+      estado_n5 = -1;
+    }
+
+    return IDLE;
+  }
+
+  // ============================================================
+  // FASE 1: mover al Ingeniero hasta la casilla actual de tubería
+  // ============================================================
+  if (estado_n5 == 1)
+  {
+    if (paso_actual_n5 == plan_tuberias_n5.end())
+    {
+      cout << "Nivel 5: no quedan pasos de tuberia." << endl;
+      estado_n5 = -1;
+      return IDLE;
+    }
+
+    int destinoF = paso_actual_n5->fil;
+    int destinoC = paso_actual_n5->col;
+
+    if (sensores.posF == destinoF && sensores.posC == destinoC)
+    {
+      cout << "Ingeniero situado en tramo de tuberia: "
+           << destinoF << ", " << destinoC << endl;
+
+      plan_movimiento_n5.clear();
+      estado_n5 = 2;
+      return IDLE;
+    }
+
+    if (plan_movimiento_n5.empty())
+    {
+      bool zap = tiene_zapatillas || sensores.superficie[0] == 'D';
+
+      plan_movimiento_n5 = BuscarPlanIngenieroHasta(
+          sensores.posF,
+          sensores.posC,
+          (int)sensores.rumbo,
+          zap,
+          destinoF,
+          destinoC,
+          mapaResultado,
+          mapaCotas);
+
+      if (plan_movimiento_n5.empty())
+      {
+        cout << "Nivel 5: no se ha podido mover al Ingeniero hasta "
+             << destinoF << ", " << destinoC << endl;
+
+        estado_n5 = -1;
+        return IDLE;
+      }
+
+      cout << "Plan movimiento Ingeniero Nivel 5: ";
+      PintaPlan(plan_movimiento_n5);
+    }
+
+    if (!plan_movimiento_n5.empty())
+    {
+      Action sig = plan_movimiento_n5.front();
+
+      // Si el siguiente movimiento avanza y hay un agente delante,
+      // esperamos a que el Técnico se aparte.
+      if ((sig == WALK || sig == JUMP) && sensores.agentes[2] != '_')
+      {
+        espera_tecnico_n5++;
+
+        cout << "Nivel 5: esperando a que el Técnico se aparte" << endl;
+
+        if (espera_tecnico_n5 > 15)
+        {
+          cout << "Nivel 5: bloqueo persistente, recalculando movimiento" << endl;
+          espera_tecnico_n5 = 0;
+          plan_movimiento_n5.clear();
+        }
+
+        return IDLE;
+      }
+      else
+      {
+        espera_tecnico_n5 = 0;
+      }
+
+      if (sensores.choque)
+      {
+        cout << "Nivel 5: choque del Ingeniero, recalculando movimiento" << endl;
+        plan_movimiento_n5.clear();
+        return IDLE;
+      }
+
+      plan_movimiento_n5.pop_front();
+      last_action = sig;
+      return sig;
+    }
+
+    return IDLE;
+  }
+
+  // ============================================================
+  // FASE 2: aplicar operación de altura si el tramo lo necesita
+  // ============================================================
+  if (estado_n5 == 2)
+  {
+    if (paso_actual_n5 == plan_tuberias_n5.end())
+    {
+      cout << "Nivel 5: plan de tuberias terminado." << endl;
+      estado_n5 = -1;
+      return IDLE;
+    }
+
+    int op = paso_actual_n5->op;
+
+    if (!operacion_altura_hecha_n5)
+    {
+      if (op == -1)
+      {
+        cout << "Nivel 5: DIG en "
+            << paso_actual_n5->fil << ", " << paso_actual_n5->col << endl;
+
+        operacion_altura_hecha_n5 = true;
+        return DIG;
+      }
+
+      if (op == 1)
+      {
+        cout << "Nivel 5: RAISE en "
+            << paso_actual_n5->fil << ", " << paso_actual_n5->col << endl;
+
+        operacion_altura_hecha_n5 = true;
+        return RAISE;
+      }
+    }
+
+    cout << "Nivel 5: altura preparada en "
+        << paso_actual_n5->fil << ", " << paso_actual_n5->col << endl;
+
+    estado_n5 = 3;
+    return IDLE;
+  }
+
+  // ============================================================
+// FASE 3: llamar al Técnico y esperar instalación coordinada
+// ============================================================
+if (estado_n5 == 3)
+{
+  if (paso_actual_n5 == plan_tuberias_n5.end())
+  {
+    estado_n5 = -1;
+    return IDLE;
+  }
+
+  // Si ambos están enfrentados, instalan en el mismo instante.
+  if (sensores.enfrente)
+  {
+    cout << "Nivel 5: INSTALL coordinado en "
+         << paso_actual_n5->fil << ", " << paso_actual_n5->col << endl;
+
+    espera_tecnico_n5 = 0;
+    estado_n5 = 4;
+    return INSTALL;
+  }
+
+  // Si veo al Técnico a la izquierda, giro hacia él.
+  if (sensores.agentes[1] != '_')
+  {
+    espera_tecnico_n5 = 0;
+    return TURN_SL;
+  }
+
+  // Si veo al Técnico a la derecha, giro hacia él.
+  if (sensores.agentes[3] != '_')
+  {
+    espera_tecnico_n5 = 0;
+    return TURN_SR;
+  }
+
+  // Si está delante pero no enfrentado, sigo llamando para mantener la coordinación.
+  if (sensores.agentes[2] != '_')
+  {
+    return COME;
+  }
+
+  // Si no lo veo, lo llamo. Cada pocos turnos giro para buscarlo.
+  espera_tecnico_n5++;
+
+  if (espera_tecnico_n5 > 6)
+  {
+    cout << "Nivel 5: girando para buscar al Técnico" << endl;
+    espera_tecnico_n5 = 0;
+    return TURN_SR;
+  }
+
+  cout << "Nivel 5: COME para instalar en "
+       << paso_actual_n5->fil << ", " << paso_actual_n5->col << endl;
+
+  return COME;
+}
+
+    // ============================================================
+    // FASE 4: pasar al siguiente tramo
+    // ============================================================
+    if (estado_n5 == 4)
+    {
+      // Avanzamos el iterador al siguiente paso del plan
+      paso_actual_n5++;
+
+      // Reiniciamos la marca de operación de altura para el nuevo tramo
+      operacion_altura_hecha_n5 = false;
+
+      // Si ya no quedan pasos, la red está terminada
+      if (paso_actual_n5 == plan_tuberias_n5.end())
+      {
+        cout << "Nivel 5: red de tuberias completada." << endl;
+
+        plan_movimiento_n5.clear();
+        estado_n5 = -1;
+        return IDLE;
+      }
+
+      // Miramos si el paso actual es el último del plan
+      auto siguiente = paso_actual_n5;
+      ++siguiente;
+
+      // Si el paso actual ya es la última casilla, no hace falta mover
+      // al Ingeniero hasta ella. El último tramo ya se instaló desde
+      // la casilla anterior hacia esta.
+      if (siguiente == plan_tuberias_n5.end())
+      {
+        cout << "Nivel 5: red de tuberias completada." << endl;
+
+        plan_movimiento_n5.clear();
+        estado_n5 = -1;
+        return IDLE;
+      }
+
+      // Si aún quedan más tramos, seguimos normalmente:
+      // primero mover al Ingeniero al nuevo tramo.
+      plan_movimiento_n5.clear();
+      estado_n5 = 1;
+
+      cout << "Nivel 5: pasando al siguiente tramo." << endl;
+      return IDLE;
+    }
+
   return IDLE;
 }
 
@@ -657,6 +1488,83 @@ Action ComportamientoIngeniero::ComportamientoIngenieroNivel_5(Sensores sensores
  */
 Action ComportamientoIngeniero::ComportamientoIngenieroNivel_6(Sensores sensores)
 {
+  static int fase_n6 = 0;
+  static int turnos_explorando_n6 = 0;
+  static bool mensaje_cambio_fase_n6 = false;
+
+  ActualizarMapa(sensores);
+
+  // ============================================================
+  // Contar cuánto mapa conocemos
+  // ============================================================
+
+  int conocidas = 0;
+  int total = 0;
+
+  for (int f = 0; f < mapaResultado.size(); f++)
+  {
+    for (int c = 0; c < mapaResultado[0].size(); c++)
+    {
+      total++;
+
+      if (mapaResultado[f][c] != '?')
+      {
+        conocidas++;
+      }
+    }
+  }
+
+  double porcentajeConocido = 0.0;
+
+  if (total > 0)
+  {
+    porcentajeConocido = (100.0 * conocidas) / total;
+  }
+
+  // ============================================================
+  // FASE 0: exploración
+  // ============================================================
+
+  if (fase_n6 == 0)
+  {
+    turnos_explorando_n6++;
+
+    // Cambio de fase:
+    // - si conocemos bastante mapa
+    // - o si ya hemos explorado muchos turnos
+    //
+    // Puedes tocar estos valores si quieres:
+    // 65% es razonable para no esperar demasiado.
+    if (porcentajeConocido >= 65.0 || turnos_explorando_n6 >= 1200)
+    {
+      fase_n6 = 1;
+
+      if (!mensaje_cambio_fase_n6)
+      {
+        cout << "Nivel 6 Ingeniero: cambio a fase de construccion. Mapa conocido: "
+             << porcentajeConocido << "%" << endl;
+
+        mensaje_cambio_fase_n6 = true;
+      }
+
+      return IDLE;
+    }
+
+    // Mientras tanto, explorar con el comportamiento del Nivel 1
+    return ComportamientoIngenieroNivel_1(sensores);
+  }
+
+  // ============================================================
+  // FASE 1: construcción
+  // ============================================================
+
+  if (fase_n6 == 1)
+  {
+    // Reutilizamos la lógica del Nivel 5.
+    // El Nivel 5 calcula red y coordina con el Técnico.
+    return ComportamientoIngenieroNivel_5(sensores);
+  }
+
   return IDLE;
 }
 

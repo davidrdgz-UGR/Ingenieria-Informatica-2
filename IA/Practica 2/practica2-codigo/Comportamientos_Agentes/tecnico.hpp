@@ -46,6 +46,17 @@ public:
     
     plan_n3_calculado = false;
     
+plan_movimiento_n5.clear();
+pendiente_instalar_n5 = false;
+despeje_n5 = 0;
+ultimo_gotoF_n5 = -1;
+ultimo_gotoC_n5 = -1;
+
+
+plan_tuberias_n5_tech.clear();
+plan_tuberias_n5_tech_calculado = false;
+    
+    
   }
 
   /**
@@ -67,6 +78,13 @@ public:
     giros_escape = 0;
 
     plan_n3_calculado = false;
+    
+    plan_movimiento_n5.clear();
+    despeje_n5 = 0;
+    ultimo_gotoF_n5 = -1;
+    ultimo_gotoC_n5 = -1;
+    plan_tuberias_n5_tech.clear();
+    plan_tuberias_n5_tech_calculado = false;
   }
 
   ComportamientoTecnico(const ComportamientoTecnico &comport): Comportamiento(comport) {}
@@ -223,6 +241,19 @@ private:
 
   list<Action> plan_n3;
   bool plan_n3_calculado;
+
+
+  /* Para Nivel 5 */
+list<Action> plan_movimiento_n5;
+bool pendiente_instalar_n5;
+int despeje_n5;
+int ultimo_gotoF_n5;
+int ultimo_gotoC_n5;
+
+list<Paso> plan_tuberias_n5_tech;
+bool plan_tuberias_n5_tech_calculado;
+
+
 };
 
 #endif
