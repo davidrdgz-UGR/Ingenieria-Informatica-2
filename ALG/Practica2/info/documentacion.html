@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="practica-2---algoritmica"><strong>PRACTICA 2 - ALGORITMICA</strong></h1>
+<h3 id="ejercicio-1"><strong>EJERCICIO 1</strong></h3>
+<p>En este ejercicio primero hemos hecho la struct Resultado para devolver varios valores de la funcion y no complicarnos.</p>
+<p>En la funcion tenemos comparaciones como un contador, y el primer bloque sirve para ver si el vector es par/impar y empezar a contar desde ahi.</p>
+<p>Y vamos comparando a pares y comparando con los valores iniciales, finalmente nos quedamos con el menor y mayor definitivos y listo.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Resultado</span> {
+    <span class="hljs-type">int</span> minimo;
+    <span class="hljs-type">int</span> maximo;
+    <span class="hljs-type">int</span> comparaciones;
+};
+
+<span class="hljs-function">Resultado <span class="hljs-title">calcularMinMax</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; v)</span> </span>{
+    <span class="hljs-type">int</span> n = v.<span class="hljs-built_in">size</span>();
+
+    <span class="hljs-type">int</span> minimo, maximo;
+    <span class="hljs-type">int</span> comparaciones = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> i;
+
+    <span class="hljs-comment">// Caso inicial: distinguimos si n es par o impar</span>
+    <span class="hljs-keyword">if</span> (n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+        comparaciones++;
+
+        <span class="hljs-keyword">if</span> (v[<span class="hljs-number">0</span>] &lt; v[<span class="hljs-number">1</span>]) {
+            minimo = v[<span class="hljs-number">0</span>];
+            maximo = v[<span class="hljs-number">1</span>];
+        } <span class="hljs-keyword">else</span> {
+            minimo = v[<span class="hljs-number">1</span>];
+            maximo = v[<span class="hljs-number">0</span>];
+        }
+
+        i = <span class="hljs-number">2</span>;
+    } <span class="hljs-keyword">else</span> {
+        minimo = v[<span class="hljs-number">0</span>];
+        maximo = v[<span class="hljs-number">0</span>];
+        i = <span class="hljs-number">1</span>;
+    }
+
+    <span class="hljs-comment">// Procesamos el resto de elementos por parejas</span>
+    <span class="hljs-keyword">while</span> (i &lt; n - <span class="hljs-number">1</span>) {
+        <span class="hljs-type">int</span> menorPareja, mayorPareja;
+
+        comparaciones++;
+
+        <span class="hljs-keyword">if</span> (v[i] &lt; v[i + <span class="hljs-number">1</span>]) {
+            menorPareja = v[i];
+            mayorPareja = v[i + <span class="hljs-number">1</span>];
+        } <span class="hljs-keyword">else</span> {
+            menorPareja = v[i + <span class="hljs-number">1</span>];
+            mayorPareja = v[i];
+        }
+
+
+		
+        comparaciones++;
+
+        <span class="hljs-keyword">if</span> (menorPareja &lt; minimo) {
+            minimo = menorPareja;
+        }
+
+        comparaciones++;
+
+        <span class="hljs-keyword">if</span> (mayorPareja &gt; maximo) {
+            maximo = mayorPareja;
+        }
+
+        i += <span class="hljs-number">2</span>;
+    }
+
+    <span class="hljs-keyword">return</span> {minimo, maximo, comparaciones};
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    vector&lt;<span class="hljs-type">int</span>&gt; v = {<span class="hljs-number">5</span>, <span class="hljs-number">19</span>, <span class="hljs-number">30</span>, <span class="hljs-number">904</span>, <span class="hljs-number">13</span>, <span class="hljs-number">54</span>, <span class="hljs-number">3</span>};
+
+    Resultado resultado = <span class="hljs-built_in">calcularMinMax</span>(v);
+
+    cout &lt;&lt; <span class="hljs-string">&quot;Minimo: &quot;</span> &lt;&lt; resultado.minimo &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Maximo: &quot;</span> &lt;&lt; resultado.maximo &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Comparaciones realizadas: &quot;</span> &lt;&lt; resultado.comparaciones &lt;&lt; endl;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<h3 id="ejercicio-2"><strong>EJERCICIO 2</strong></h3>
+<p>En este ejercicio hemos hecho 2 funciones, una para el maximo y otra para el minimo con algoritmos tipo &quot;divide y venceras&quot;.</p>
+<p>Los algoritmos de este tipo suelen necesitar estar ordenados, ya que así nos ahorrariamos muchas interacciones por lo que he optado por algoritmos recursivos que comparan por mitades .</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">minimoDivideVenceras</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; v, <span class="hljs-type">int</span> inicio, <span class="hljs-type">int</span> fin)</span> </span>{
+    <span class="hljs-comment">// Caso base: si solo hay un elemento, ese es el mínimo</span>
+    <span class="hljs-keyword">if</span> (inicio == fin) {
+        <span class="hljs-keyword">return</span> v[inicio];
+    }
+
+    <span class="hljs-type">int</span> medio = (inicio + fin) / <span class="hljs-number">2</span>;
+
+    <span class="hljs-type">int</span> minimoIzquierda = <span class="hljs-built_in">minimoDivideVenceras</span>(v, inicio, medio);
+    <span class="hljs-type">int</span> minimoDerecha = <span class="hljs-built_in">minimoDivideVenceras</span>(v, medio + <span class="hljs-number">1</span>, fin);
+
+    <span class="hljs-keyword">if</span> (minimoIzquierda &lt; minimoDerecha) {
+        <span class="hljs-keyword">return</span> minimoIzquierda;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> minimoDerecha;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">maximoDivideVenceras</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">int</span>&gt;&amp; v, <span class="hljs-type">int</span> inicio, <span class="hljs-type">int</span> fin)</span> </span>{
+    <span class="hljs-comment">// Caso base: si solo hay un elemento, ese es el máximo</span>
+    <span class="hljs-keyword">if</span> (inicio == fin) {
+        <span class="hljs-keyword">return</span> v[inicio];
+    }
+
+    <span class="hljs-type">int</span> medio = (inicio + fin) / <span class="hljs-number">2</span>;
+
+    <span class="hljs-type">int</span> maximoIzquierda = <span class="hljs-built_in">maximoDivideVenceras</span>(v, inicio, medio);
+    <span class="hljs-type">int</span> maximoDerecha = <span class="hljs-built_in">maximoDivideVenceras</span>(v, medio + <span class="hljs-number">1</span>, fin);
+
+    <span class="hljs-keyword">if</span> (maximoIzquierda &gt; maximoDerecha) {
+        <span class="hljs-keyword">return</span> maximoIzquierda;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> maximoDerecha;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    vector&lt;<span class="hljs-type">int</span>&gt; v = {<span class="hljs-number">5</span>, <span class="hljs-number">19</span>, <span class="hljs-number">30</span>, <span class="hljs-number">904</span>, <span class="hljs-number">13</span>, <span class="hljs-number">54</span>, <span class="hljs-number">3</span>};
+	<span class="hljs-comment">// vector&lt;int&gt; v = {5};</span>
+
+    <span class="hljs-type">int</span> minimo = <span class="hljs-built_in">minimoDivideVenceras</span>(v, <span class="hljs-number">0</span>, v.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);
+    <span class="hljs-type">int</span> maximo = <span class="hljs-built_in">maximoDivideVenceras</span>(v, <span class="hljs-number">0</span>, v.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);
+
+    cout &lt;&lt; <span class="hljs-string">&quot;Minimo: &quot;</span> &lt;&lt; minimo &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Maximo: &quot;</span> &lt;&lt; maximo &lt;&lt; endl;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<h3 id="ejercicio-3"><strong>EJERCICIO 3</strong></h3>
+<p>En este ejercicio hemos usado programación dinámica para encontrar la subsecuencia común más larga entre las dos cadenas.</p>
+<p>Para ello hemos creado una matriz dp, donde se van guardando las mejores soluciones parciales. Vamos comparando los caracteres de ambas cadenas: si coinciden, sumamos 1 al valor anterior de la diagonal; si no coinciden, nos quedamos con el mejor valor entre las dos opciones posibles.</p>
+<p>Después, recorremos la matriz hacia atrás para reconstruir la subsecuencia obtenida. Lo hemos hecho así porque una comparación simple de letras no garantiza encontrar la solución más larga, mientras que con programación dinámica sí obtenemos la solución óptima.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function">string <span class="hljs-title">subsecuenciaComunMasLarga</span><span class="hljs-params">(<span class="hljs-type">const</span> string&amp; s1, <span class="hljs-type">const</span> string&amp; s2)</span> </span>{
+    <span class="hljs-type">int</span> n = s<span class="hljs-number">1.</span><span class="hljs-built_in">size</span>();
+    <span class="hljs-type">int</span> m = s<span class="hljs-number">2.</span><span class="hljs-built_in">size</span>();
+
+    vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">dp</span>(n + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(m + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>));
+
+    <span class="hljs-comment">// Rellenamos la tabla de programación dinámica</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= m; j++) {
+            <span class="hljs-keyword">if</span> (s1[i - <span class="hljs-number">1</span>] == s2[j - <span class="hljs-number">1</span>]) {
+                dp[i][j] = dp[i - <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;
+            } <span class="hljs-keyword">else</span> {
+                dp[i][j] = <span class="hljs-built_in">max</span>(dp[i - <span class="hljs-number">1</span>][j], dp[i][j - <span class="hljs-number">1</span>]);
+            }
+        }
+    }
+
+    <span class="hljs-comment">// Reconstruimos la subsecuencia común más larga</span>
+    string resultado;
+    <span class="hljs-type">int</span> i = n; <span class="hljs-comment">/* largo de s1 */</span>
+    <span class="hljs-type">int</span> j = m; <span class="hljs-comment">/* largo de s2 */</span>
+
+    <span class="hljs-keyword">while</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; j &gt; <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">if</span> (s1[i - <span class="hljs-number">1</span>] == s2[j - <span class="hljs-number">1</span>]) {
+            resultado.<span class="hljs-built_in">push_back</span>(s1[i - <span class="hljs-number">1</span>]);
+            i--;
+            j--;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dp[i - <span class="hljs-number">1</span>][j] &gt;= dp[i][j - <span class="hljs-number">1</span>]) {
+            i--;
+        } <span class="hljs-keyword">else</span> {
+            j--;
+        }
+    }
+
+    <span class="hljs-built_in">reverse</span>(resultado.<span class="hljs-built_in">begin</span>(), resultado.<span class="hljs-built_in">end</span>());
+
+    <span class="hljs-keyword">return</span> resultado;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    string s1 = <span class="hljs-string">&quot;ACCGGTCGAGTGCGCGGAAGCCGGCCGAA&quot;</span>;
+    string s2 = <span class="hljs-string">&quot;GTCGTTCGGAATGCCGTTGCTCTGTAAA&quot;</span>;
+
+    string lcs = <span class="hljs-built_in">subsecuenciaComunMasLarga</span>(s1, s2);
+
+    cout &lt;&lt; <span class="hljs-string">&quot;Subsecuencia comun mas larga: &quot;</span> &lt;&lt; lcs &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Longitud: &quot;</span> &lt;&lt; lcs.<span class="hljs-built_in">size</span>() &lt;&lt; endl;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<h3 id="ejercicio-4"><strong>EJERCICIO 4</strong></h3>
+<p>En este ejercicio hemos implementado un algoritmo voraz para gestionar una memoria caché conociendo de antemano la secuencia de peticiones.</p>
+<p>La idea es ir recorriendo las peticiones una a una. Si el elemento ya está en la caché, contamos un acierto. Si no está, contamos un fallo y lo insertamos. Cuando la caché está llena, expulsamos el elemento que vaya a usarse más tarde en el futuro, o uno que no vuelva a aparecer.</p>
+<p>Lo hemos hecho así porque, al conocer las peticiones futuras, esta estrategia permite minimizar los fallos de caché. Es decir, siempre mantenemos en memoria los elementos que se van a necesitar antes y quitamos el menos urgente.</p>
+<p>Al final, el programa muestra el estado de la caché en cada paso, junto con el número total de aciertos y fallos.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;limits&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">estaEnCache</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">char</span>&gt;&amp; cache, <span class="hljs-type">char</span> elemento)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(cache.<span class="hljs-built_in">begin</span>(), cache.<span class="hljs-built_in">end</span>(), elemento) != cache.<span class="hljs-built_in">end</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">siguienteUso</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">char</span>&gt;&amp; peticiones, <span class="hljs-type">char</span> elemento, <span class="hljs-type">int</span> posicionActual)</span> </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = posicionActual + <span class="hljs-number">1</span>; i &lt; peticiones.<span class="hljs-built_in">size</span>(); i++) {
+        <span class="hljs-keyword">if</span> (peticiones[i] == elemento) {
+            <span class="hljs-keyword">return</span> i;
+        }
+    }
+
+    <span class="hljs-comment">// Si no se vuelve a usar, devolvemos infinito</span>
+    <span class="hljs-keyword">return</span> numeric_limits&lt;<span class="hljs-type">int</span>&gt;::<span class="hljs-built_in">max</span>();
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">elegirElementoAExpulsar</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">char</span>&gt;&amp; cache,
+                            <span class="hljs-type">const</span> vector&lt;<span class="hljs-type">char</span>&gt;&amp; peticiones,
+                            <span class="hljs-type">int</span> posicionActual)</span> </span>{
+    <span class="hljs-type">int</span> posicionExpulsar = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> usoMasLejano = <span class="hljs-number">-1</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; cache.<span class="hljs-built_in">size</span>(); i++) {
+        <span class="hljs-type">int</span> proximoUso = <span class="hljs-built_in">siguienteUso</span>(peticiones, cache[i], posicionActual);
+
+        <span class="hljs-keyword">if</span> (proximoUso &gt; usoMasLejano) {
+            usoMasLejano = proximoUso;
+            posicionExpulsar = i;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> posicionExpulsar;
+}
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">mostrarCache</span><span class="hljs-params">(<span class="hljs-type">const</span> vector&lt;<span class="hljs-type">char</span>&gt;&amp; cache)</span> </span>{
+    cout &lt;&lt; <span class="hljs-string">&quot;{ &quot;</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> elemento : cache) {
+        cout &lt;&lt; elemento &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+    }
+    cout &lt;&lt; <span class="hljs-string">&quot;}&quot;</span>;
+}
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    vector&lt;<span class="hljs-type">char</span>&gt; peticiones = {<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>,<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;c&#x27;</span>,<span class="hljs-string">&#x27;b&#x27;</span>};
+    <span class="hljs-type">int</span> k = <span class="hljs-number">3</span>;
+
+    vector&lt;<span class="hljs-type">char</span>&gt; cache;
+
+    <span class="hljs-type">int</span> aciertos = <span class="hljs-number">0</span>;
+    <span class="hljs-type">int</span> fallos = <span class="hljs-number">0</span>;
+
+    cout &lt;&lt; <span class="hljs-string">&quot;Tamano de cache: &quot;</span> &lt;&lt; k &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Secuencia de peticiones: &quot;</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> p : peticiones) {
+        cout &lt;&lt; p &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+    }
+
+    cout &lt;&lt; endl &lt;&lt; endl;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; peticiones.<span class="hljs-built_in">size</span>(); i++) {
+        <span class="hljs-type">char</span> peticion = peticiones[i];
+
+        cout &lt;&lt; <span class="hljs-string">&quot;Peticion &quot;</span> &lt;&lt; i + <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-string">&quot;: &quot;</span> &lt;&lt; peticion &lt;&lt; <span class="hljs-string">&quot; -&gt; &quot;</span>;
+
+        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">estaEnCache</span>(cache, peticion)) {
+            aciertos++;
+            cout &lt;&lt; <span class="hljs-string">&quot;acierto. Cache: &quot;</span>;
+            <span class="hljs-built_in">mostrarCache</span>(cache);
+            cout &lt;&lt; endl;
+        } <span class="hljs-keyword">else</span> {
+            fallos++;
+            cout &lt;&lt; <span class="hljs-string">&quot;fallo. &quot;</span>;
+
+            <span class="hljs-keyword">if</span> (cache.<span class="hljs-built_in">size</span>() &lt; k) {
+                cache.<span class="hljs-built_in">push_back</span>(peticion);
+
+                cout &lt;&lt; <span class="hljs-string">&quot;Se inserta &quot;</span> &lt;&lt; peticion &lt;&lt; <span class="hljs-string">&quot;. Cache: &quot;</span>;
+                <span class="hljs-built_in">mostrarCache</span>(cache);
+                cout &lt;&lt; endl;
+            } <span class="hljs-keyword">else</span> {
+                <span class="hljs-type">int</span> posicionExpulsar = <span class="hljs-built_in">elegirElementoAExpulsar</span>(cache, peticiones, i);
+                <span class="hljs-type">char</span> expulsado = cache[posicionExpulsar];
+
+                cache[posicionExpulsar] = peticion;
+
+                cout &lt;&lt; <span class="hljs-string">&quot;Se expulsa &quot;</span> &lt;&lt; expulsado;
+                cout &lt;&lt; <span class="hljs-string">&quot; y se inserta &quot;</span> &lt;&lt; peticion &lt;&lt; <span class="hljs-string">&quot;. Cache: &quot;</span>;
+                <span class="hljs-built_in">mostrarCache</span>(cache);
+                cout &lt;&lt; endl;
+            }
+        }
+    }
+
+    cout &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Aciertos totales: &quot;</span> &lt;&lt; aciertos &lt;&lt; endl;
+    cout &lt;&lt; <span class="hljs-string">&quot;Fallos totales: &quot;</span> &lt;&lt; fallos &lt;&lt; endl;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+
+</div></code></pre>
+<p>Y aqui tenemos una imagen de la ejecución de todos los algoritmos:</p>
+<p><img src="image.png" alt="Ejecucion"></p>
+
+</body>
+</html>
