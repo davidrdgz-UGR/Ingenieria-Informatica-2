@@ -348,6 +348,23 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
 
     bool mueveNuestroJugador = (tablero.getJugadorTurno() == id);
 
+    // Ordenación de sucesores para mejorar la poda Alfa-Beta.
+    // Si mueve nuestro jugador, interesan primero los tableros con mayor heurística.
+    // Si mueve el rival, interesan primero los tableros con menor heurística.
+    std::sort(sucesores.begin(), sucesores.end(),
+        [&](const auto& a, const auto& b) {
+            double valorA = heuristica(a.first);
+            double valorB = heuristica(b.first);
+
+            if (mueveNuestroJugador) {
+                return valorA > valorB;
+            }
+            else {
+                return valorA < valorB;
+            }
+        }
+    );
+
     if (mueveNuestroJugador) {
         // Nodo MAX: nuestro agente intenta maximizar.
         double mejorValor = MenosInfinito;
@@ -459,12 +476,209 @@ double AgenteEstudiante::heuristicaPrueba(const Tablero& tablero) {
 
 
 double AgenteEstudiante::heuristica1(const Tablero& tablero) {
-    //A implementar por el estudiante
-return 0;
+    int filas = tablero.getFilas();
+    int columnas = tablero.getColumnas();
+    int n = tablero.getNParaGanar();
+    int oponente = (id == 1) ? 2 : 1;
+
+    // 1. Comprobación de estados terminales.
+    Tablero copia = tablero;
+    int ganador = copia.comprobarGanador();
+
+    if (ganador == id) {
+        return GANAR;
+    }
+
+    if (ganador == oponente) {
+        return PERDER;
+    }
+
+    if (ganador == -1) {
+        return 0;
+    }
+
+    double score = 0.0;
+
+    // 2. Pequeño bonus por ocupar zonas centrales.
+    // En juegos de alineación, el centro suele ser más valioso porque participa
+    // en más líneas horizontales, verticales y diagonales.
+    int centroF = filas / 2;
+    int centroC = columnas / 2;
+
+    for (int f = 0; f < filas; f++) {
+        for (int c = 0; c < columnas; c++) {
+            int celda = tablero.getCelda(f, c);
+
+            if (celda != 0) {
+                int valorCentro = (filas - std::abs(f - centroF)) + 
+                                  (columnas - std::abs(c - centroC));
+
+                if (celda == id) {
+                    score += 3.0 * valorCentro;
+                }
+                else if (celda == oponente) {
+                    score -= 3.0 * valorCentro;
+                }
+            }
+        }
+    }
+
+    // 3. Función auxiliar para puntuar una ventana de n casillas.
+    auto evaluarVentana = [&](int propias, int rivales) -> double {
+        // Si hay fichas de ambos jugadores, esa línea está bloqueada.
+        if (propias > 0 && rivales > 0) {
+            return 0.0;
+        }
+
+        // Línea vacía: no aporta información.
+        if (propias == 0 && rivales == 0) {
+            return 0.0;
+        }
+
+        // Línea favorable a nuestro jugador.
+        if (propias > 0) {
+            if (propias >= n) {
+                return GANAR / 10.0;
+            }
+
+            if (propias == n - 1) {
+                return 200000.0;
+            }
+
+            if (propias == n - 2) {
+                return 10000.0;
+            }
+
+            if (propias == n - 3) {
+                return 500.0;
+            }
+
+            return 20.0 * propias;
+        }
+
+        // Línea favorable al rival.
+        if (rivales > 0) {
+            if (rivales >= n) {
+                return PERDER / 10.0;
+            }
+
+            if (rivales == n - 1) {
+                return -250000.0;
+            }
+
+            if (rivales == n - 2) {
+                return -15000.0;
+            }
+
+            if (rivales == n - 3) {
+                return -700.0;
+            }
+
+            return -25.0 * rivales;
+        }
+
+        return 0.0;
+    };
+
+    // 4. Direcciones que vamos a analizar:
+    // horizontal, vertical, diagonal descendente y diagonal ascendente.
+    const int df[4] = {0, 1, 1, -1};
+    const int dc[4] = {1, 0, 1, 1};
+
+    for (int f = 0; f < filas; f++) {
+        for (int c = 0; c < columnas; c++) {
+            for (int dir = 0; dir < 4; dir++) {
+                int finF = f + (n - 1) * df[dir];
+                int finC = c + (n - 1) * dc[dir];
+
+                // Comprobamos que la ventana cabe dentro del tablero.
+                if (finF < 0 || finF >= filas || finC < 0 || finC >= columnas) {
+                    continue;
+                }
+
+                int propias = 0;
+                int rivales = 0;
+
+                for (int k = 0; k < n; k++) {
+                    int nf = f + k * df[dir];
+                    int nc = c + k * dc[dir];
+
+                    int celda = tablero.getCelda(nf, nc);
+
+                    if (celda == id) {
+                        propias++;
+                    }
+                    else if (celda == oponente) {
+                        rivales++;
+                    }
+                }
+
+                score += evaluarVentana(propias, rivales);
+            }
+        }
+    }
+
+    return score;
 }
 
 double AgenteEstudiante::heuristica2(const Tablero& tablero) {
-    //A implementar por el estudiante
-return 0;
+    int n = tablero.getNParaGanar();
+    int oponente = (id == 1) ? 2 : 1;
+
+    // Comprobación de estados terminales.
+    Tablero copia = tablero;
+    int ganador = copia.comprobarGanador();
+
+    if (ganador == id) {
+        return GANAR;
+    }
+
+    if (ganador == oponente) {
+        return PERDER;
+    }
+
+    if (ganador == -1) {
+        return 0;
+    }
+
+    double score = 0.0;
+
+    // Valoramos combinaciones propias y del rival.
+    // Cuanto más largas sean las líneas, más peso tienen.
+    for (int longitud = 1; longitud <= n; longitud++) {
+        int propias = tablero.contarCombinaciones(longitud, id);
+        int rivales = tablero.contarCombinaciones(longitud, oponente);
+
+        double peso = std::pow(10.0, longitud);
+
+        score += peso * propias;
+        score -= peso * 1.25 * rivales;
+    }
+
+    // Pequeño bonus por control del centro.
+    int filas = tablero.getFilas();
+    int columnas = tablero.getColumnas();
+    int centroF = filas / 2;
+    int centroC = columnas / 2;
+
+    for (int f = 0; f < filas; f++) {
+        for (int c = 0; c < columnas; c++) {
+            int celda = tablero.getCelda(f, c);
+
+            if (celda != 0) {
+                int distancia = std::abs(f - centroF) + std::abs(c - centroC);
+                double valorCentro = 10.0 - distancia;
+
+                if (celda == id) {
+                    score += valorCentro;
+                }
+                else if (celda == oponente) {
+                    score -= valorCentro;
+                }
+            }
+        }
+    }
+
+    return score;
 }
 
