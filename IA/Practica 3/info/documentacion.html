@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentacion.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="practica-3---ia">PRACTICA 3 - IA</h1>
+<p>En esta práctica hemos creado un Agente para el juego del 3 en ralla pero mejorado con varios modos.</p>
+<h2 id="agenteestudiantecpp">AgenteEstudiante.cpp</h2>
+<p>Este es el archivo principal que hemos usado, despues tenemos el .hpp, pero es solo una plantilla.</p>
+<p>Principalmente vamos a comentar las funciones importantes que hemos creado</p>
+<h3 id="funcion-status">FUNCION STATUS</h3>
+<p>En esta funcion se hace una busqueda completa del arbol del juego, para buscar la victoria/empate o si terminará perdiendo.</p>
+<p>Primero comprueba que no sucede ninguna de las situaciones anteriores y genera y analiza los movimientos posibles recursivamente.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-function">AgenteEstudiante::Resultado <span class="hljs-title">AgenteEstudiante::Status</span><span class="hljs-params">(<span class="hljs-type">const</span> Tablero &amp;tablero, pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;Mov)</span> </span>{
+    <span class="hljs-comment">/* ============== Este trozo de código se tiene que quedar aquí  =============== */</span>
+    nodosVisitados++;
+    <span class="hljs-comment">/* ============== Empieza a partir de aquí tu implementación  =============== */</span>
+
+    Mov = {<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>};
+
+    <span class="hljs-type">int</span> oponente = (id == <span class="hljs-number">1</span>) ? <span class="hljs-number">2</span> : <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Comprobamos si el tablero actual ya es terminal.</span>
+    <span class="hljs-type">int</span> ganador = tablero.<span class="hljs-built_in">comprobarGanador</span>();
+
+    <span class="hljs-keyword">if</span> (ganador == id) {
+        <span class="hljs-keyword">return</span> Resultado::VICTORIA;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == oponente) {
+        <span class="hljs-keyword">return</span> Resultado::DERROTA;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == <span class="hljs-number">-1</span>) {
+        <span class="hljs-keyword">return</span> Resultado::EMPATE;
+    }
+
+    <span class="hljs-comment">// Generamos sucesores con sus movimientos asociados.</span>
+    <span class="hljs-keyword">auto</span> sucesores = tablero.<span class="hljs-built_in">getSucesoresConMovimientos</span>();
+
+    <span class="hljs-comment">// Si no hay sucesores, tratamos la posición como empate.</span>
+    <span class="hljs-keyword">if</span> (sucesores.<span class="hljs-built_in">empty</span>()) {
+        <span class="hljs-keyword">return</span> Resultado::EMPATE;
+    }
+
+    <span class="hljs-type">bool</span> mueveNuestroJugador = (tablero.<span class="hljs-built_in">getJugadorTurno</span>() == id);
+
+    <span class="hljs-keyword">if</span> (mueveNuestroJugador) {
+        <span class="hljs-comment">// Nuestro jugador intenta maximizar:</span>
+        <span class="hljs-comment">// VICTORIA &gt; EMPATE &gt; DERROTA</span>
+
+        Resultado mejorResultado = Resultado::DERROTA;
+        pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; mejorMov = sucesores[<span class="hljs-number">0</span>].second;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; sucesor : sucesores) {
+
+            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; movHijo;
+            Resultado r = <span class="hljs-built_in">Status</span>(sucesor.first, movHijo);
+
+            <span class="hljs-keyword">if</span> (r == Resultado::VICTORIA) {
+                Mov = sucesor.second;
+                <span class="hljs-keyword">return</span> Resultado::VICTORIA;
+            }
+
+            <span class="hljs-keyword">if</span> (r == Resultado::EMPATE &amp;&amp; mejorResultado == Resultado::DERROTA) {
+                mejorResultado = Resultado::EMPATE;
+                mejorMov = sucesor.second;
+            }
+
+        }
+
+        Mov = mejorMov;
+        <span class="hljs-keyword">return</span> mejorResultado;
+
+    }<span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// El rival intenta minimizar nuestro resultado:</span>
+        <span class="hljs-comment">// para nosotros: DERROTA &lt; EMPATE &lt; VICTORIA</span>
+
+        Resultado peorResultado = Resultado::VICTORIA;
+        pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; peorMov = sucesores[<span class="hljs-number">0</span>].second;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; sucesor : sucesores) {
+            pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; movHijo;
+            Resultado r = <span class="hljs-built_in">Status</span>(sucesor.first, movHijo);
+
+            <span class="hljs-keyword">if</span> (r == Resultado::DERROTA) {
+                Mov = sucesor.second;
+                <span class="hljs-keyword">return</span> Resultado::DERROTA;
+            }
+
+            <span class="hljs-keyword">if</span> (r == Resultado::EMPATE &amp;&amp; peorResultado == Resultado::VICTORIA) {
+                peorResultado = Resultado::EMPATE;
+                peorMov = sucesor.second;
+            }
+        }
+
+        Mov = peorMov;
+        <span class="hljs-keyword">return</span> peorResultado;
+    }
+}
+
+</div></code></pre>
+<h3 id="funcion-minimax">FUNCION MINIMAX</h3>
+<p>En esta empleamos el algoritmo minimax clásico, explora las jugadas por profundidad y elige el movimiento mejor valorado.</p>
+<p>Primero comprobamos que el tablero no tiene ganador (si lo tiene devuelve un valor muy alto) o si gana el rival (valor muy pequeño) y empate (devuelve 0), si no se da ninguna de estas se alcanza la máxima profundidad y valoramos.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">AgenteEstudiante::minimax</span><span class="hljs-params">(<span class="hljs-type">const</span> Tablero &amp;tablero, <span class="hljs-type">int</span> profundidad, <span class="hljs-type">int</span> prof_Max, std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;Mov)</span> </span>{
+    <span class="hljs-comment">/* ============== Este trozo de código se tiene que quedar aquí  =============== */</span>
+    nodosVisitados++;
+    <span class="hljs-keyword">if</span> (abortarBanda) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    
+    <span class="hljs-keyword">if</span> (std::chrono::<span class="hljs-built_in">duration</span>&lt;<span class="hljs-type">double</span>&gt;(std::chrono::steady_clock::<span class="hljs-built_in">now</span>() - inicioBusqueda).<span class="hljs-built_in">count</span>() &gt; tiempoMaxSegundos) {
+        abortarBanda = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-comment">/* ============== Empieza a partir de aquí tu implementación  =============== */</span>
+
+    Mov = {<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>};
+
+    <span class="hljs-type">int</span> oponente = (id == <span class="hljs-number">1</span>) ? <span class="hljs-number">2</span> : <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// 1. Comprobar si el tablero actual ya es terminal.</span>
+    Tablero copia = tablero;
+    <span class="hljs-type">int</span> ganador = copia.<span class="hljs-built_in">comprobarGanador</span>();
+
+    <span class="hljs-keyword">if</span> (ganador == id) {
+        <span class="hljs-keyword">return</span> GANAR - profundidad;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == oponente) {
+        <span class="hljs-keyword">return</span> PERDER + profundidad;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == <span class="hljs-number">-1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-comment">// 2. Si hemos llegado a la profundidad máxima, usamos la heurística.</span>
+    <span class="hljs-keyword">if</span> (profundidad &gt;= prof_Max) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristica</span>(tablero);
+    }
+
+    <span class="hljs-comment">// 3. Generar sucesores.</span>
+    <span class="hljs-keyword">auto</span> sucesores = tablero.<span class="hljs-built_in">getSucesoresConMovimientos</span>();
+
+    <span class="hljs-keyword">if</span> (sucesores.<span class="hljs-built_in">empty</span>()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristica</span>(tablero);
+    }
+
+    <span class="hljs-type">bool</span> mueveNuestroJugador = (tablero.<span class="hljs-built_in">getJugadorTurno</span>() == id);
+
+    <span class="hljs-keyword">if</span> (mueveNuestroJugador) {
+        <span class="hljs-comment">// Nodo MAX: nuestro agente quiere maximizar la puntuación.</span>
+        <span class="hljs-type">double</span> mejorValor = MenosInfinito;
+        std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; mejorMov = sucesores[<span class="hljs-number">0</span>].second;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; sucesor : sucesores) {
+            std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; movHijo;
+
+            <span class="hljs-type">double</span> valor = <span class="hljs-built_in">minimax</span>(sucesor.first, profundidad + <span class="hljs-number">1</span>, prof_Max, movHijo);
+
+            <span class="hljs-keyword">if</span> (valor &gt; mejorValor) {
+                mejorValor = valor;
+                mejorMov = sucesor.second;
+            }
+        }
+
+        Mov = mejorMov;
+        <span class="hljs-keyword">return</span> mejorValor;
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Nodo MIN: el rival intenta minimizar nuestra puntuación.</span>
+        <span class="hljs-type">double</span> mejorValor = MasInfinito;
+        std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; mejorMov = sucesores[<span class="hljs-number">0</span>].second;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; sucesor : sucesores) {
+            std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; movHijo;
+
+            <span class="hljs-type">double</span> valor = <span class="hljs-built_in">minimax</span>(sucesor.first, profundidad + <span class="hljs-number">1</span>, prof_Max, movHijo);
+
+            <span class="hljs-keyword">if</span> (valor &lt; mejorValor) {
+                mejorValor = valor;
+                mejorMov = sucesor.second;
+            }
+        }
+
+        Mov = mejorMov;
+        <span class="hljs-keyword">return</span> mejorValor;
+    }
+}
+
+</div></code></pre>
+<h3 id="funcion-alfabeta">FUNCION ALFABETA</h3>
+<p>Es una mejora de minimax con poda Alfa-Beta, evitando explorar ramas no necesarias y haciendolo algo más eficiente. Y se basa en buscar la mejor opcion tanto para el jugador que maximiza como para el que minimiza (Alfa y Beta respectivamente).</p>
+<p>Si alfa es mayor o igual que beta se corta la rama, ya que sabemos que la otra es más eficiente.</p>
+<p>Además incluye una ordenación de sucesores (sort) para ordenar valores antes de analizar, simplemente ayuda a podar ramas antes.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">AgenteEstudiante::alfaBeta</span><span class="hljs-params">(<span class="hljs-type">const</span> Tablero &amp;tablero, <span class="hljs-type">int</span> profundidad, <span class="hljs-type">int</span> prof_Max, <span class="hljs-type">double</span> alfa, <span class="hljs-type">double</span> beta, std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; &amp;Mov)</span> </span>{
+    <span class="hljs-comment">/* ============== Este trozo de código se tiene que quedar aquí  =============== */</span>
+    nodosVisitados++;
+    <span class="hljs-keyword">if</span> (abortarBanda) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    
+    <span class="hljs-keyword">if</span> (std::chrono::<span class="hljs-built_in">duration</span>&lt;<span class="hljs-type">double</span>&gt;(std::chrono::steady_clock::<span class="hljs-built_in">now</span>() - inicioBusqueda).<span class="hljs-built_in">count</span>() &gt; tiempoMaxSegundos) {
+        abortarBanda = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+    <span class="hljs-comment">/* ============== Empieza a partir de aquí tu implementación  =============== */</span>
+
+    Mov = {<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>};
+
+    <span class="hljs-type">int</span> oponente = (id == <span class="hljs-number">1</span>) ? <span class="hljs-number">2</span> : <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// 1. Comprobar si el tablero actual ya es terminal.</span>
+    Tablero copia = tablero;
+    <span class="hljs-type">int</span> ganador = copia.<span class="hljs-built_in">comprobarGanador</span>();
+
+    <span class="hljs-keyword">if</span> (ganador == id) {
+        <span class="hljs-keyword">return</span> GANAR - profundidad;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == oponente) {
+        <span class="hljs-keyword">return</span> PERDER + profundidad;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == <span class="hljs-number">-1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-comment">// 2. Si llegamos a la profundidad máxima, usamos la heurística.</span>
+    <span class="hljs-keyword">if</span> (profundidad &gt;= prof_Max) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristica</span>(tablero);
+    }
+
+    <span class="hljs-comment">// 3. Generar sucesores.</span>
+    <span class="hljs-keyword">auto</span> sucesores = tablero.<span class="hljs-built_in">getSucesoresConMovimientos</span>();
+
+    <span class="hljs-keyword">if</span> (sucesores.<span class="hljs-built_in">empty</span>()) {
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristica</span>(tablero);
+    }
+
+    <span class="hljs-type">bool</span> mueveNuestroJugador = (tablero.<span class="hljs-built_in">getJugadorTurno</span>() == id);
+
+    <span class="hljs-comment">// Ordenación de sucesores para mejorar la poda Alfa-Beta.</span>
+    <span class="hljs-comment">// Si mueve nuestro jugador, interesan primero los tableros con mayor heurística.</span>
+    <span class="hljs-comment">// Si mueve el rival, interesan primero los tableros con menor heurística.</span>
+    std::<span class="hljs-built_in">sort</span>(sucesores.<span class="hljs-built_in">begin</span>(), sucesores.<span class="hljs-built_in">end</span>(),
+        [&amp;](<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; a, <span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; b) {
+            <span class="hljs-type">double</span> valorA = <span class="hljs-built_in">heuristica</span>(a.first);
+            <span class="hljs-type">double</span> valorB = <span class="hljs-built_in">heuristica</span>(b.first);
+
+            <span class="hljs-keyword">if</span> (mueveNuestroJugador) {
+                <span class="hljs-keyword">return</span> valorA &gt; valorB;
+            }
+            <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">return</span> valorA &lt; valorB;
+            }
+        }
+    );
+
+    <span class="hljs-keyword">if</span> (mueveNuestroJugador) {
+        <span class="hljs-comment">// Nodo MAX: nuestro agente intenta maximizar.</span>
+        <span class="hljs-type">double</span> mejorValor = MenosInfinito;
+        std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; mejorMov = sucesores[<span class="hljs-number">0</span>].second;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; sucesor : sucesores) {
+            std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; movHijo;
+
+            <span class="hljs-type">double</span> valor = <span class="hljs-built_in">alfaBeta</span>(
+                sucesor.first,
+                profundidad + <span class="hljs-number">1</span>,
+                prof_Max,
+                alfa,
+                beta,
+                movHijo
+            );
+
+            <span class="hljs-keyword">if</span> (valor &gt; mejorValor) {
+                mejorValor = valor;
+                mejorMov = sucesor.second;
+            }
+
+            alfa = std::<span class="hljs-built_in">max</span>(alfa, mejorValor);
+
+            <span class="hljs-keyword">if</span> (alfa &gt;= beta) {
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+
+        Mov = mejorMov;
+        <span class="hljs-keyword">return</span> mejorValor;
+    }
+    <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// Nodo MIN: el rival intenta minimizar nuestra puntuación.</span>
+        <span class="hljs-type">double</span> mejorValor = MasInfinito;
+        std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; mejorMov = sucesores[<span class="hljs-number">0</span>].second;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">const</span> <span class="hljs-keyword">auto</span>&amp; sucesor : sucesores) {
+            std::pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; movHijo;
+
+            <span class="hljs-type">double</span> valor = <span class="hljs-built_in">alfaBeta</span>(
+                sucesor.first,
+                profundidad + <span class="hljs-number">1</span>,
+                prof_Max,
+                alfa,
+                beta,
+                movHijo
+            );
+
+            <span class="hljs-keyword">if</span> (valor &lt; mejorValor) {
+                mejorValor = valor;
+                mejorMov = sucesor.second;
+            }
+
+            beta = std::<span class="hljs-built_in">min</span>(beta, mejorValor);
+
+            <span class="hljs-keyword">if</span> (alfa &gt;= beta) {
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+
+        Mov = mejorMov;
+        <span class="hljs-keyword">return</span> mejorValor;
+    }
+}
+
+</div></code></pre>
+<h3 id="funcion-heuristica">FUNCION HEURISTICA</h3>
+<p>Es simplemente un selector de heuristica en base a los parámetros pasados.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">AgenteEstudiante::heuristica</span><span class="hljs-params">(<span class="hljs-type">const</span> Tablero&amp; tablero)</span> </span>{
+    <span class="hljs-keyword">switch</span>(numHeuristica) {
+        <span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristicaPrueba</span>(tablero);
+                <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristica1</span>(tablero);
+                <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristica2</span>(tablero);
+                <span class="hljs-keyword">break</span>;
+        <span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> <span class="hljs-built_in">heuristica1</span>(tablero);
+    }
+}
+
+</div></code></pre>
+<h3 id="funcion-heuristica1">FUNCION HEURISTICA1</h3>
+<p>Es una función que valora si un tablero es bueno o malo para el jugador cuando no se puede explorar la partida completa.</p>
+<p>Analiza las posibles líneas para ganar (horizontales,verticales y diagonales), si hay fichas nuestras suma puntos, si hay del rival resta, y también tiene valora las posibilidades cercanas a la victoria, union de 4 por ejemplo, y añade bonus por controlar posiciones centrales, ya que da más posibilidades.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">AgenteEstudiante::heuristica1</span><span class="hljs-params">(<span class="hljs-type">const</span> Tablero&amp; tablero)</span> </span>{
+    <span class="hljs-type">int</span> filas = tablero.<span class="hljs-built_in">getFilas</span>();
+    <span class="hljs-type">int</span> columnas = tablero.<span class="hljs-built_in">getColumnas</span>();
+    <span class="hljs-type">int</span> n = tablero.<span class="hljs-built_in">getNParaGanar</span>();
+    <span class="hljs-type">int</span> oponente = (id == <span class="hljs-number">1</span>) ? <span class="hljs-number">2</span> : <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// 1. Comprobación de estados terminales.</span>
+    Tablero copia = tablero;
+    <span class="hljs-type">int</span> ganador = copia.<span class="hljs-built_in">comprobarGanador</span>();
+
+    <span class="hljs-keyword">if</span> (ganador == id) {
+        <span class="hljs-keyword">return</span> GANAR;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == oponente) {
+        <span class="hljs-keyword">return</span> PERDER;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == <span class="hljs-number">-1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-type">double</span> score = <span class="hljs-number">0.0</span>;
+
+    <span class="hljs-comment">// 2. Pequeño bonus por ocupar zonas centrales.</span>
+    <span class="hljs-comment">// En juegos de alineación, el centro suele ser más valioso porque participa</span>
+    <span class="hljs-comment">// en más líneas horizontales, verticales y diagonales.</span>
+    <span class="hljs-type">int</span> centroF = filas / <span class="hljs-number">2</span>;
+    <span class="hljs-type">int</span> centroC = columnas / <span class="hljs-number">2</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> f = <span class="hljs-number">0</span>; f &lt; filas; f++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>; c &lt; columnas; c++) {
+            <span class="hljs-type">int</span> celda = tablero.<span class="hljs-built_in">getCelda</span>(f, c);
+
+            <span class="hljs-keyword">if</span> (celda != <span class="hljs-number">0</span>) {
+                <span class="hljs-type">int</span> valorCentro = (filas - std::<span class="hljs-built_in">abs</span>(f - centroF)) + 
+                                  (columnas - std::<span class="hljs-built_in">abs</span>(c - centroC));
+
+                <span class="hljs-keyword">if</span> (celda == id) {
+                    score += <span class="hljs-number">3.0</span> * valorCentro;
+                }
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (celda == oponente) {
+                    score -= <span class="hljs-number">3.0</span> * valorCentro;
+                }
+            }
+        }
+    }
+
+    <span class="hljs-comment">// 3. Función auxiliar para puntuar una ventana de n casillas.</span>
+    <span class="hljs-keyword">auto</span> evaluarVentana = [&amp;](<span class="hljs-type">int</span> propias, <span class="hljs-type">int</span> rivales) -&gt; <span class="hljs-type">double</span> {
+        <span class="hljs-comment">// Si hay fichas de ambos jugadores, esa línea está bloqueada.</span>
+        <span class="hljs-keyword">if</span> (propias &gt; <span class="hljs-number">0</span> &amp;&amp; rivales &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>;
+        }
+
+        <span class="hljs-comment">// Línea vacía: no aporta información.</span>
+        <span class="hljs-keyword">if</span> (propias == <span class="hljs-number">0</span> &amp;&amp; rivales == <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>;
+        }
+
+        <span class="hljs-comment">// Línea favorable a nuestro jugador.</span>
+        <span class="hljs-keyword">if</span> (propias &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">if</span> (propias &gt;= n) {
+                <span class="hljs-keyword">return</span> GANAR / <span class="hljs-number">10.0</span>;
+            }
+
+            <span class="hljs-keyword">if</span> (propias == n - <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-number">200000.0</span>;
+            }
+
+            <span class="hljs-keyword">if</span> (propias == n - <span class="hljs-number">2</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-number">10000.0</span>;
+            }
+
+            <span class="hljs-keyword">if</span> (propias == n - <span class="hljs-number">3</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-number">500.0</span>;
+            }
+
+            <span class="hljs-keyword">return</span> <span class="hljs-number">20.0</span> * propias;
+        }
+
+        <span class="hljs-comment">// Línea favorable al rival.</span>
+        <span class="hljs-keyword">if</span> (rivales &gt; <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">if</span> (rivales &gt;= n) {
+                <span class="hljs-keyword">return</span> PERDER / <span class="hljs-number">10.0</span>;
+            }
+
+            <span class="hljs-keyword">if</span> (rivales == n - <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-number">-250000.0</span>;
+            }
+
+            <span class="hljs-keyword">if</span> (rivales == n - <span class="hljs-number">2</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-number">-15000.0</span>;
+            }
+
+            <span class="hljs-keyword">if</span> (rivales == n - <span class="hljs-number">3</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-number">-700.0</span>;
+            }
+
+            <span class="hljs-keyword">return</span> <span class="hljs-number">-25.0</span> * rivales;
+        }
+
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0.0</span>;
+    };
+
+    <span class="hljs-comment">// 4. Direcciones que vamos a analizar:</span>
+    <span class="hljs-comment">// horizontal, vertical, diagonal descendente y diagonal ascendente.</span>
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> df[<span class="hljs-number">4</span>] = {<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">-1</span>};
+    <span class="hljs-type">const</span> <span class="hljs-type">int</span> dc[<span class="hljs-number">4</span>] = {<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>};
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> f = <span class="hljs-number">0</span>; f &lt; filas; f++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>; c &lt; columnas; c++) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> dir = <span class="hljs-number">0</span>; dir &lt; <span class="hljs-number">4</span>; dir++) {
+                <span class="hljs-type">int</span> finF = f + (n - <span class="hljs-number">1</span>) * df[dir];
+                <span class="hljs-type">int</span> finC = c + (n - <span class="hljs-number">1</span>) * dc[dir];
+
+                <span class="hljs-comment">// Comprobamos que la ventana cabe dentro del tablero.</span>
+                <span class="hljs-keyword">if</span> (finF &lt; <span class="hljs-number">0</span> || finF &gt;= filas || finC &lt; <span class="hljs-number">0</span> || finC &gt;= columnas) {
+                    <span class="hljs-keyword">continue</span>;
+                }
+
+                <span class="hljs-type">int</span> propias = <span class="hljs-number">0</span>;
+                <span class="hljs-type">int</span> rivales = <span class="hljs-number">0</span>;
+
+                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">0</span>; k &lt; n; k++) {
+                    <span class="hljs-type">int</span> nf = f + k * df[dir];
+                    <span class="hljs-type">int</span> nc = c + k * dc[dir];
+
+                    <span class="hljs-type">int</span> celda = tablero.<span class="hljs-built_in">getCelda</span>(nf, nc);
+
+                    <span class="hljs-keyword">if</span> (celda == id) {
+                        propias++;
+                    }
+                    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (celda == oponente) {
+                        rivales++;
+                    }
+                }
+
+                score += <span class="hljs-built_in">evaluarVentana</span>(propias, rivales);
+            }
+        }
+    }
+
+    <span class="hljs-keyword">return</span> score;
+}
+
+</div></code></pre>
+<h3 id="funcion-heuristica2">FUNCION HEURISTICA2</h3>
+<p>Es una heuristica alternativa algo más sencilla, basada en la comparación de resultados.
+Usa las combinaciones dadas de la clase Tablero y valora las líneas propias y penaliza las del rival dando peso dependiendo de la longitud de las cadenas.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">AgenteEstudiante::heuristica2</span><span class="hljs-params">(<span class="hljs-type">const</span> Tablero&amp; tablero)</span> </span>{
+    <span class="hljs-type">int</span> n = tablero.<span class="hljs-built_in">getNParaGanar</span>();
+    <span class="hljs-type">int</span> oponente = (id == <span class="hljs-number">1</span>) ? <span class="hljs-number">2</span> : <span class="hljs-number">1</span>;
+
+    <span class="hljs-comment">// Comprobación de estados terminales.</span>
+    Tablero copia = tablero;
+    <span class="hljs-type">int</span> ganador = copia.<span class="hljs-built_in">comprobarGanador</span>();
+
+    <span class="hljs-keyword">if</span> (ganador == id) {
+        <span class="hljs-keyword">return</span> GANAR;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == oponente) {
+        <span class="hljs-keyword">return</span> PERDER;
+    }
+
+    <span class="hljs-keyword">if</span> (ganador == <span class="hljs-number">-1</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+    }
+
+    <span class="hljs-type">double</span> score = <span class="hljs-number">0.0</span>;
+
+    <span class="hljs-comment">// Valoramos combinaciones propias y del rival.</span>
+    <span class="hljs-comment">// Cuanto más largas sean las líneas, más peso tienen.</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> longitud = <span class="hljs-number">1</span>; longitud &lt;= n; longitud++) {
+        <span class="hljs-type">int</span> propias = tablero.<span class="hljs-built_in">contarCombinaciones</span>(longitud, id);
+        <span class="hljs-type">int</span> rivales = tablero.<span class="hljs-built_in">contarCombinaciones</span>(longitud, oponente);
+
+        <span class="hljs-type">double</span> peso = std::<span class="hljs-built_in">pow</span>(<span class="hljs-number">10.0</span>, longitud);
+
+        score += peso * propias;
+        score -= peso * <span class="hljs-number">1.25</span> * rivales;
+    }
+
+    <span class="hljs-comment">// Pequeño bonus por control del centro.</span>
+    <span class="hljs-type">int</span> filas = tablero.<span class="hljs-built_in">getFilas</span>();
+    <span class="hljs-type">int</span> columnas = tablero.<span class="hljs-built_in">getColumnas</span>();
+    <span class="hljs-type">int</span> centroF = filas / <span class="hljs-number">2</span>;
+    <span class="hljs-type">int</span> centroC = columnas / <span class="hljs-number">2</span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> f = <span class="hljs-number">0</span>; f &lt; filas; f++) {
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c = <span class="hljs-number">0</span>; c &lt; columnas; c++) {
+            <span class="hljs-type">int</span> celda = tablero.<span class="hljs-built_in">getCelda</span>(f, c);
+
+            <span class="hljs-keyword">if</span> (celda != <span class="hljs-number">0</span>) {
+                <span class="hljs-type">int</span> distancia = std::<span class="hljs-built_in">abs</span>(f - centroF) + std::<span class="hljs-built_in">abs</span>(c - centroC);
+                <span class="hljs-type">double</span> valorCentro = <span class="hljs-number">10.0</span> - distancia;
+
+                <span class="hljs-keyword">if</span> (celda == id) {
+                    score += valorCentro;
+                }
+                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (celda == oponente) {
+                    score -= valorCentro;
+                }
+            }
+        }
+    }
+
+    <span class="hljs-keyword">return</span> score;
+}
+
+</div></code></pre>
+<h3 id="funcion-juegainteligente">FUNCION JUEGAINTELIGENTE</h3>
+<p>Se usa cuando el agente se ejecuta en modo inteligente. Y hace llamadas a Alfa-Beta, una vez devuelve el movimiento elegido y el simulador coloca la ficha.
+Es importante ya que  conecta el simulador con nuestra implementación real de busqueda inteligente.</p>
+<pre class="hljs"><code><div>
+<span class="hljs-function">pair&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; <span class="hljs-title">AgenteEstudiante::JuegaInteligente</span><span class="hljs-params">(<span class="hljs-type">const</span> Tablero&amp; tablero)</span> </span>{
+    pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt; Mov;
+
+    <span class="hljs-type">double</span> valor = <span class="hljs-built_in">alfaBeta</span>(tablero, <span class="hljs-number">0</span>, profundidadMax, MenosInfinito, MasInfinito, Mov);
+    cout &lt;&lt; <span class="hljs-string">&quot;Valor Minimax: &quot;</span> &lt;&lt; valor &lt;&lt; <span class="hljs-string">&quot;\tJugada: (&quot;</span> &lt;&lt; Mov.first &lt;&lt; <span class="hljs-string">&quot;, &quot;</span> &lt;&lt; Mov.second &lt;&lt; <span class="hljs-string">&quot;)\n&quot;</span>;
+    <span class="hljs-keyword">return</span> Mov;
+}
+
+</div></code></pre>
+
+</body>
+</html>

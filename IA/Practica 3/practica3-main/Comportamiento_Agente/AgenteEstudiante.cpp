@@ -191,12 +191,12 @@ AgenteEstudiante::Resultado AgenteEstudiante::Status(const Tablero &tablero, pai
  * @param Mov [Salida] La mejor jugada encontrada en la raíz.
  * @return Valor heurístico del estado.
  */
-double AgenteEstudiante::minimax(const Tablero &tablero, int profundidad, int prof_Max, std::pair<int,int> &Mov) {
+double AgenteEstudiante::minimax(const Tablero &tablero, int profundidad, int prof_Max, pair<int,int> &Mov) {
     /* ============== Este trozo de código se tiene que quedar aquí  =============== */
     nodosVisitados++;
     if (abortarBanda) return 0;
     
-    if (std::chrono::duration<double>(std::chrono::steady_clock::now() - inicioBusqueda).count() > tiempoMaxSegundos) {
+    if (chrono::duration<double>(chrono::steady_clock::now() - inicioBusqueda).count() > tiempoMaxSegundos) {
         abortarBanda = true;
         return 0;
     }
@@ -239,10 +239,10 @@ double AgenteEstudiante::minimax(const Tablero &tablero, int profundidad, int pr
     if (mueveNuestroJugador) {
         // Nodo MAX: nuestro agente quiere maximizar la puntuación.
         double mejorValor = MenosInfinito;
-        std::pair<int,int> mejorMov = sucesores[0].second;
+        pair<int,int> mejorMov = sucesores[0].second;
 
         for (const auto& sucesor : sucesores) {
-            std::pair<int,int> movHijo;
+            pair<int,int> movHijo;
 
             double valor = minimax(sucesor.first, profundidad + 1, prof_Max, movHijo);
 
@@ -258,10 +258,10 @@ double AgenteEstudiante::minimax(const Tablero &tablero, int profundidad, int pr
     else {
         // Nodo MIN: el rival intenta minimizar nuestra puntuación.
         double mejorValor = MasInfinito;
-        std::pair<int,int> mejorMov = sucesores[0].second;
+        pair<int,int> mejorMov = sucesores[0].second;
 
         for (const auto& sucesor : sucesores) {
-            std::pair<int,int> movHijo;
+            pair<int,int> movHijo;
 
             double valor = minimax(sucesor.first, profundidad + 1, prof_Max, movHijo);
 
@@ -303,12 +303,12 @@ pair<int, int> AgenteEstudiante::JuegaInteligente(const Tablero& tablero) {
  * @param Mov [Salida] La mejor jugada encontrada en la raíz.
  * @return Valor heurístico del estado tras la poda.
  */
-double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int prof_Max, double alfa, double beta, std::pair<int,int> &Mov) {
+double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int prof_Max, double alfa, double beta, pair<int,int> &Mov) {
     /* ============== Este trozo de código se tiene que quedar aquí  =============== */
     nodosVisitados++;
     if (abortarBanda) return 0;
     
-    if (std::chrono::duration<double>(std::chrono::steady_clock::now() - inicioBusqueda).count() > tiempoMaxSegundos) {
+    if (chrono::duration<double>(chrono::steady_clock::now() - inicioBusqueda).count() > tiempoMaxSegundos) {
         abortarBanda = true;
         return 0;
     }
@@ -351,7 +351,7 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
     // Ordenación de sucesores para mejorar la poda Alfa-Beta.
     // Si mueve nuestro jugador, interesan primero los tableros con mayor heurística.
     // Si mueve el rival, interesan primero los tableros con menor heurística.
-    std::sort(sucesores.begin(), sucesores.end(),
+    sort(sucesores.begin(), sucesores.end(),
         [&](const auto& a, const auto& b) {
             double valorA = heuristica(a.first);
             double valorB = heuristica(b.first);
@@ -368,10 +368,10 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
     if (mueveNuestroJugador) {
         // Nodo MAX: nuestro agente intenta maximizar.
         double mejorValor = MenosInfinito;
-        std::pair<int,int> mejorMov = sucesores[0].second;
+        pair<int,int> mejorMov = sucesores[0].second;
 
         for (const auto& sucesor : sucesores) {
-            std::pair<int,int> movHijo;
+            pair<int,int> movHijo;
 
             double valor = alfaBeta(
                 sucesor.first,
@@ -387,7 +387,7 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
                 mejorMov = sucesor.second;
             }
 
-            alfa = std::max(alfa, mejorValor);
+            alfa = max(alfa, mejorValor);
 
             if (alfa >= beta) {
                 break;
@@ -400,10 +400,10 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
     else {
         // Nodo MIN: el rival intenta minimizar nuestra puntuación.
         double mejorValor = MasInfinito;
-        std::pair<int,int> mejorMov = sucesores[0].second;
+        pair<int,int> mejorMov = sucesores[0].second;
 
         for (const auto& sucesor : sucesores) {
-            std::pair<int,int> movHijo;
+            pair<int,int> movHijo;
 
             double valor = alfaBeta(
                 sucesor.first,
@@ -419,7 +419,7 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
                 mejorMov = sucesor.second;
             }
 
-            beta = std::min(beta, mejorValor);
+            beta = min(beta, mejorValor);
 
             if (alfa >= beta) {
                 break;
@@ -510,8 +510,8 @@ double AgenteEstudiante::heuristica1(const Tablero& tablero) {
             int celda = tablero.getCelda(f, c);
 
             if (celda != 0) {
-                int valorCentro = (filas - std::abs(f - centroF)) + 
-                                  (columnas - std::abs(c - centroC));
+                int valorCentro = (filas - abs(f - centroF)) + 
+                                  (columnas - abs(c - centroC));
 
                 if (celda == id) {
                     score += 3.0 * valorCentro;
@@ -649,7 +649,7 @@ double AgenteEstudiante::heuristica2(const Tablero& tablero) {
         int propias = tablero.contarCombinaciones(longitud, id);
         int rivales = tablero.contarCombinaciones(longitud, oponente);
 
-        double peso = std::pow(10.0, longitud);
+        double peso = pow(10.0, longitud);
 
         score += peso * propias;
         score -= peso * 1.25 * rivales;
@@ -666,7 +666,7 @@ double AgenteEstudiante::heuristica2(const Tablero& tablero) {
             int celda = tablero.getCelda(f, c);
 
             if (celda != 0) {
-                int distancia = std::abs(f - centroF) + std::abs(c - centroC);
+                int distancia = abs(f - centroF) + abs(c - centroC);
                 double valorCentro = 10.0 - distancia;
 
                 if (celda == id) {
