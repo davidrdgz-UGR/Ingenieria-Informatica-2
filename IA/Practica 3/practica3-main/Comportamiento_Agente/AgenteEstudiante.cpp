@@ -12,6 +12,7 @@ using namespace std;
 AgenteEstudiante::AgenteEstudiante(int id, int profundidadMax, double tiempoMax, int numHeuristica, ModoJuego modo) 
     : id(id), profundidadMax(profundidadMax), tiempoMaxSegundos(tiempoMax), numHeuristica(numHeuristica), modo(modo), abortarBanda(false) {
     nodosVisitados = 0;
+    contadorPodas = 0;
 }
 
 bool AgenteEstudiante::tieneLimiteDeTiempo() const {
@@ -21,6 +22,8 @@ bool AgenteEstudiante::tieneLimiteDeTiempo() const {
 pair<int, int> AgenteEstudiante::think(const Tablero& tablero) {
     pair<int, int> mejor;
     nodosVisitados = 0;
+    contadorPodas = 0;
+
     abortarBanda = false;
     inicioBusqueda = chrono::steady_clock::now();
 
@@ -287,6 +290,7 @@ pair<int, int> AgenteEstudiante::JuegaInteligente(const Tablero& tablero) {
 
     double valor = alfaBeta(tablero, 0, profundidadMax, MenosInfinito, MasInfinito, Mov);
     cout << "Valor Minimax: " << valor << "\tJugada: (" << Mov.first << ", " << Mov.second << ")\n";
+    cout << "\n Podas realizadas: " << contadorPodas << "/n";
     return Mov;
 }
 
@@ -306,6 +310,7 @@ pair<int, int> AgenteEstudiante::JuegaInteligente(const Tablero& tablero) {
 double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int prof_Max, double alfa, double beta, pair<int,int> &Mov) {
     /* ============== Este trozo de código se tiene que quedar aquí  =============== */
     nodosVisitados++;
+    
     if (abortarBanda) return 0;
     
     if (chrono::duration<double>(chrono::steady_clock::now() - inicioBusqueda).count() > tiempoMaxSegundos) {
@@ -313,6 +318,19 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
         return 0;
     }
     /* ============== Empieza a partir de aquí tu implementación  =============== */
+
+    int libres = 0;
+
+    for (int f = 0; f < tablero.getFilas(); f++) {
+        for (int c = 0; c < tablero.getColumnas(); c++) {
+            if (tablero.getCelda(f, c) == 0) {
+                libres++;
+            }
+        }
+    }
+
+    
+    
 
     Mov = {-1, -1};
 
@@ -331,6 +349,16 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
     }
 
     if (ganador == -1) {
+        return 0;
+    }
+
+    if (libres <= 10){
+        std::pair<int,int> movStatus;
+        Resultado r = Status(tablero, movStatus);
+
+        if (r == Resultado::VICTORIA) return GANAR - profundidad;
+        if (r == Resultado::DERROTA) return PERDER + profundidad;
+        Mov = movStatus;
         return 0;
     }
 
@@ -382,6 +410,8 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
                 movHijo
             );
 
+            /* Aqui hariamos el switch de valoracion de casilla, si es una casilla especial le añadiriamos el valor. */
+
             if (valor > mejorValor) {
                 mejorValor = valor;
                 mejorMov = sucesor.second;
@@ -390,6 +420,7 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
             alfa = max(alfa, mejorValor);
 
             if (alfa >= beta) {
+                contadorPodas++;
                 break;
             }
         }
@@ -422,6 +453,7 @@ double AgenteEstudiante::alfaBeta(const Tablero &tablero, int profundidad, int p
             beta = min(beta, mejorValor);
 
             if (alfa >= beta) {
+                contadorPodas++;
                 break;
             }
         }
@@ -443,6 +475,8 @@ double AgenteEstudiante::heuristica(const Tablero& tablero) {
         case 1: return heuristica1(tablero);
                 break;
         case 2: return heuristica2(tablero);
+                break;
+        case 3: return heuristica3(tablero);
                 break;
         default: return heuristica1(tablero);
     }
@@ -682,3 +716,337 @@ double AgenteEstudiante::heuristica2(const Tablero& tablero) {
     return score;
 }
 
+double AgenteEstudiante::heuristica3(const Tablero& tablero) {
+    int filas = tablero.getFilas();
+    int columnas = tablero.getColumnas();
+    int n = tablero.getNParaGanar();
+    int oponente = (id == 1) ? 2 : 1;
+
+    // 1. Comprobación de estados terminales.
+    Tablero copia = tablero;
+    int ganador = copia.comprobarGanador();
+
+    if (ganador == id) {
+        return GANAR;
+    }
+
+    if (ganador == oponente) {
+        return PERDER;
+    }
+
+    if (ganador == -1) {
+        return 0;
+    }
+
+    double score = 0.0;
+
+    // 2. Pequeño bonus por ocupar zonas centrales.
+    // En juegos de alineación, el centro suele ser más valioso porque participa
+    // en más líneas horizontales, verticales y diagonales.
+    int centroF = filas / 2;
+    int centroC = columnas / 2;
+
+    for (int f = 0; f < filas; f++) {
+        for (int c = 0; c < columnas; c++) {
+            int celda = tablero.getCelda(f, c);
+
+            if (celda != 0) {
+                int valorCentro = (filas - abs(f - centroF)) + 
+                                  (columnas - abs(c - centroC));
+
+                if (celda == id) {
+                    score += 3.0 * valorCentro;
+                }
+                else if (celda == oponente) {
+                    score -= 3.0 * valorCentro;
+                }
+            }
+        }
+    }
+
+    // 3. Función auxiliar para puntuar una ventana de n casillas.
+    auto evaluarVentana = [&](int propias, int rivales) -> double {
+        // Si hay fichas de ambos jugadores, esa línea está bloqueada.
+        if (propias > 0 && rivales > 0) {
+            return 0.0;
+        }
+
+        // Línea vacía: no aporta información.
+        if (propias == 0 && rivales == 0) {
+            return 0.0;
+        }
+
+        // Línea favorable a nuestro jugador.
+        if (propias > 0) {
+            if (propias >= n) {
+                return GANAR / 10.0;
+            }
+
+            if (propias == n - 1) {
+                return 150000.0;
+            }
+
+            if (propias == n - 2) {
+                return 8000.0;
+            }
+
+            if (propias == n - 3) {
+                return 500.0;
+            }
+
+            return 20.0 * propias;
+        }
+
+        // Línea favorable al rival.
+        if (rivales > 0) {
+            if (rivales >= n) {
+                return PERDER / 10.0;
+            }
+
+            if (rivales == n - 1) {
+                return -500000.0;
+            }
+
+            if (rivales == n - 2) {
+                return -30000.0;
+            }
+
+            if (rivales == n - 3) {
+                return -700.0;
+            }
+
+            return -25.0 * rivales;
+        }
+
+        return 0.0;
+    };
+
+
+    // 4. Direcciones que vamos a analizar:
+    // horizontal, vertical, diagonal descendente y diagonal ascendente.
+    const int df[4] = {0, 1, 1, -1};
+    const int dc[4] = {1, 0, 1, 1};
+
+    for (int f = 0; f < filas; f++) {
+        for (int c = 0; c < columnas; c++) {
+            for (int dir = 0; dir < 4; dir++) {
+                int finF = f + (n - 1) * df[dir];
+                int finC = c + (n - 1) * dc[dir];
+
+                // Comprobamos que la ventana cabe dentro del tablero.
+                if (finF < 0 || finF >= filas || finC < 0 || finC >= columnas) {
+                    continue;
+                }
+
+                int propias = 0;
+                int rivales = 0;
+
+                for (int k = 0; k < n; k++) {
+                    int nf = f + k * df[dir];
+                    int nc = c + k * dc[dir];
+
+                    int celda = tablero.getCelda(nf, nc);
+
+                    if (celda == id) {
+                        propias++;
+                    }
+                    else if (celda == oponente) {
+                        rivales++;
+                    }
+                }
+
+                score += evaluarVentana(propias, rivales);
+            }
+        }
+    }
+
+    return score;
+
+    
+}
+
+
+
+double AgenteEstudiante::heuristicaPro(const Tablero& tablero) {
+    int filas = tablero.getFilas();
+    int columnas = tablero.getColumnas();
+    int n = tablero.getNParaGanar();
+    int oponente = (id == 1) ? 2 : 1;
+
+    // 1. Comprobación de estados terminales.
+    Tablero copia = tablero;
+    int ganador = copia.comprobarGanador();
+
+    if (ganador == id) {
+        return GANAR;
+    }
+
+    if (ganador == oponente) {
+        return PERDER;
+    }
+
+    if (ganador == -1) {
+        return 0;
+    }
+
+    double score = 0.0;
+
+    auto sucesores = tablero.getSucesoresConMovimientos();
+
+    for (const auto& sucesor : sucesores) {
+        int f = sucesor.second.first;
+        int c = sucesor.second.second;
+
+        Tablero::TipoCelda tipo = tablero.getTipoCelda(f, c);
+
+        if (tipo == Tablero::TipoCelda::VERDE) {
+            score += 100.0;
+        }
+        else if (tipo == Tablero::TipoCelda::ROJO) {
+            score -= 150.0;
+        }else if(tipo == Tablero::TipoCelda::AMARILLO){
+            score -=20.0;
+        }
+    }
+
+    // 2. Pequeño bonus por ocupar zonas centrales.
+    // En juegos de alineación, el centro suele ser más valioso porque participa
+    // en más líneas horizontales, verticales y diagonales.
+    int centroF = filas / 2;
+    int centroC = columnas / 2;
+
+    for (int f = 0; f < filas; f++) {
+        for (int c = 0; c < columnas; c++) {
+            int celda = tablero.getCelda(f, c);
+            Tablero::TipoCelda tipo = tablero.getTipoCelda(f, c);
+
+            if (celda != 0) {
+                int valorCentro = (filas - abs(f - centroF)) + 
+                                  (columnas - abs(c - centroC));
+
+                if (celda == id) {
+                    score += 3.0 * valorCentro;
+                }
+                else if (celda == oponente) {
+                    score -= 3.0 * valorCentro;
+                }
+            }
+        }
+    }
+
+    // 3. Función auxiliar para puntuar una ventana de n casillas.
+    auto evaluarVentana = [&](int propias, int rivales) -> double {
+        // Si hay fichas de ambos jugadores, esa línea está bloqueada.
+        if (propias > 0 && rivales > 0) {
+            return 0.0;
+        }
+
+        // Línea vacía: no aporta información.
+        if (propias == 0 && rivales == 0) {
+            return 0.0;
+        }
+
+        // Línea favorable a nuestro jugador.
+        if (propias > 0) {
+            if (propias >= n) {
+                return GANAR / 10.0;
+            }
+
+            if (propias == n - 1) {
+                return 200000.0;
+            }
+
+            if (propias == n - 2) {
+                return 10000.0;
+            }
+
+            if (propias == n - 3) {
+                return 500.0;
+            }
+
+            return 20.0 * propias;
+        }
+
+        // Línea favorable al rival.
+        if (rivales > 0) {
+            if (rivales >= n) {
+                return PERDER / 10.0;
+            }
+
+            if (rivales == n - 1) {
+                return -250000.0;
+            }
+
+            if (rivales == n - 2) {
+                return -15000.0;
+            }
+
+            if (rivales == n - 3) {
+                return -700.0;
+            }
+
+            return -25.0 * rivales;
+        }
+
+        return 0.0;
+    };
+
+    // 4. Direcciones que vamos a analizar:
+    // horizontal, vertical, diagonal descendente y diagonal ascendente.
+    const int df[4] = {0, 1, 1, -1};
+    const int dc[4] = {1, 0, 1, 1};
+
+    for (int f = 0; f < filas; f++) {
+        for (int c = 0; c < columnas; c++) {
+            for (int dir = 0; dir < 4; dir++) {
+                int finF = f + (n - 1) * df[dir];
+                int finC = c + (n - 1) * dc[dir];
+
+                // Comprobamos que la ventana cabe dentro del tablero.
+                if (finF < 0 || finF >= filas || finC < 0 || finC >= columnas) {
+                    continue;
+                }
+
+                int propias = 0;
+                int rivales = 0;
+
+                for (int k = 0; k < n; k++) {
+                    int nf = f + k * df[dir];
+                    int nc = c + k * dc[dir];
+
+                    int celda = tablero.getCelda(nf, nc);
+
+                    if (celda == id) {
+                        propias++;
+                    }
+                    else if (celda == oponente) {
+                        rivales++;
+                    }
+                }
+
+                score += evaluarVentana(propias, rivales);
+            }
+        }
+    }
+
+    return score;
+}
+
+/* Tablero::TipoCelda tipo = tablero.getTipoCelda(f, c);
+
+                switch (tipo) {
+                    case Tablero::TipoCelda::VERDE:
+                        score += 80.0;
+                        break;
+
+                    case Tablero::TipoCelda::ROJO:
+                        score -= 120.0;
+                        break;
+
+                    case Tablero::TipoCelda::AMARILLO:
+                        score -= 20.0;
+                        break;
+
+                    default:
+                        break;
+                } */

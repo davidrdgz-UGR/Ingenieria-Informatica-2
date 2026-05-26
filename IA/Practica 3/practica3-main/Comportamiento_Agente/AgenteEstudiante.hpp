@@ -72,6 +72,7 @@ private:
     
     chrono::time_point<chrono::steady_clock> inicioBusqueda;
     long long nodosVisitados; // Contador para benchmarking
+    int long contadorPodas;
     
 
     /**
@@ -88,6 +89,9 @@ private:
     double heuristicaPrueba(const Tablero& tablero);
     double heuristica1(const Tablero& tablero);
     double heuristica2(const Tablero& tablero);
+    double heuristica3(const Tablero& tablero);
+    double heuristicaPro(const Tablero& tablero);
+
 
 
 };
