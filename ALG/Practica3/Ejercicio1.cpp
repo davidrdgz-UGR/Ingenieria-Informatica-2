@@ -67,6 +67,15 @@ void bellmanFord(int V, vector<Arista>& aristas, int origen, vector<string>& nom
 
         mostrarEstado(d, pred, nombres);
     }
+
+    for (Arista a : aristas) {
+        if (d[a.origen] != INF && d[a.origen] + a.peso < d[a.destino]) {
+            cout << "\nEl grafo contiene un ciclo negativo." << endl;
+            return;
+        }
+    }
+
+    cout << "\nNo hay ciclos negativos alcanzables desde el origen." << endl;
 }
 
 
@@ -97,6 +106,16 @@ int main() {
 
 	cout << "Bellman-Ford con origen z\n" << endl;
 	bellmanFord(V, aristas1, z, nombres1);
+
+
+    cout << "\nCambiamos el peso de la arista z -> x de 7 a 4\n" << endl;
+
+    aristas1[8].peso = 4;
+
+    cargadoCorrectamente(nombres1, aristas1);
+
+    cout << "\nBellman-Ford con origen s\n" << endl;
+    bellmanFord(V, aristas1, s, nombres1);
 
     return 0;
 }
