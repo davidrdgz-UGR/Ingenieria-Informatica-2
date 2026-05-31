@@ -23,7 +23,6 @@ void cargadoCorrectamente(vector<string>& nombres, vector<Arista>& Aristas){
 }
 
 void mostrarEstado(vector<int>& d, vector<int>& pred, vector<string>& nombres) {
-    const int INF = 999999;
 
     cout << "Vertice\t d\t pi" << endl;
 
