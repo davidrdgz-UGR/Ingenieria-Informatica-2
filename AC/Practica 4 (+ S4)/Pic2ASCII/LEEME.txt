@@ -1,0 +1,19 @@
+# COMPILACIÓN:
+
+gcc -o conversor toASCIISlow.c pgm.c
+
+# LLAMADA SIN PARÁMETROS QUE INDICA LA FORMA DE USO:
+
+./conversor 
+Uso: ./prog nombreImagenPGM subsample outName
+
+# EJEMPLO DE USO SIN SUBMUESTREO:
+
+./conversor dora.pgm 1 MyDora.txt
+Cargando imagen 'dora.pgm' de 200x162
+
+# EJEMPLO DE USO CON SUBMUESTREO:
+
+./conversor dora.pgm 3 MyDora_3.txt
+Cargando imagen 'dora.pgm' de 200x162
+
